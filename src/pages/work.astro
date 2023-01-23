@@ -1,0 +1,85 @@
+---
+import Card from "../components/Card.astro";
+import Layout from "../layouts/Layout.astro";
+
+import { projects, skills } from "../data";
+---
+
+<Layout title="Sarvesh Rane - Work">
+	<main class="container mx-auto py-4 md:px-6 px-3 md:mt-14 mt-3">
+		<div class="lg:grid lg:grid-cols-2">
+			<div>
+				<Card label={"projects"}>
+					<ul class="flex flex-col items-start">
+						{
+							projects.map((item) => (
+								<li class="md:text-4xl text-3xl md:mb-8 mb-5 text-neutral-600 hover:text-gray-800 duration-200 group">
+									<a
+										href={item.link}
+										target="_blank"
+										class="flex group-hover:tracking-widest duration-100 ease-in-out"
+									>
+										<span class="group-hover:-translate-x-3 duration-200 ease-out">
+											&lt;
+										</span>
+										<span>{item.title}</span>
+										<span class="group-hover:translate-x-3 duration-200 ease-out">
+											&gt;
+										</span>
+									</a>
+								</li>
+							))
+						}
+					</ul>
+				</Card>
+			</div>
+			<div class="lg:mt-0 mt-14">
+				<Card
+					label={"education"}
+					labelDirection={"right"}
+					contentDirection={"left"}
+				>
+					<div class="lg:space-y-2 space-y-4">
+						<h3 class="font-bold md:text-4xl text-3xl">
+							Bachelor of Engineering(EXTC)
+						</h3>
+						<h6
+							class="md:text-xl text-lg font-bold text-neutral-600"
+						>
+							Final Year
+						</h6>
+						<p class="text-neutral-600">
+							Smt. Kashibai Navale College of Engineering, Pune,
+							MH, India
+						</p>
+					</div>
+				</Card>
+				<div class="mt-14">
+					<Card
+						label={"skills"}
+						labelDirection={"right"}
+						contentDirection={"left"}
+					>
+						{
+							skills.map((item) => (
+								<div class="space-y-2 mb-5">
+									<h5 class="md:text-xl text-lg font-bold self-start">
+										{item.title}
+									</h5>
+									<p class="md:text-xl text-md capitalize text-neutral-600">
+										{item.data
+											.map((skill) => skill.title)
+											.join(", ")}
+									</p>
+								</div>
+							))
+						}
+						<p class="md:text-md text-sm text-neutral-600">
+							// Yes, HTML is not a programming language.
+						</p>
+					</Card>
+				</div>
+			</div>
+		</div>
+	</main>
+</Layout>

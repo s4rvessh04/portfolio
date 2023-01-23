@@ -1,0 +1,56 @@
+---
+interface Props {
+	label: string;
+	labelClasses?: string;
+	contentClasses?: string;
+	labelDirection?: "left" | "right";
+	contentDirection?: "left" | "right";
+}
+
+const {
+	label,
+	labelDirection,
+	contentDirection,
+	labelClasses,
+	contentClasses,
+}: Props = Astro.props;
+---
+
+<div
+	class:list={[
+		"flex",
+		labelDirection === "right" ? "flex-row-reverse" : "flex-row",
+		contentDirection === "left" ? "justify-between" : "",
+	]}
+>
+	<!-- Side Info -->
+	<h4
+		class:list={[
+			"uppercase text-neutral-600 self-end md:text-base text-sm",
+			labelClasses,
+			labelDirection === "right"
+				? "lg:rotate-270 rotate-180"
+				: "rotate-180",
+		]}
+	>
+		// {label}
+	</h4>
+	<!-- Side Info End -->
+	<!-- Content -->
+	<div
+		class:list={[
+			"w-full",
+			contentClasses,
+			labelDirection === "right" ? "lg:mr-5 mr-3" : "lg:ml-5 ml-3",
+		]}
+	>
+		<slot />
+	</div>
+	<!-- Content End -->
+</div>
+
+<style>
+	h4 {
+		writing-mode: vertical-rl;
+	}
+</style>

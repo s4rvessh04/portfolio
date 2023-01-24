@@ -15,5 +15,6 @@ import image from "@astrojs/image";
 // https://astro.build/config
 export default defineConfig({
 	site: "https://sarveshrane.pages.dev",
+	trailingSlash: "always",
 	integrations: [tailwind(), sitemap(), prefetch(), image()],
 });

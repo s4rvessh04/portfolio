@@ -22,8 +22,15 @@
 			</svg>
 			by Sarvesh Rane
 		</p>
-		<p class="text-neutral-600 md:text-base text-sm">
-			// DATETIME: {new Date().toISOString()}
-		</p>
+		<p class="text-neutral-600 md:text-base text-sm" id="clock"></p>
 	</div>
 </footer>
+
+<script>
+	const clock = document.getElementById("clock");
+	const tick = () => {
+		clock!.textContent = `// DATETIME: ${new Date().toLocaleString()}`;
+		requestAnimationFrame(tick);
+	};
+	tick();
+</script>

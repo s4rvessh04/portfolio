@@ -1,4 +1,4 @@
-export const githubUsername = "s4rvesh04";
+export const githubUsername = "s4rvessh04";
 
 export const dataCurrently = [
 	{ title: "Engineering Student" },

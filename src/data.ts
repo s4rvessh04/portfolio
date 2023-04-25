@@ -1,3 +1,5 @@
+export const githubUsername = "s4rvesh04";
+
 export const dataCurrently = [
 	{ title: "Engineering Student" },
 	{ title: "Full Stack Developer" },
@@ -5,35 +7,35 @@ export const dataCurrently = [
 ];
 
 export const socialLinks = [
-	{ title: "Github", link: "https://github.com/sarveshrane2000" },
+	{ title: "Github", link: `https://github.com/${githubUsername}` },
 	{
 		title: "Linkedin",
 		link: "https://linkedin.com/in/sarvesh-rane-80452522a",
 	},
-	{ title: "Instagram", link: "https://www.instagram.com/sarveshrane2000/" },
-	{ title: "Twitter", link: "https://twitter.com/sarveshrane2000/" },
+	{ title: "Instagram", link: "https://www.instagram.com/sarve.ssh_/" },
+	{ title: "Twitter", link: "https://twitter.com/sarvessh_/" },
 	{ title: "Gmail", link: "mailto:sarveshrane2000.portfolio-site@gmail.com" },
 ];
 
 export const projects = [
 	{
 		title: "Budgeter",
-		link: "https://github.com/sarveshrane2000/Budgeter",
+		link: `https://github.com/${githubUsername}/Budgeter`,
 		description: "",
 	},
 	{
 		title: "Blog Site",
-		link: "https://github.com/sarveshrane2000/astro-blog-site",
+		link: `https://github.com/${githubUsername}/astro-blog-site`,
 		description: "",
 	},
 	{
 		title: "College Portal",
-		link: "https://github.com/sarveshrane2000/University-Website",
+		link: `https://github.com/${githubUsername}/University-Website`,
 		description: "",
 	},
 	{
 		title: "MasterDash",
-		link: "https://github.com/sarveshrane2000/MasterDash",
+		link: `https://github.com/${githubUsername}/MasterDash`,
 		description: "",
 	},
 ];

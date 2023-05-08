@@ -12,8 +12,10 @@ const isActive = href === Astro.url.pathname;
 	{
 		isActive ? (
 			<strong class="flex">
-				&lt;
-				<span>{label}</span>&ThinSpace;/&gt;
+				<span class="text-[#F67280]">&lt;</span>
+				<span>{label}</span>&ThinSpace;
+				<span class="text-[#F67280]">/</span>
+				<span class="text-[#F67280]">&gt;</span>
 			</strong>
 		) : (
 			<span class="flex">{label}</span>

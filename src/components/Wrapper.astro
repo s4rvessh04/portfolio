@@ -1,0 +1,39 @@
+---
+interface Props {
+	tagName: string;
+	wrapper_classlist?: string[];
+	content_classlist?: string[];
+	label_classlist?: string[];
+}
+
+const {
+	tagName,
+	wrapper_classlist,
+	content_classlist,
+	label_classlist,
+}: Props = Astro.props;
+---
+
+<div class:list={["w-full", "xl:container", ...[wrapper_classlist]]}>
+	<div
+		id="opening-tag"
+		class:list={[
+			"text-left text-[#F67280] text-xs mb-0.5",
+			...[label_classlist],
+		]}
+	>
+		&lt;{tagName}&gt;
+	</div>
+	<div id="wrapper-inner" class:list={["border", ...[content_classlist]]}>
+		<slot />
+	</div>
+	<div
+		id="closing-tag"
+		class:list={[
+			"text-right text-[#F67280] text-xs mt-0.5",
+			...[label_classlist],
+		]}
+	>
+		&lt;{tagName}/&gt;
+	</div>
+</div>

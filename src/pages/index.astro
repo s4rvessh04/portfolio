@@ -1,68 +1,245 @@
 ---
-import Card from "../components/Card.astro";
+import Wrapper from "../components/Wrapper.astro";
 import Layout from "../layouts/Layout.astro";
 
-import { dataCurrently, socialLinks } from "../data";
+import { dataCurrently, projects, socialLinks, skills } from "../data";
 ---
 
 <Layout>
-	<main class="container mx-auto py-4 md:px-6 px-3 md:mt-14 mt-3">
-		<div class="lg:grid lg:grid-cols-2">
-			<div>
-				<div>
-					<Card label={"intro"}>
-						<div
-							class="font-bold md:text-4xl text-3xl md:mb-6 mb-3"
+	<Wrapper
+		wrapper_classlist={["flex", "flex-col", "w-full", "lg:px-2 px-1"]}
+		content_classlist={["lg:px-2 px-1", "py-1", "flex"]}
+		tagName="section"
+	>
+		<section class="xl:container mx-auto text-center flex w-full">
+			<Wrapper
+				tagName="container"
+				wrapper_classlist={["flex", "flex-col", "w-full"]}
+				content_classlist={[
+					"md:px-2",
+					"md:py-1",
+					"flex",
+					"flex-col",
+					"md:border border-0",
+				]}
+				label_classlist={["md:block hidden"]}
+			>
+				<div
+					class="mx-auto lg:w-max w-full md:grid grid-rows-2 gap-5 align-middle md:my-5"
+				>
+					<Wrapper
+						tagName="hero"
+						label_classlist={["md:block hidden"]}
+						content_classlist={[
+							"lg:px-2 md:px-1",
+							"md:py-1",
+							"md:grid flex flex-col",
+							"grid-rows-2",
+							"gap-1",
+							"md:border border-0",
+						]}
+					>
+						<Wrapper
+							tagName="intro"
+							content_classlist={["px-1", "py-1"]}
 						>
-							Hi!
-						</div><h1 class="font-bold md:text-6xl text-5xl">
-							I&rsquo;m Sarvesh Rane
-						</h1>
-					</Card>
+							<h1
+								class="font-bold md:text-6xl text-5xl md:text-center text-left leading-tight"
+							>
+								I&rsquo;m <br class="md:hidden inline" />Sarvesh
+								Rane
+							</h1>
+						</Wrapper>
+						<Wrapper
+							tagName="currently"
+							content_classlist={["px-1", "py-1"]}
+						>
+							<div
+								class="flex md:flex-row flex-col justify-center md:gap-0 gap-1.5"
+							>
+								{
+									dataCurrently.map((curr, idx) => (
+										<h3 class="flex italic md:text-2xl text-xl md:text-center text-left gap-2 items-center">
+											<span>{curr.title}</span>
+											{idx ===
+											dataCurrently.length - 1 ? (
+												""
+											) : (
+												<span class="md:inline hidden">
+													&bull;
+												</span>
+											)}
+											&ThinSpace;
+										</h3>
+									))
+								}
+							</div>
+						</Wrapper>
+					</Wrapper>
+					<div class="flex md:flex-row flex-col justify-center">
+						<div class="md:w-max">
+							<Wrapper
+								tagName="socials"
+								content_classlist={[
+									"px-1",
+									"py-1",
+									"md:hover:border-gray-500 hover:border-gray-300",
+									"transition-colors",
+								]}
+								wrapper_classlist={["w-full"]}
+							>
+								<div
+									class="text-lg text-gray-600 flex md:flex-row flex-col justify-center gap-1"
+								>
+									{
+										socialLinks.map((social, idx) => (
+											<a
+												class="md:text-center text-left md:border-0 border md:hover:border-gray-500 hover:border-gray-500 md:px-0 px-2 hover:text-gray-800 md:hover:shadow-none hover:shadow-sm transition-colors"
+												href={social.link}
+												target="_blank"
+												rel="noopener noreferrer"
+											>
+												<span>
+													&lt;{social.title}&gt;
+												</span>
+												{idx ===
+												socialLinks.length - 1 ? (
+													""
+												) : (
+													<span class="md:inline hidden">
+														&bull;
+													</span>
+												)}
+												&ThinSpace;
+											</a>
+										))
+									}
+								</div>
+							</Wrapper>
+						</div>
+					</div>
 				</div>
-				<div class="md:mt-20 mt-10">
-					<Card label={"currently"}>
-						<ul>
+			</Wrapper>
+		</section>
+	</Wrapper>
+	<Wrapper
+		wrapper_classlist={[
+			"flex",
+			"flex-col",
+			"w-full",
+			"lg:px-2 px-1",
+			"my-10",
+		]}
+		content_classlist={["lg:px-2 px-1", "py-1", "flex"]}
+		tagName="section"
+	>
+		<section class="xl:container mx-auto text-center flex w-full">
+			<Wrapper
+				tagName="container"
+				wrapper_classlist={["flex", "flex-col", "w-full"]}
+				content_classlist={[
+					"md:px-2",
+					"md:py-1",
+					"flex",
+					"flex-col",
+					"md:border border-0",
+				]}
+				label_classlist={["md:block hidden"]}
+			>
+				<div
+					class="mx-auto w-full md:grid grid-cols-12 gap-2 align-middle"
+				>
+					<Wrapper
+						tagName="work"
+						wrapper_classlist={["col-span-7"]}
+						content_classlist={["p-2"]}
+					>
+						<Wrapper
+							tagName="profession"
+							content_classlist={["text-left", "px-2", "py-1"]}
+						>
+							<h3 class="font-bold text-3xl leading-normal">
+								Software Development Engineer
+							</h3>
+							<h5 class="text-base">Jio, Navi Mumbai 🇮🇳</h5>
+						</Wrapper>
+						<Wrapper
+							tagName="projects"
+							content_classlist={[
+								"p-2",
+								"flex",
+								"flex-col",
+								"gap-2",
+							]}
+						>
 							{
-								dataCurrently.map((item) => (
-									<li class="md:text-4xl text-3xl md:mb-8 mb-5 text-neutral-600">
-										{item.title}
-									</li>
+								projects.map((project) => (
+									<a
+										class="flex flex-col gap-1.5 text-left border px-2 py-1 group hover:border-gray-500 transition-colors hover:shadow-md"
+										href={project.link}
+									>
+										<h4 class="font-bold text-2xl">
+											&lt;{project.title}&gt;
+										</h4>
+										<p class="text-base italic">
+											{project.description}
+										</p>
+									</a>
 								))
 							}
-						</ul>
-					</Card>
+						</Wrapper>
+					</Wrapper>
+					<div class="col-span-5">
+						<Wrapper
+							tagName="education"
+							content_classlist={["text-left", "px-2", "py-1"]}
+						>
+							<h4 class="font-bold text-2xl leading-relaxed">
+								Bachelor of Engineering (EXTC) w/Honors
+							</h4>
+							<h6 class="text-base">
+								Smt. Kashibai Navale College of Engineering,
+								Pune
+							</h6>
+						</Wrapper>
+						<Wrapper
+							tagName="skills"
+							content_classlist={[
+								"flex",
+								"flex-col",
+								"gap-2",
+								"p-2",
+							]}
+						>
+							{
+								skills.map((skill) => (
+									<div class="flex flex-col gap-1.5 text-left border px-2 py-1">
+										<h4 class="font-bold text-sm uppercase tracking-widest text-gray-500">
+											{skill.title}
+										</h4>
+										<p class="text-xl capitalize">
+											{skill.data.reduce(
+												(prev, curr, idx) =>
+													`${prev}${
+														idx === 0 ? "" : ", "
+													}${curr.title}`,
+												""
+											)}
+										</p>
+									</div>
+								))
+							}
+							<div
+								class="flex flex-col gap-1.5 text-left border px-2 py-1"
+							>
+								<p class="text-sm italic text-gray-500">
+									// Yes, HTML is not a programming language.
+								</p>
+							</div>
+						</Wrapper>
+					</div>
 				</div>
-			</div>
-			<div class="lg:mt-0 mt-20">
-				<Card
-					label={"socials"}
-					labelDirection={"right"}
-					labelClasses={""}
-				>
-					<ul class="flex flex-col items-end">
-						{
-							socialLinks.map((item) => (
-								<li class="md:text-4xl text-3xl md:mb-8 mb-5 text-neutral-600 hover:text-gray-800 duration-200 group">
-									<a
-										href={item.link}
-										target="_blank"
-										class="flex group-hover:tracking-widest duration-100 ease-in-out"
-									>
-										<span class="group-hover:-translate-x-3 duration-200 ease-out">
-											&lt;
-										</span>
-										<span>{item.title}</span>
-										<span class="group-hover:translate-x-3 duration-200 ease-out">
-											&gt;
-										</span>
-									</a>
-								</li>
-							))
-						}
-					</ul>
-				</Card>
-			</div>
-		</div>
-	</main>
+			</Wrapper>
+		</section>
+	</Wrapper>
 </Layout>

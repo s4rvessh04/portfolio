@@ -21,22 +21,23 @@ export const projects = [
 	{
 		title: "Budgeter",
 		link: `https://github.com/${githubUsername}/Budgeter`,
-		description: "",
+		description:
+			"A simple, personal, financial wellness utility based on React and Django",
 	},
 	{
 		title: "Blog Site",
 		link: `https://github.com/${githubUsername}/astro-blog-site`,
-		description: "",
+		description: "Personal blogging website built with Astro 🚀",
 	},
 	{
-		title: "College Portal",
-		link: `https://github.com/${githubUsername}/University-Website`,
-		description: "",
+		title: "DSA",
+		link: `https://github.com/${githubUsername}/DSA`,
+		description: "My learnings of DSA, curated in Python, Java and Go",
 	},
 	{
 		title: "MasterDash",
 		link: `https://github.com/${githubUsername}/MasterDash`,
-		description: "",
+		description: "A dashboard project built with MERN stack",
 	},
 ];
 

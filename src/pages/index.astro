@@ -7,7 +7,7 @@ import { dataCurrently, projects, socialLinks, skills } from "../data";
 
 <Layout>
 	<Wrapper
-		wrapper_classlist={["flex", "flex-col", "w-full", "lg:px-2 px-1"]}
+		wrapper_classlist={["flex", "flex-col", "w-full", "lg:px-0 px-1"]}
 		content_classlist={["lg:px-2 px-1", "py-1", "flex"]}
 		tagName="section"
 	>
@@ -127,7 +127,7 @@ import { dataCurrently, projects, socialLinks, skills } from "../data";
 			"flex",
 			"flex-col",
 			"w-full",
-			"lg:px-2 px-1",
+			"lg:px-0 px-1",
 			"my-10",
 		]}
 		content_classlist={["lg:px-2 px-1", "py-1", "flex"]}
@@ -158,10 +158,14 @@ import { dataCurrently, projects, socialLinks, skills } from "../data";
 							tagName="profession"
 							content_classlist={["text-left", "px-2", "py-1"]}
 						>
-							<h3 class="font-bold text-3xl leading-normal">
+							<h3
+								class="font-bold text-3xl md:leading-normal leading-tight"
+							>
 								Software Development Engineer
 							</h3>
-							<h5 class="text-base">Jio, Navi Mumbai 🇮🇳</h5>
+							<h5 class="text-base md:mt-0 mt-1.5">
+								Jio, Navi Mumbai 🇮🇳
+							</h5>
 						</Wrapper>
 						<Wrapper
 							tagName="projects"
@@ -175,10 +179,10 @@ import { dataCurrently, projects, socialLinks, skills } from "../data";
 							{
 								projects.map((project) => (
 									<a
-										class="flex flex-col gap-1.5 text-left border px-2 py-1 group hover:border-gray-500 transition-colors hover:shadow-md"
+										class="flex flex-col md:gap-1.5 gap-1 text-left border px-2 py-1 group hover:border-gray-500 transition-colors hover:shadow-md"
 										href={project.link}
 									>
-										<h4 class="font-bold text-2xl">
+										<h4 class="font-bold md:text-2xl text-xl">
 											&lt;{project.title}&gt;
 										</h4>
 										<p class="text-base italic">
@@ -194,10 +198,12 @@ import { dataCurrently, projects, socialLinks, skills } from "../data";
 							tagName="education"
 							content_classlist={["text-left", "px-2", "py-1"]}
 						>
-							<h4 class="font-bold text-2xl leading-relaxed">
+							<h4
+								class="font-bold text-2xl md:leading-relaxed leading-tight"
+							>
 								Bachelor of Engineering (EXTC) w/Honors
 							</h4>
-							<h6 class="text-base">
+							<h6 class="text-base md:mt-0 mt-1.5">
 								Smt. Kashibai Navale College of Engineering,
 								Pune
 							</h6>
@@ -217,7 +223,7 @@ import { dataCurrently, projects, socialLinks, skills } from "../data";
 										<h4 class="font-bold text-sm uppercase tracking-widest text-gray-500">
 											{skill.title}
 										</h4>
-										<p class="text-xl capitalize">
+										<p class="md:text-xl text-lg capitalize">
 											{skill.data.reduce(
 												(prev, curr, idx) =>
 													`${prev}${
@@ -236,6 +242,83 @@ import { dataCurrently, projects, socialLinks, skills } from "../data";
 									// Yes, HTML is not a programming language.
 								</p>
 							</div>
+						</Wrapper>
+					</div>
+				</div>
+			</Wrapper>
+		</section>
+	</Wrapper>
+	<Wrapper
+		wrapper_classlist={[
+			"flex",
+			"flex-col",
+			"w-full",
+			"lg:px-0 px-1",
+			"my-10",
+		]}
+		content_classlist={["lg:px-2 px-1", "py-1", "flex"]}
+		tagName="section"
+	>
+		<section class="xl:container mx-auto text-center flex w-full">
+			<Wrapper
+				tagName="container"
+				wrapper_classlist={["flex", "flex-col", "w-full"]}
+				content_classlist={[
+					"md:px-2",
+					"md:py-1",
+					"flex",
+					"flex-col",
+					"md:border border-0",
+				]}
+				label_classlist={["md:block hidden"]}
+			>
+				<div
+					class="mx-auto w-full md:grid flex grid-cols-12 gap-2 md:flex-row flex-col-reverse align-middle"
+				>
+					<div class="col-span-7">
+						<Wrapper
+							tagName="tagline"
+							content_classlist={["text-left", "px-2", "py-1"]}
+						>
+							<h3
+								class="font-bold text-3xl md:leading-normal leading-tight"
+							>
+								Adding, Commiting and Pushing code since 2019.
+							</h3>
+						</Wrapper>
+						<Wrapper
+							tagName="about"
+							content_classlist={[
+								"p-2",
+								"flex",
+								"flex-col",
+								"gap-2",
+							]}
+						>
+							<p class="text-base text-left">
+								I'm a final-year electronics and
+								telecommunications engineering student based in
+								Pune, India, with a passion for software
+								development and creating user-centric UI/UX
+								designs. With hands-on experience in various
+								full-stack web technologies, I am constantly
+								exploring new tools and techniques to enhance my
+								skill set. Apart from coding, I enjoy traveling,
+								attending events, and listening to EDM music to
+								stay inspired and motivated. I am committed to
+								delivering quality work and would love to
+								connect with potential clients and
+								collaborators.
+							</p>
+						</Wrapper>
+					</div>
+					<div class="col-span-5">
+						<Wrapper tagName="me" content_classlist={["p-1"]}>
+							<img
+								src="profile.webp"
+								alt="A picture of me"
+								height="500"
+							/>
 						</Wrapper>
 					</div>
 				</div>

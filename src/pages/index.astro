@@ -1,5 +1,7 @@
 ---
 import Wrapper from "../components/Wrapper.astro";
+import Footer from "../components/Footer.astro";
+
 import Layout from "../layouts/Layout.astro";
 
 import { dataCurrently, projects, socialLinks, skills } from "../data";
@@ -25,7 +27,7 @@ import { dataCurrently, projects, socialLinks, skills } from "../data";
 				label_classlist={["md:block hidden"]}
 			>
 				<div
-					class="mx-auto lg:w-max w-full md:grid grid-rows-2 gap-5 align-middle md:my-5"
+					class="mx-auto lg:w-max w-full md:grid grid-rows-2 gap-5 align-middle md:my-10"
 				>
 					<Wrapper
 						tagName="hero"
@@ -129,9 +131,11 @@ import { dataCurrently, projects, socialLinks, skills } from "../data";
 			"w-full",
 			"lg:px-0 px-1",
 			"my-10",
+			"md:scroll-mt-10 scroll-mt-4",
 		]}
 		content_classlist={["lg:px-2 px-1", "py-1", "flex"]}
 		tagName="section"
+		id="work-section"
 	>
 		<section class="xl:container mx-auto text-center flex w-full">
 			<Wrapper
@@ -255,9 +259,11 @@ import { dataCurrently, projects, socialLinks, skills } from "../data";
 			"w-full",
 			"lg:px-0 px-1",
 			"my-10",
+			"md:scroll-mt-10 scroll-mt-4",
 		]}
 		content_classlist={["lg:px-2 px-1", "py-1", "flex"]}
 		tagName="section"
+		id="about-section"
 	>
 		<section class="xl:container mx-auto text-center flex w-full">
 			<Wrapper
@@ -325,4 +331,5 @@ import { dataCurrently, projects, socialLinks, skills } from "../data";
 			</Wrapper>
 		</section>
 	</Wrapper>
+	<Footer />
 </Layout>

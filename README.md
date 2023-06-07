@@ -1,3 +1,3 @@
 # Portfolio
 
-My portfolio website made with Astro 🚀
+My minimalist portfolio website made with Astro 🚀

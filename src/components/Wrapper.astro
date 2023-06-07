@@ -4,9 +4,11 @@ interface Props {
 	wrapper_classlist?: string[];
 	content_classlist?: string[];
 	label_classlist?: string[];
+	id?: string;
 }
 
 const {
+	id,
 	tagName,
 	wrapper_classlist,
 	content_classlist,
@@ -14,7 +16,7 @@ const {
 }: Props = Astro.props;
 ---
 
-<div class:list={["w-full", "xl:container", ...[wrapper_classlist]]}>
+<div class:list={["w-full", "xl:container", ...[wrapper_classlist]]} id={id}>
 	<div
 		id="opening-tag"
 		class:list={[

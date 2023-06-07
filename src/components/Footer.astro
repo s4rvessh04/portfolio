@@ -1,36 +1,53 @@
-<footer class="bg-neutral-900 w-full xl:px-3">
-	<div
-		class="container mx-auto flex md:flex-row flex-col md:space-y-0 space-y-2 justify-between items-center py-4 md:px-6 px-3"
-	>
-		<p
-			class="flex items-center gap-2 text-neutral-100 md:text-base text-sm"
-		>
-			Made with <svg
-				width="18"
-				height="18"
-				viewBox="0 0 18 18"
-				fill="none"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path
-					opacity="0.2"
-					d="M9 15.1875C9 15.1875 1.96875 11.25 1.96875 6.46876C1.96875 5.62352 2.2616 4.80439 2.79747 4.15073C3.33334 3.49708 4.07913 3.04927 4.90795 2.88351C5.73677 2.71774 6.59743 2.84426 7.34348 3.24153C8.08954 3.6388 8.67491 4.28229 9 5.06251C9.32509 4.28229 9.91046 3.6388 10.6565 3.24153C11.4026 2.84426 12.2632 2.71774 13.092 2.88351C13.9209 3.04927 14.6667 3.49708 15.2025 4.15073C15.7384 4.80439 16.0312 5.62352 16.0312 6.46876C16.0312 11.25 9 15.1875 9 15.1875Z"
-					fill="#DB2777"></path>
-				<path
-					d="M9 15.75C8.90402 15.751 8.80946 15.7267 8.72578 15.6797C8.42344 15.5109 1.40625 11.5242 1.40625 6.46875C1.40625 5.58331 1.68485 4.72031 2.20257 4.002C2.7203 3.2837 3.45091 2.74649 4.29091 2.46649C5.13092 2.18649 6.03773 2.17789 6.88289 2.4419C7.72806 2.70591 8.46873 3.22915 9 3.9375C9.53127 3.22915 10.2719 2.70591 11.1171 2.4419C11.9623 2.17789 12.8691 2.18649 13.7091 2.46649C14.5491 2.74649 15.2797 3.2837 15.7974 4.002C16.3152 4.72031 16.5938 5.58331 16.5938 6.46875C16.5938 8.62031 15.3492 10.8281 12.8953 13.0359C11.781 14.0377 10.5678 14.9235 9.27422 15.6797C9.19054 15.7267 9.09598 15.751 9 15.75ZM5.625 3.375C4.80449 3.375 4.01758 3.70095 3.43739 4.28114C2.8572 4.86133 2.53125 5.64824 2.53125 6.46875C2.53125 10.35 7.73438 13.7602 9 14.5336C10.2656 13.7602 15.4688 10.35 15.4688 6.46875C15.4694 5.75355 15.2222 5.06021 14.7693 4.50671C14.3164 3.9532 13.6857 3.57371 12.9845 3.43281C12.2833 3.29191 11.555 3.3983 10.9234 3.73388C10.2918 4.06946 9.79599 4.6135 9.52031 5.27344C9.47793 5.37661 9.40584 5.46485 9.3132 5.52695C9.22055 5.58905 9.11153 5.62221 9 5.62221C8.88847 5.62221 8.77945 5.58905 8.6868 5.52695C8.59416 5.46485 8.52207 5.37661 8.47969 5.27344C8.24556 4.70972 7.8492 4.22829 7.34093 3.89027C6.83266 3.55226 6.2354 3.37291 5.625 3.375Z"
-					fill="#DB2777"></path>
-			</svg>
-			by Sarvesh Rane
-		</p>
-		<p class="text-neutral-600 md:text-base text-sm" id="clock"></p>
-	</div>
-</footer>
+---
+import { SITE_NAME } from "../config";
+import Wrapper from "./Wrapper.astro";
 
-<script>
-	const clock = document.getElementById("clock");
-	const tick = () => {
-		clock!.textContent = `// DATETIME: ${new Date().toLocaleString()}`;
-		requestAnimationFrame(tick);
-	};
-	tick();
-</script>
+const links = [
+	{ href: "/", label: "Home" },
+	{ href: "/work/", label: "Work" },
+	{ href: "/about/", label: "About" },
+];
+---
+
+<Wrapper
+	tagName="footer"
+	content_classlist={["lg:px-2 px-1", "py-0.5"]}
+	wrapper_classlist={["md:px-0 px-1"]}
+>
+	<footer class="xl:container mx-auto">
+		<div
+			class="flex md:flex-row flex-col justify-between md:gap-3 text-base"
+		>
+			<Wrapper tagName="sitename" content_classlist={["px-1", "py-1"]}>
+				<h4 class="font-bold text-base"><a href="/">{SITE_NAME}</a></h4>
+			</Wrapper>
+			<Wrapper tagName="credits" content_classlist={["px-1", "py-1"]}>
+				<div class="flex items-center md:justify-end flex-1 gap-2">
+					Made with <span class="text-pink-600 mt-0.5"
+						><svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="18"
+							height="18"
+							viewBox="0 0 256 256"
+							><g fill="currentColor"
+								><path
+									d="M232 94c0 66-104 122-104 122S24 160 24 94a54 54 0 0 1 54-54c22.59 0 41.94 12.31 50 32c8.06-19.69 27.41-32 50-32a54 54 0 0 1 54 54Z"
+									opacity=".2"></path><path
+									d="M178 32c-20.65 0-38.73 8.88-50 23.89C116.73 40.88 98.65 32 78 32a62.07 62.07 0 0 0-62 62c0 70 103.79 126.66 108.21 129a8 8 0 0 0 7.58 0C136.21 220.66 240 164 240 94a62.07 62.07 0 0 0-62-62Zm-50 174.8C109.74 196.16 32 147.69 32 94a46.06 46.06 0 0 1 46-46c19.45 0 35.78 10.36 42.6 27a8 8 0 0 0 14.8 0c6.82-16.67 23.15-27 42.6-27a46.06 46.06 0 0 1 46 46c0 53.61-77.76 102.15-96 112.8Z"
+								></path></g
+							></svg
+						></span
+					> by Sarvesh Rane
+				</div>
+			</Wrapper>
+		</div>
+		<Wrapper
+			tagName="copyright"
+			content_classlist={["text-center", "text-gray-500"]}
+		>
+			<p class="text-xs flex items-center justify-center gap-1">
+				<span class="mt-1">&copy;</span> Sarvesh, 2023 | All rights reserved
+			</p>
+		</Wrapper>
+	</footer>
+</Wrapper>

@@ -7,22 +7,27 @@ export const dataCurrently = [
 ];
 
 export const socialLinks = [
-	{ title: "Github", link: `https://github.com/${githubUsername}` },
+	{ title: "GitHub", link: `https://github.com/${githubUsername}` },
 	{
-		title: "Linkedin",
+		title: "LinkedIn",
 		link: "https://linkedin.com/in/sarvesh-rane-80452522a",
 	},
 	{ title: "Instagram", link: "https://www.instagram.com/sarve.ssh_/" },
-	{ title: "Twitter", link: "https://twitter.com/sarvessh_/" },
+	{ title: "Twitter/X", link: "https://twitter.com/sarvessh_/" },
 	{ title: "Gmail", link: "mailto:sarveshrane2000.portfolio-site@gmail.com" },
 ];
 
 export const projects = [
 	{
 		title: "Budgeter",
-		link: `https://github.com/${githubUsername}/Budgeter`,
+		link: `https://github.com/${githubUsername}/Budgeter_v2`,
 		description:
 			"A simple, personal, financial wellness utility based on React and Django",
+	},
+	{
+		title: "Vartalap",
+		link: `https://github.com/${githubUsername}/vartalap-nextjs`,
+		description: "A realtime chat-app built using NextJS",
 	},
 	{
 		title: "Blog Site",
@@ -30,14 +35,14 @@ export const projects = [
 		description: "Personal blogging website built with Astro 🚀",
 	},
 	{
+		title: "University Portal",
+		link: `https://github.com/${githubUsername}/University-Website`,
+		description: "A university portal built with Django",
+	},
+	{
 		title: "DSA",
 		link: `https://github.com/${githubUsername}/DSA`,
 		description: "My learnings of DSA, curated in Python, Java and Go",
-	},
-	{
-		title: "MasterDash",
-		link: `https://github.com/${githubUsername}/MasterDash`,
-		description: "A dashboard project built with MERN stack",
 	},
 ];
 
@@ -48,8 +53,8 @@ export const skills = [
 			{ title: "python", level: "Advanced" },
 			{ title: "JavaScript", level: "Intermediate" },
 			{ title: "Typescript", level: "Intermediate" },
-			{ title: "Go", level: "Medium" },
 			{ title: "Java", level: "Medium" },
+			{ title: "Go", level: "Medium" },
 		],
 	},
 	{
@@ -60,6 +65,7 @@ export const skills = [
 			{ title: "Astro", level: "Intermediate" },
 			{ title: "Svelte", level: "Intermediate" },
 			{ title: "FastAPI", level: "Intermediate" },
+			{ title: "NextJS", level: "Beginner" },
 		],
 	},
 	{

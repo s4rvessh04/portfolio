@@ -13,6 +13,9 @@ import prefetch from "@astrojs/prefetch";
 import image from "@astrojs/image";
 
 // https://astro.build/config
+import partytown from "@astrojs/partytown";
+
+// https://astro.build/config
 export default defineConfig({
 	site: "https://sarveshrane.pages.dev",
 	trailingSlash: "always",

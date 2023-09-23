@@ -8,6 +8,9 @@ dependencies:
   '@astrojs/image':
     specifier: ^0.12.1
     version: 0.12.1
+  '@astrojs/partytown':
+    specifier: ^2.0.0
+    version: 2.0.0
   '@astrojs/prefetch':
     specifier: ^0.1.2
     version: 0.1.2
@@ -23,11 +26,6 @@ dependencies:
   tailwindcss:
     specifier: ^3.3.1
     version: 3.3.1(postcss@8.4.21)
-
-devDependencies:
-  '@astrojs/partytown':
-    specifier: ^2.0.0
-    version: 2.0.0
 
 packages:
 
@@ -133,7 +131,7 @@ packages:
     dependencies:
       '@builder.io/partytown': 0.8.1
       mrmime: 1.0.1
-    dev: true
+    dev: false
 
   /@astrojs/prefetch@0.1.2:
     resolution: {integrity: sha512-Plf1GLKDyvTHjEKVMH922wc1AmvlFYvEXrbdaMAlgJuoqTRXirP1CennildFHndTetH8swWMlVGwxdG57dN7cA==}
@@ -424,7 +422,7 @@ packages:
     resolution: {integrity: sha512-p4xhEtQCPe8YFJ8e7KT9RptnT+f4lvtbmXymbp1t0bLp+USkNMTxrRMNc3Dlr2w2fpxyX7uA0CyAeU3ju84O4A==}
     engines: {node: '>=18.0.0'}
     hasBin: true
-    dev: true
+    dev: false
 
   /@emmetio/abbreviation@2.3.1:
     resolution: {integrity: sha512-QXgYlXZGprqb6aCBJPPWVBN/Jb69khJF73GGJkOk//PoMgSbPGuaHn1hCRolctnzlBHjCIC6Om97Pw46/1A23g==}
@@ -2564,6 +2562,7 @@ packages:
   /mrmime@1.0.1:
     resolution: {integrity: sha512-hzzEagAgDyoU1Q6yg5uI+AorQgdvMCur3FcKf7NhMKWsaYg+RnbTyHRa/9IlLF9rf455MOCtcqqrQQ83pPP7Uw==}
     engines: {node: '>=10'}
+    dev: false
 
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}

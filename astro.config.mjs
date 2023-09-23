@@ -16,5 +16,16 @@ import image from "@astrojs/image";
 export default defineConfig({
 	site: "https://sarveshrane.pages.dev",
 	trailingSlash: "always",
-	integrations: [tailwind(), sitemap(), prefetch(), image()],
+	integrations: [
+		tailwind(),
+		sitemap(),
+		prefetch(),
+		image(),
+		partytown({
+			// Adds dataLayer.push as a forwarding-event.
+			config: {
+				forward: ["dataLayer.push"],
+			},
+		}),
+	],
 });

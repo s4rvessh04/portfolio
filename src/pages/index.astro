@@ -4,7 +4,7 @@ import Footer from "../components/Footer.astro";
 
 import Layout from "../layouts/Layout.astro";
 
-import { dataCurrently, projects, socialLinks, skills } from "../data";
+import { dataCurrently, projects, socialLinks, skills, professionalSummary } from "../data";
 ---
 
 <Layout>
@@ -136,24 +136,24 @@ import { dataCurrently, projects, socialLinks, skills } from "../data";
 				label_classlist={["md:block hidden"]}
 			>
 				<div class="mx-auto w-full md:grid grid-cols-12 gap-2 align-middle">
-					<!-- <Wrapper
-						tagName="work"
-						wrapper_classlist={["col-span-7"]}
-						content_classlist={["p-2"]}
-					> -->
-					<!-- <Wrapper
-							tagName="profession"
-							content_classlist={["text-left", "px-2", "py-1"]}
-						>
-							<h3
-								class="font-bold text-3xl md:leading-normal leading-tight"
-							>
-								Software Development Engineer
-							</h3>
-							<h5 class="text-base md:mt-0 mt-1.5">
-								Jio, Navi Mumbai 🇮🇳
-							</h5>
-						</Wrapper> -->
+					<!-- <Wrapper -->
+					<!-- 	tagName="work" -->
+					<!-- 	wrapper_classlist={["col-span-7"]} -->
+					<!-- 	content_classlist={["p-2"]} -->
+					<!-- > -->
+					<!-- <Wrapper -->
+					<!-- 		tagName="profession" -->
+					<!-- 		content_classlist={["text-left", "px-2", "py-1"]} -->
+					<!-- 	> -->
+					<!-- 		<h3 -->
+					<!-- 			class="font-bold text-3xl md:leading-normal leading-tight" -->
+					<!-- 		> -->
+					<!-- 			Software Development Engineer -->
+					<!-- 		</h3> -->
+					<!-- 		<h5 class="text-base md:mt-0 mt-1.5"> -->
+					<!-- 			Jio, Navi Mumbai 🇮🇳 -->
+					<!-- 		</h5> -->
+					<!-- 	</Wrapper> -->
 					<Wrapper
 						tagName="projects"
 						wrapper_classlist={["col-span-7"]}
@@ -259,22 +259,14 @@ import { dataCurrently, projects, socialLinks, skills } from "../data";
 							tagName="about"
 							content_classlist={["p-2", "flex", "flex-col", "gap-2"]}
 						>
-							<p class="text-lg text-left">
-								I'm an electronics and telecommunications engineer based in
-								Pune, India, with a passion for software development and
-								creating user-centric UI/UX designs. With hands-on experience in
-								various full-stack web technologies, I am constantly exploring
-								new tools and techniques to enhance my skill set. Apart from
-								coding, I enjoy traveling, attending events, and listening to
-								EDM music to stay inspired and motivated. I am committed to
-								delivering quality work and would love to connect with potential
-								clients and collaborators.
+            <p class="text-lg text-left">
+            {professionalSummary}
 							</p>
 						</Wrapper>
 					</div>
 					<div class="col-span-5">
 						<Wrapper tagName="me" content_classlist={["p-1"]}>
-							<img src="profile.webp" alt="A picture of me" height="500" />
+							<img src="profile.jpg" alt="A picture of me" height="500" style="transform: rotate(90deg)"/>
 						</Wrapper>
 					</div>
 				</div>

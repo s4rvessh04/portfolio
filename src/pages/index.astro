@@ -1,277 +1,511 @@
 ---
-import Wrapper from "../components/Wrapper.astro";
 import Footer from "../components/Footer.astro";
-
 import Layout from "../layouts/Layout.astro";
-
-import { dataCurrently, projects, socialLinks, skills, professionalSummary } from "../data";
+import {
+	dataCurrently,
+	projects,
+	socialLinks,
+	skills,
+	professionalSummary,
+	careerStartDate,
+} from "../data";
 ---
 
 <Layout>
-	<Wrapper
-		wrapper_classlist={["flex", "flex-col", "w-full", "lg:px-0 px-1"]}
-		content_classlist={["lg:px-2 px-1", "py-1", "flex"]}
-		tagName="section"
+	<!-- =============================================
+		 HERO — Vercel-style, content aligned to grid
+	     ============================================= -->
+	<section
+		class="min-h-screen flex flex-col justify-center relative px-6 md:px-8 lg:px-16"
 	>
-		<section class="xl:container mx-auto text-center flex w-full">
-			<Wrapper
-				tagName="container"
-				wrapper_classlist={["flex", "flex-col", "w-full"]}
-				content_classlist={[
-					"md:px-2",
-					"md:py-1",
-					"flex",
-					"flex-col",
-					"md:border border-0",
-				]}
-				label_classlist={["md:block hidden"]}
+		<!-- Hero-only grid background -->
+		<div class="hero-grid">
+			<div class="hero-grid-lines"></div>
+			<canvas id="hero-grid-canvas" class="absolute inset-0 w-full h-full"
+			></canvas>
+			<div
+				class="hero-grid-glow"
+				style="background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(255,255,255,0.04) 0%, transparent 70%);"
 			>
-				<div
-					class="mx-auto lg:w-max w-full md:grid grid-rows-2 gap-5 align-middle md:my-10"
+			</div>
+		</div>
+
+		<!-- Top metadata row — snapped to grid rhythm -->
+		<div
+			class="absolute top-24 left-6 md:left-8 lg:left-16 right-6 md:right-8 lg:right-16 flex justify-between items-start"
+		>
+			<div class="animate-reveal-in" style="animation-delay: 0.3s;">
+				<p class="text-micro uppercase text-white/20 mb-1">Role</p>
+				<div id="typing-text-wrapper">
+					<span id="typing-text" class="text-sm text-white/50"></span>
+					<span class="text-white/20 animate-blink text-sm">|</span>
+				</div>
+			</div>
+			<div
+				class="hidden md:block text-right animate-reveal-in"
+				style="animation-delay: 0.4s;"
+			>
+				<p class="text-micro uppercase text-white/20 mb-1">Based in</p>
+				<p class="text-sm text-white/50">India</p>
+			</div>
+		</div>
+
+		<!-- Center Content -->
+		<div class="flex flex-col items-center text-center">
+			<!-- Micro label -->
+			<div class="overflow-hidden mb-6">
+				<p
+					class="text-micro uppercase text-white/25 tracking-[0.3em] animate-reveal-up"
+					style="animation-delay: 0.1s;"
 				>
-					<Wrapper
-						tagName="hero"
-						label_classlist={["md:block hidden"]}
-						content_classlist={[
-							"lg:px-2 md:px-1",
-							"md:py-1",
-							"md:grid flex flex-col",
-							"grid-rows-2",
-							"gap-1",
-							"md:border border-0",
-						]}
+					Portfolio
+				</p>
+			</div>
+
+			<!-- Oversized Name -->
+			<div class="mb-6">
+				<h1
+					class="font-display font-extrabold text-display-xl uppercase leading-[0.85]"
+				>
+					<span class="block overflow-hidden">
+						<span
+							class="block animate-reveal-up"
+							style="animation-delay: 0.15s;">Sarvesh</span
+						>
+					</span>
+					<span class="block overflow-hidden">
+						<span
+							class="block animate-reveal-up text-neutral-600"
+							style="animation-delay: 0.3s;">Rane</span
+						>
+					</span>
+				</h1>
+			</div>
+
+			<!-- Tagline -->
+			<div class="overflow-hidden mb-10">
+				<p
+					class="text-base md:text-lg text-white/35 max-w-md animate-reveal-up leading-relaxed"
+					style="animation-delay: 0.5s;"
+				>
+					Software Engineer crafting scalable backend systems and
+					shipping production-grade products.
+				</p>
+			</div>
+
+			<!-- Social row -->
+			<div
+				class="flex flex-wrap justify-center gap-5 animate-reveal-in"
+				style="animation-delay: 0.6s;"
+			>
+				{
+					socialLinks.map((social) => (
+						<a
+							href={social.link}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="group relative px-4 py-2 border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-400 rounded-sm"
+						>
+							<span class="text-micro uppercase text-white/40 group-hover:text-white/80 transition-colors duration-400 tracking-wider">
+								{social.title}
+							</span>
+						</a>
+					))
+				}
+			</div>
+		</div>
+
+		<!-- Scroll indicator -->
+		<div
+			class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float"
+			style="animation-delay: 1s;"
+		>
+			<div class="flex flex-col items-center gap-2">
+				<span class="text-micro uppercase text-white/15 tracking-widest"
+					>Scroll</span
+				>
+				<div
+					class="w-px h-8 bg-gradient-to-b from-white/20 to-transparent"
+				>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- =============================================
+		 HORIZONTAL DIVIDER with grid-aligned marks
+	     ============================================= -->
+	<div class="relative px-6 md:px-8 lg:px-16">
+		<div class="h-px bg-white/[0.06] w-full reveal"></div>
+	</div>
+
+	<!-- =============================================
+		 MARQUEE — Horizontal scrolling text
+	     ============================================= -->
+	<div class="overflow-hidden py-5 reveal">
+		<div class="marquee-track flex whitespace-nowrap">
+			<span
+				class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8"
+				>Software Engineer</span
+			>
+			<span class="text-white/5">&mdash;</span>
+			<span
+				class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8"
+				>Backend Developer</span
+			>
+			<span class="text-white/5">&mdash;</span>
+			<span
+				class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8"
+				>DevOps Enthusiast</span
+			>
+			<span class="text-white/5">&mdash;</span>
+			<span
+				class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8"
+				>Software Engineer</span
+			>
+			<span class="text-white/5">&mdash;</span>
+			<span
+				class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8"
+				>Backend Developer</span
+			>
+			<span class="text-white/5">&mdash;</span>
+			<span
+				class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8"
+				>DevOps Enthusiast</span
+			>
+			<span class="text-white/5">&mdash;</span>
+			<span
+				class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8"
+				>Software Engineer</span
+			>
+			<span class="text-white/5">&mdash;</span>
+			<span
+				class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8"
+				>Backend Developer</span
+			>
+		</div>
+	</div>
+
+	<div class="relative px-6 md:px-8 lg:px-16">
+		<div class="h-px bg-white/[0.06] w-full reveal"></div>
+	</div>
+
+	<!-- =============================================
+		 PROJECTS — Editorial list, Vercel-clean
+	     ============================================= -->
+	<section
+		id="work-section"
+		class="py-24 md:py-40 px-6 md:px-8 lg:px-16 scroll-mt-20"
+	>
+		<div
+			class="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6"
+		>
+			<div>
+				<p class="text-micro uppercase text-white/20 mb-4 reveal">
+					Selected Work
+				</p>
+				<h2
+					class="font-display font-extrabold text-display-lg uppercase reveal stagger-1"
+				>
+					Featured<br />Projects
+				</h2>
+			</div>
+			<p
+				class="text-sm text-white/35 max-w-sm leading-relaxed reveal stagger-2"
+			>
+				A curated selection of projects showcasing expertise in backend
+				systems, full-stack development, and software engineering.
+			</p>
+		</div>
+
+		<!-- Project list -->
+		<div class="flex flex-col">
+			{
+				projects.map((project, idx) => (
+					<a
+						href={project.link}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="group block"
 					>
-						<Wrapper tagName="intro" content_classlist={["px-1", "py-1"]}>
-							<h1
-								class="font-bold md:text-6xl text-5xl md:text-center text-left leading-tight"
-							>
-								I&rsquo;m <br class="md:hidden inline" />Sarvesh Rane
-							</h1>
-						</Wrapper>
-						<Wrapper tagName="currently" content_classlist={["px-1", "py-1"]}>
-							<div
-								class="flex md:flex-row flex-col justify-center md:gap-0 gap-1.5"
-							>
-								{
-									dataCurrently.map((curr, idx) => (
-										<h3 class="flex italic md:text-2xl text-xl md:text-center text-left gap-2 items-center">
-											<span>{curr.title}</span>
-											{idx === dataCurrently.length - 1 ? (
-												""
-											) : (
-												<span class="md:inline hidden">&bull;</span>
-											)}
-											&ThinSpace;
-										</h3>
-									))
-								}
+						<div
+							class:list={["line-reveal", `stagger-${idx + 1}`]}
+						/>
+						<div
+							class:list={[
+								"py-8 md:py-10 flex flex-col md:flex-row md:items-center justify-between gap-4 reveal",
+								`stagger-${idx + 1}`,
+							]}
+						>
+							<div class="flex items-baseline gap-4 md:gap-8">
+								<span class="text-micro text-white/15 font-light tabular-nums">
+									{String(idx + 1).padStart(2, "0")}
+								</span>
+								<h3 class="font-display font-bold text-display-md uppercase group-hover:text-white/30 transition-all duration-500">
+									{project.title}
+								</h3>
 							</div>
-						</Wrapper>
-					</Wrapper>
-					<div class="flex md:flex-row flex-col justify-center">
-						<div class="md:w-max">
-							<Wrapper
-								tagName="socials"
-								content_classlist={[
-									"px-1",
-									"py-1",
-									"md:hover:border-gray-500 hover:border-gray-300",
-									"transition-colors",
-								]}
-								wrapper_classlist={["w-full"]}
-							>
-								<div
-									class="text-lg text-gray-600 flex md:flex-row flex-col justify-center gap-1"
+							<div class="flex items-center gap-6 md:ml-auto">
+								<p class="text-sm text-white/40 max-w-xs group-hover:text-white/60 transition-colors duration-500">
+									{project.description}
+								</p>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="18"
+									height="18"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="text-white/10 group-hover:text-white/50 group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-500 flex-shrink-0"
 								>
-									{
-										socialLinks.map((social, idx) => (
-											<a
-												class="md:text-center text-left md:border-0 border md:hover:border-gray-500 hover:border-gray-500 md:px-0 px-2 hover:text-gray-800 md:hover:shadow-none hover:shadow-sm transition-colors"
-												href={social.link}
-												target="_blank"
-												rel="noopener noreferrer"
-											>
-												<span>&lt;{social.title}&gt;</span>
-												{idx === socialLinks.length - 1 ? (
-													""
-												) : (
-													<span class="md:inline hidden">&bull;</span>
-												)}
-												&ThinSpace;
-											</a>
-										))
-									}
-								</div>
-							</Wrapper>
+									<line x1="7" y1="17" x2="17" y2="7" />
+									<polyline points="7 7 17 7 17 17" />
+								</svg>
+							</div>
+						</div>
+					</a>
+				))
+			}
+			<div class="line-reveal stagger-6"></div>
+		</div>
+	</section>
+
+	<!-- =============================================
+		 SKILLS — Clean grid, numbers
+	     ============================================= -->
+	<section class="py-24 md:py-40 px-6 md:px-8 lg:px-16">
+		<div class="relative px-0 mb-20">
+			<div class="h-px bg-white/[0.06] w-full mb-20 reveal"></div>
+			<p class="text-micro uppercase text-white/20 mb-4 reveal">
+				Capabilities
+			</p>
+			<h2
+				class="font-display font-extrabold text-display-lg uppercase reveal stagger-1 break-words"
+			>
+				Skills &<br />Technologies
+			</h2>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
+			{
+				skills.map((skillGroup, groupIdx) => (
+					<div class:list={["reveal", `stagger-${groupIdx + 1}`]}>
+						<p class="text-micro uppercase text-white/20 mb-6 tracking-[0.2em]">
+							({String(groupIdx + 1).padStart(2, "0")}){" "}
+							{skillGroup.title}
+						</p>
+						<div class="flex flex-wrap gap-x-6 gap-y-3">
+							{skillGroup.data.map((skill) => (
+								<span class="text-lg md:text-xl text-white/60 hover:text-white transition-colors duration-300 cursor-default">
+									{skill.title}
+								</span>
+							))}
 						</div>
 					</div>
-				</div>
-			</Wrapper>
-		</section>
-	</Wrapper>
-	<Wrapper
-		wrapper_classlist={[
-			"flex",
-			"flex-col",
-			"w-full",
-			"lg:px-0 px-1",
-			"my-10",
-			"md:scroll-mt-10 scroll-mt-4",
-		]}
-		content_classlist={["lg:px-2 px-1", "py-1", "flex"]}
-		tagName="section"
-		id="work-section"
-	>
-		<section class="xl:container mx-auto text-center flex w-full">
-			<Wrapper
-				tagName="container"
-				wrapper_classlist={["flex", "flex-col", "w-full"]}
-				content_classlist={[
-					"md:px-2",
-					"md:py-1",
-					"flex",
-					"flex-col",
-					"md:border border-0",
-				]}
-				label_classlist={["md:block hidden"]}
-			>
-				<div class="mx-auto w-full md:grid grid-cols-12 gap-2 align-middle">
-					<!-- <Wrapper -->
-					<!-- 	tagName="work" -->
-					<!-- 	wrapper_classlist={["col-span-7"]} -->
-					<!-- 	content_classlist={["p-2"]} -->
-					<!-- > -->
-					<!-- <Wrapper -->
-					<!-- 		tagName="profession" -->
-					<!-- 		content_classlist={["text-left", "px-2", "py-1"]} -->
-					<!-- 	> -->
-					<!-- 		<h3 -->
-					<!-- 			class="font-bold text-3xl md:leading-normal leading-tight" -->
-					<!-- 		> -->
-					<!-- 			Software Development Engineer -->
-					<!-- 		</h3> -->
-					<!-- 		<h5 class="text-base md:mt-0 mt-1.5"> -->
-					<!-- 			Jio, Navi Mumbai 🇮🇳 -->
-					<!-- 		</h5> -->
-					<!-- 	</Wrapper> -->
-					<Wrapper
-						tagName="projects"
-						wrapper_classlist={["col-span-7"]}
-						content_classlist={["p-2", "flex", "flex-col", "gap-2"]}
-					>
-						{
-							projects.map((project) => (
-								<a
-									class="flex flex-col md:gap-1.5 gap-1 text-left border px-2 py-1 group hover:border-gray-500 transition-colors hover:shadow-md"
-									href={project.link}
-								>
-									<h4 class="font-bold md:text-2xl text-xl">
-										&lt;{project.title}&gt;
-									</h4>
-									<p class="text-base italic">{project.description}</p>
-								</a>
-							))
-						}
-					</Wrapper>
-					<!-- </Wrapper> -->
-					<div class="col-span-5">
-						<Wrapper
-							tagName="education"
-							content_classlist={["text-left", "px-2", "py-1"]}
-						>
-							<h4 class="font-bold text-2xl md:leading-relaxed leading-tight">
-								Bachelor of Engineering (EXTC) w/Honors
-							</h4>
-							<h6 class="text-base md:mt-0 mt-1.5">
-								Smt. Kashibai Navale College of Engineering, Pune
-							</h6>
-						</Wrapper>
-						<Wrapper
-							tagName="skills"
-							content_classlist={["flex", "flex-col", "gap-2", "p-2"]}
-						>
-							{
-								skills.map((skill) => (
-									<div class="flex flex-col gap-1.5 text-left border px-2 py-1">
-										<h4 class="font-bold text-sm uppercase tracking-widest text-gray-500">
-											{skill.title}
-										</h4>
-										<p class="md:text-xl text-lg capitalize">
-											{skill.data.reduce(
-												(prev, curr, idx) =>
-													`${prev}${idx === 0 ? "" : ", "}${curr.title}`,
-												""
-											)}
-										</p>
-									</div>
-								))
-							}
-							<div class="flex flex-col gap-1.5 text-left border px-2 py-1">
-								<p class="text-sm italic text-gray-500">
-									// Yes, HTML is not a programming language.
-								</p>
-							</div>
-						</Wrapper>
-					</div>
-				</div>
-			</Wrapper>
-		</section>
-	</Wrapper>
-	<Wrapper
-		wrapper_classlist={[
-			"flex",
-			"flex-col",
-			"w-full",
-			"lg:px-0 px-1",
-			"my-10",
-			"md:scroll-mt-10 scroll-mt-4",
-		]}
-		content_classlist={["lg:px-2 px-1", "py-1", "flex"]}
-		tagName="section"
+				))
+			}
+		</div>
+	</section>
+
+	<!-- =============================================
+		 ABOUT — Asymmetric editorial
+	     ============================================= -->
+	<section
 		id="about-section"
+		class="py-24 md:py-40 px-6 md:px-8 lg:px-16 scroll-mt-20"
 	>
-		<section class="xl:container mx-auto text-center flex w-full">
-			<Wrapper
-				tagName="container"
-				wrapper_classlist={["flex", "flex-col", "w-full"]}
-				content_classlist={[
-					"md:px-2",
-					"md:py-1",
-					"flex",
-					"flex-col",
-					"md:border border-0",
-				]}
-				label_classlist={["md:block hidden"]}
-			>
-				<div
-					class="mx-auto w-full md:grid flex grid-cols-12 gap-2 md:flex-row flex-col-reverse align-middle"
-				>
-					<div class="col-span-7">
-						<Wrapper
-							tagName="tagline"
-							content_classlist={["text-left", "px-2", "py-1"]}
-						>
-							<h3 class="font-bold text-3xl md:leading-normal leading-tight">
-								Adding, Commiting and Pushing code since 2019.
-							</h3>
-						</Wrapper>
-						<Wrapper
-							tagName="about"
-							content_classlist={["p-2", "flex", "flex-col", "gap-2"]}
-						>
-            <p class="text-lg text-left">
-            {professionalSummary}
-							</p>
-						</Wrapper>
-					</div>
-					<div class="col-span-5">
-            <Wrapper tagName="me" content_classlist={["p-1", "rotate-90"]}>
-							<img src="profile.webp" alt="A picture of me"/>
-						</Wrapper>
+		<div class="h-px bg-white/[0.06] w-full mb-20 reveal"></div>
+
+		<div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+			<!-- Left: Image -->
+			<div class="md:col-span-5 lg:col-span-4">
+				<div class="reveal">
+					<p class="text-micro uppercase text-white/20 mb-4">
+						Profile
+					</p>
+					<div
+						class="relative overflow-hidden border border-white/[0.06] h-96 md:h-auto"
+					>
+						<img
+							src="/profile.webp"
+							alt="Sarvesh Rane"
+							class="w-full object-cover object-center aspect-[3/4] grayscale hover:grayscale-0 transition-all duration-1000"
+							style="transform: rotate(90deg) scale(1.35); transform-origin: center center;"
+						/>
 					</div>
 				</div>
-			</Wrapper>
-		</section>
-	</Wrapper>
+				<!-- Micro details -->
+				<div class="mt-6 grid grid-cols-2 gap-4 reveal stagger-2">
+					<div>
+						<p class="text-micro uppercase text-white/15 mb-1">
+							Experience
+						</p>
+						<p class="text-sm text-white/40">
+							{
+								(() => {
+									const start = new Date(careerStartDate);
+									const now = new Date();
+									const diff =
+										now.getTime() - start.getTime();
+									const diffDate = new Date(diff);
+									const years = Math.abs(
+										diffDate.getUTCFullYear() - 1970
+									);
+									const months = diffDate.getUTCMonth();
+									return `${years} Years ${months} Months`;
+								})()
+							}
+						</p>
+					</div>
+					<div>
+						<p class="text-micro uppercase text-white/15 mb-1">
+							Education
+						</p>
+						<p class="text-sm text-white/40">B.E. (EXTC)</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Right: About text -->
+			<div
+				class="md:col-span-7 lg:col-span-7 lg:col-start-6 flex flex-col justify-center"
+			>
+				<div class="reveal">
+					<p class="text-micro uppercase text-white/20 mb-6">About</p>
+					<h2
+						class="font-display font-extrabold text-display-md uppercase leading-tight mb-10"
+					>
+						Adding, Commiting<br class="hidden md:inline" />
+						and Pushing Code<br class="hidden md:inline" />
+						Since 2019
+					</h2>
+				</div>
+				<div class="line-reveal mb-8 stagger-2"></div>
+				<div class="reveal stagger-3">
+					<p
+						class="text-base md:text-lg text-white/50 leading-[1.9] max-w-xl"
+					>
+						{professionalSummary}
+					</p>
+				</div>
+				<div class="mt-10 reveal stagger-4">
+					<p class="text-micro uppercase text-white/15 mb-3">
+						Alma Mater
+					</p>
+					<p class="text-sm text-white/40">
+						Smt. Kashibai Navale College of Engineering, Pune
+					</p>
+					<p class="text-sm text-white/25 mt-1">
+						Bachelor of Engineering (EXTC) w/Honors
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<Footer />
 </Layout>
+
+<!-- Marquee animation -->
+<style>
+	@keyframes marquee {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-50%);
+		}
+	}
+	.marquee-track {
+		animation: marquee 30s linear infinite;
+	}
+</style>
+
+<!-- Typing animation -->
+<script define:vars={{ roles: dataCurrently.map((r) => r.title) }}>
+	const typingEl = document.getElementById("typing-text");
+	let roleIndex = 0;
+	let charIndex = 0;
+	let isDeleting = false;
+	const typingSpeed = 70;
+	const deletingSpeed = 35;
+	const pauseDuration = 2500;
+
+	function type() {
+		const currentRole = roles[roleIndex];
+
+		if (isDeleting) {
+			typingEl.textContent = currentRole.substring(0, charIndex - 1);
+			charIndex--;
+		} else {
+			typingEl.textContent = currentRole.substring(0, charIndex + 1);
+			charIndex++;
+		}
+
+		let timeout = isDeleting ? deletingSpeed : typingSpeed;
+
+		if (!isDeleting && charIndex === currentRole.length) {
+			timeout = pauseDuration;
+			isDeleting = true;
+		} else if (isDeleting && charIndex === 0) {
+			isDeleting = false;
+			roleIndex = (roleIndex + 1) % roles.length;
+			timeout = 500;
+		}
+
+		setTimeout(type, timeout);
+	}
+
+	setTimeout(type, 1000);
+</script>
+
+<!-- Hero grid canvas: draw crosshairs at intersections -->
+<script>
+	(function () {
+		const canvas = document.getElementById("hero-grid-canvas");
+		if (!canvas) return;
+		const ctx = canvas.getContext("2d");
+		const GRID = 80;
+		const CROSS = 4;
+		const section = canvas.closest("section");
+
+		function resize() {
+			canvas.width = section ? section.offsetWidth : window.innerWidth;
+			canvas.height = section ? section.offsetHeight : window.innerHeight;
+			draw();
+		}
+
+		function draw() {
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.strokeStyle = "rgba(255,255,255,0.08)";
+			ctx.lineWidth = 1;
+			const cols = Math.ceil(canvas.width / GRID) + 1;
+			const rows = Math.ceil(canvas.height / GRID) + 1;
+			for (let r = 0; r <= rows; r++) {
+				for (let c = 0; c <= cols; c++) {
+					const x = c * GRID;
+					const y = r * GRID;
+					// Fade based on distance from center
+					const dx = (x / canvas.width - 0.5) * 2;
+					const dy = (y / canvas.height - 0.5) * 2;
+					const dist = Math.sqrt(dx * dx + dy * dy);
+					const alpha = Math.max(0, 0.1 - dist * 0.06);
+					if (alpha <= 0) continue;
+					ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+					ctx.beginPath();
+					ctx.moveTo(x - CROSS, y);
+					ctx.lineTo(x + CROSS, y);
+					ctx.moveTo(x, y - CROSS);
+					ctx.lineTo(x, y + CROSS);
+					ctx.stroke();
+				}
+			}
+		}
+
+		resize();
+		window.addEventListener("resize", resize);
+	})();
+</script>

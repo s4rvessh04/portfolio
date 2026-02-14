@@ -1,4 +1,5 @@
 export const githubUsername = "s4rvessh04";
+export const careerStartDate = "2023-12-05"; // Format: YYYY-MM-DD
 
 export const dataCurrently = [
   { title: "Software Engineer" },
@@ -91,12 +92,6 @@ export const skills = [
 ];
 
 export const professionalSummary = `
-Software Engineer with 2+ years of hands-on experience building and scaling backend systems for real-world, enterprise-level products. 
-I’ve worked across a small fleet of microservices, boosted overall throughput by 40%, 
-and helped cut critical production bugs by 50% after launch. 
-I love building clean, scalable services and 
-I actively use Generative AI to speed up development, improve code quality, and debug smarter.
-Always looking to push performance, ship faster, and level up the tech wherever I go.
-Apart from coding, I enjoy traveling, attending events, and listening to
-EDM music to stay inspired and motivated.
+I am a performance-driven Software Engineer focused on building robust backend systems that power enterprise products. Over the last two years, I've specialized in managing microservices and scaling infrastructure—consistently delivering measurable improvements in system efficiency and code reliability.
+I am a strong advocate for Generative AI in software engineering, utilizing it to ship faster and elevate code quality. I thrive on "leveling up" technical stacks and pushing the boundaries of what a system can handle. When I'm not at my desk, I'm usually traveling or finding fresh inspiration at EDM events, bringing that same high energy back to the codebase.
 `

@@ -1,53 +1,166 @@
 ---
 import { SITE_NAME } from "../config";
-import Wrapper from "./Wrapper.astro";
-
-const links = [
-	{ href: "/", label: "Home" },
-	{ href: "/work/", label: "Work" },
-	{ href: "/about/", label: "About" },
-];
+import { socialLinks } from "../data";
 ---
 
-<Wrapper
-	tagName="footer"
-	content_classlist={["lg:px-2 px-1", "py-0.5"]}
-	wrapper_classlist={["md:px-0 px-1"]}
->
-	<footer class="xl:container mx-auto">
+<footer class="relative z-[3] mt-32">
+	<!-- Top CTA Section -->
+	<div class="px-6 md:px-8 lg:px-16 mb-20">
 		<div
-			class="flex md:flex-row flex-col justify-between md:gap-3 text-base"
+			class="relative overflow-hidden border border-white/[0.06] rounded-sm p-8 md:p-16 text-center"
 		>
-			<Wrapper tagName="sitename" content_classlist={["px-1", "py-1"]}>
-				<h4 class="font-bold text-base"><a href="/">{SITE_NAME}</a></h4>
-			</Wrapper>
-			<Wrapper tagName="credits" content_classlist={["px-1", "py-1"]}>
-				<div class="flex items-center md:justify-end flex-1 gap-2">
-					Made with <span class="text-pink-600 mt-0.5"
-						><svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="18"
-							height="18"
-							viewBox="0 0 256 256"
-							><g fill="currentColor"
-								><path
-									d="M232 94c0 66-104 122-104 122S24 160 24 94a54 54 0 0 1 54-54c22.59 0 41.94 12.31 50 32c8.06-19.69 27.41-32 50-32a54 54 0 0 1 54 54Z"
-									opacity=".2"></path><path
-									d="M178 32c-20.65 0-38.73 8.88-50 23.89C116.73 40.88 98.65 32 78 32a62.07 62.07 0 0 0-62 62c0 70 103.79 126.66 108.21 129a8 8 0 0 0 7.58 0C136.21 220.66 240 164 240 94a62.07 62.07 0 0 0-62-62Zm-50 174.8C109.74 196.16 32 147.69 32 94a46.06 46.06 0 0 1 46-46c19.45 0 35.78 10.36 42.6 27a8 8 0 0 0 14.8 0c6.82-16.67 23.15-27 42.6-27a46.06 46.06 0 0 1 46 46c0 53.61-77.76 102.15-96 112.8Z"
-								></path></g
-							></svg
-						></span
-					> by Sarvesh Rane
-				</div>
-			</Wrapper>
+			<!-- Grid inside CTA -->
+			<div
+				class="absolute inset-0 pointer-events-none"
+				style="background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 70%);"
+			>
+			</div>
+			<!-- Glow -->
+			<div
+				class="absolute inset-0 pointer-events-none"
+				style="background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 70%);"
+			>
+			</div>
+
+			<div class="relative z-10">
+				<p
+					class="text-micro uppercase text-white/20 tracking-[0.3em] mb-4"
+				>
+					Get in touch
+				</p>
+				<h3
+					class="font-display font-extrabold text-display-md uppercase mb-6"
+				>
+					Let's Work<br />Together
+				</h3>
+				<p
+					class="text-sm text-white/35 max-w-md mx-auto mb-10 leading-relaxed"
+				>
+					I'm always open to discussing new opportunities, interesting
+					projects, and creative collaborations.
+				</p>
+				<a
+					href="mailto:sarveshrane2000@gmail.com"
+					class="inline-flex items-center gap-3 px-8 py-3 border border-white/10 hover:border-white/30 bg-white/[0.03] hover:bg-white/[0.08] transition-all duration-400 rounded-sm group"
+				>
+					<span
+						class="text-micro uppercase text-white/60 group-hover:text-white tracking-wider transition-colors duration-400"
+						>Say Hello</span
+					>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="14"
+						height="14"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-400"
+					>
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+						<polyline points="12 5 19 12 12 19"></polyline>
+					</svg>
+				</a>
+			</div>
 		</div>
-		<Wrapper
-			tagName="copyright"
-			content_classlist={["text-center", "text-gray-500"]}
-		>
-			<p class="text-xs flex items-center justify-center gap-1">
-      <span class="mt-1">&copy;</span> Sarvesh, {new Date().getFullYear()} | All rights reserved
-			</p>
-		</Wrapper>
-	</footer>
-</Wrapper>
+	</div>
+
+	<!-- Footer columns -->
+	<div class="border-t border-white/[0.06]">
+		<div class="px-6 md:px-8 lg:px-16 py-12 md:py-16">
+			<div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 mb-16">
+				<!-- Brand -->
+				<div class="md:col-span-1">
+					<p class="font-display font-bold text-lg mb-3">
+						{SITE_NAME}
+					</p>
+					<p class="text-sm text-white/25 leading-relaxed max-w-xs">
+						Building scalable software & pushing code since 2019.
+					</p>
+				</div>
+				<!-- Navigation -->
+				<div>
+					<p
+						class="text-micro uppercase text-white/20 mb-4 tracking-wider"
+					>
+						Navigation
+					</p>
+					<div class="flex flex-col gap-2">
+						<a
+							href="#"
+							class="text-sm text-white/35 hover:text-white transition-colors duration-300 w-fit"
+							>Home</a
+						>
+						<a
+							href="#work-section"
+							class="text-sm text-white/35 hover:text-white transition-colors duration-300 w-fit"
+							>Work</a
+						>
+						<a
+							href="#about-section"
+							class="text-sm text-white/35 hover:text-white transition-colors duration-300 w-fit"
+							>About</a
+						>
+					</div>
+				</div>
+				<!-- Socials -->
+				<div>
+					<p
+						class="text-micro uppercase text-white/20 mb-4 tracking-wider"
+					>
+						Connect
+					</p>
+					<div class="flex flex-col gap-2">
+						{
+							socialLinks.map((social) => (
+								<a
+									href={social.link}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="text-sm text-white/35 hover:text-white transition-colors duration-300 w-fit"
+								>
+									{social.title}
+								</a>
+							))
+						}
+					</div>
+				</div>
+				<!-- Info -->
+				<div class="md:text-right">
+					<p
+						class="text-micro uppercase text-white/20 mb-4 tracking-wider"
+					>
+						Info
+					</p>
+					<p class="text-sm text-white/35">India</p>
+					<p class="text-sm text-white/25 mt-1">
+						Available for opportunities
+					</p>
+					<div class="flex md:justify-end items-center gap-2 mt-3">
+						<span
+							class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
+						></span>
+						<span class="text-micro text-emerald-500/70 uppercase"
+							>Open to work</span
+						>
+					</div>
+				</div>
+			</div>
+
+			<!-- Bottom bar -->
+			<div class="h-px bg-white/[0.04] mb-6"></div>
+			<div
+				class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+			>
+				<p class="text-micro uppercase text-white/15">
+					&copy; {new Date().getFullYear()} Sarvesh Rane
+				</p>
+				<p class="text-micro uppercase text-white/10">
+					Crafted with precision
+				</p>
+			</div>
+		</div>
+	</div>
+</footer>

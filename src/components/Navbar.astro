@@ -1,32 +1,72 @@
 ---
 import { SITE_NAME } from "../config";
 import Navlink from "./Navlink.astro";
-import Wrapper from "./Wrapper.astro";
 
 const links = [
-	{ href: "/", label: "Home" },
 	{ href: "#work-section", label: "Work" },
 	{ href: "#about-section", label: "About" },
 ];
 ---
 
-<Wrapper tagName="nav" content_classlist={["lg:px-2 px-1", "py-0.5"]}>
-	<header
-		class="xl:container mx-auto flex md:flex-row flex-col justify-between md:gap-3 text-base"
-	>
-		<Wrapper tagName="title" content_classlist={["px-1", "py-1"]}>
-			<h4 class="font-bold text-base"><a href="/">{SITE_NAME}</a></h4>
-		</Wrapper>
-		<div class="md:block hidden">
-			<Wrapper tagName="navlinks" content_classlist={["px-1", "py-1"]}>
-				<ul class="md:space-x-6 space-x-3 flex justify-end">
-					{
-						links.map(({ href, label }) => (
-							<Navlink href={href} label={label} />
-						))
-					}
-				</ul>
-			</Wrapper>
+<nav
+	class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+	id="main-nav"
+>
+	<div class="px-6 md:px-8 lg:px-16 py-5 flex items-center justify-between">
+		<a
+			href="/"
+			class="font-display font-bold text-sm tracking-tight text-white uppercase"
+		>
+			{SITE_NAME.split(".")[0]}
+			<span class="text-white/40">.{SITE_NAME.split(".")[1]}</span>
+		</a>
+		<div class="flex items-center gap-8">
+			<ul class="flex items-center gap-4 md:gap-8">
+				{
+					links.map(({ href, label }) => (
+						<Navlink href={href} label={label} />
+					))
+				}
+			</ul>
+			<span
+				class="text-micro uppercase text-white/30 hidden md:block font-light"
+				id="local-time"></span>
 		</div>
-	</header>
-</Wrapper>
+	</div>
+</nav>
+
+<script>
+	// Dynamic navbar: transparent at top, solid with blur on scroll
+	function updateNav() {
+		const nav = document.getElementById("main-nav");
+		if (!nav) return;
+		if (window.scrollY > 60) {
+			nav.style.background = "rgba(0,0,0,0.8)";
+			nav.style.backdropFilter = "blur(12px)";
+			nav.style.webkitBackdropFilter = "blur(12px)";
+			nav.style.borderBottom = "1px solid rgba(255,255,255,0.06)";
+		} else {
+			nav.style.background = "transparent";
+			nav.style.backdropFilter = "none";
+			nav.style.webkitBackdropFilter = "none";
+			nav.style.borderBottom = "1px solid transparent";
+		}
+	}
+	updateNav();
+	window.addEventListener("scroll", updateNav);
+
+	// Live clock
+	function updateTime() {
+		const el = document.getElementById("local-time");
+		if (el) {
+			const now = new Date();
+			el.textContent = now.toLocaleTimeString("en-US", {
+				hour: "2-digit",
+				minute: "2-digit",
+				timeZoneName: "short",
+			});
+		}
+	}
+	updateTime();
+	setInterval(updateTime, 60000);
+</script>

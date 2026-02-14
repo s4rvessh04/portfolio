@@ -2,7 +2,7 @@
 import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 import Navbar from "../components/Navbar.astro";
 
-import { SITE_TITLE } from "../config";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
 
 export interface Props {
 	title?: string;
@@ -12,13 +12,16 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 	<head>
 		<GoogleAnalytics />
 		<script>
 			(function (w, d, s, l, i) {
 				w[l] = w[l] || [];
-				w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+				w[l].push({
+					"gtm.start": new Date().getTime(),
+					event: "gtm.js",
+				});
 				var f = d.getElementsByTagName(s)[0],
 					j = d.createElement(s),
 					dl = l != "dataLayer" ? "&l=" + l : "";
@@ -28,41 +31,167 @@ const { title } = Astro.props;
 			})(window, document, "script", "dataLayer", "GTM-WW9MXB4S");
 		</script>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={SITE_DESCRIPTION} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap"
 			rel="stylesheet"
 		/>
 		<meta name="generator" content={Astro.generator} />
 		<title>{title ? title : SITE_TITLE}</title>
 	</head>
-	<body class="bg-[#FEFCF3] text-gray-800 min-h-screen flex flex-col">
+	<body
+		class="bg-black text-white min-h-screen antialiased selection:bg-white selection:text-black overflow-x-hidden"
+	>
 		<noscript
 			><iframe
 				src="https://www.googletagmanager.com/ns.html?id=GTM-WW9MXB4S"
 				height="0"
 				width="0"
-				style="display:none;visibility:hidden"></iframe></noscript
+				style="display:none;visibility:hidden"></iframe>
+		</noscript>
+
+		<!-- Noise texture (global, subtle) -->
+		<div
+			class="fixed inset-0 pointer-events-none z-[2] opacity-[0.02]"
+			style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 512 512%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');"
 		>
-		<div class="flex w-full lg:px-2 px-1 justify-center">
-			<Navbar />
 		</div>
-		<div class="px-0 container m-auto">
+
+		<Navbar />
+		<main class="relative z-[3]">
 			<slot />
-		</div>
-		<!-- <div class="flex w-full mt-20">
-			<Footer />
-		</div> -->
-		<style>
-			body {
-				font-feature-settings: "liga" off, "calt" off;
+		</main>
+
+		<style is:global>
+			/* ============================================
+			   HERO GRID — contained to hero section only
+			   ============================================ */
+			.hero-grid {
+				position: absolute;
+				inset: 0;
+				pointer-events: none;
+				z-index: 0;
+			}
+			.hero-grid-lines {
+				position: absolute;
+				inset: 0;
+				background-image: linear-gradient(
+						to right,
+						rgba(255, 255, 255, 0.05) 1px,
+						transparent 1px
+					),
+					linear-gradient(
+						to bottom,
+						rgba(255, 255, 255, 0.05) 1px,
+						transparent 1px
+					);
+				background-size: 80px 80px;
+				mask-image: radial-gradient(
+					ellipse 70% 60% at 50% 40%,
+					black 30%,
+					transparent 70%
+				);
+				-webkit-mask-image: radial-gradient(
+					ellipse 70% 60% at 50% 40%,
+					black 30%,
+					transparent 70%
+				);
+			}
+			.hero-grid-glow {
+				position: absolute;
+				inset: 0;
+			}
+
+			/* ============================================
+			   SCROLL REVEAL SYSTEM
+			   ============================================ */
+			.reveal {
+				opacity: 0;
+				transform: translateY(50px);
+				transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+					transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+			.reveal.revealed {
+				opacity: 1;
+				transform: translateY(0);
+			}
+
+			/* Stagger delays */
+			.stagger-1 {
+				transition-delay: 0.05s;
+			}
+			.stagger-2 {
+				transition-delay: 0.1s;
+			}
+			.stagger-3 {
+				transition-delay: 0.15s;
+			}
+			.stagger-4 {
+				transition-delay: 0.2s;
+			}
+			.stagger-5 {
+				transition-delay: 0.25s;
+			}
+			.stagger-6 {
+				transition-delay: 0.3s;
+			}
+			.stagger-7 {
+				transition-delay: 0.35s;
+			}
+			.stagger-8 {
+				transition-delay: 0.4s;
+			}
+
+			/* Horizontal line animation */
+			.line-reveal {
+				height: 1px;
+				background: rgba(255, 255, 255, 0.08);
+				transform: scaleX(0);
+				transform-origin: left;
+				transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+			.line-reveal.revealed {
+				transform: scaleX(1);
+			}
+
+			/* Scrollbar */
+			::-webkit-scrollbar {
+				width: 0px;
+			}
+			html {
+				scrollbar-width: none;
 			}
 		</style>
+
+		<!-- Scroll reveal observer -->
+		<script>
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add("revealed");
+							observer.unobserve(entry.target);
+						}
+					});
+				},
+				{ threshold: 0.05, rootMargin: "0px 0px -80px 0px" }
+			);
+
+			document
+				.querySelectorAll(".reveal, .line-reveal")
+				.forEach((el) => observer.observe(el));
+		</script>
+
 		<!-- Cloudflare Web Analytics -->
-		<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3fcbb74087d84e6382b5294ec7fce2be"}'></script>
-		<!-- End Cloudflare Web Analytics -->
+		<script
+			is:inline
+			defer
+			src="https://static.cloudflareinsights.com/beacon.min.js"
+			data-cf-beacon="{"token": "3fcbb74087d84e6382b5294ec7fce2be"}"
+		></script>
 	</body>
 </html>

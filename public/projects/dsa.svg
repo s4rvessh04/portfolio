@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#0a0a0a"/>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#grid)"/>
+  
+  <!-- Code editor panel -->
+  <rect x="40" y="30" width="380" height="440" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <!-- Editor tab bar -->
+  <rect x="40" y="30" width="380" height="30" rx="8" fill="rgba(255,255,255,0.03)"/>
+  <rect x="55" y="38" width="60" height="14" rx="4" fill="rgba(6,182,212,0.15)"/>
+  <rect x="63" y="42" width="42" height="5" rx="2" fill="rgba(6,182,212,0.5)"/>
+  <rect x="125" y="38" width="50" height="14" rx="4" fill="rgba(255,255,255,0.03)"/>
+  <rect x="133" y="42" width="32" height="5" rx="2" fill="rgba(255,255,255,0.1)"/>
+  
+  <!-- Line numbers -->
+  <rect x="52" y="78" width="14" height="4" rx="1" fill="rgba(255,255,255,0.06)"/>
+  <rect x="52" y="94" width="14" height="4" rx="1" fill="rgba(255,255,255,0.06)"/>
+  <rect x="52" y="110" width="14" height="4" rx="1" fill="rgba(255,255,255,0.06)"/>
+  <rect x="52" y="126" width="14" height="4" rx="1" fill="rgba(255,255,255,0.06)"/>
+  <rect x="52" y="142" width="14" height="4" rx="1" fill="rgba(255,255,255,0.06)"/>
+  <rect x="52" y="158" width="14" height="4" rx="1" fill="rgba(255,255,255,0.06)"/>
+  <rect x="52" y="174" width="14" height="4" rx="1" fill="rgba(255,255,255,0.06)"/>
+  <rect x="52" y="190" width="14" height="4" rx="1" fill="rgba(255,255,255,0.06)"/>
+  <rect x="52" y="206" width="14" height="4" rx="1" fill="rgba(255,255,255,0.06)"/>
+  <rect x="52" y="222" width="14" height="4" rx="1" fill="rgba(255,255,255,0.06)"/>
+  <rect x="52" y="238" width="14" height="4" rx="1" fill="rgba(255,255,255,0.06)"/>
+  <rect x="52" y="254" width="14" height="4" rx="1" fill="rgba(255,255,255,0.06)"/>
+  <rect x="52" y="270" width="14" height="4" rx="1" fill="rgba(255,255,255,0.06)"/>
+  <rect x="52" y="286" width="14" height="4" rx="1" fill="rgba(255,255,255,0.06)"/>
+  
+  <!-- Code lines with syntax highlighting -->
+  <!-- def keyword -->
+  <rect x="80" y="78" width="22" height="4" rx="1" fill="rgba(139,92,246,0.5)"/>
+  <rect x="108" y="78" width="55" height="4" rx="1" fill="rgba(6,182,212,0.5)"/>
+  <rect x="168" y="78" width="40" height="4" rx="1" fill="rgba(255,255,255,0.1)"/>
+  
+  <!-- Comment -->
+  <rect x="90" y="94" width="150" height="4" rx="1" fill="rgba(255,255,255,0.06)"/>
+  
+  <!-- Code body -->
+  <rect x="90" y="110" width="30" height="4" rx="1" fill="rgba(139,92,246,0.4)"/>
+  <rect x="126" y="110" width="60" height="4" rx="1" fill="rgba(255,255,255,0.1)"/>
+  <rect x="192" y="110" width="20" height="4" rx="1" fill="rgba(245,158,11,0.5)"/>
+  
+  <rect x="100" y="126" width="40" height="4" rx="1" fill="rgba(139,92,246,0.4)"/>
+  <rect x="146" y="126" width="80" height="4" rx="1" fill="rgba(255,255,255,0.1)"/>
+  
+  <rect x="100" y="142" width="50" height="4" rx="1" fill="rgba(16,185,129,0.5)"/>
+  <rect x="156" y="142" width="30" height="4" rx="1" fill="rgba(255,255,255,0.1)"/>
+  <rect x="192" y="142" width="40" height="4" rx="1" fill="rgba(6,182,212,0.4)"/>
+  
+  <rect x="100" y="158" width="30" height="4" rx="1" fill="rgba(139,92,246,0.4)"/>
+  <rect x="136" y="158" width="90" height="4" rx="1" fill="rgba(255,255,255,0.1)"/>
+  
+  <!-- More code lines -->
+  <rect x="90" y="190" width="22" height="4" rx="1" fill="rgba(139,92,246,0.5)"/>
+  <rect x="118" y="190" width="45" height="4" rx="1" fill="rgba(6,182,212,0.5)"/>
+  <rect x="168" y="190" width="50" height="4" rx="1" fill="rgba(255,255,255,0.1)"/>
+  
+  <rect x="100" y="206" width="60" height="4" rx="1" fill="rgba(255,255,255,0.08)"/>
+  <rect x="166" y="206" width="40" height="4" rx="1" fill="rgba(245,158,11,0.4)"/>
+  
+  <rect x="100" y="222" width="40" height="4" rx="1" fill="rgba(139,92,246,0.4)"/>
+  <rect x="146" y="222" width="100" height="4" rx="1" fill="rgba(255,255,255,0.1)"/>
+  
+  <rect x="110" y="238" width="50" height="4" rx="1" fill="rgba(16,185,129,0.5)"/>
+  <rect x="166" y="238" width="70" height="4" rx="1" fill="rgba(6,182,212,0.4)"/>
+  
+  <rect x="100" y="254" width="30" height="4" rx="1" fill="rgba(139,92,246,0.4)"/>
+  <rect x="136" y="254" width="80" height="4" rx="1" fill="rgba(255,255,255,0.1)"/>
+  
+  <rect x="90" y="286" width="50" height="4" rx="1" fill="rgba(16,185,129,0.5)"/>
+  <rect x="146" y="286" width="80" height="4" rx="1" fill="rgba(255,255,255,0.1)"/>
+  
+  <!-- Visualization panel -->
+  <rect x="440" y="30" width="320" height="300" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="460" y="48" width="80" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+  
+  <!-- Binary tree visualization -->
+  <!-- Root node -->
+  <circle cx="600" cy="105" r="18" fill="rgba(6,182,212,0.15)" stroke="rgba(6,182,212,0.4)" stroke-width="1.5"/>
+  <!-- Level 2 -->
+  <line x1="585" y1="118" x2="540" y2="155" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+  <line x1="615" y1="118" x2="660" y2="155" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+  <circle cx="540" cy="170" r="16" fill="rgba(139,92,246,0.15)" stroke="rgba(139,92,246,0.4)" stroke-width="1.5"/>
+  <circle cx="660" cy="170" r="16" fill="rgba(139,92,246,0.15)" stroke="rgba(139,92,246,0.4)" stroke-width="1.5"/>
+  <!-- Level 3 -->
+  <line x1="528" y1="183" x2="495" y2="215" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+  <line x1="552" y1="183" x2="580" y2="215" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+  <line x1="648" y1="183" x2="625" y2="215" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+  <line x1="672" y1="183" x2="710" y2="215" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+  <circle cx="495" cy="230" r="14" fill="rgba(16,185,129,0.12)" stroke="rgba(16,185,129,0.35)" stroke-width="1.5"/>
+  <circle cx="580" cy="230" r="14" fill="rgba(16,185,129,0.12)" stroke="rgba(16,185,129,0.35)" stroke-width="1.5"/>
+  <circle cx="625" cy="230" r="14" fill="rgba(245,158,11,0.12)" stroke="rgba(245,158,11,0.35)" stroke-width="1.5"/>
+  <circle cx="710" cy="230" r="14" fill="rgba(16,185,129,0.12)" stroke="rgba(16,185,129,0.35)" stroke-width="1.5"/>
+  
+  <!-- Highlighted node -->
+  <circle cx="625" cy="230" r="18" fill="none" stroke="rgba(245,158,11,0.5)" stroke-width="2" stroke-dasharray="4 3"/>
+  
+  <!-- Terminal panel -->
+  <rect x="440" y="345" width="320" height="125" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="440" y="345" width="320" height="24" rx="8" fill="rgba(255,255,255,0.03)"/>
+  <rect x="455" y="353" width="50" height="5" rx="2" fill="rgba(255,255,255,0.08)"/>
+  <!-- Terminal lines -->
+  <rect x="455" y="382" width="10" height="4" rx="1" fill="rgba(16,185,129,0.5)"/>
+  <rect x="470" y="382" width="120" height="4" rx="1" fill="rgba(255,255,255,0.08)"/>
+  <rect x="455" y="398" width="200" height="4" rx="1" fill="rgba(255,255,255,0.05)"/>
+  <rect x="455" y="414" width="10" height="4" rx="1" fill="rgba(16,185,129,0.5)"/>
+  <rect x="470" y="414" width="80" height="4" rx="1" fill="rgba(255,255,255,0.08)"/>
+  <rect x="455" y="430" width="160" height="4" rx="1" fill="rgba(6,182,212,0.3)"/>
+  <!-- Blinking cursor -->
+  <rect x="455" y="446" width="8" height="10" rx="1" fill="rgba(16,185,129,0.4)"/>
+</svg>

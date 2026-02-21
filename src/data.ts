@@ -24,26 +24,31 @@ export const projects = [
     link: `https://github.com/${githubUsername}/Budgeter_v2`,
     description:
       "A simple, personal, financial wellness utility based on React and Django",
+    image: "/projects/budgeter.svg",
   },
   {
     title: "Vartalap",
     link: `https://github.com/${githubUsername}/vartalap-nextjs`,
     description: "A realtime chat-app built using NextJS",
+    image: "/projects/vartalap.svg",
   },
   {
     title: "Blog Site",
     link: `https://github.com/${githubUsername}/astro-blog-site`,
     description: "Personal blogging website built with Astro 🚀",
+    image: "/projects/blog.svg",
   },
   {
     title: "University Portal",
     link: `https://github.com/${githubUsername}/University-Website`,
     description: "A university portal built with Django",
+    image: "/projects/university.svg",
   },
   {
     title: "DSA",
     link: `https://github.com/${githubUsername}/DSA`,
     description: "My learnings of DSA, curated in Python, Java and Go",
+    image: "/projects/dsa.svg",
   },
 ];
 

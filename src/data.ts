@@ -1,5 +1,5 @@
 export const githubUsername = "s4rvessh04";
-export const careerStartDate = "2023-12-05"; // Format: YYYY-MM-DD
+export { CAREER_START_DATE as careerStartDate } from "./config";
 
 export const dataCurrently = [
   { title: "Software Engineer" },
@@ -21,34 +21,51 @@ export const socialLinks = [
 export const projects = [
   {
     title: "Budgeter",
-    link: `https://github.com/${githubUsername}/Budgeter_v2`,
+    github: `https://github.com/${githubUsername}/Budgeter_v2`,
+    live: "https://budgeter-v2-1.onrender.com",
     description:
       "A simple, personal, financial wellness utility based on React and Django",
     image: "/projects/budgeter.svg",
+    stack: ["React", "Django", "PostgreSQL", "Docker"],
+  },
+  {
+    title: "Loadbalancer (L4)",
+    github: `https://github.com/${githubUsername}/loadbalancer-l4`,
+    description: "A Layer 4 loadbalancer built using Go standard library",
+    image: "/projects/loadbalancer.svg",
+    stack: ["Go (Standard Library)", "TCP", "UDP"],
   },
   {
     title: "Vartalap",
-    link: `https://github.com/${githubUsername}/vartalap-nextjs`,
+    github: `https://github.com/${githubUsername}/vartalap-nextjs`,
+    live: "https://vartalap.sarveshrane.pages.dev",
     description: "A realtime chat-app built using NextJS",
     image: "/projects/vartalap.svg",
+    stack: ["Next.js", "Redis (Pub/Sub)", "TypeScript"],
+  },
+  {
+    title: "Bookmarks Lite",
+    github: `https://github.com/${githubUsername}/bookmarks-lite`,
+    live: "https://bookmarks-lite.vercel.app",
+    description: "A simple, personal, bookmark manager built using NextJS",
+    image: "/projects/bookmarks-lite.svg",
+    stack: ["Next.js", "PostgreSQL", "Google OAuth", "TypeScript"],
+  },
+  {
+    title: "Pastebin Lite",
+    github: `https://github.com/${githubUsername}/pastebin-lite`,
+    live: "https://pastebin-lite-six-virid.vercel.app",
+    description: "A lightweight, serverless-optimized pastebin clone built with Next.js",
+    image: "/projects/pastebin-lite.svg",
+    stack: ["Next.js", "PostgreSQL", "TypeScript"],
   },
   {
     title: "Blog Site",
-    link: `https://github.com/${githubUsername}/astro-blog-site`,
-    description: "Personal blogging website built with Astro 🚀",
+    github: `https://github.com/${githubUsername}/astro-blog-site`,
+    live: "https://blog-sarvessh.vercel.app/",
+    description: "Personal blogging website built with Astro",
     image: "/projects/blog.svg",
-  },
-  {
-    title: "University Portal",
-    link: `https://github.com/${githubUsername}/University-Website`,
-    description: "A university portal built with Django",
-    image: "/projects/university.svg",
-  },
-  {
-    title: "DSA",
-    link: `https://github.com/${githubUsername}/DSA`,
-    description: "My learnings of DSA, curated in Python, Java and Go",
-    image: "/projects/dsa.svg",
+    stack: ["Astro", "Markdown", "Tailwind CSS"],
   },
 ];
 
@@ -90,7 +107,7 @@ export const skills = [
       { title: "ELK stack", level: "Advanced" },
       { title: "K8s", level: "Advanced" },
       { title: "Redis", level: "Advanced" },
-      { title: "Apache Kafka", level: "Begineer" },
+      { title: "Apache Kafka", level: "Beginner" },
       { title: "Linux", level: "Intermediate" },
     ],
   },

@@ -29,13 +29,22 @@ const links = [
 				}
 			</ul>
 			<span
-				class="text-micro uppercase text-white/30 hidden md:block font-light"
+				class="text-micro uppercase text-white/30 hidden md:block font-light self-center mt-1"
 				id="local-time"></span>
 		</div>
 	</div>
 </nav>
 
 <script>
+	// Debounce utility
+	function debounce(fn: () => void, ms: number) {
+		let timeoutId: ReturnType<typeof setTimeout>;
+		return () => {
+			clearTimeout(timeoutId);
+			timeoutId = setTimeout(fn, ms);
+		};
+	}
+
 	// Dynamic navbar: transparent at top, solid with blur on scroll
 	function updateNav() {
 		const nav = document.getElementById("main-nav");
@@ -53,9 +62,9 @@ const links = [
 		}
 	}
 	updateNav();
-	window.addEventListener("scroll", updateNav);
+	window.addEventListener("scroll", debounce(updateNav, 16));
 
-	// Live clock
+	// Live clock - always shows IST
 	function updateTime() {
 		const el = document.getElementById("local-time");
 		if (el) {
@@ -63,8 +72,8 @@ const links = [
 			el.textContent = now.toLocaleTimeString("en-US", {
 				hour: "2-digit",
 				minute: "2-digit",
-				timeZoneName: "short",
-			});
+				timeZone: "Asia/Kolkata",
+			}) + " IST";
 		}
 	}
 	updateTime();

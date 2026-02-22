@@ -38,7 +38,7 @@ export const projects = [
   {
     title: "Vartalap",
     github: `https://github.com/${githubUsername}/vartalap-nextjs`,
-    live: "https://vartalap.sarveshrane.pages.dev",
+    live: "https://vartalap-nextjs.vercel.app/",
     description: "A realtime chat-app built using NextJS",
     image: "/projects/vartalap.svg",
     stack: ["Next.js", "Redis (Pub/Sub)", "TypeScript"],

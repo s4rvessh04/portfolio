@@ -43,6 +43,21 @@ const { title } = Astro.props;
 		/>
 		<meta name="generator" content={Astro.generator} />
 		<title>{title ? title : SITE_TITLE}</title>
+		<link rel="canonical" href={Astro.url} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:title" content={title ? title : SITE_TITLE} />
+		<meta property="og:description" content={SITE_DESCRIPTION} />
+		<meta property="og:image" content={new URL("/profile.webp", Astro.url)} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:title" content={title ? title : SITE_TITLE} />
+		<meta property="twitter:description" content={SITE_DESCRIPTION} />
+		<meta property="twitter:image" content={new URL("/profile.webp", Astro.url)} />
 	</head>
 	<body
 		class="bg-black text-white min-h-screen antialiased selection:bg-white selection:text-black overflow-x-hidden"

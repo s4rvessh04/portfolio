@@ -94,7 +94,7 @@ export const skills = [
     title: "Databases",
     data: [
       { title: "MySQL", level: "Intermediate" },
-      { title: "Postgresql", level: "Intermediate" },
+      { title: "PostgreSQL", level: "Intermediate" },
       { title: "SQLite", level: "Intermediate" },
       { title: "MongoDB", level: "Beginner" },
     ],

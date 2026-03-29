@@ -8,13 +8,29 @@ const { label, href }: Props = Astro.props;
 ---
 
 <li>
-	<a
-		href={href}
-		class="group relative text-micro uppercase text-white/50 hover:text-white transition-colors duration-500 py-1"
-	>
-		{label}
-		<span
-			class="absolute bottom-0 left-0 w-full h-px bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
-		></span>
-	</a>
+  <a
+    href={href}
+    class="nav-link group relative text-micro uppercase py-1"
+    style="color: var(--fg-muted); transition: color 150ms var(--ease-out);"
+  >
+    {label}
+    <span
+      class="nav-underline absolute bottom-0 left-0 w-full h-px origin-left"
+      style="background-color: var(--accent); transform: scaleX(0); transition: transform 200ms var(--anime-ease-inOutQuad);"
+    ></span>
+  </a>
 </li>
+
+<style>
+	@media (hover: hover) and (pointer: fine) {
+		.nav-link:hover {
+			color: var(--fg) !important;
+		}
+		.nav-link:hover .nav-underline {
+			transform: scaleX(1);
+		}
+	}
+	.nav-link:active {
+		transform: scale(0.98);
+	}
+</style>

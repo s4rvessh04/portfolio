@@ -25,68 +25,58 @@ import {
 			></canvas>
 			<div
 				class="hero-grid-glow"
-				style="background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(255,255,255,0.04) 0%, transparent 70%);"
+				style="background: radial-gradient(ellipse 60% 50% at 50% 40%, var(--fg-faint) 0%, transparent 70%);"
 			>
 			</div>
 		</div>
 
-		<!-- Top metadata row — snapped to grid rhythm -->
 		<div
 			class="absolute top-24 left-6 md:left-8 lg:left-16 right-6 md:right-8 lg:right-16 flex justify-between items-start"
 		>
-			<div class="animate-reveal-in" style="animation-delay: 0.3s;">
-				<p class="text-micro uppercase text-white/20 mb-1">Role</p>
+			<div class="hero-animate" style="opacity: 0;">
+				<p class="text-micro uppercase mb-1" style="color: var(--accent); opacity: 0.9;">Role</p>
 				<div id="typing-text-wrapper">
-					<span id="typing-text" class="text-sm text-white/50"></span>
-					<span class="text-white/20 animate-blink text-sm">|</span>
+					<span id="typing-text" class="text-sm" style="color: var(--fg-muted);"></span>
+					<span class="animate-blink text-sm" style="color: var(--fg-subtle);">|</span>
 				</div>
 			</div>
 			<div
-				class="hidden md:block text-right animate-reveal-in"
-				style="animation-delay: 0.4s;"
+				class="hidden md:block text-right hero-animate"
+				style="opacity: 0;"
 			>
-				<p class="text-micro uppercase text-white/20 mb-1">Based in</p>
-				<p class="text-sm text-white/50">India</p>
+				<p class="text-micro uppercase mb-1" style="color: var(--accent); opacity: 0.9;">Based in</p>
+				<p class="text-sm" style="color: var(--fg-muted);">India</p>
 			</div>
 		</div>
 
 		<!-- Center Content -->
 		<div class="flex flex-col items-center text-center">
-			<!-- Micro label -->
-			<div class="overflow-hidden mb-6">
-				<p
-					class="text-micro uppercase text-white/25 tracking-[0.3em] animate-reveal-up"
-					style="animation-delay: 0.1s;"
-				>
-					Portfolio
-				</p>
-			</div>
-
 			<!-- Oversized Name -->
-			<div class="mb-6">
+			<div class="mb-6 hero-animate" style="opacity: 0;">
 				<h1
 					class="font-display font-extrabold text-display-xl uppercase leading-[0.85]"
 				>
 					<span class="block overflow-hidden">
 						<span
-							class="block animate-reveal-up"
-							style="animation-delay: 0.15s;">Sarvesh</span
+							class="block"
+							>Sarvesh</span
 						>
 					</span>
 					<span class="block overflow-hidden">
 						<span
-							class="block animate-reveal-up text-neutral-600"
-							style="animation-delay: 0.3s;">Rane</span
+							class="block"
+							style="color: var(--fg-subtle);"
+							>Rane</span
 						>
 					</span>
 				</h1>
 			</div>
 
 			<!-- Tagline -->
-			<div class="overflow-hidden mb-10">
+			<div class="overflow-hidden mb-10 hero-animate" style="opacity: 0;">
 				<p
-					class="text-lg md:text-xl text-white/35 max-w-md animate-reveal-up leading-relaxed"
-					style="animation-delay: 0.5s;"
+					class="text-lg md:text-xl max-w-md leading-relaxed"
+					style="color: var(--fg-muted);"
 				>
 					Software Engineer crafting scalable backend systems and
 					shipping production-grade products.
@@ -95,8 +85,8 @@ import {
 
 			<!-- Social row -->
 			<div
-				class="flex flex-wrap justify-center gap-5 animate-reveal-in"
-				style="animation-delay: 0.6s;"
+				class="flex flex-wrap justify-center gap-5 hero-animate"
+				style="opacity: 0;"
 			>
 				{
 					socialLinks.map((social) => (
@@ -104,11 +94,12 @@ import {
 							href={social.link}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="group relative px-4 py-2 border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-400 rounded-sm"
+							class="social-btn group relative px-4 py-2 rounded-sm"
+							style="border: 1px solid var(--border); background: var(--surface); transition: transform 160ms var(--ease-out), border-color 200ms var(--ease-out);"
 						>
-							<span class="text-micro uppercase text-white/40 group-hover:text-white/80 transition-colors duration-400 tracking-wider">
-								{social.title}
-							</span>
+						<span class="text-micro uppercase tracking-wider" style="color: var(--fg-muted); transition: color 150ms var(--anime-ease-inOutQuad);">
+							{social.title}
+						</span>
 						</a>
 					))
 				}
@@ -117,15 +108,16 @@ import {
 
 		<!-- Scroll indicator -->
 		<div
-			class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float"
-			style="animation-delay: 1s;"
+			class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float hero-scroll-indicator"
+			style="opacity: 0;"
 		>
 			<div class="flex flex-col items-center gap-2">
-				<span class="text-micro uppercase text-white/15 tracking-widest"
+				<span class="text-micro uppercase tracking-widest" style="color: var(--fg-subtle);"
 					>Scroll</span
 				>
 				<div
-					class="w-px h-8 bg-gradient-to-b from-white/20 to-transparent"
+					class="w-px h-8"
+					style="background: linear-gradient(to bottom, var(--fg-subtle), transparent);"
 				>
 				</div>
 			</div>
@@ -136,47 +128,55 @@ import {
 		 HORIZONTAL DIVIDER with grid-aligned marks
 	     ============================================= -->
 	<div class="relative px-6 md:px-8 lg:px-16">
-		<div class="h-px bg-white/[0.06] w-full reveal"></div>
+		<div class="h-px w-full reveal" style="background-color: var(--border);"></div>
 	</div>
 
 	<!-- =============================================
-		 MARQUEE — Horizontal scrolling text
+		 MARQUEE — Horizontal scrolling text (inverted bar)
 	     ============================================= -->
-	<div class="marquee-wrapper overflow-hidden py-5 reveal">
+	<div class="marquee-wrapper overflow-hidden py-4 reveal" style="background-color: var(--marquee-bg);">
 		<div class="marquee-container">
 			<div class="marquee-content">
-				<span class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8">Software Engineer</span>
-				<span class="text-white/5">&mdash;</span>
-				<span class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8">Backend Developer</span>
-				<span class="text-white/5">&mdash;</span>
-				<span class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8">DevOps Enthusiast</span>
-				<span class="text-white/5">&mdash;</span>
-				<span class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8">Software Engineer</span>
-				<span class="text-white/5">&mdash;</span>
-				<span class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8">Backend Developer</span>
-				<span class="text-white/5">&mdash;</span>
-				<span class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8">DevOps Enthusiast</span>
-				<span class="text-white/5">&mdash;</span>
+				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Software Engineer</span>
+				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
+				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Backend Developer</span>
+				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
+				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">DevOps Enthusiast</span>
+				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
+				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Open Source</span>
+				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
+				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Software Engineer</span>
+				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
+				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Backend Developer</span>
+				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
+				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">DevOps Enthusiast</span>
+				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
+				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Open Source</span>
+				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
 			</div>
 			<div class="marquee-content" aria-hidden="true">
-				<span class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8">Software Engineer</span>
-				<span class="text-white/5">&mdash;</span>
-				<span class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8">Backend Developer</span>
-				<span class="text-white/5">&mdash;</span>
-				<span class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8">DevOps Enthusiast</span>
-				<span class="text-white/5">&mdash;</span>
-				<span class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8">Software Engineer</span>
-				<span class="text-white/5">&mdash;</span>
-				<span class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8">Backend Developer</span>
-				<span class="text-white/5">&mdash;</span>
-				<span class="text-micro uppercase text-white/8 tracking-[0.3em] mx-8">DevOps Enthusiast</span>
-				<span class="text-white/5">&mdash;</span>
+				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Software Engineer</span>
+				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
+				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Backend Developer</span>
+				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
+				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">DevOps Enthusiast</span>
+				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
+				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Open Source</span>
+				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
+				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Software Engineer</span>
+				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
+				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Backend Developer</span>
+				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
+				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">DevOps Enthusiast</span>
+				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
+				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Open Source</span>
+				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
 			</div>
 		</div>
 	</div>
 
 	<div class="relative px-6 md:px-8 lg:px-16">
-		<div class="h-px bg-white/[0.06] w-full reveal"></div>
+		<div class="h-px w-full reveal" style="background-color: var(--border);"></div>
 	</div>
 
 	<!-- =============================================
@@ -190,7 +190,7 @@ import {
 			class="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6"
 		>
 			<div>
-				<p class="text-micro uppercase text-white/20 mb-4 reveal">
+				<p class="text-micro uppercase mb-4 reveal" style="color: var(--accent); opacity: 0.9;">
 					Selected Work
 				</p>
 				<h2
@@ -200,7 +200,8 @@ import {
 				</h2>
 			</div>
 			<p
-				class="text-base md:text-lg text-white/35 max-w-sm leading-relaxed reveal stagger-2"
+				class="text-base md:text-lg max-w-sm leading-relaxed reveal stagger-2"
+				style="color: var(--fg-muted);"
 			>
 				A curated selection of projects showcasing expertise in backend
 				systems, full-stack development, and software engineering.
@@ -225,7 +226,7 @@ import {
 						<div class="flex flex-col gap-4 mb-6">
 							<!-- Title and number -->
 							<div class="flex items-baseline gap-4">
-								<span class="text-micro text-white/15 font-light tabular-nums">
+								<span class="text-micro font-light tabular-nums" style="color: var(--accent); opacity: 0.8;">
 									{String(idx + 1).padStart(2, "0")}
 								</span>
 								<h3 class="font-display font-bold text-display-md uppercase">
@@ -239,9 +240,10 @@ import {
 									href={project.github}
 									target="_blank"
 									rel="noopener noreferrer"
-									class="inline-flex items-center gap-2 px-4 py-2 text-sm uppercase tracking-wider text-white/50 border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.08] hover:border-white/[0.2] hover:text-white transition-all duration-300 rounded-sm"
+									class="project-btn inline-flex items-center gap-2 px-4 py-2 text-sm uppercase tracking-wider rounded-sm"
+									style="color: var(--fg-muted); border: 1px solid var(--border); background: var(--surface);"
 								>
-									<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="opacity-60 group-hover:opacity-100">
+									<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
 										<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
 									</svg>
 									<span>GitHub</span>
@@ -251,9 +253,10 @@ import {
 										href={project.live}
 										target="_blank"
 										rel="noopener noreferrer"
-										class="inline-flex items-center gap-2 px-4 py-2 text-sm uppercase tracking-wider text-white/50 border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.08] hover:border-white/[0.2] hover:text-white transition-all duration-300 rounded-sm"
+										class="project-btn inline-flex items-center gap-2 px-4 py-2 text-sm uppercase tracking-wider rounded-sm"
+										style="color: var(--fg-muted); border: 1px solid var(--border); background: var(--surface);"
 									>
-										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="opacity-60 group-hover:opacity-100">
+										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
 											<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
 											<polyline points="15 3 21 3 21 9"></polyline>
 											<line x1="10" y1="14" x2="21" y2="3"></line>
@@ -264,7 +267,7 @@ import {
 							</div>
 
 							<!-- Description -->
-							<p class="text-base text-white/40 max-w-xl">
+							<p class="text-base max-w-xl" style="color: var(--fg-muted);">
 								{project.description}
 							</p>
 
@@ -272,7 +275,7 @@ import {
 							{project.stack && project.stack.length > 0 && (
 								<div class="flex flex-wrap gap-2 mt-1">
 									{project.stack.map((tech) => (
-										<span class="text-xs uppercase tracking-wider text-white/30 border border-white/[0.08] bg-white/[0.02] px-3 py-1 rounded-sm">
+										<span class="text-xs uppercase tracking-wider px-3 py-1 rounded-sm" style="color: var(--fg-subtle); border: 1px solid var(--border); background: var(--surface);">
 											{tech}
 										</span>
 									))}
@@ -282,14 +285,14 @@ import {
 						</div>
 
 						<!-- Project image -->
-						<div class="overflow-hidden rounded-sm border border-white/[0.06]">
+						<div class="overflow-hidden rounded-sm" style="border: 1px solid var(--border);">
 							<div class="relative overflow-hidden">
 								<img
 									src={project.image}
 									alt={`${project.title} preview`}
 									width="800"
 									height="450"
-									class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 aspect-[16/9]"
+									class="project-image w-full h-auto object-cover aspect-[16/9]"
 									loading="lazy"
 									onerror="this.src='/favicon.svg'; this.onerror=null;"
 								/>
@@ -308,8 +311,8 @@ import {
 	     ============================================= -->
 	<section class="py-24 md:py-40 px-6 md:px-8 lg:px-16">
 		<div class="relative px-0 mb-20">
-			<div class="h-px bg-white/[0.06] w-full mb-20 reveal"></div>
-			<p class="text-micro uppercase text-white/20 mb-4 reveal">
+			<div class="h-px w-full mb-20 reveal" style="background-color: var(--border);"></div>
+			<p class="text-micro uppercase mb-4 reveal" style="color: var(--accent); opacity: 0.9;">
 				Capabilities
 			</p>
 			<h2
@@ -323,15 +326,15 @@ import {
 			{
 				skills.map((skillGroup, groupIdx) => (
 					<div class:list={["reveal", `stagger-${groupIdx + 1}`]} role="listitem">
-						<p class="text-micro uppercase text-white/20 mb-6 tracking-[0.2em]">
-							({String(groupIdx + 1).padStart(2, "0")}){" "}
-							{skillGroup.title}
-						</p>
-						<div class="flex flex-wrap gap-x-6 gap-y-3" role="list">
-							{skillGroup.data.map((skill) => (
-								<span class="text-lg md:text-xl text-white/60 hover:text-white transition-colors duration-300 cursor-default" role="listitem">
-									{skill.title}
-								</span>
+					<p class="text-micro uppercase mb-6 tracking-[0.2em]" style="color: var(--fg-subtle);">
+						({String(groupIdx + 1).padStart(2, "0")}){" "}
+						{skillGroup.title}
+					</p>
+					<div class="flex flex-wrap gap-x-6 gap-y-3" role="list">
+						{skillGroup.data.map((skill) => (
+							<span class="skill-item text-lg md:text-xl cursor-default" style="color: var(--fg-muted);" role="listitem">
+								{skill.title}
+							</span>
 							))}
 						</div>
 					</div>
@@ -347,17 +350,18 @@ import {
 		id="about-section"
 		class="py-24 md:py-40 px-6 md:px-8 lg:px-16 scroll-mt-20"
 	>
-		<div class="h-px bg-white/[0.06] w-full mb-20 reveal"></div>
+		<div class="h-px w-full mb-20 reveal" style="background-color: var(--border);"></div>
 
 		<div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
 			<!-- Left: Image -->
 			<div class="md:col-span-5 lg:col-span-4">
 				<div class="reveal">
-					<p class="text-micro uppercase text-white/20 mb-4">
+					<p class="text-micro uppercase mb-4" style="color: var(--accent); opacity: 0.9;">
 						Profile
 					</p>
 					<div
-						class="relative overflow-hidden border border-white/[0.06] h-96 md:h-auto"
+						class="relative overflow-hidden h-96 md:h-auto"
+						style="border: 1px solid var(--border);"
 					>
 						<img
 							src="/profile.webp"
@@ -372,10 +376,10 @@ import {
 				<!-- Micro details -->
 				<div class="mt-6 grid grid-cols-2 gap-4 reveal stagger-2">
 					<div>
-						<p class="text-micro uppercase text-white/15 mb-1">
+						<p class="text-micro uppercase mb-1" style="color: var(--accent); opacity: 0.8;">
 							Experience
 						</p>
-						<p class="text-base text-white/40">
+						<p class="text-base" style="color: var(--fg-muted);">
 							{
 								(() => {
 									const start = new Date(careerStartDate);
@@ -393,10 +397,10 @@ import {
 						</p>
 					</div>
 					<div>
-						<p class="text-micro uppercase text-white/15 mb-1">
+						<p class="text-micro uppercase mb-1" style="color: var(--accent); opacity: 0.8;">
 							Education
 						</p>
-						<p class="text-base text-white/40">B.E. (EXTC)</p>
+						<p class="text-base" style="color: var(--fg-muted);">B.E. (EXTC)</p>
 					</div>
 				</div>
 			</div>
@@ -406,7 +410,7 @@ import {
 				class="md:col-span-7 lg:col-span-7 lg:col-start-6 flex flex-col justify-center"
 			>
 				<div class="reveal">
-					<p class="text-micro uppercase text-white/20 mb-6">About</p>
+					<p class="text-micro uppercase mb-6" style="color: var(--accent); opacity: 0.9;">About</p>
 					<h2
 						class="font-display font-extrabold text-display-md uppercase leading-tight mb-10"
 					>
@@ -418,19 +422,20 @@ import {
 				<div class="line-reveal mb-8 stagger-2"></div>
 				<div class="reveal stagger-3">
 					<p
-						class="text-lg md:text-xl text-white/50 leading-[1.9] max-w-xl"
+						class="text-lg md:text-xl leading-[1.9] max-w-xl"
+						style="color: var(--fg-muted);"
 					>
 						{professionalSummary}
 					</p>
 				</div>
 				<div class="mt-10 reveal stagger-4">
-					<p class="text-micro uppercase text-white/15 mb-3">
+					<p class="text-micro uppercase mb-3" style="color: var(--accent); opacity: 0.8;">
 						Alma Mater
 					</p>
-					<p class="text-base text-white/40">
+					<p class="text-base" style="color: var(--fg-muted);">
 						Smt. Kashibai Navale College of Engineering, Pune
 					</p>
-					<p class="text-base text-white/25 mt-1">
+					<p class="text-base mt-1" style="color: var(--fg-subtle);">
 						Bachelor of Engineering (EXTC) w/Honors
 					</p>
 				</div>
@@ -465,6 +470,61 @@ import {
 		flex-shrink: 0;
 		white-space: nowrap;
 		animation: marquee 20s linear infinite;
+	}
+
+	/* Social button interactions */
+	@media (hover: hover) and (pointer: fine) {
+		.social-btn:hover {
+			border-color: var(--fg-faint) !important;
+		}
+		.social-btn:hover span {
+			color: var(--fg) !important;
+		}
+	}
+	.social-btn:active {
+		transform: scale(0.97);
+	}
+
+	/* Project card image — faster, more responsive */
+	.project-image {
+		transition: transform 500ms var(--ease-out);
+	}
+	@media (hover: hover) and (pointer: fine) {
+		.group:hover .project-image {
+			transform: scale(1.03);
+		}
+	}
+
+	/* Project action buttons */
+	.project-btn {
+		transition:
+			transform 160ms var(--ease-out),
+			background-color 200ms var(--ease-out),
+			border-color 200ms var(--ease-out);
+	}
+	.project-btn:active {
+		transform: scale(0.97);
+	}
+	@media (hover: hover) and (pointer: fine) {
+		.project-btn:hover {
+			background-color: var(--surface-hover) !important;
+			border-color: var(--fg-faint) !important;
+		}
+		.project-btn:hover span,
+		.project-btn:hover svg {
+			color: var(--fg) !important;
+			opacity: 1 !important;
+		}
+	}
+
+	/* Skills hover — snappier */
+	.skill-item {
+		transition: color 200ms var(--ease-out);
+	}
+	@media (hover: hover) and (pointer: fine) {
+		.skill-item:hover {
+			color: var(--accent) !important;
+		}
 	}
 </style>
 

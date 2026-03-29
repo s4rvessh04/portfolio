@@ -7,24 +7,26 @@ import { socialLinks } from "../data";
 	<!-- Top CTA Section -->
 	<div class="px-6 md:px-8 lg:px-16 mb-20">
 		<div
-			class="relative overflow-hidden border border-white/[0.06] rounded-sm p-8 md:p-16 text-center"
+			class="relative overflow-hidden rounded-sm p-8 md:p-16 text-center"
+			style="border: 1px solid var(--border);"
 		>
 			<!-- Grid inside CTA -->
 			<div
 				class="absolute inset-0 pointer-events-none"
-				style="background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 70%);"
+				style="background-image: linear-gradient(to right, var(--fg-faint) 1px, transparent 1px), linear-gradient(to bottom, var(--fg-faint) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 70%);"
 			>
 			</div>
 			<!-- Glow -->
 			<div
 				class="absolute inset-0 pointer-events-none"
-				style="background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 70%);"
+				style="background: radial-gradient(ellipse 50% 50% at 50% 50%, var(--fg-faint) 0%, transparent 70%);"
 			>
 			</div>
 
 			<div class="relative z-10">
 				<p
-					class="text-micro uppercase text-white/20 tracking-[0.3em] mb-4"
+					class="text-micro uppercase tracking-[0.3em] mb-4"
+					style="color: var(--accent); opacity: 0.9;"
 				>
 					Get in touch
 				</p>
@@ -34,42 +36,44 @@ import { socialLinks } from "../data";
 					Let's Work<br />Together
 				</h3>
 				<p
-					class="text-base md:text-lg text-white/35 max-w-md mx-auto mb-10 leading-relaxed"
+					class="text-base md:text-lg max-w-md mx-auto mb-10 leading-relaxed"
+					style="color: var(--fg-muted);"
 				>
 					I'm always open to discussing new opportunities, interesting
 					projects, and creative collaborations.
 				</p>
-				<a
-					href="mailto:sarveshrane2000@gmail.com"
-					class="inline-flex items-center gap-3 px-8 py-3 border border-white/10 hover:border-white/30 bg-white/[0.03] hover:bg-white/[0.08] transition-all duration-400 rounded-sm group"
-				>
-					<span
-						class="text-micro uppercase text-white/60 group-hover:text-white tracking-wider transition-colors duration-400"
-						>Say Hello</span
-					>
-					<svg
-						aria-hidden="true"
-						xmlns="http://www.w3.org/2000/svg"
-						width="14"
-						height="14"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="1.5"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						class="text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-400"
-					>
-						<line x1="5" y1="12" x2="19" y2="12"></line>
-						<polyline points="12 5 19 12 12 19"></polyline>
-					</svg>
-				</a>
+<a
+  href="mailto:sarveshrane2000@gmail.com"
+  class="cta-btn inline-flex items-center gap-3 px-8 py-3 rounded-sm"
+  style="border: 1px solid var(--border); background: var(--surface); transition: transform 150ms var(--anime-ease-inOutQuad), background-color 200ms var(--anime-ease-inOutQuad), border-color 200ms var(--anime-ease-inOutQuad);"
+>
+  <span
+    class="text-micro uppercase tracking-wider"
+    style="color: var(--fg-muted); transition: color 150ms var(--anime-ease-inOutQuad);">Say Hello</span
+  >
+  <svg
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    width="14"
+    height="14"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    style="color: var(--fg-subtle); transition: color 150ms var(--anime-ease-inOutQuad), transform 150ms var(--anime-ease-inOutQuad);"
+  >
+    <line x1="5" y1="12" x2="19" y2="12"></line>
+    <polyline points="12 5 19 12 12 19"></polyline>
+  </svg>
+</a>
 			</div>
 		</div>
 	</div>
 
 	<!-- Footer columns -->
-	<div class="border-t border-white/[0.06]">
+	<div style="border-top: 1px solid var(--border);">
 		<div class="px-6 md:px-8 lg:px-16 py-12 md:py-16">
 			<div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 mb-16">
 				<!-- Brand -->
@@ -77,39 +81,44 @@ import { socialLinks } from "../data";
 					<p class="font-display font-bold text-lg mb-3">
 						{SITE_NAME}
 					</p>
-					<p class="text-base text-white/25 leading-relaxed max-w-xs">
+					<p
+						class="text-base leading-relaxed max-w-xs"
+						style="color: var(--fg-subtle);"
+					>
 						Building scalable software & pushing code since 2019.
 					</p>
 				</div>
 				<!-- Navigation -->
 				<div>
 					<p
-						class="text-micro uppercase text-white/20 mb-4 tracking-wider"
+						class="text-micro uppercase mb-4 tracking-wider"
+						style="color: var(--fg-subtle);"
 					>
 						Navigation
 					</p>
 					<div class="flex flex-col gap-2">
 						<a
 							href="#"
-							class="text-base text-white/35 hover:text-white transition-colors duration-300 w-fit"
-							>Home</a
+							class="text-base transition-colors duration-300 w-fit"
+							style="color: var(--fg-muted);">Home</a
 						>
 						<a
 							href="#work-section"
-							class="text-base text-white/35 hover:text-white transition-colors duration-300 w-fit"
-							>Work</a
+							class="text-base transition-colors duration-300 w-fit"
+							style="color: var(--fg-muted);">Work</a
 						>
 						<a
 							href="#about-section"
-							class="text-base text-white/35 hover:text-white transition-colors duration-300 w-fit"
-							>About</a
+							class="text-base transition-colors duration-300 w-fit"
+							style="color: var(--fg-muted);">About</a
 						>
 					</div>
 				</div>
 				<!-- Socials -->
 				<div>
 					<p
-						class="text-micro uppercase text-white/20 mb-4 tracking-wider"
+						class="text-micro uppercase mb-4 tracking-wider"
+						style="color: var(--fg-subtle);"
 					>
 						Connect
 					</p>
@@ -120,7 +129,8 @@ import { socialLinks } from "../data";
 									href={social.link}
 									target="_blank"
 									rel="noopener noreferrer"
-									class="text-base text-white/35 hover:text-white transition-colors duration-300 w-fit"
+									class="text-base transition-colors duration-300 w-fit"
+									style="color: var(--fg-muted);"
 								>
 									{social.title}
 								</a>
@@ -131,12 +141,15 @@ import { socialLinks } from "../data";
 				<!-- Info -->
 				<div class="md:text-right">
 					<p
-						class="text-micro uppercase text-white/20 mb-4 tracking-wider"
+						class="text-micro uppercase mb-4 tracking-wider"
+						style="color: var(--fg-subtle);"
 					>
 						Info
 					</p>
-					<p class="text-base text-white/35">India</p>
-					<p class="text-base text-white/25 mt-1">
+					<p class="text-base" style="color: var(--fg-muted);">
+						India
+					</p>
+					<p class="text-base mt-1" style="color: var(--fg-subtle);">
 						Available for opportunities
 					</p>
 					<div class="flex md:justify-end items-center gap-2 mt-3">
@@ -151,14 +164,18 @@ import { socialLinks } from "../data";
 			</div>
 
 			<!-- Bottom bar -->
-			<div class="h-px bg-white/[0.04] mb-6"></div>
+			<div class="h-px mb-6" style="background-color: var(--fg-faint);">
+			</div>
 			<div
 				class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
 			>
-				<p class="text-micro uppercase text-white/15">
+				<p
+					class="text-micro uppercase"
+					style="color: var(--fg-subtle);"
+				>
 					&copy; {new Date().getFullYear()} Sarvesh Rane
 				</p>
-				<p class="text-micro uppercase text-white/10">
+				<p class="text-micro uppercase" style="color: var(--fg-faint);">
 					Crafted with precision
 				</p>
 			</div>

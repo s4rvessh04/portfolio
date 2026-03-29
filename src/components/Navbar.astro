@@ -1,6 +1,7 @@
 ---
 import { SITE_NAME } from "../config";
 import Navlink from "./Navlink.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 
 const links = [
 	{ href: "#work-section", label: "Work" },
@@ -9,18 +10,22 @@ const links = [
 ---
 
 <nav
-	class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-	id="main-nav"
+  class="fixed top-0 left-0 right-0 z-50"
+  id="main-nav"
+  style="opacity: 0; transform: translateY(-20px);"
 >
 	<div class="px-6 md:px-8 lg:px-16 py-5 flex items-center justify-between">
 		<a
 			href="/"
-			class="font-display font-bold text-sm tracking-tight text-white uppercase"
+			class="font-display font-bold text-sm tracking-tight uppercase"
+			style="color: var(--fg);"
 		>
-			{SITE_NAME.split(".")[0]}
-			<span class="text-white/40">.{SITE_NAME.split(".")[1]}</span>
+			{SITE_NAME.split(".")[0]}<span style="color: var(--accent);">.</span
+			><span style="color: var(--fg-subtle);"
+				>{SITE_NAME.split(".")[1]}
+			</span>
 		</a>
-		<div class="flex items-center gap-8">
+		<div class="flex items-center gap-6 md:gap-8">
 			<ul class="flex items-center gap-4 md:gap-8">
 				{
 					links.map(({ href, label }) => (
@@ -29,31 +34,25 @@ const links = [
 				}
 			</ul>
 			<span
-				class="text-micro uppercase text-white/30 hidden md:block font-light self-center mt-1"
-				id="local-time"></span>
+				class="text-micro uppercase hidden md:block font-light self-center mt-1"
+				id="local-time"
+				style="color: var(--fg-subtle);"></span>
+			<ThemeToggle />
 		</div>
 	</div>
 </nav>
 
 <script>
-	// Debounce utility
-	function debounce(fn: () => void, ms: number) {
-		let timeoutId: ReturnType<typeof setTimeout>;
-		return () => {
-			clearTimeout(timeoutId);
-			timeoutId = setTimeout(fn, ms);
-		};
-	}
-
 	// Dynamic navbar: transparent at top, solid with blur on scroll
+	let navReady = false;
 	function updateNav() {
 		const nav = document.getElementById("main-nav");
 		if (!nav) return;
 		if (window.scrollY > 60) {
-			nav.style.background = "rgba(0,0,0,0.8)";
+			nav.style.background = "var(--nav-bg)";
 			nav.style.backdropFilter = "blur(12px)";
 			nav.style.webkitBackdropFilter = "blur(12px)";
-			nav.style.borderBottom = "1px solid rgba(255,255,255,0.06)";
+			nav.style.borderBottom = "1px solid var(--border)";
 		} else {
 			nav.style.background = "transparent";
 			nav.style.backdropFilter = "none";
@@ -61,19 +60,26 @@ const links = [
 			nav.style.borderBottom = "1px solid transparent";
 		}
 	}
-	updateNav();
-	window.addEventListener("scroll", debounce(updateNav, 16));
+	// Enable transitions after entry animation completes, then run initial update
+	setTimeout(() => {
+		const nav = document.getElementById("main-nav");
+		if (nav) nav.classList.add("nav-ready");
+		navReady = true;
+		updateNav();
+	}, 1200);
+	window.addEventListener("scroll", () => { if (navReady) updateNav(); });
 
 	// Live clock - always shows IST
 	function updateTime() {
 		const el = document.getElementById("local-time");
 		if (el) {
 			const now = new Date();
-			el.textContent = now.toLocaleTimeString("en-US", {
-				hour: "2-digit",
-				minute: "2-digit",
-				timeZone: "Asia/Kolkata",
-			}) + " IST";
+			el.textContent =
+				now.toLocaleTimeString("en-US", {
+					hour: "2-digit",
+					minute: "2-digit",
+					timeZone: "Asia/Kolkata",
+				}) + " IST";
 		}
 	}
 	updateTime();

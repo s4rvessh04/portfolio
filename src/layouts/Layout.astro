@@ -15,6 +15,18 @@ const { title } = Astro.props;
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 	<head>
+		<!-- Theme: detect system preference or saved choice before paint -->
+		<script is:inline>
+			(function () {
+				var saved = localStorage.getItem("theme");
+				var theme = saved
+					? saved
+					: window.matchMedia("(prefers-color-scheme: light)").matches
+					? "light"
+					: "dark";
+				document.documentElement.setAttribute("data-theme", theme);
+			})();
+		</script>
 		<GoogleAnalytics />
 		<script>
 			(function (w, d, s, l, i) {
@@ -50,17 +62,24 @@ const { title } = Astro.props;
 		<meta property="og:url" content={Astro.url} />
 		<meta property="og:title" content={title ? title : SITE_TITLE} />
 		<meta property="og:description" content={SITE_DESCRIPTION} />
-		<meta property="og:image" content={new URL("/profile.webp", Astro.url)} />
+		<meta
+			property="og:image"
+			content={new URL("/profile.webp", Astro.url)}
+		/>
 
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content={Astro.url} />
 		<meta property="twitter:title" content={title ? title : SITE_TITLE} />
 		<meta property="twitter:description" content={SITE_DESCRIPTION} />
-		<meta property="twitter:image" content={new URL("/profile.webp", Astro.url)} />
+		<meta
+			property="twitter:image"
+			content={new URL("/profile.webp", Astro.url)}
+		/>
 	</head>
 	<body
-		class="bg-black text-white min-h-screen antialiased selection:bg-white selection:text-black overflow-x-hidden"
+		class="min-h-screen antialiased overflow-x-hidden"
+		style="background-color: var(--bg); color: var(--fg); selection-background: var(--fg); selection-color: var(--bg);"
 	>
 		<noscript
 			><iframe
@@ -75,7 +94,8 @@ const { title } = Astro.props;
 		     =========================== -->
 		<div
 			id="page-loader"
-			class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center pointer-events-auto"
+			class="fixed inset-0 z-[100] flex flex-col items-center justify-center pointer-events-auto"
+			style="background-color: var(--loader-bg);"
 		>
 			<div class="loader-scanlines"></div>
 			<div class="relative flex flex-col items-center">
@@ -93,7 +113,7 @@ const { title } = Astro.props;
 						cx="60"
 						cy="60"
 						r="56"
-						stroke="rgba(255,255,255,0.15)"
+						stroke="var(--fg-faint)"
 						stroke-width="0.5"
 						stroke-dasharray="352"
 						stroke-dashoffset="352"></circle>
@@ -102,7 +122,7 @@ const { title } = Astro.props;
 						cx="60"
 						cy="60"
 						r="40"
-						stroke="rgba(255,255,255,0.25)"
+						stroke="var(--fg-subtle)"
 						stroke-width="0.5"
 						stroke-dasharray="251"
 						stroke-dashoffset="251"></circle>
@@ -112,7 +132,7 @@ const { title } = Astro.props;
 						y1="60"
 						x2="100"
 						y2="60"
-						stroke="rgba(255,255,255,0.2)"
+						stroke="var(--fg-subtle)"
 						stroke-width="0.5"
 						stroke-dasharray="80"
 						stroke-dashoffset="80"></line>
@@ -122,35 +142,35 @@ const { title } = Astro.props;
 						y1="20"
 						x2="60"
 						y2="100"
-						stroke="rgba(255,255,255,0.2)"
+						stroke="var(--fg-subtle)"
 						stroke-width="0.5"
 						stroke-dasharray="80"
 						stroke-dashoffset="80"></line>
 					<path
 						id="hud-bracket-tl"
 						d="M25 40 L25 25 L40 25"
-						stroke="white"
+						stroke="var(--fg)"
 						stroke-width="1"
 						fill="none"
 						opacity="0"></path>
 					<path
 						id="hud-bracket-tr"
 						d="M80 25 L95 25 L95 40"
-						stroke="white"
+						stroke="var(--fg)"
 						stroke-width="1"
 						fill="none"
 						opacity="0"></path>
 					<path
 						id="hud-bracket-bl"
 						d="M25 80 L25 95 L40 95"
-						stroke="white"
+						stroke="var(--fg)"
 						stroke-width="1"
 						fill="none"
 						opacity="0"></path>
 					<path
 						id="hud-bracket-br"
 						d="M80 95 L95 95 L95 80"
-						stroke="white"
+						stroke="var(--fg)"
 						stroke-width="1"
 						fill="none"
 						opacity="0"></path>
@@ -159,26 +179,26 @@ const { title } = Astro.props;
 						cx="60"
 						cy="60"
 						r="2"
-						fill="white"
+						fill="var(--fg)"
 						opacity="0"></circle>
 				</svg>
 				<div class="mt-8 flex flex-col items-center gap-3">
 					<p
 						id="hud-status"
-						class="text-micro uppercase text-white/40 tracking-[0.4em] font-light"
-						style="opacity: 0;"
+						class="text-micro uppercase tracking-[0.4em] font-light"
+						style="opacity: 0; color: var(--fg-muted);"
 					>
-						Initializing
+						<!-- Set by JS randomly -->
 					</p>
 					<div
 						id="hud-progress-track"
-						class="w-32 h-px bg-white/[0.06] relative overflow-hidden"
-						style="opacity: 0;"
+						class="w-32 h-px relative overflow-hidden"
+						style="opacity: 0; background-color: var(--fg-faint);"
 					>
 						<div
 							id="hud-progress-fill"
-							class="absolute inset-y-0 left-0 bg-white/50"
-							style="width: 0%;"
+							class="absolute inset-y-0 left-0"
+							style="width: 0%; background-color: var(--accent);"
 						>
 						</div>
 					</div>
@@ -213,12 +233,12 @@ const { title } = Astro.props;
 				inset: 0;
 				background-image: linear-gradient(
 						to right,
-						rgba(255, 255, 255, 0.05) 1px,
+						var(--fg-faint) 1px,
 						transparent 1px
 					),
 					linear-gradient(
 						to bottom,
-						rgba(255, 255, 255, 0.05) 1px,
+						var(--fg-faint) 1px,
 						transparent 1px
 					);
 				background-size: 80px 80px;
@@ -249,60 +269,77 @@ const { title } = Astro.props;
 					0deg,
 					transparent,
 					transparent 2px,
-					rgba(255, 255, 255, 0.008) 2px,
-					rgba(255, 255, 255, 0.008) 4px
+					var(--fg-faint) 2px,
+					var(--fg-faint) 4px
 				);
 				z-index: 1;
 			}
 
-			/* ============================================
-			   SCROLL REVEAL SYSTEM
-			   ============================================ */
-			.reveal {
-				opacity: 0;
-				transform: translateY(50px);
-				transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-					transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-			}
+/* ============================================
+   SCROLL REVEAL SYSTEM — refined timing & easing
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px) scale(0.99);
+  transition:
+    opacity 0.2s var(--ease-out),
+    transform 0.2s var(--ease-out);
+}
+
+/* Anime.js inspired staggered reveals with grid options */
+.reveal[data-stagger-grid],
+.reveal[style*='--reveal-delay'] {
+  transition-delay: calc(var(--reveal-delay, 0s) + 0.05s);
+}
+
+/* Revealed state */
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Line reveal with minimal delay */
+.line-reveal {
+  height: 1px;
+  background: var(--fg-faint);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s var(--ease-out);
+}
+
+.line-reveal.revealed {
+  transform: scaleX(1);
+}
+
+/* Anime.js inspired easing for specific cases - using their naming convention */
+:root {
+  --anime-ease-inOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --anime-ease-inOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
+  --anime-ease-inOutCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
 			.reveal.revealed {
 				opacity: 1;
-				transform: translateY(0);
+				transform: translateY(0) scale(1);
 			}
 
-			/* Stagger delays */
-			.stagger-1 {
-				transition-delay: 0.05s;
-			}
-			.stagger-2 {
-				transition-delay: 0.1s;
-			}
-			.stagger-3 {
-				transition-delay: 0.15s;
-			}
-			.stagger-4 {
-				transition-delay: 0.2s;
-			}
-			.stagger-5 {
-				transition-delay: 0.25s;
-			}
-			.stagger-6 {
-				transition-delay: 0.3s;
-			}
-			.stagger-7 {
-				transition-delay: 0.35s;
-			}
-			.stagger-8 {
-				transition-delay: 0.4s;
-			}
+/* Stagger delays — minimal Apple-style (15-40ms between items) */
+.stagger-1 { transition-delay: 0.015s; }
+.stagger-2 { transition-delay: 0.03s; }
+.stagger-3 { transition-delay: 0.045s; }
+.stagger-4 { transition-delay: 0.06s; }
+.stagger-5 { transition-delay: 0.075s; }
+.stagger-6 { transition-delay: 0.09s; }
+.stagger-7 { transition-delay: 0.105s; }
+.stagger-8 { transition-delay: 0.12s; }
 
-			/* Horizontal line animation */
-			.line-reveal {
-				height: 1px;
-				background: rgba(255, 255, 255, 0.08);
-				transform: scaleX(0);
-				transform-origin: left;
-				transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-			}
+/* Horizontal line animation */
+.line-reveal {
+  height: 1px;
+  background: var(--fg-faint);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s var(--ease-out);
+}
 			.line-reveal.revealed {
 				transform: scaleX(1);
 			}
@@ -314,14 +351,118 @@ const { title } = Astro.props;
 			html {
 				scrollbar-width: none;
 			}
+
+			/* ============================================
+			   NAV — transitions only after entry animation
+			   ============================================ */
+			#main-nav.nav-ready {
+				transition:
+					background-color 200ms var(--ease-out),
+					backdrop-filter 200ms var(--ease-out),
+					-webkit-backdrop-filter 200ms var(--ease-out),
+					border-color 200ms var(--ease-out);
+			}
+
+			/* ============================================
+			   @starting-style — modern entry animations
+			   ============================================ */
+			@starting-style {
+				.reveal {
+					opacity: 0;
+					transform: translateY(30px) scale(0.98);
+				}
+				.line-reveal {
+					transform: scaleX(0);
+				}
+			}
+
+			/* ============================================
+			   Touch device hover protection
+			   ============================================ */
+			@media (hover: none) and (pointer: coarse) {
+				.reveal {
+					opacity: 1 !important;
+					transform: none !important;
+					transition: none !important;
+				}
+				.line-reveal {
+					transform: scaleX(1) !important;
+					transition: none !important;
+				}
+			}
 		</style>
 
 		<!-- HUD Loader animation (anime.js) -->
 		<script>
 			import { createTimeline, stagger, steps } from "animejs";
+import { eases } from "animejs/easings/eases";
 
 			const loader = document.getElementById("page-loader");
+			const statusEl = document.getElementById("hud-status");
 
+			// ── Single random techy status message ──
+			const statusMessages = [
+				"Resolving CDN Edge Nodes",
+				"Negotiating TLS Handshake",
+				"Fetching Assets from Origin",
+				"Hydrating Components",
+				"Establishing Secure Tunnel",
+				"Compiling Shader Pipeline",
+			];
+			const randomMsg =
+				statusMessages[
+					Math.floor(Math.random() * statusMessages.length)
+				];
+			if (statusEl) statusEl.textContent = randomMsg;
+
+			// ── Page entry animation (runs after loader) ──
+			function animatePageEntry() {
+				const entryTl = createTimeline({
+					defaults: { ease: "outQuart" },
+				});
+
+				// Navbar slides down — faster, snappier
+				entryTl
+					.add("#main-nav", {
+						opacity: [0, 1],
+						translateY: [-20, 0],
+						duration: 400,
+					})
+					// Hero name with bounce
+					.add(
+						".hero-animate:first-of-type",
+						{
+							opacity: [0, 1],
+							translateY: [30, 0],
+							duration: 600,
+							easing: eases.outBounce,
+						},
+						"-=250"
+					)
+					// Other hero elements slide in smoothly
+					.add(
+						".hero-animate:not(:first-of-type)",
+						{
+							opacity: [0, 1],
+							translateY: [20, 0],
+							duration: 400,
+							delay: stagger(50),
+						},
+						"-=400"
+					)
+					// Scroll indicator fades in last
+					.add(
+						".hero-scroll-indicator",
+						{
+							opacity: [0, 1],
+							translateY: [15, 0],
+							duration: 400,
+						},
+						"-=150"
+					);
+			}
+
+			// ── Loader timeline (sped up ~40-50%) ──
 			const loaderTl = createTimeline({
 				defaults: { ease: "outExpo" },
 				onComplete: () => {
@@ -329,41 +470,42 @@ const { title } = Astro.props;
 						loader.style.display = "none";
 						loader.style.pointerEvents = "none";
 					}
+					animatePageEntry();
 				},
 			});
 
 			loaderTl
 				.add("#hud-reticle", {
 					opacity: [0, 1, 0.3, 1],
-					duration: 500,
+					duration: 300,
 					ease: "inOutQuad",
 				})
 				.add(
 					"#hud-ring-outer",
 					{
 						strokeDashoffset: [352, 0],
-						duration: 800,
+						duration: 450,
 						ease: "inOutQuart",
 					},
-					"-=200"
+					"-=120"
 				)
 				.add(
 					"#hud-ring-inner",
 					{
 						strokeDashoffset: [251, 0],
-						duration: 600,
+						duration: 350,
 						ease: "outQuart",
 					},
-					"-=500"
+					"-=280"
 				)
 				.add(
 					["#hud-cross-h", "#hud-cross-v"],
 					{
 						strokeDashoffset: [80, 0],
-						duration: 400,
+						duration: 250,
 						ease: "outBack",
 					},
-					"-=300"
+					"-=180"
 				)
 				.add(
 					[
@@ -374,44 +516,44 @@ const { title } = Astro.props;
 					],
 					{
 						opacity: [0, 1, 0.2, 1],
-						duration: 400,
+						duration: 250,
 						ease: steps(4),
-						delay: stagger(60),
+						delay: stagger(40),
 					},
-					"-=200"
+					"-=120"
 				)
 				.add(
 					"#hud-center-dot",
 					{
 						opacity: [0, 1],
 						r: [0, 2],
-						duration: 300,
+						duration: 200,
 						ease: "outBounce",
 					},
-					"-=100"
+					"-=60"
 				)
 				.add(
 					"#hud-status",
 					{
 						opacity: [0, 0.6, 0, 0.4],
-						duration: 500,
+						duration: 300,
 						ease: steps(4),
 					},
-					"-=200"
+					"-=120"
 				)
 				.add(
 					"#hud-progress-track",
 					{
 						opacity: [0, 1],
 						scaleX: [0, 1],
-						duration: 400,
+						duration: 250,
 						ease: "outQuart",
 					},
-					"-=300"
+					"-=180"
 				)
 				.add("#hud-progress-fill", {
 					width: ["0%", "100%"],
-					duration: 700,
+					duration: 500,
 					ease: "inOutQuart",
 				})
 				// ── EXIT: lock → glitch → disassemble → burst ──
@@ -420,7 +562,7 @@ const { title } = Astro.props;
 				.add("#hud-center-dot", {
 					r: [2, 5, 2],
 					opacity: [1, 0.3, 1],
-					duration: 250,
+					duration: 180,
 					ease: "inOutQuad",
 				})
 
@@ -430,10 +572,10 @@ const { title } = Astro.props;
 					{
 						opacity: [1, 0],
 						scaleX: [1, 0],
-						duration: 200,
+						duration: 150,
 						ease: "inQuart",
 					},
-					"-=100"
+					"-=60"
 				)
 
 				// 3. Crosshairs snap to zero length
@@ -441,10 +583,10 @@ const { title } = Astro.props;
 					["#hud-cross-h", "#hud-cross-v"],
 					{
 						strokeDashoffset: [0, 80],
-						duration: 250,
+						duration: 180,
 						ease: "inBack",
 					},
-					"-=100"
+					"-=60"
 				)
 
 				// 4. Brackets fly outward to corners
@@ -454,10 +596,10 @@ const { title } = Astro.props;
 						translateX: -30,
 						translateY: -30,
 						opacity: [1, 0],
-						duration: 350,
+						duration: 250,
 						ease: "inQuart",
 					},
-					"-=150"
+					"-=100"
 				)
 				.add(
 					"#hud-bracket-tr",
@@ -465,10 +607,10 @@ const { title } = Astro.props;
 						translateX: 30,
 						translateY: -30,
 						opacity: [1, 0],
-						duration: 350,
+						duration: 250,
 						ease: "inQuart",
 					},
-					"-=350"
+					"-=250"
 				)
 				.add(
 					"#hud-bracket-bl",
@@ -476,10 +618,10 @@ const { title } = Astro.props;
 						translateX: -30,
 						translateY: 30,
 						opacity: [1, 0],
-						duration: 350,
+						duration: 250,
 						ease: "inQuart",
 					},
-					"-=350"
+					"-=250"
 				)
 				.add(
 					"#hud-bracket-br",
@@ -487,10 +629,10 @@ const { title } = Astro.props;
 						translateX: 30,
 						translateY: 30,
 						opacity: [1, 0],
-						duration: 350,
+						duration: 250,
 						ease: "inQuart",
 					},
-					"-=350"
+					"-=250"
 				)
 
 				// 5. Inner ring implodes, outer ring explodes
@@ -500,10 +642,10 @@ const { title } = Astro.props;
 						r: [40, 0],
 						opacity: [1, 0],
 						strokeWidth: [0.5, 3],
-						duration: 300,
+						duration: 200,
 						ease: "inQuint",
 					},
-					"-=200"
+					"-=140"
 				)
 				.add(
 					"#hud-ring-outer",
@@ -511,10 +653,10 @@ const { title } = Astro.props;
 						r: [56, 120],
 						opacity: [1, 0],
 						strokeWidth: [0.5, 0],
-						duration: 400,
+						duration: 280,
 						ease: "outQuad",
 					},
-					"-=250"
+					"-=160"
 				)
 
 				// 6. Center dot detonates — scales up then vanishes
@@ -523,10 +665,10 @@ const { title } = Astro.props;
 					{
 						r: [2, 40],
 						opacity: [1, 0],
-						duration: 350,
+						duration: 250,
 						ease: "outQuad",
 					},
-					"-=300"
+					"-=200"
 				)
 
 				// 7. Brief white flash on the whole reticle
@@ -536,10 +678,10 @@ const { title } = Astro.props;
 						opacity: [1, 0],
 						scale: [1, 1.3],
 						filter: ["brightness(1)", "brightness(8)"],
-						duration: 250,
+						duration: 180,
 						ease: "outExpo",
 					},
-					"-=150"
+					"-=100"
 				)
 
 				// 8. Loader overlay sweep-out
@@ -547,31 +689,70 @@ const { title } = Astro.props;
 					"#page-loader",
 					{
 						opacity: [1, 0],
-						duration: 400,
+						duration: 300,
 						ease: "inQuad",
 					},
-					"-=100"
+					"-=60"
 				);
 		</script>
 
-		<!-- Scroll reveal observer -->
-		<script>
-			const observer = new IntersectionObserver(
-				(entries) => {
-					entries.forEach((entry) => {
-						if (entry.isIntersecting) {
-							entry.target.classList.add("revealed");
-							observer.unobserve(entry.target);
-						}
-					});
-				},
-				{ threshold: 0.05, rootMargin: "0px 0px -80px 0px" }
-			);
+<!-- Scroll reveal observer with anime.js-inspired staggering -->
+<script>
+	// Anime.js-inspired stagger options for grid layouts
+	const staggerOptions = {
+		grid: [12, 1], // Default to single column for most sections
+		from: "center",
+		axis: "y" // Vertical staggering
+	};
 
-			document
-				.querySelectorAll(".reveal, .line-reveal")
-				.forEach((el) => observer.observe(el));
-		</script>
+	// Enhanced stagger options for specific sections
+	const skillsStaggerOptions = {
+		grid: [2, 6], // 2 columns for skills
+		from: "center",
+		axis: "y"
+	};
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					const target = entry.target;
+					
+					// Check if element has grid stagger data
+					if (target.classList.contains("reveal")) {
+						// Add stagger delay based on position and section type
+						const rect = target.getBoundingClientRect();
+						const section = target.closest("section");
+						
+						let delay = 0;
+						
+						if (section && section.id === "skills-section") {
+							// Grid-based stagger for skills section
+							const row = Math.floor((target.offsetTop - section.offsetTop) / target.offsetHeight);
+							const col = Math.floor((target.offsetLeft - section.offsetLeft) / target.offsetWidth);
+							delay = (row * staggerOptions.grid[1] + col) * 0.03; // 30ms base delay
+						} else {
+							// Simple vertical stagger for other sections
+							const index = Array.from(target.parentElement.children).indexOf(target);
+							delay = index * 0.015; // 15ms base delay
+						}
+						
+						// Apply CSS custom property for delay
+						target.style.setProperty('--reveal-delay', `${delay}s`);
+					}
+					
+					target.classList.add("revealed");
+					observer.unobserve(target);
+				}
+			});
+		},
+		{ threshold: 0.05, rootMargin: "0px 0px -80px 0px" }
+	);
+
+	document
+		.querySelectorAll(".reveal, .line-reveal")
+		.forEach((el) => observer.observe(el));
+</script>
 
 		<!-- Cloudflare Web Analytics -->
 		<script

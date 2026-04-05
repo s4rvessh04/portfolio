@@ -2,15 +2,13 @@
 ---
 
 <button
-    id="theme-toggle"
     type="button"
     aria-label="Toggle theme"
-    class="theme-btn relative w-8 h-8 flex items-center justify-center rounded-sm border cursor-pointer"
+    class="theme-toggle-btn relative w-8 h-8 flex items-center justify-center rounded-sm border cursor-pointer"
     style="border-color: var(--border); background: var(--surface); transition: transform 160ms var(--ease-out), background-color 200ms var(--ease-out), border-color 200ms var(--ease-out);"
 >
     <!-- Sun icon (visible in dark mode) -->
     <svg
-        id="theme-sun"
         xmlns="http://www.w3.org/2000/svg"
         width="14"
         height="14"
@@ -20,7 +18,7 @@
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="absolute"
+        class="theme-icon-sun absolute"
         style="color: var(--fg-muted); transition: opacity 200ms var(--ease-out), transform 300ms var(--ease-out);"
     >
         <circle cx="12" cy="12" r="5"></circle>
@@ -35,7 +33,6 @@
     </svg>
     <!-- Moon icon (visible in light mode) -->
     <svg
-        id="theme-moon"
         xmlns="http://www.w3.org/2000/svg"
         width="14"
         height="14"
@@ -45,7 +42,7 @@
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="absolute"
+        class="theme-icon-moon absolute"
         style="color: var(--fg-muted); transition: opacity 200ms var(--ease-out), transform 300ms var(--ease-out);"
     >
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -54,45 +51,44 @@
 
 <style>
     /* In dark mode: show sun, hide moon */
-    :global([data-theme="dark"]) #theme-sun {
+    :global([data-theme="dark"]) .theme-icon-sun {
         opacity: 1;
         transform: rotate(0deg);
     }
-    :global([data-theme="dark"]) #theme-moon {
+    :global([data-theme="dark"]) .theme-icon-moon {
         opacity: 0;
         transform: rotate(-90deg);
     }
 
     /* In light mode: show moon, hide sun */
-    :global([data-theme="light"]) #theme-sun {
+    :global([data-theme="light"]) .theme-icon-sun {
         opacity: 0;
         transform: rotate(90deg);
     }
-    :global([data-theme="light"]) #theme-moon {
+    :global([data-theme="light"]) .theme-icon-moon {
         opacity: 1;
         transform: rotate(0deg);
     }
 
     @media (hover: hover) and (pointer: fine) {
-        .theme-btn:hover {
+        .theme-toggle-btn:hover {
             background: var(--surface-hover) !important;
             border-color: var(--fg-faint) !important;
         }
     }
-    .theme-btn:active {
+    .theme-toggle-btn:active {
         transform: scale(0.95);
     }
 </style>
 
 <script>
-    const toggle = document.getElementById("theme-toggle");
-    if (toggle) {
-        toggle.addEventListener("click", () => {
+    document.querySelectorAll(".theme-toggle-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
             const html = document.documentElement;
             const current = html.getAttribute("data-theme") || "dark";
             const next = current === "dark" ? "light" : "dark";
             html.setAttribute("data-theme", next);
             localStorage.setItem("theme", next);
         });
-    }
+    });
 </script>

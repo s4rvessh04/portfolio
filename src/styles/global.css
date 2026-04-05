@@ -20,35 +20,40 @@
 	--marquee-bg: #ffffff;
 	--marquee-fg: #000000;
 
-/* Animation Easings — Inspired by anime.js with Apple minimalism */
---ease-out: cubic-bezier(0.25, 0.8, 0.25, 1); /* Precise, minimal overshoot */
---ease-in-out: cubic-bezier(0.42, 0, 0.58, 1); /* Balanced for rare cases */
---ease-drawer: cubic-bezier(0.25, 0.8, 0.25, 1); /* Consistent for drawers */
---ease-spring: cubic-bezier(0.25, 0.8, 0.25, 1); /* Clean, no bounce */
---ease-reveal: cubic-bezier(0.25, 0.8, 0.25, 1); /* Consistent reveals */
+	/* Animation Easings — Inspired by anime.js with Apple minimalism */
+	--ease-out: cubic-bezier(0.25, 0.8, 0.25, 1);
+	/* Precise, minimal overshoot */
+	--ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+	/* Balanced for rare cases */
+	--ease-drawer: cubic-bezier(0.25, 0.8, 0.25, 1);
+	/* Consistent for drawers */
+	--ease-spring: cubic-bezier(0.25, 0.8, 0.25, 1);
+	/* Clean, no bounce */
+	--ease-reveal: cubic-bezier(0.25, 0.8, 0.25, 1);
+	/* Consistent reveals */
 
-/* Anime.js inspired easings for advanced effects */
---anime-ease-inQuad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
---anime-ease-outQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
---anime-ease-inOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
---anime-ease-inCubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
---anime-ease-outCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
---anime-ease-inOutCubic: cubic-bezier(0.645, 0.045, 0.355, 1);
---anime-ease-inQuart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
---anime-ease-outQuart: cubic-bezier(0.165, 0.84, 0.44, 1);
---anime-ease-inOutQuart: cubic-bezier(0.77, 0, 0.175, 1);
---anime-ease-inQuint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
---anime-ease-outQuint: cubic-bezier(0.23, 1, 0.32, 1);
---anime-ease-inOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
---anime-ease-inSine: cubic-bezier(0.47, 0, 0.745, 0.715);
---anime-ease-outSine: cubic-bezier(0.39, 0.575, 0.565, 1);
---anime-ease-inOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
---anime-ease-inExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
---anime-ease-outExpo: cubic-bezier(0.19, 1, 0.22, 1);
---anime-ease-inOutExpo: cubic-bezier(1, 0, 0, 1);
---anime-ease-inCirc: cubic-bezier(0.6, 0.04, 0.98, 0.335);
---anime-ease-outCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
---anime-ease-inOutCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
+	/* Anime.js inspired easings for advanced effects */
+	--anime-ease-inQuad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+	--anime-ease-outQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	--anime-ease-inOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	--anime-ease-inCubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	--anime-ease-outCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+	--anime-ease-inOutCubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+	--anime-ease-inQuart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+	--anime-ease-outQuart: cubic-bezier(0.165, 0.84, 0.44, 1);
+	--anime-ease-inOutQuart: cubic-bezier(0.77, 0, 0.175, 1);
+	--anime-ease-inQuint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+	--anime-ease-outQuint: cubic-bezier(0.23, 1, 0.32, 1);
+	--anime-ease-inOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
+	--anime-ease-inSine: cubic-bezier(0.47, 0, 0.745, 0.715);
+	--anime-ease-outSine: cubic-bezier(0.39, 0.575, 0.565, 1);
+	--anime-ease-inOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	--anime-ease-inExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+	--anime-ease-outExpo: cubic-bezier(0.19, 1, 0.22, 1);
+	--anime-ease-inOutExpo: cubic-bezier(1, 0, 0, 1);
+	--anime-ease-inCirc: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+	--anime-ease-outCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
+	--anime-ease-inOutCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 [data-theme="light"] {
@@ -98,17 +103,24 @@
 		"Noto Color Emoji";
 
 	/* Display sizes — tinyfish-style tight tracking, dramatic scale */
-	--text-display-xl: clamp(2.5rem, 10vw, 9rem);
+	--text-display-xl: clamp(2.25rem, 8vw + 0.5rem, 9rem);
 	--text-display-xl--line-height: 0.88;
 	--text-display-xl--letter-spacing: -0.04em;
 
-	--text-display-lg: clamp(1.75rem, 6vw, 5rem);
+	--text-display-lg: clamp(1.5rem, 4vw + 0.5rem, 5rem);
 	--text-display-lg--line-height: 0.95;
 	--text-display-lg--letter-spacing: -0.03em;
 
-	--text-display-md: clamp(1.25rem, 4vw, 3rem);
+	--text-display-md: clamp(1.125rem, 2.5vw + 0.5rem, 3rem);
 	--text-display-md--line-height: 1.05;
 	--text-display-md--letter-spacing: -0.025em;
+
+	/* Body text — responsive, professional */
+	--text-body-lg: clamp(1rem, 0.5vw + 0.875rem, 1.25rem);
+	--text-body-lg--line-height: 1.7;
+
+	--text-body: clamp(0.875rem, 0.25vw + 0.8125rem, 1rem);
+	--text-body--line-height: 1.65;
 
 	/* Micro — labels & utility text (tinyfish-style ~11px) */
 	--text-micro: 0.6875rem;
@@ -145,17 +157,18 @@
 		}
 	}
 
-@keyframes reveal-up {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.99); /* Much subtler movement */
-  }
+	@keyframes reveal-up {
+		from {
+			opacity: 0;
+			transform: translateY(10px) scale(0.99);
+			/* Much subtler movement */
+		}
 
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
+		to {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
+	}
 
 	@keyframes reveal-in {
 		from {
@@ -186,6 +199,7 @@ body {
    REDUCED MOTION — accessibility first
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
+
 	*,
 	*::before,
 	*::after {
@@ -200,5 +214,18 @@ body {
 	.line-reveal {
 		opacity: 1 !important;
 		transform: none !important;
+	}
+}
+
+/* ============================================
+   MOBILE TOUCH TARGETS — 44px minimum
+   ============================================ */
+@media (pointer: coarse) {
+
+	a,
+	button,
+	[role="button"] {
+		min-height: 44px;
+		min-width: 44px;
 	}
 }

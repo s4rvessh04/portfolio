@@ -275,71 +275,79 @@ const { title } = Astro.props;
 				z-index: 1;
 			}
 
-/* ============================================
-   SCROLL REVEAL SYSTEM — refined timing & easing
+			/* ============================================
+   SCROLL REVEAL SYSTEM — fade-only, clean
    ============================================ */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px) scale(0.99);
-  transition:
-    opacity 0.2s var(--ease-out),
-    transform 0.2s var(--ease-out);
-}
-
-/* Anime.js inspired staggered reveals with grid options */
-.reveal[data-stagger-grid],
-.reveal[style*='--reveal-delay'] {
-  transition-delay: calc(var(--reveal-delay, 0s) + 0.05s);
-}
-
-/* Revealed state */
-.reveal.revealed {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* Line reveal with minimal delay */
-.line-reveal {
-  height: 1px;
-  background: var(--fg-faint);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.2s var(--ease-out);
-}
-
-.line-reveal.revealed {
-  transform: scaleX(1);
-}
-
-/* Anime.js inspired easing for specific cases - using their naming convention */
-:root {
-  --anime-ease-inOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  --anime-ease-inOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
-  --anime-ease-inOutCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-			.reveal.revealed {
-				opacity: 1;
-				transform: translateY(0) scale(1);
+			.reveal {
+				opacity: 0;
+				transition: opacity 0.3s var(--ease-out);
 			}
 
-/* Stagger delays — minimal Apple-style (15-40ms between items) */
-.stagger-1 { transition-delay: 0.015s; }
-.stagger-2 { transition-delay: 0.03s; }
-.stagger-3 { transition-delay: 0.045s; }
-.stagger-4 { transition-delay: 0.06s; }
-.stagger-5 { transition-delay: 0.075s; }
-.stagger-6 { transition-delay: 0.09s; }
-.stagger-7 { transition-delay: 0.105s; }
-.stagger-8 { transition-delay: 0.12s; }
+			/* Anime.js inspired staggered reveals with grid options */
+			.reveal[data-stagger-grid],
+			.reveal[style*="--reveal-delay"] {
+				transition-delay: calc(var(--reveal-delay, 0s) + 0.05s);
+			}
 
-/* Horizontal line animation */
-.line-reveal {
-  height: 1px;
-  background: var(--fg-faint);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.2s var(--ease-out);
-}
+			/* Revealed state */
+			.reveal.revealed {
+				opacity: 1;
+			}
+
+			/* Line reveal with minimal delay */
+			.line-reveal {
+				height: 1px;
+				background: var(--fg-faint);
+				transform: scaleX(0);
+				transform-origin: left;
+				transition: transform 0.2s var(--ease-out);
+			}
+
+			.line-reveal.revealed {
+				transform: scaleX(1);
+			}
+
+			/* Anime.js inspired easing for specific cases - using their naming convention */
+			:root {
+				--anime-ease-inOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+				--anime-ease-inOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
+				--anime-ease-inOutCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
+			}
+
+			/* Stagger delays — minimal Apple-style (15-40ms between items) */
+			.stagger-1 {
+				transition-delay: 0.015s;
+			}
+			.stagger-2 {
+				transition-delay: 0.03s;
+			}
+			.stagger-3 {
+				transition-delay: 0.045s;
+			}
+			.stagger-4 {
+				transition-delay: 0.06s;
+			}
+			.stagger-5 {
+				transition-delay: 0.075s;
+			}
+			.stagger-6 {
+				transition-delay: 0.09s;
+			}
+			.stagger-7 {
+				transition-delay: 0.105s;
+			}
+			.stagger-8 {
+				transition-delay: 0.12s;
+			}
+
+			/* Horizontal line animation */
+			.line-reveal {
+				height: 1px;
+				background: var(--fg-faint);
+				transform: scaleX(0);
+				transform-origin: left;
+				transition: transform 0.2s var(--ease-out);
+			}
 			.line-reveal.revealed {
 				transform: scaleX(1);
 			}
@@ -356,8 +364,7 @@ const { title } = Astro.props;
 			   NAV — transitions only after entry animation
 			   ============================================ */
 			#main-nav.nav-ready {
-				transition:
-					background-color 200ms var(--ease-out),
+				transition: background-color 200ms var(--ease-out),
 					backdrop-filter 200ms var(--ease-out),
 					-webkit-backdrop-filter 200ms var(--ease-out),
 					border-color 200ms var(--ease-out);
@@ -369,25 +376,9 @@ const { title } = Astro.props;
 			@starting-style {
 				.reveal {
 					opacity: 0;
-					transform: translateY(30px) scale(0.98);
 				}
 				.line-reveal {
 					transform: scaleX(0);
-				}
-			}
-
-			/* ============================================
-			   Touch device hover protection
-			   ============================================ */
-			@media (hover: none) and (pointer: coarse) {
-				.reveal {
-					opacity: 1 !important;
-					transform: none !important;
-					transition: none !important;
-				}
-				.line-reveal {
-					transform: scaleX(1) !important;
-					transition: none !important;
 				}
 			}
 		</style>
@@ -395,7 +386,7 @@ const { title } = Astro.props;
 		<!-- HUD Loader animation (anime.js) -->
 		<script>
 			import { createTimeline, stagger, steps } from "animejs";
-import { eases } from "animejs/easings/eases";
+			import { eases } from "animejs/easings/eases";
 
 			const loader = document.getElementById("page-loader");
 			const statusEl = document.getElementById("hud-status");
@@ -696,63 +687,80 @@ import { eases } from "animejs/easings/eases";
 				);
 		</script>
 
-<!-- Scroll reveal observer with anime.js-inspired staggering -->
-<script>
-	// Anime.js-inspired stagger options for grid layouts
-	const staggerOptions = {
-		grid: [12, 1], // Default to single column for most sections
-		from: "center",
-		axis: "y" // Vertical staggering
-	};
+		<!-- Scroll reveal observer with anime.js-inspired staggering -->
+		<script>
+			// Anime.js-inspired stagger options for grid layouts
+			const staggerOptions = {
+				grid: [12, 1], // Default to single column for most sections
+				from: "center",
+				axis: "y", // Vertical staggering
+			};
 
-	// Enhanced stagger options for specific sections
-	const skillsStaggerOptions = {
-		grid: [2, 6], // 2 columns for skills
-		from: "center",
-		axis: "y"
-	};
+			// Enhanced stagger options for specific sections
+			const skillsStaggerOptions = {
+				grid: [2, 6], // 2 columns for skills
+				from: "center",
+				axis: "y",
+			};
 
-	const observer = new IntersectionObserver(
-		(entries) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					const target = entry.target;
-					
-					// Check if element has grid stagger data
-					if (target.classList.contains("reveal")) {
-						// Add stagger delay based on position and section type
-						const rect = target.getBoundingClientRect();
-						const section = target.closest("section");
-						
-						let delay = 0;
-						
-						if (section && section.id === "skills-section") {
-							// Grid-based stagger for skills section
-							const row = Math.floor((target.offsetTop - section.offsetTop) / target.offsetHeight);
-							const col = Math.floor((target.offsetLeft - section.offsetLeft) / target.offsetWidth);
-							delay = (row * staggerOptions.grid[1] + col) * 0.03; // 30ms base delay
-						} else {
-							// Simple vertical stagger for other sections
-							const index = Array.from(target.parentElement.children).indexOf(target);
-							delay = index * 0.015; // 15ms base delay
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							const target = entry.target;
+
+							// Check if element has grid stagger data
+							if (target.classList.contains("reveal")) {
+								// Add stagger delay based on position and section type
+								const rect = target.getBoundingClientRect();
+								const section = target.closest("section");
+
+								let delay = 0;
+
+								if (
+									section &&
+									section.id === "skills-section"
+								) {
+									// Grid-based stagger for skills section
+									const row = Math.floor(
+										(target.offsetTop - section.offsetTop) /
+											target.offsetHeight
+									);
+									const col = Math.floor(
+										(target.offsetLeft -
+											section.offsetLeft) /
+											target.offsetWidth
+									);
+									delay =
+										(row * staggerOptions.grid[1] + col) *
+										0.03; // 30ms base delay
+								} else {
+									// Simple vertical stagger for other sections
+									const index = Array.from(
+										target.parentElement.children
+									).indexOf(target);
+									delay = index * 0.015; // 15ms base delay
+								}
+
+								// Apply CSS custom property for delay
+								target.style.setProperty(
+									"--reveal-delay",
+									`${delay}s`
+								);
+							}
+
+							target.classList.add("revealed");
+							observer.unobserve(target);
 						}
-						
-						// Apply CSS custom property for delay
-						target.style.setProperty('--reveal-delay', `${delay}s`);
-					}
-					
-					target.classList.add("revealed");
-					observer.unobserve(target);
-				}
-			});
-		},
-		{ threshold: 0.05, rootMargin: "0px 0px -80px 0px" }
-	);
+					});
+				},
+				{ threshold: 0.05, rootMargin: "0px 0px -80px 0px" }
+			);
 
-	document
-		.querySelectorAll(".reveal, .line-reveal")
-		.forEach((el) => observer.observe(el));
-</script>
+			document
+				.querySelectorAll(".reveal, .line-reveal")
+				.forEach((el) => observer.observe(el));
+		</script>
 
 		<!-- Cloudflare Web Analytics -->
 		<script

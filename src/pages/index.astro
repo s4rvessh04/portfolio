@@ -16,7 +16,7 @@ import {
 		 HERO — Vercel-style, content aligned to grid
 	     ============================================= -->
 	<section
-		class="min-h-screen flex flex-col justify-center relative px-6 md:px-8 lg:px-16"
+		class="min-h-[100svh] flex flex-col justify-center relative px-5 md:px-8 lg:px-16"
 	>
 		<!-- Hero-only grid background -->
 		<div class="hero-grid">
@@ -31,7 +31,7 @@ import {
 		</div>
 
 		<div
-			class="absolute top-24 left-6 md:left-8 lg:left-16 right-6 md:right-8 lg:right-16 flex justify-between items-start"
+			class="absolute top-16 md:top-24 left-5 md:left-8 lg:left-16 right-5 md:right-8 lg:right-16 flex justify-between items-start"
 		>
 			<div class="hero-animate" style="opacity: 0;">
 				<p class="text-micro uppercase mb-1" style="color: var(--accent); opacity: 0.9;">Role</p>
@@ -54,7 +54,7 @@ import {
 			<!-- Oversized Name -->
 			<div class="mb-6 hero-animate" style="opacity: 0;">
 				<h1
-					class="font-display font-extrabold text-display-xl uppercase leading-[0.85]"
+					class="font-display font-extrabold text-display-xl uppercase leading-[0.95] md:leading-[0.85]"
 				>
 					<span class="block overflow-hidden">
 						<span
@@ -73,9 +73,9 @@ import {
 			</div>
 
 			<!-- Tagline -->
-			<div class="overflow-hidden mb-10 hero-animate" style="opacity: 0;">
+			<div class="overflow-hidden mb-8 md:mb-10 hero-animate" style="opacity: 0;">
 				<p
-					class="text-lg md:text-xl max-w-md leading-relaxed"
+					class="text-body-lg max-w-md leading-relaxed"
 					style="color: var(--fg-muted);"
 				>
 					Software Engineer crafting scalable backend systems and
@@ -85,7 +85,7 @@ import {
 
 			<!-- Social row -->
 			<div
-				class="flex flex-wrap justify-center gap-5 hero-animate"
+				class="flex flex-wrap justify-center gap-2 md:gap-5 hero-animate"
 				style="opacity: 0;"
 			>
 				{
@@ -108,7 +108,7 @@ import {
 
 		<!-- Scroll indicator -->
 		<div
-			class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float hero-scroll-indicator"
+			class="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 animate-float hero-scroll-indicator hidden sm:flex"
 			style="opacity: 0;"
 		>
 			<div class="flex flex-col items-center gap-2">
@@ -127,7 +127,7 @@ import {
 	<!-- =============================================
 		 HORIZONTAL DIVIDER with grid-aligned marks
 	     ============================================= -->
-	<div class="relative px-6 md:px-8 lg:px-16">
+	<div class="relative px-5 md:px-8 lg:px-16">
 		<div class="h-px w-full reveal" style="background-color: var(--border);"></div>
 	</div>
 
@@ -175,7 +175,7 @@ import {
 		</div>
 	</div>
 
-	<div class="relative px-6 md:px-8 lg:px-16">
+	<div class="relative px-5 md:px-8 lg:px-16">
 		<div class="h-px w-full reveal" style="background-color: var(--border);"></div>
 	</div>
 
@@ -184,7 +184,7 @@ import {
 	     ============================================= -->
 	<section
 		id="work-section"
-		class="py-24 md:py-40 px-6 md:px-8 lg:px-16 scroll-mt-20"
+		class="py-16 md:py-40 px-5 md:px-8 lg:px-16 scroll-mt-20"
 	>
 		<div
 			class="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6"
@@ -200,7 +200,7 @@ import {
 				</h2>
 			</div>
 			<p
-				class="text-base md:text-lg max-w-sm leading-relaxed reveal stagger-2"
+				class="text-body-lg max-w-sm leading-relaxed reveal stagger-2"
 				style="color: var(--fg-muted);"
 			>
 				A curated selection of projects showcasing expertise in backend
@@ -235,12 +235,12 @@ import {
 							</div>
 
 							<!-- Action buttons -->
-							<div class="flex items-center gap-4">
+							<div class="flex flex-wrap items-center gap-3 md:gap-4">
 								<a
 									href={project.github}
 									target="_blank"
 									rel="noopener noreferrer"
-									class="project-btn inline-flex items-center gap-2 px-4 py-2 text-sm uppercase tracking-wider rounded-sm"
+									class="project-btn inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 text-sm uppercase tracking-wider rounded-sm"
 									style="color: var(--fg-muted); border: 1px solid var(--border); background: var(--surface);"
 								>
 									<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -253,7 +253,7 @@ import {
 										href={project.live}
 										target="_blank"
 										rel="noopener noreferrer"
-										class="project-btn inline-flex items-center gap-2 px-4 py-2 text-sm uppercase tracking-wider rounded-sm"
+										class="project-btn inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 text-sm uppercase tracking-wider rounded-sm"
 										style="color: var(--fg-muted); border: 1px solid var(--border); background: var(--surface);"
 									>
 										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -267,7 +267,7 @@ import {
 							</div>
 
 							<!-- Description -->
-							<p class="text-base max-w-xl" style="color: var(--fg-muted);">
+							<p class="text-body max-w-xl" style="color: var(--fg-muted);">
 								{project.description}
 							</p>
 
@@ -309,7 +309,7 @@ import {
 	<!-- =============================================
 		 SKILLS — Clean grid, numbers
 	     ============================================= -->
-	<section class="py-24 md:py-40 px-6 md:px-8 lg:px-16">
+	<section class="py-16 md:py-40 px-5 md:px-8 lg:px-16">
 		<div class="relative px-0 mb-20">
 			<div class="h-px w-full mb-20 reveal" style="background-color: var(--border);"></div>
 			<p class="text-micro uppercase mb-4 reveal" style="color: var(--accent); opacity: 0.9;">
@@ -348,7 +348,7 @@ import {
 	     ============================================= -->
 	<section
 		id="about-section"
-		class="py-24 md:py-40 px-6 md:px-8 lg:px-16 scroll-mt-20"
+		class="py-16 md:py-40 px-5 md:px-8 lg:px-16 scroll-mt-20"
 	>
 		<div class="h-px w-full mb-20 reveal" style="background-color: var(--border);"></div>
 
@@ -360,7 +360,7 @@ import {
 						Profile
 					</p>
 					<div
-						class="relative overflow-hidden h-96 md:h-auto"
+						class="relative overflow-hidden aspect-[3/4] md:h-auto"
 						style="border: 1px solid var(--border);"
 					>
 						<img
@@ -368,8 +368,7 @@ import {
 							alt="Sarvesh Rane"
 							width="800"
 							height="1067"
-							class="w-full object-cover object-center aspect-[3/4] grayscale hover:grayscale-0 transition-all duration-1000"
-							style="transform: rotate(90deg) scale(1.35); transform-origin: center center;"
+							class="profile-img w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all duration-1000"
 						/>
 					</div>
 				</div>
@@ -422,7 +421,7 @@ import {
 				<div class="line-reveal mb-8 stagger-2"></div>
 				<div class="reveal stagger-3">
 					<p
-						class="text-lg md:text-xl leading-[1.9] max-w-xl"
+						class="text-body-lg leading-[1.9] max-w-xl"
 						style="color: var(--fg-muted);"
 					>
 						{professionalSummary}
@@ -524,6 +523,17 @@ import {
 	@media (hover: hover) and (pointer: fine) {
 		.skill-item:hover {
 			color: var(--accent) !important;
+		}
+	}
+
+	/* Profile image: rotate at all viewports (source is sideways), scale varies */
+	.profile-img {
+		transform: rotate(90deg) scale(1.15);
+		transform-origin: center center;
+	}
+	@media (min-width: 768px) {
+		.profile-img {
+			transform: rotate(90deg) scale(1.35);
 		}
 	}
 </style>

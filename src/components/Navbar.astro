@@ -2,6 +2,7 @@
 import { SITE_NAME } from "../config";
 import Navlink from "./Navlink.astro";
 import ThemeToggle from "./ThemeToggle.astro";
+import { socialLinks } from "../data";
 
 const links = [
 	{ href: "#work-section", label: "Work" },
@@ -10,11 +11,13 @@ const links = [
 ---
 
 <nav
-  class="fixed top-0 left-0 right-0 z-50"
-  id="main-nav"
-  style="opacity: 0; transform: translateY(-20px);"
+	class="fixed top-0 left-0 right-0 z-50"
+	id="main-nav"
+	style="opacity: 0; transform: translateY(-20px);"
 >
-	<div class="px-6 md:px-8 lg:px-16 py-5 flex items-center justify-between">
+	<div
+		class="px-6 md:px-8 lg:px-16 py-4 md:py-5 flex items-center justify-between"
+	>
 		<a
 			href="/"
 			class="font-display font-bold text-sm tracking-tight uppercase"
@@ -25,7 +28,8 @@ const links = [
 				>{SITE_NAME.split(".")[1]}
 			</span>
 		</a>
-		<div class="flex items-center gap-6 md:gap-8">
+		<!-- Desktop nav -->
+		<div class="hidden md:flex items-center gap-6 md:gap-8">
 			<ul class="flex items-center gap-4 md:gap-8">
 				{
 					links.map(({ href, label }) => (
@@ -39,8 +43,223 @@ const links = [
 				style="color: var(--fg-subtle);"></span>
 			<ThemeToggle />
 		</div>
+		<!-- Mobile: theme toggle + hamburger -->
+		<div class="flex md:hidden items-center gap-3">
+			<ThemeToggle />
+			<button
+				id="menu-toggle"
+				type="button"
+				aria-label="Open menu"
+				aria-expanded="false"
+				class="relative w-10 h-10 flex items-center justify-center rounded-sm cursor-pointer"
+				style="border: 1px solid var(--border); background: var(--surface); transition: transform 160ms var(--ease-out), background-color 200ms var(--ease-out);"
+			>
+				<div
+					class="hamburger-lines flex flex-col items-center justify-center gap-[5px] w-4"
+				>
+					<span
+						class="hamburger-line block w-full h-px"
+						style="background: var(--fg-muted); transition: transform 250ms var(--ease-out), opacity 150ms var(--ease-out);"
+					></span>
+					<span
+						class="hamburger-line block w-full h-px"
+						style="background: var(--fg-muted); transition: transform 250ms var(--ease-out), opacity 150ms var(--ease-out);"
+					></span>
+					<span
+						class="hamburger-line block w-3 h-px ml-auto"
+						style="background: var(--fg-muted); transition: transform 250ms var(--ease-out), opacity 150ms var(--ease-out), width 200ms var(--ease-out);"
+					></span>
+				</div>
+			</button>
+		</div>
 	</div>
 </nav>
+
+<!-- Mobile drawer overlay -->
+<div
+	id="mobile-drawer-overlay"
+	class="fixed inset-0 z-40 pointer-events-none"
+	style="background: rgba(0,0,0,0); transition: background 300ms var(--ease-out);"
+	aria-hidden="true"
+>
+</div>
+
+<!-- Mobile drawer -->
+<aside
+	id="mobile-drawer"
+	class="fixed top-0 right-0 z-[45] h-full flex flex-col"
+	style="width: min(85vw, 320px); background: var(--bg); border-left: 1px solid var(--border); transform: translateX(100%); transition: transform 300ms var(--ease-out); will-change: transform;"
+	aria-hidden="true"
+>
+	<!-- Drawer header -->
+	<div
+		class="flex items-center justify-between px-6 py-4"
+		style="border-bottom: 1px solid var(--border);"
+	>
+		<span
+			class="text-micro uppercase tracking-[0.2em]"
+			style="color: var(--fg-subtle);">Menu</span
+		>
+		<button
+			id="drawer-close"
+			type="button"
+			aria-label="Close menu"
+			class="w-10 h-10 flex items-center justify-center rounded-sm cursor-pointer"
+			style="border: 1px solid var(--border); background: var(--surface); transition: transform 160ms var(--ease-out);"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="16"
+				height="16"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1.5"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				style="color: var(--fg-muted);"
+			>
+				<line x1="18" y1="6" x2="6" y2="18"></line>
+				<line x1="6" y1="6" x2="18" y2="18"></line>
+			</svg>
+		</button>
+	</div>
+
+	<!-- Drawer nav links -->
+	<nav class="flex-1 flex flex-col px-6 pt-8">
+		<ul class="flex flex-col gap-1">
+			{
+				links.map(({ href, label }, idx) => (
+					<li>
+						<a
+							href={href}
+							class="drawer-link group flex items-center justify-between py-4"
+							style={`color: var(--fg); border-bottom: 1px solid var(--border); transition: color 150ms var(--ease-out); opacity: 0; transform: translateX(20px); transition: opacity 250ms var(--ease-out) ${
+								80 + idx * 60
+							}ms, transform 250ms var(--ease-out) ${
+								80 + idx * 60
+							}ms, color 150ms var(--ease-out);`}
+						>
+							<span class="font-display font-bold text-xl uppercase tracking-tight">
+								{label}
+							</span>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								style="color: var(--fg-subtle); transition: transform 200ms var(--ease-out);"
+								class="group-hover:translate-x-1"
+							>
+								<line x1="5" y1="12" x2="19" y2="12" />
+								<polyline points="12 5 19 12 12 19" />
+							</svg>
+						</a>
+					</li>
+				))
+			}
+			<li>
+				<a
+					href="mailto:sarveshrane2000@gmail.com"
+					class="drawer-link group flex items-center justify-between py-4"
+					style={`color: var(--accent); border-bottom: 1px solid var(--border); transition: color 150ms var(--ease-out); opacity: 0; transform: translateX(20px); transition: opacity 250ms var(--ease-out) ${
+						80 + links.length * 60
+					}ms, transform 250ms var(--ease-out) ${
+						80 + links.length * 60
+					}ms, color 150ms var(--ease-out);`}
+				>
+					<span
+						class="font-display font-bold text-xl uppercase tracking-tight"
+						>Contact</span
+					>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						style="color: var(--accent); opacity: 0.6; transition: transform 200ms var(--ease-out);"
+						class="group-hover:translate-x-1"
+					>
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+						<polyline points="12 5 19 12 12 19"></polyline>
+					</svg>
+				</a>
+			</li>
+		</ul>
+
+		<!-- Social links -->
+		<div class="mt-auto pb-8">
+			<p
+				class="text-micro uppercase tracking-[0.2em] mb-4"
+				style="color: var(--fg-subtle);"
+			>
+				Connect
+			</p>
+			<div class="flex flex-wrap gap-3">
+				{
+					socialLinks.map((social) => (
+						<a
+							href={social.link}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-micro uppercase tracking-wider py-2 px-3 rounded-sm"
+							style="color: var(--fg-muted); border: 1px solid var(--border); background: var(--surface); transition: border-color 200ms var(--ease-out), color 150ms var(--ease-out);"
+						>
+							{social.title}
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</nav>
+</aside>
+
+<style>
+	/* Hamburger active state */
+	#menu-toggle:active,
+	#drawer-close:active {
+		transform: scale(0.95);
+	}
+	@media (hover: hover) and (pointer: fine) {
+		#menu-toggle:hover,
+		#drawer-close:hover {
+			background: var(--surface-hover) !important;
+			border-color: var(--fg-faint) !important;
+		}
+	}
+
+	/* Drawer link hover */
+	@media (hover: hover) and (pointer: fine) {
+		.drawer-link:hover {
+			color: var(--accent) !important;
+		}
+	}
+	.drawer-link:active {
+		transform: scale(0.98);
+	}
+
+	/* Hamburger → X animation */
+	:global(.menu-open) #menu-toggle .hamburger-line:nth-child(1) {
+		transform: translateY(6px) rotate(45deg);
+	}
+	:global(.menu-open) #menu-toggle .hamburger-line:nth-child(2) {
+		opacity: 0;
+	}
+	:global(.menu-open) #menu-toggle .hamburger-line:nth-child(3) {
+		width: 100% !important;
+		transform: translateY(-6px) rotate(-45deg);
+	}
+</style>
 
 <script>
 	// Dynamic navbar: transparent at top, solid with blur on scroll
@@ -67,7 +286,9 @@ const links = [
 		navReady = true;
 		updateNav();
 	}, 1200);
-	window.addEventListener("scroll", () => { if (navReady) updateNav(); });
+	window.addEventListener("scroll", () => {
+		if (navReady) updateNav();
+	});
 
 	// Live clock - always shows IST
 	function updateTime() {
@@ -84,4 +305,75 @@ const links = [
 	}
 	updateTime();
 	setInterval(updateTime, 60000);
+
+	// Mobile drawer logic
+	const menuToggle = document.getElementById("menu-toggle");
+	const drawerClose = document.getElementById("drawer-close");
+	const drawer = document.getElementById("mobile-drawer");
+	const overlay = document.getElementById("mobile-drawer-overlay");
+
+	function openDrawer() {
+		document.body.classList.add("menu-open");
+		document.body.style.overflow = "hidden";
+		if (drawer) {
+			drawer.style.transform = "translateX(0)";
+			drawer.setAttribute("aria-hidden", "false");
+		}
+		if (overlay) {
+			overlay.style.background = "rgba(0,0,0,0.5)";
+			overlay.style.pointerEvents = "auto";
+		}
+		if (menuToggle) menuToggle.setAttribute("aria-expanded", "true");
+		// Animate drawer links in
+		document.querySelectorAll(".drawer-link").forEach((link) => {
+			(link as HTMLElement).style.opacity = "1";
+			(link as HTMLElement).style.transform = "translateX(0)";
+		});
+	}
+
+	function closeDrawer() {
+		document.body.classList.remove("menu-open");
+		document.body.style.overflow = "";
+		if (drawer) {
+			drawer.style.transform = "translateX(100%)";
+			drawer.setAttribute("aria-hidden", "true");
+		}
+		if (overlay) {
+			overlay.style.background = "rgba(0,0,0,0)";
+			overlay.style.pointerEvents = "none";
+		}
+		if (menuToggle) menuToggle.setAttribute("aria-expanded", "false");
+		// Reset drawer links for next open
+		setTimeout(() => {
+			document.querySelectorAll(".drawer-link").forEach((link) => {
+				(link as HTMLElement).style.opacity = "0";
+				(link as HTMLElement).style.transform = "translateX(20px)";
+			});
+		}, 300);
+	}
+
+	menuToggle?.addEventListener("click", () => {
+		const isOpen = document.body.classList.contains("menu-open");
+		isOpen ? closeDrawer() : openDrawer();
+	});
+
+	drawerClose?.addEventListener("click", closeDrawer);
+	overlay?.addEventListener("click", closeDrawer);
+
+	// Close on Escape
+	document.addEventListener("keydown", (e) => {
+		if (
+			e.key === "Escape" &&
+			document.body.classList.contains("menu-open")
+		) {
+			closeDrawer();
+		}
+	});
+
+	// Close on nav link click
+	document.querySelectorAll("#mobile-drawer a[href^='#']").forEach((link) => {
+		link.addEventListener("click", () => {
+			closeDrawer();
+		});
+	});
 </script>

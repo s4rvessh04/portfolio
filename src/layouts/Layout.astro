@@ -3,7 +3,7 @@ import "../styles/global.css";
 import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 import Navbar from "../components/Navbar.astro";
 
-import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_NAME } from "../config";
 
 export interface Props {
 	title?: string;
@@ -13,7 +13,7 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 	<head>
 		<!-- Theme: detect system preference or saved choice before paint -->
 		<script is:inline>
@@ -31,16 +31,45 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={SITE_DESCRIPTION} />
+		<meta name="color-scheme" content="dark light" />
+		<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#f7f7f7" media="(prefers-color-scheme: light)" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<!-- Font loading: preconnect + stylesheet -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap"
 			rel="stylesheet"
 		/>
+
+		<!-- DNS prefetch for third-party domains -->
+		<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+		<link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
+
 		<meta name="generator" content={Astro.generator} />
 		<title>{title ? title : SITE_TITLE}</title>
 		<link rel="canonical" href={Astro.url} />
+
+		<!-- JSON-LD Structured Data -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Sarvesh Rane",
+			"url": "https://sarveshrane.pages.dev",
+			"jobTitle": "Software Engineer",
+			"sameAs": [
+				"https://github.com/s4rvessh04",
+				"https://linkedin.com/in/sarvesh-rane-80452522a",
+				"https://twitter.com/sarvessh_/"
+			],
+			"alumniOf": {
+				"@type": "CollegeOrUniversity",
+				"name": "Smt. Kashibai Navale College of Engineering, Pune"
+			},
+			"knowsAbout": ["Backend Development", "DevOps", "Go", "Python", "JavaScript", "Docker", "Kubernetes"]
+		})} />
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
@@ -64,8 +93,15 @@ const { title } = Astro.props;
 	</head>
 	<body
 		class="min-h-screen antialiased overflow-x-hidden"
-		style="background-color: var(--bg); color: var(--fg); selection-background: var(--fg); selection-color: var(--bg);"
 	>
+		<!-- Skip to content — keyboard accessibility -->
+		<a
+			href="#main-content"
+			class="fixed top-0 left-0 z-[200] px-4 py-2 text-sm font-medium -translate-y-full focus:translate-y-0"
+			style="background: var(--accent); color: #fff; transition: transform 200ms var(--ease-out);"
+		>
+			Skip to content
+		</a>
 		<!-- Google Tag Manager (noscript) -->
 		<noscript
 			><iframe
@@ -200,7 +236,7 @@ const { title } = Astro.props;
 		</div>
 
 		<Navbar />
-		<main class="relative z-[3]">
+		<main id="main-content" class="relative z-[3]" aria-label="Page content">
 			<slot />
 		</main>
 
@@ -326,17 +362,7 @@ const { title } = Astro.props;
 				transition-delay: 0.12s;
 			}
 
-			/* Horizontal line animation */
-			.line-reveal {
-				height: 1px;
-				background: var(--fg-faint);
-				transform: scaleX(0);
-				transform-origin: left;
-				transition: transform 0.2s var(--ease-out);
-			}
-			.line-reveal.revealed {
-				transform: scaleX(1);
-			}
+			/* (line-reveal rules defined above — no duplicate needed) */
 
 			/* Scrollbar */
 			::-webkit-scrollbar {
@@ -440,14 +466,24 @@ const { title } = Astro.props;
 			}
 
 			// ── Loader timeline (sped up ~40-50%) ──
+			// Failsafe: hide loader after 5s even if animation fails
+			let loaderDismissed = false;
+			function dismissLoader() {
+				if (loaderDismissed) return;
+				loaderDismissed = true;
+				if (loader) {
+					loader.style.display = "none";
+					loader.style.pointerEvents = "none";
+				}
+				animatePageEntry();
+			}
+			const loaderFailsafe = setTimeout(dismissLoader, 5000);
+
 			const loaderTl = createTimeline({
 				defaults: { ease: "outExpo" },
 				onComplete: () => {
-					if (loader) {
-						loader.style.display = "none";
-						loader.style.pointerEvents = "none";
-					}
-					animatePageEntry();
+					clearTimeout(loaderFailsafe);
+					dismissLoader();
 				},
 			});
 
@@ -743,9 +779,21 @@ const { title } = Astro.props;
 				{ threshold: 0.05, rootMargin: "0px 0px -80px 0px" }
 			);
 
-			document
-				.querySelectorAll(".reveal, .line-reveal")
-				.forEach((el) => observer.observe(el));
+			const revealElements = document.querySelectorAll(".reveal, .line-reveal");
+			let revealedCount = 0;
+			const totalRevealable = revealElements.length;
+
+			// Patch unobserve to track completion and disconnect observer
+			const originalUnobserve = observer.unobserve.bind(observer);
+			observer.unobserve = (target) => {
+				originalUnobserve(target);
+				revealedCount++;
+				if (revealedCount >= totalRevealable) {
+					observer.disconnect();
+				}
+			};
+
+			revealElements.forEach((el) => observer.observe(el));
 		</script>
 
 		<!-- Cloudflare Web Analytics -->

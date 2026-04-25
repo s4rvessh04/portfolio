@@ -16,6 +16,7 @@ import {
 		 HERO — Vercel-style, content aligned to grid
 	     ============================================= -->
 	<section
+		id="hero-section"
 		class="min-h-[100svh] flex flex-col justify-center relative px-5 md:px-8 lg:px-16"
 	>
 		<!-- Hero-only grid background -->
@@ -94,6 +95,7 @@ import {
 							href={social.link}
 							target="_blank"
 							rel="noopener noreferrer"
+							aria-label={`${social.title} profile`}
 							class="social-btn group relative px-4 py-2 rounded-sm"
 							style="border: 1px solid var(--border); background: var(--surface); transition: transform 160ms var(--ease-out), border-color 200ms var(--ease-out);"
 						>
@@ -134,7 +136,7 @@ import {
 	<!-- =============================================
 		 MARQUEE — Horizontal scrolling text (inverted bar)
 	     ============================================= -->
-	<div class="marquee-wrapper overflow-hidden py-4 reveal" style="background-color: var(--marquee-bg);">
+	<div class="marquee-wrapper overflow-hidden py-4 reveal" style="background-color: var(--marquee-bg);" aria-hidden="true" role="presentation">
 		<div class="marquee-container">
 			<div class="marquee-content">
 				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Software Engineer</span>
@@ -294,7 +296,7 @@ import {
 									height="450"
 									class="project-image w-full h-auto object-cover aspect-[16/9]"
 									loading="lazy"
-									onerror="this.src='/favicon.svg'; this.onerror=null;"
+									decoding="async"
 								/>
 								<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none"></div>
 							</div>
@@ -309,7 +311,7 @@ import {
 	<!-- =============================================
 		 SKILLS — Clean grid, numbers
 	     ============================================= -->
-	<section class="py-16 md:py-40 px-5 md:px-8 lg:px-16">
+	<section id="skills-section" class="py-16 md:py-40 px-5 md:px-8 lg:px-16">
 		<div class="relative px-0 mb-20">
 			<div class="h-px w-full mb-20 reveal" style="background-color: var(--border);"></div>
 			<p class="text-micro uppercase mb-4 reveal" style="color: var(--accent); opacity: 0.9;">
@@ -368,6 +370,7 @@ import {
 							alt="Sarvesh Rane"
 							width="800"
 							height="1067"
+							fetchpriority="high"
 							class="profile-img w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all duration-1000"
 						/>
 					</div>
@@ -586,6 +589,24 @@ import {
 		const CROSS = 4;
 		const section = canvas.closest("section");
 
+		function getGridColor() {
+			// Read the computed --fg value to be theme-aware
+			const fg = getComputedStyle(document.documentElement).getPropertyValue('--fg').trim();
+			return fg || '255,255,255';
+		}
+
+		function fgToRgb(fg) {
+			// Parse hex (#ffffff) or named color to r,g,b string
+			if (fg.startsWith('#')) {
+				const hex = fg.slice(1);
+				const r = parseInt(hex.slice(0, 2), 16);
+				const g = parseInt(hex.slice(2, 4), 16);
+				const b = parseInt(hex.slice(4, 6), 16);
+				return `${r},${g},${b}`;
+			}
+			return '255,255,255'; // fallback
+		}
+
 		function resize() {
 			canvas.width = section ? section.offsetWidth : window.innerWidth;
 			canvas.height = section ? section.offsetHeight : window.innerHeight;
@@ -594,7 +615,7 @@ import {
 
 		function draw() {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			ctx.strokeStyle = "rgba(255,255,255,0.08)";
+			const rgb = fgToRgb(getGridColor());
 			ctx.lineWidth = 1;
 			const cols = Math.ceil(canvas.width / GRID) + 1;
 			const rows = Math.ceil(canvas.height / GRID) + 1;
@@ -608,7 +629,7 @@ import {
 					const dist = Math.sqrt(dx * dx + dy * dy);
 					const alpha = Math.max(0, 0.1 - dist * 0.06);
 					if (alpha <= 0) continue;
-					ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+					ctx.strokeStyle = `rgba(${rgb},${alpha})`;
 					ctx.beginPath();
 					ctx.moveTo(x - CROSS, y);
 					ctx.lineTo(x + CROSS, y);
@@ -622,8 +643,11 @@ import {
 		resize();
 		window.addEventListener("resize", resize);
 
-		return () => {
-			window.removeEventListener("resize", resize);
-		};
+		// Re-draw when theme changes to pick up new --fg color
+		const themeObserver = new MutationObserver(() => draw());
+		themeObserver.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ['data-theme']
+		});
 	})();
 </script>

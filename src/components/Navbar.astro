@@ -13,6 +13,7 @@ const links = [
 <nav
 	class="fixed top-0 left-0 right-0 z-50"
 	id="main-nav"
+	aria-label="Primary navigation"
 	style="opacity: 0; transform: translateY(-20px);"
 >
 	<div
@@ -288,7 +289,7 @@ const links = [
 	}, 1200);
 	window.addEventListener("scroll", () => {
 		if (navReady) updateNav();
-	});
+	}, { passive: true });
 
 	// Live clock - always shows IST
 	function updateTime() {
@@ -375,5 +376,23 @@ const links = [
 		link.addEventListener("click", () => {
 			closeDrawer();
 		});
+	});
+
+	// Focus trap inside mobile drawer
+	document.addEventListener("keydown", (e) => {
+		if (e.key !== "Tab" || !document.body.classList.contains("menu-open")) return;
+		const focusable = drawer?.querySelectorAll<HTMLElement>(
+			'a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+		);
+		if (!focusable || focusable.length === 0) return;
+		const first = focusable[0];
+		const last = focusable[focusable.length - 1];
+		if (e.shiftKey && document.activeElement === first) {
+			e.preventDefault();
+			last.focus();
+		} else if (!e.shiftKey && document.activeElement === last) {
+			e.preventDefault();
+			first.focus();
+		}
 	});
 </script>

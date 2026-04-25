@@ -3,11 +3,11 @@ import { SITE_NAME } from "../config";
 import { socialLinks } from "../data";
 ---
 
-<footer class="relative z-[3] mt-32">
+<footer class="relative z-[3] mt-32" aria-label="Footer">
 	<!-- Top CTA Section -->
 	<div class="px-5 md:px-8 lg:px-16 mb-20">
 		<div
-			class="relative overflow-hidden rounded-sm p-6 md:p-16 text-center"
+			class="relative overflow-hidden rounded-sm p-6 md:p-16 text-center reveal"
 			style="border: 1px solid var(--border);"
 		>
 			<!-- Grid inside CTA -->
@@ -76,7 +76,7 @@ import { socialLinks } from "../data";
 	<!-- Footer columns -->
 	<div style="border-top: 1px solid var(--border);">
 		<div class="px-5 md:px-8 lg:px-16 py-10 md:py-16">
-			<div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 mb-16">
+			<div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 mb-16 reveal">
 				<!-- Brand -->
 				<div class="md:col-span-1">
 					<p class="font-display font-bold text-lg mb-3">
@@ -98,19 +98,19 @@ import { socialLinks } from "../data";
 						Navigation
 					</p>
 					<div class="flex flex-col gap-2">
-						<a
-							href="#"
-							class="text-base transition-colors duration-300 w-fit"
-							style="color: var(--fg-muted);">Home</a
-						>
+					<a
+						href="#"
+						class="footer-link text-base w-fit"
+						style="color: var(--fg-muted);">Home</a
+					>
 						<a
 							href="#work-section"
-							class="text-base transition-colors duration-300 w-fit"
+							class="footer-link text-base w-fit"
 							style="color: var(--fg-muted);">Work</a
 						>
 						<a
 							href="#about-section"
-							class="text-base transition-colors duration-300 w-fit"
+							class="footer-link text-base w-fit"
 							style="color: var(--fg-muted);">About</a
 						>
 					</div>
@@ -130,7 +130,7 @@ import { socialLinks } from "../data";
 									href={social.link}
 									target="_blank"
 									rel="noopener noreferrer"
-									class="text-base transition-colors duration-300 w-fit"
+									class="footer-link text-base w-fit"
 									style="color: var(--fg-muted);"
 								>
 									{social.title}
@@ -183,3 +183,36 @@ import { socialLinks } from "../data";
 		</div>
 	</div>
 </footer>
+
+<style>
+	/* Footer link hover */
+	.footer-link {
+		transition: color 200ms var(--ease-out);
+	}
+	@media (hover: hover) and (pointer: fine) {
+		.footer-link:hover {
+			color: var(--fg) !important;
+		}
+	}
+	.footer-link:active {
+		transform: scale(0.98);
+	}
+
+	/* CTA button hover */
+	@media (hover: hover) and (pointer: fine) {
+		.cta-btn:hover {
+			background-color: var(--surface-hover) !important;
+			border-color: var(--fg-faint) !important;
+		}
+		.cta-btn:hover span {
+			color: var(--fg) !important;
+		}
+		.cta-btn:hover svg {
+			color: var(--accent) !important;
+			transform: translateX(3px);
+		}
+	}
+	.cta-btn:active {
+		transform: scale(0.97);
+	}
+</style>

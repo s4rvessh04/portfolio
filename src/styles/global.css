@@ -20,6 +20,14 @@
 	--marquee-bg: #ffffff;
 	--marquee-fg: #000000;
 
+	/* Z-Index Scale */
+	--z-bg: 1;
+	--z-content: 10;
+	--z-nav: 100;
+	--z-overlay: 200;
+	--z-drawer: 300;
+	--z-loader: 1000;
+
 	/* Animation Easings — Inspired by anime.js with Apple minimalism */
 	--ease-out: cubic-bezier(0.25, 0.8, 0.25, 1);
 	/* Precise, minimal overshoot */
@@ -184,6 +192,13 @@
 }
 
 /* ============================================
+   SMOOTH SCROLLING — CSS fallback
+   ============================================ */
+html {
+	scroll-behavior: smooth;
+}
+
+/* ============================================
    THEMED BODY — optimized font rendering
    ============================================ */
 body {
@@ -196,9 +211,40 @@ body {
 }
 
 /* ============================================
+   TEXT SELECTION — themed highlight
+   ============================================ */
+::selection {
+	background-color: var(--fg);
+	color: var(--bg);
+}
+
+::-moz-selection {
+	background-color: var(--fg);
+	color: var(--bg);
+}
+
+/* ============================================
+   FOCUS-VISIBLE — keyboard accessibility
+   ============================================ */
+*:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+	border-radius: 2px;
+}
+
+/* Remove default focus for mouse users */
+*:focus:not(:focus-visible) {
+	outline: none;
+}
+
+/* ============================================
    REDUCED MOTION — accessibility first
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
+
+	html {
+		scroll-behavior: auto;
+	}
 
 	*,
 	*::before,

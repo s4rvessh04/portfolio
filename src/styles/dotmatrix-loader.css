@@ -1,0 +1,139 @@
+/* ============================================
+   DOT MATRIX LOADER — Ported from dotmatrix.zzzzshawn.cloud
+   CSS-only 5x5 dot grid with spiral snake animation
+   ============================================ */
+
+.dmx-root {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	vertical-align: middle;
+	--dmx-cycle: 1500ms;
+	--dmx-speed: 1;
+	--dmx-opacity-base: 0.12;
+	--dmx-opacity-mid: 0.35;
+	--dmx-opacity-peak: 1;
+}
+
+.dmx-grid {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	grid-template-rows: repeat(5, minmax(0, 1fr));
+}
+
+.dmx-dot {
+	border-radius: 999px;
+	display: block;
+	background: currentColor;
+	opacity: calc(0.5 * (var(--dmx-opacity-base) + var(--dmx-opacity-mid)));
+	transform-origin: center;
+	will-change: opacity;
+}
+
+.dmx-dot.dmx-inactive {
+	opacity: 0 !important;
+	animation: none !important;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+/* Spiral snake animation — dots light up in spiral order */
+.dmx-spiral-snake {
+	animation: dmx-spiral-snake calc(var(--dmx-cycle) * var(--dmx-speed))
+		linear infinite;
+	animation-delay: calc(
+		var(--dmx-spiral-order, 0) * 0.04 * var(--dmx-cycle) * var(--dmx-speed)
+	);
+	will-change: opacity;
+}
+
+@keyframes dmx-spiral-snake {
+	0%,
+	100% {
+		opacity: var(--dmx-opacity-base);
+	}
+	8% {
+		opacity: var(--dmx-opacity-peak);
+	}
+	16% {
+		opacity: calc(
+			0.5 * var(--dmx-opacity-peak) + 0.4 * var(--dmx-opacity-mid) + 0.1 *
+				var(--dmx-opacity-base)
+		);
+	}
+	24% {
+		opacity: calc(
+			0.25 * var(--dmx-opacity-peak) + 0.45 * var(--dmx-opacity-mid) +
+				0.3 * var(--dmx-opacity-base)
+		);
+	}
+	32% {
+		opacity: calc(
+			0.5 * var(--dmx-opacity-mid) + 0.5 * var(--dmx-opacity-base)
+		);
+	}
+	40% {
+		opacity: calc(0.75 * var(--dmx-opacity-base));
+	}
+}
+
+/* Echo Ring — concentric diamond ripple */
+.dmx-ripple-echo {
+	animation: dmx-ripple-echo calc(var(--dmx-cycle) * var(--dmx-speed))
+		ease-in-out infinite;
+	animation-delay: calc(
+		(
+				var(--dmx-ripple-ring, 0) * 0.14 + var(--dmx-ripple-parity, 0) *
+					0.03
+			) * var(--dmx-cycle) * var(--dmx-speed)
+	);
+	will-change: opacity;
+}
+
+@keyframes dmx-ripple-echo {
+	0%,
+	100% {
+		opacity: calc(0.625 * var(--dmx-opacity-base));
+	}
+	28% {
+		opacity: calc(0.98 * var(--dmx-opacity-peak));
+	}
+	56% {
+		opacity: var(--dmx-opacity-mid);
+	}
+	78% {
+		opacity: calc(
+			0.68 * var(--dmx-opacity-peak) + 0.32 * var(--dmx-opacity-mid)
+		);
+	}
+}
+
+/* Simple ripple from center */
+.dmx-ripple {
+	animation: dmx-ripple calc(var(--dmx-cycle) * var(--dmx-speed))
+		cubic-bezier(0.42, 0, 0.58, 1) infinite;
+	animation-delay: calc(
+		var(--dmx-ripple-ring, 0) * 0.2333 * var(--dmx-cycle) * var(--dmx-speed)
+	);
+	will-change: opacity;
+}
+
+@keyframes dmx-ripple {
+	0%,
+	100% {
+		opacity: var(--dmx-opacity-base);
+	}
+	50% {
+		opacity: var(--dmx-opacity-peak);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.dmx-dot,
+	.dmx-spiral-snake,
+	.dmx-ripple-echo,
+	.dmx-ripple {
+		animation: none !important;
+		transition: none !important;
+	}
+}

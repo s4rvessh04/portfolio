@@ -12,410 +12,273 @@ import {
 ---
 
 <Layout>
-	<!-- =============================================
-		 HERO — Vercel-style, content aligned to grid
-	     ============================================= -->
-	<section
-		id="hero-section"
-		class="min-h-[100svh] flex flex-col justify-center relative px-5 md:px-8 lg:px-16"
-	>
-		<!-- Hero-only grid background -->
+	<!-- HERO -->
+	<section id="hero-section" class="min-h-[100svh] flex flex-col justify-center relative px-5 md:px-8 lg:px-16">
 		<div class="hero-grid">
-			<div class="hero-grid-lines"></div>
-			<canvas id="hero-grid-canvas" class="absolute inset-0 w-full h-full"
-			></canvas>
-			<div
-				class="hero-grid-glow"
-				style="background: radial-gradient(ellipse 60% 50% at 50% 40%, var(--fg-faint) 0%, transparent 70%);"
-			>
-			</div>
+			<canvas id="hero-grid-canvas" class="absolute inset-0 w-full h-full"></canvas>
+			<div class="hero-grid-glow" style="background: radial-gradient(ellipse 60% 50% at 30% 40%, var(--accent-glow) 0%, transparent 70%);"></div>
 		</div>
 
-		<div
-			class="absolute top-16 md:top-24 left-5 md:left-8 lg:left-16 right-5 md:right-8 lg:right-16 flex justify-between items-start"
-		>
-			<div class="hero-animate" style="opacity: 0;">
-				<p class="text-micro uppercase mb-1" style="color: var(--accent); opacity: 0.9;">Role</p>
-				<div id="typing-text-wrapper">
-					<span id="typing-text" class="text-sm" style="color: var(--fg-muted);"></span>
-					<span class="animate-blink text-sm" style="color: var(--fg-subtle);">|</span>
-				</div>
+		<div class="max-w-5xl">
+			<!-- Section label -->
+			<div class="hero-animate mb-8 md:mb-12" style="opacity: 0;">
+				<span class="font-mono text-micro uppercase tracking-[0.15em]" style="color: var(--accent); opacity: 0.7;">01 ── identity</span>
 			</div>
-			<div
-				class="hidden md:block text-right hero-animate"
-				style="opacity: 0;"
-			>
-				<p class="text-micro uppercase mb-1" style="color: var(--accent); opacity: 0.9;">Based in</p>
-				<p class="text-sm" style="color: var(--fg-muted);">India</p>
-			</div>
-		</div>
 
-		<!-- Center Content -->
-		<div class="flex flex-col items-center text-center">
-			<!-- Oversized Name -->
-			<div class="mb-6 hero-animate" style="opacity: 0;">
-				<h1
-					class="font-display font-extrabold text-display-xl uppercase leading-[0.95] md:leading-[0.85]"
-				>
-					<span class="block overflow-hidden">
-						<span
-							class="block"
-							>Sarvesh</span
-						>
-					</span>
-					<span class="block overflow-hidden">
-						<span
-							class="block"
-							style="color: var(--fg-subtle);"
-							>Rane</span
-						>
-					</span>
+			<!-- Name -->
+			<div class="mb-6 md:mb-8 hero-animate" style="opacity: 0;">
+				<h1 class="font-display font-extrabold text-display-xl uppercase leading-[0.92] break-words">
+					<span class="block">Sarvesh</span>
+					<span class="block" style="color: var(--fg-subtle);">Rane<span class="animate-cursor-blink text-[0.4em] ml-1 align-middle" style="color: var(--accent);">█</span></span>
 				</h1>
 			</div>
 
 			<!-- Tagline -->
-			<div class="overflow-hidden mb-8 md:mb-10 hero-animate" style="opacity: 0;">
-				<p
-					class="text-body-lg max-w-md leading-relaxed"
-					style="color: var(--fg-muted);"
-				>
-					Software Engineer crafting scalable backend systems and
-					shipping production-grade products.
+			<div class="mb-8 md:mb-10 hero-animate" style="opacity: 0;">
+				<p class="text-body-lg max-w-lg leading-relaxed" style="color: var(--fg-muted);">
+					Software Engineer crafting scalable backend systems and shipping production-grade products.
 				</p>
 			</div>
 
+			<!-- Status row -->
+			<div class="flex flex-wrap items-center gap-4 md:gap-6 mb-10 hero-animate" style="opacity: 0;">
+				<div class="flex items-center gap-2">
+					<span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--accent);"></span>
+					<span class="font-mono text-micro uppercase" style="color: var(--accent);">Online</span>
+				</div>
+				<span class="font-mono text-micro" style="color: var(--fg-faint);">│</span>
+				<div id="typing-text-wrapper" class="flex items-center">
+					<span id="typing-text" class="font-mono text-sm" style="color: var(--fg-muted);"></span>
+					<span class="animate-blink text-sm" style="color: var(--accent);">█</span>
+				</div>
+				<span class="font-mono text-micro hidden md:inline" style="color: var(--fg-faint);">│</span>
+				<span class="font-mono text-micro uppercase hidden md:inline" style="color: var(--fg-subtle);">India</span>
+			</div>
+
 			<!-- Social row -->
-			<div
-				class="flex flex-wrap justify-center gap-2 md:gap-5 hero-animate"
-				style="opacity: 0;"
-			>
-				{
-					socialLinks.map((social) => (
-						<a
-							href={social.link}
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label={`${social.title} profile`}
-							class="social-btn group relative px-4 py-2 rounded-sm"
-							style="border: 1px solid var(--border); background: var(--surface); transition: transform 160ms var(--ease-out), border-color 200ms var(--ease-out);"
-						>
-						<span class="text-micro uppercase tracking-wider" style="color: var(--fg-muted); transition: color 150ms var(--anime-ease-inOutQuad);">
-							{social.title}
-						</span>
-						</a>
-					))
-				}
+			<div class="flex flex-wrap gap-2 md:gap-3 hero-animate" style="opacity: 0;">
+				{socialLinks.map((social) => (
+					<a
+						href={social.link}
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label={`${social.title} profile`}
+						class="social-btn font-mono text-micro uppercase tracking-wider px-4 py-2.5 rounded-sm"
+						style="color: var(--fg-subtle); border: 1px solid var(--border); background: var(--surface);"
+					>
+						{social.title}
+					</a>
+				))}
 			</div>
 		</div>
 
 		<!-- Scroll indicator -->
-		<div
-			class="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 animate-float hero-scroll-indicator hidden sm:flex"
-			style="opacity: 0;"
-		>
+		<div class="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 animate-float hero-scroll-indicator hidden sm:flex" style="opacity: 0;">
 			<div class="flex flex-col items-center gap-2">
-				<span class="text-micro uppercase tracking-widest" style="color: var(--fg-subtle);"
-					>Scroll</span
-				>
-				<div
-					class="w-px h-8"
-					style="background: linear-gradient(to bottom, var(--fg-subtle), transparent);"
-				>
-				</div>
+				<span class="font-mono text-micro uppercase tracking-widest" style="color: var(--fg-subtle);">scroll</span>
+				<div class="w-px h-8" style="background: linear-gradient(to bottom, var(--fg-subtle), transparent);"></div>
 			</div>
 		</div>
 	</section>
 
-	<!-- =============================================
-		 HORIZONTAL DIVIDER with grid-aligned marks
-	     ============================================= -->
+	<!-- DIVIDER -->
 	<div class="relative px-5 md:px-8 lg:px-16">
-		<div class="h-px w-full reveal" style="background-color: var(--border);"></div>
+		<div class="h-px w-full reveal" style="background-color: var(--border-strong);"></div>
 	</div>
 
-	<!-- =============================================
-		 MARQUEE — Horizontal scrolling text (inverted bar)
-	     ============================================= -->
-	<div class="marquee-wrapper overflow-hidden py-4 reveal" style="background-color: var(--marquee-bg);" aria-hidden="true" role="presentation">
+	<!-- MARQUEE -->
+	<div class="marquee-wrapper overflow-hidden py-3 reveal" style="background-color: var(--marquee-bg);" aria-hidden="true" role="presentation">
 		<div class="marquee-container">
 			<div class="marquee-content">
-				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Software Engineer</span>
-				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
-				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Backend Developer</span>
-				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
-				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">DevOps Enthusiast</span>
-				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
-				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Open Source</span>
-				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
-				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Software Engineer</span>
-				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
-				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Backend Developer</span>
-				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
-				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">DevOps Enthusiast</span>
-				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
-				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Open Source</span>
-				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">systems engineering</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">backend development</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">infrastructure</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">devops</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">open source</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">systems engineering</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">backend development</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">infrastructure</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">devops</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
 			</div>
 			<div class="marquee-content" aria-hidden="true">
-				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Software Engineer</span>
-				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
-				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Backend Developer</span>
-				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
-				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">DevOps Enthusiast</span>
-				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
-				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Open Source</span>
-				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
-				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Software Engineer</span>
-				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
-				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Backend Developer</span>
-				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
-				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">DevOps Enthusiast</span>
-				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
-				<span class="text-sm font-medium uppercase tracking-[0.2em] mx-6" style="color: var(--marquee-fg);">Open Source</span>
-				<span class="mx-2" style="color: var(--marquee-fg); opacity: 0.4;">•</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">systems engineering</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">backend development</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">infrastructure</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">devops</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">open source</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">systems engineering</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">backend development</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">infrastructure</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
+				<span class="font-mono text-xs uppercase tracking-[0.15em] mx-6" style="color: var(--marquee-fg);">devops</span>
+				<span class="mx-2" style="color: var(--accent); opacity: 0.3;">·</span>
 			</div>
 		</div>
 	</div>
 
 	<div class="relative px-5 md:px-8 lg:px-16">
-		<div class="h-px w-full reveal" style="background-color: var(--border);"></div>
+		<div class="h-px w-full reveal" style="background-color: var(--border-strong);"></div>
 	</div>
 
-	<!-- =============================================
-		 PROJECTS — Editorial list, Vercel-clean
-	     ============================================= -->
-	<section
-		id="work-section"
-		class="py-16 md:py-40 px-5 md:px-8 lg:px-16 scroll-mt-20"
-	>
-		<div
-			class="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6"
-		>
-			<div>
-				<p class="text-micro uppercase mb-4 reveal" style="color: var(--accent); opacity: 0.9;">
-					Selected Work
-				</p>
-				<h2
-					class="font-display font-extrabold text-display-lg uppercase reveal stagger-1"
-				>
-					Featured<br />Projects
-				</h2>
+	<!-- PROJECTS -->
+	<section id="work-section" class="py-16 md:py-40 px-5 md:px-8 lg:px-16 scroll-mt-20">
+		<div class="mb-16 md:mb-20">
+			<div class="section-label reveal">
+				<span class="font-mono text-micro uppercase tracking-[0.15em] whitespace-nowrap" style="color: var(--accent); opacity: 0.7;">02 ── deployments</span>
 			</div>
-			<p
-				class="text-body-lg max-w-sm leading-relaxed reveal stagger-2"
-				style="color: var(--fg-muted);"
-			>
-				A curated selection of projects showcasing expertise in backend
-				systems, full-stack development, and software engineering.
-			</p>
+			<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+				<h2 class="font-display font-extrabold text-display-lg uppercase reveal stagger-1 break-words">Featured<br />Projects</h2>
+				<p class="text-body-lg max-w-sm leading-relaxed reveal stagger-2" style="color: var(--fg-muted);">
+					A curated selection of projects showcasing expertise in backend systems and software engineering.
+				</p>
+			</div>
 		</div>
 
-		<!-- Project list -->
 		<div class="flex flex-col" role="list">
-			{
-				projects.map((project, idx) => (
-					<div
-						class:list={["line-reveal", `stagger-${idx + 1}`]}
-					/>
-					<div
-						class:list={[
-							"group py-8 md:py-10 reveal",
-							`stagger-${idx + 1}`,
-						]}
-						role="listitem"
-					>
-						<!-- Title, buttons, description - above image -->
-						<div class="flex flex-col gap-4 mb-6">
-							<!-- Title and number -->
-							<div class="flex items-baseline gap-4">
-								<span class="text-micro font-light tabular-nums" style="color: var(--accent); opacity: 0.8;">
-									{String(idx + 1).padStart(2, "0")}
-								</span>
-								<h3 class="font-display font-bold text-display-md uppercase">
-									{project.title}
-								</h3>
-							</div>
-
-							<!-- Action buttons -->
-							<div class="flex flex-wrap items-center gap-3 md:gap-4">
-								<a
-									href={project.github}
-									target="_blank"
-									rel="noopener noreferrer"
-									class="project-btn inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 text-sm uppercase tracking-wider rounded-sm"
-									style="color: var(--fg-muted); border: 1px solid var(--border); background: var(--surface);"
-								>
-									<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-										<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-									</svg>
-									<span>GitHub</span>
-								</a>
-								{project.live && (
-									<a
-										href={project.live}
-										target="_blank"
-										rel="noopener noreferrer"
-										class="project-btn inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 text-sm uppercase tracking-wider rounded-sm"
-										style="color: var(--fg-muted); border: 1px solid var(--border); background: var(--surface);"
-									>
-										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-											<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-											<polyline points="15 3 21 3 21 9"></polyline>
-											<line x1="10" y1="14" x2="21" y2="3"></line>
-										</svg>
-										<span>Live</span>
-									</a>
-								)}
-							</div>
-
-							<!-- Description -->
-							<p class="text-body max-w-xl" style="color: var(--fg-muted);">
-								{project.description}
-							</p>
-
-							<!-- Tech Stack -->
-							{project.stack && project.stack.length > 0 && (
-								<div class="flex flex-wrap gap-2 mt-1">
-									{project.stack.map((tech) => (
-										<span class="text-xs uppercase tracking-wider px-3 py-1 rounded-sm" style="color: var(--fg-subtle); border: 1px solid var(--border); background: var(--surface);">
-											{tech}
-										</span>
-									))}
-								</div>
-							)}
-
+			{projects.map((project, idx) => (
+				<div class:list={["line-reveal", `stagger-${idx + 1}`]} />
+				<div class:list={["group py-8 md:py-10 reveal", `stagger-${idx + 1}`]} role="listitem">
+					<div class="flex flex-col gap-4 mb-6">
+						<div class="flex items-baseline gap-4">
+							<span class="font-mono text-micro font-light tabular-nums" style="color: var(--accent); opacity: 0.6;">
+								{String(idx + 1).padStart(2, "0")}
+							</span>
+							<h3 class="font-display font-bold text-display-md uppercase">{project.title}</h3>
 						</div>
 
-						<!-- Project image -->
-						<div class="overflow-hidden rounded-sm" style="border: 1px solid var(--border);">
-							<div class="relative overflow-hidden">
-								<img
-									src={project.image}
-									alt={`${project.title} preview`}
-									width="800"
-									height="450"
-									class="project-image w-full h-auto object-cover aspect-[16/9]"
-									loading="lazy"
-									decoding="async"
-								/>
-								<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none"></div>
+						<div class="flex flex-wrap items-center gap-3 md:gap-4">
+							<a href={project.github} target="_blank" rel="noopener noreferrer"
+								class="project-btn inline-flex items-center gap-2 px-4 py-2 font-mono text-xs uppercase tracking-wider rounded-sm"
+								style="color: var(--fg-muted); border: 1px solid var(--border); background: var(--surface);">
+								<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+								<span>Source</span>
+							</a>
+							{project.live && (
+								<a href={project.live} target="_blank" rel="noopener noreferrer"
+									class="project-btn inline-flex items-center gap-2 px-4 py-2 font-mono text-xs uppercase tracking-wider rounded-sm"
+									style="color: var(--fg-muted); border: 1px solid var(--border); background: var(--surface);">
+									<span class="w-1.5 h-1.5 rounded-full" style="background: var(--accent);"></span>
+									<span>Live</span>
+								</a>
+							)}
+						</div>
+
+						<p class="text-body max-w-xl" style="color: var(--fg-muted);">{project.description}</p>
+
+						{project.stack && project.stack.length > 0 && (
+							<div class="flex flex-wrap gap-2 mt-1">
+								{project.stack.map((tech) => (
+									<span class="font-mono text-xs uppercase tracking-wider px-3 py-1 rounded-sm" style="color: var(--fg-subtle); border-left: 2px solid var(--accent-dim); background: var(--surface);">
+										{tech}
+									</span>
+								))}
 							</div>
+						)}
+					</div>
+
+					<div class="overflow-hidden rounded-sm" style="border: 1px solid var(--border);">
+						<div class="relative overflow-hidden">
+							<img src={project.image} alt={`${project.title} preview`} width="800" height="450"
+								class="project-image w-full h-auto object-cover aspect-[16/9]" loading="lazy" decoding="async" />
+							<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none"></div>
 						</div>
 					</div>
-				))
-			}
+				</div>
+			))}
 			<div class="line-reveal stagger-6"></div>
 		</div>
 	</section>
 
-	<!-- =============================================
-		 SKILLS — Clean grid, numbers
-	     ============================================= -->
+	<!-- SKILLS -->
 	<section id="skills-section" class="py-16 md:py-40 px-5 md:px-8 lg:px-16">
-		<div class="relative px-0 mb-20">
-			<div class="h-px w-full mb-20 reveal" style="background-color: var(--border);"></div>
-			<p class="text-micro uppercase mb-4 reveal" style="color: var(--accent); opacity: 0.9;">
-				Capabilities
-			</p>
-			<h2
-				class="font-display font-extrabold text-display-lg uppercase reveal stagger-1 break-words"
-			>
+		<div class="relative px-0 mb-16 md:mb-20">
+			<div class="h-px w-full mb-16 reveal" style="background-color: var(--border-strong);"></div>
+			<div class="section-label reveal">
+				<span class="font-mono text-micro uppercase tracking-[0.15em] whitespace-nowrap" style="color: var(--accent); opacity: 0.7;">03 ── dependencies</span>
+			</div>
+			<h2 class="font-display font-extrabold text-display-lg uppercase reveal stagger-1 break-words">
 				Skills &<br />Technologies
 			</h2>
 		</div>
 
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24" role="list">
-			{
-				skills.map((skillGroup, groupIdx) => (
-					<div class:list={["reveal", `stagger-${groupIdx + 1}`]} role="listitem">
-					<p class="text-micro uppercase mb-6 tracking-[0.2em]" style="color: var(--fg-subtle);">
-						({String(groupIdx + 1).padStart(2, "0")}){" "}
-						{skillGroup.title}
+			{skills.map((skillGroup, groupIdx) => (
+				<div class:list={["reveal", `stagger-${groupIdx + 1}`]} role="listitem">
+					<p class="font-mono text-micro uppercase mb-6 tracking-[0.15em]" style="color: var(--fg-subtle);">
+						({String(groupIdx + 1).padStart(2, "0")}) {skillGroup.title}
 					</p>
-					<div class="flex flex-wrap gap-x-6 gap-y-3" role="list">
+					<div class="flex flex-wrap gap-x-4 gap-y-3" role="list">
 						{skillGroup.data.map((skill) => (
-							<span class="skill-item text-lg md:text-xl cursor-default" style="color: var(--fg-muted);" role="listitem">
+							<span class="skill-item font-mono text-sm md:text-base px-3 py-1.5 rounded-sm cursor-default"
+								style="color: var(--fg-muted); border: 1px solid var(--border); background: var(--surface);"
+								role="listitem">
 								{skill.title}
 							</span>
-							))}
-						</div>
+						))}
 					</div>
-				))
-			}
+				</div>
+			))}
 		</div>
 	</section>
 
-	<!-- =============================================
-		 ABOUT — Asymmetric editorial
-	     ============================================= -->
-	<section
-		id="about-section"
-		class="py-16 md:py-40 px-5 md:px-8 lg:px-16 scroll-mt-20"
-	>
-		<div class="h-px w-full mb-20 reveal" style="background-color: var(--border);"></div>
+	<!-- ABOUT -->
+	<section id="about-section" class="py-16 md:py-40 px-5 md:px-8 lg:px-16 scroll-mt-20">
+		<div class="h-px w-full mb-16 md:mb-20 reveal" style="background-color: var(--border-strong);"></div>
 
 		<div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
-			<!-- Left: Image -->
 			<div class="md:col-span-5 lg:col-span-4">
 				<div class="reveal">
-					<p class="text-micro uppercase mb-4" style="color: var(--accent); opacity: 0.9;">
-						Profile
-					</p>
-					<div
-						class="relative overflow-hidden aspect-[3/4] md:h-auto"
-						style="border: 1px solid var(--border);"
-					>
-						<img
-							src="/profile.webp"
-							alt="Sarvesh Rane"
-							width="800"
-							height="1067"
-							fetchpriority="high"
-							class="profile-img w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all duration-1000"
-						/>
+					<div class="section-label mb-6">
+						<span class="font-mono text-micro uppercase tracking-[0.15em] whitespace-nowrap" style="color: var(--accent); opacity: 0.7;">04 ── readme</span>
+					</div>
+					<div class="relative overflow-hidden aspect-[3/4] md:h-auto" style="border: 1px solid var(--border-strong);">
+						<img src="/profile.webp" alt="Sarvesh Rane" width="800" height="1067" fetchpriority="high"
+							class="profile-img w-full h-full object-cover object-center"
+							style="filter: contrast(1.15) grayscale(1);" />
+						<div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to top, var(--bg) 0%, transparent 30%);"></div>
 					</div>
 				</div>
-				<!-- Micro details -->
 				<div class="mt-6 grid grid-cols-2 gap-4 reveal stagger-2">
 					<div>
-						<p class="text-micro uppercase mb-1" style="color: var(--accent); opacity: 0.8;">
-							Experience
-						</p>
+						<p class="font-mono text-micro uppercase mb-1" style="color: var(--accent); opacity: 0.6;">exp</p>
 						<p class="text-base" style="color: var(--fg-muted);">
-							{
-								(() => {
-									const start = new Date(careerStartDate);
-									const now = new Date();
-									const diff =
-										now.getTime() - start.getTime();
-									const diffDate = new Date(diff);
-									const years = Math.abs(
-										diffDate.getUTCFullYear() - 1970
-									);
-									const months = diffDate.getUTCMonth();
-									return `${years} Years ${months} Months`;
-								})()
-							}
+							{(() => {
+								const start = new Date(careerStartDate);
+								const now = new Date();
+								const diff = now.getTime() - start.getTime();
+								const diffDate = new Date(diff);
+								const years = Math.abs(diffDate.getUTCFullYear() - 1970);
+								const months = diffDate.getUTCMonth();
+								return `${years}y ${months}m`;
+							})()}
 						</p>
 					</div>
 					<div>
-						<p class="text-micro uppercase mb-1" style="color: var(--accent); opacity: 0.8;">
-							Education
-						</p>
+						<p class="font-mono text-micro uppercase mb-1" style="color: var(--accent); opacity: 0.6;">edu</p>
 						<p class="text-base" style="color: var(--fg-muted);">B.E. (EXTC)</p>
 					</div>
 				</div>
 			</div>
 
-			<!-- Right: About text -->
-			<div
-				class="md:col-span-7 lg:col-span-7 lg:col-start-6 flex flex-col justify-center"
-			>
+			<div class="md:col-span-7 lg:col-span-7 lg:col-start-6 flex flex-col justify-center">
 				<div class="reveal">
-					<p class="text-micro uppercase mb-6" style="color: var(--accent); opacity: 0.9;">About</p>
-					<h2
-						class="font-display font-extrabold text-display-md uppercase leading-tight mb-10"
-					>
+					<h2 class="font-display font-extrabold text-display-md uppercase leading-tight mb-10 break-words">
 						Adding, Committing<br class="hidden md:inline" />
 						and Pushing Code<br class="hidden md:inline" />
 						Since 2019
@@ -423,23 +286,14 @@ import {
 				</div>
 				<div class="line-reveal mb-8 stagger-2"></div>
 				<div class="reveal stagger-3">
-					<p
-						class="text-body-lg leading-[1.9] max-w-xl"
-						style="color: var(--fg-muted);"
-					>
+					<p class="text-body-lg leading-[1.9] max-w-xl" style="color: var(--fg-muted);">
 						{professionalSummary}
 					</p>
 				</div>
 				<div class="mt-10 reveal stagger-4">
-					<p class="text-micro uppercase mb-3" style="color: var(--accent); opacity: 0.8;">
-						Alma Mater
-					</p>
-					<p class="text-base" style="color: var(--fg-muted);">
-						Smt. Kashibai Navale College of Engineering, Pune
-					</p>
-					<p class="text-base mt-1" style="color: var(--fg-subtle);">
-						Bachelor of Engineering (EXTC) w/Honors
-					</p>
+					<p class="font-mono text-micro uppercase mb-3" style="color: var(--accent); opacity: 0.6;">alma_mater</p>
+					<p class="text-base" style="color: var(--fg-muted);">Smt. Kashibai Navale College of Engineering, Pune</p>
+					<p class="text-base mt-1" style="color: var(--fg-subtle);">Bachelor of Engineering (EXTC) w/Honors</p>
 				</div>
 			</div>
 		</div>
@@ -448,164 +302,75 @@ import {
 	<Footer />
 </Layout>
 
-<!-- Marquee animation -->
 <style>
 	@keyframes marquee {
-		0% {
-			transform: translateX(0);
-		}
-		100% {
-			transform: translateX(-100%);
-		}
+		0% { transform: translateX(0); }
+		100% { transform: translateX(-100%); }
 	}
-	.marquee-wrapper {
-		width: 100%;
-		position: relative;
-	}
-	.marquee-container {
-		display: flex;
-		width: max-content;
-		will-change: transform;
-	}
-	.marquee-content {
-		display: flex;
-		flex-shrink: 0;
-		white-space: nowrap;
-		animation: marquee 20s linear infinite;
-	}
+	.marquee-wrapper { width: 100%; position: relative; }
+	.marquee-container { display: flex; width: max-content; will-change: transform; }
+	.marquee-content { display: flex; flex-shrink: 0; white-space: nowrap; animation: marquee 25s linear infinite; }
 
-	/* Social button interactions */
+	.social-btn { transition: transform 160ms var(--ease-out), border-color 200ms var(--ease-out), color 200ms var(--ease-out); }
 	@media (hover: hover) and (pointer: fine) {
-		.social-btn:hover {
-			border-color: var(--fg-faint) !important;
-		}
-		.social-btn:hover span {
-			color: var(--fg) !important;
-		}
+		.social-btn:hover { border-color: var(--accent) !important; color: var(--accent) !important; }
 	}
-	.social-btn:active {
-		transform: scale(0.97);
-	}
+	.social-btn:active { transform: scale(0.97); }
 
-	/* Project card image — faster, more responsive */
-	.project-image {
-		transition: transform 500ms var(--ease-out);
-	}
+	.project-image { transition: transform 500ms var(--ease-out); }
 	@media (hover: hover) and (pointer: fine) {
-		.group:hover .project-image {
-			transform: scale(1.03);
-		}
+		.group:hover .project-image { transform: scale(1.03); }
 	}
 
-	/* Project action buttons */
-	.project-btn {
-		transition:
-			transform 160ms var(--ease-out),
-			background-color 200ms var(--ease-out),
-			border-color 200ms var(--ease-out);
-	}
-	.project-btn:active {
-		transform: scale(0.97);
-	}
+	.project-btn { transition: transform 160ms var(--ease-out), background-color 200ms var(--ease-out), border-color 200ms var(--ease-out); }
+	.project-btn:active { transform: scale(0.97); }
 	@media (hover: hover) and (pointer: fine) {
-		.project-btn:hover {
-			background-color: var(--surface-hover) !important;
-			border-color: var(--fg-faint) !important;
-		}
-		.project-btn:hover span,
-		.project-btn:hover svg {
-			color: var(--fg) !important;
-			opacity: 1 !important;
-		}
+		.project-btn:hover { background-color: var(--surface-hover) !important; border-color: var(--accent) !important; color: var(--fg) !important; }
 	}
 
-	/* Skills hover — snappier */
-	.skill-item {
-		transition: color 200ms var(--ease-out);
-	}
+	.skill-item { transition: color 200ms var(--ease-out), border-color 200ms var(--ease-out); }
 	@media (hover: hover) and (pointer: fine) {
-		.skill-item:hover {
-			color: var(--accent) !important;
-		}
+		.skill-item:hover { color: var(--accent) !important; border-color: var(--accent-dim) !important; }
 	}
 
-	/* Profile image: rotate at all viewports (source is sideways), scale varies */
-	.profile-img {
-		transform: rotate(90deg) scale(1.15);
-		transform-origin: center center;
-	}
-	@media (min-width: 768px) {
-		.profile-img {
-			transform: rotate(90deg) scale(1.35);
-		}
-	}
+	.profile-img { transform: rotate(90deg) scale(1.15); transform-origin: center center; }
+	@media (min-width: 768px) { .profile-img { transform: rotate(90deg) scale(1.35); } }
 </style>
 
-<!-- Typing animation -->
 <script define:vars={{ roles: dataCurrently.map((r) => r.title) }}>
 	const typingEl = document.getElementById("typing-text");
-	let roleIndex = 0;
-	let charIndex = 0;
-	let isDeleting = false;
-	const typingSpeed = 70;
-	const deletingSpeed = 35;
-	const pauseDuration = 2500;
-
+	let roleIndex = 0, charIndex = 0, isDeleting = false;
 	function type() {
 		const currentRole = roles[roleIndex];
-
-		if (isDeleting) {
-			typingEl.textContent = currentRole.substring(0, charIndex - 1);
-			charIndex--;
-		} else {
-			typingEl.textContent = currentRole.substring(0, charIndex + 1);
-			charIndex++;
-		}
-
-		let timeout = isDeleting ? deletingSpeed : typingSpeed;
-
-		if (!isDeleting && charIndex === currentRole.length) {
-			timeout = pauseDuration;
-			isDeleting = true;
-		} else if (isDeleting && charIndex === 0) {
-			isDeleting = false;
-			roleIndex = (roleIndex + 1) % roles.length;
-			timeout = 500;
-		}
-
+		if (isDeleting) { typingEl.textContent = currentRole.substring(0, charIndex - 1); charIndex--; }
+		else { typingEl.textContent = currentRole.substring(0, charIndex + 1); charIndex++; }
+		let timeout = isDeleting ? 35 : 70;
+		if (!isDeleting && charIndex === currentRole.length) { timeout = 2500; isDeleting = true; }
+		else if (isDeleting && charIndex === 0) { isDeleting = false; roleIndex = (roleIndex + 1) % roles.length; timeout = 500; }
 		setTimeout(type, timeout);
 	}
-
 	setTimeout(type, 1000);
 </script>
 
-<!-- Hero grid canvas: draw crosshairs at intersections -->
 <script>
 	(function () {
 		const canvas = document.getElementById("hero-grid-canvas");
 		if (!canvas) return;
 		const ctx = canvas.getContext("2d");
-		const GRID = 80;
-		const CROSS = 4;
+		const GRID = 64;
 		const section = canvas.closest("section");
+		let mouseX = -1000, mouseY = -1000;
+		const MOUSE_RADIUS = 150;
 
-		function getGridColor() {
-			// Read the computed --fg value to be theme-aware
-			const fg = getComputedStyle(document.documentElement).getPropertyValue('--fg').trim();
-			return fg || '255,255,255';
-		}
-
-		function fgToRgb(fg) {
-			// Parse hex (#ffffff) or named color to r,g,b string
-			if (fg.startsWith('#')) {
-				const hex = fg.slice(1);
-				const r = parseInt(hex.slice(0, 2), 16);
-				const g = parseInt(hex.slice(2, 4), 16);
-				const b = parseInt(hex.slice(4, 6), 16);
-				return `${r},${g},${b}`;
-			}
-			return '255,255,255'; // fallback
-		}
+		canvas.closest(".hero-grid")?.addEventListener("mousemove", (e) => {
+			const rect = canvas.getBoundingClientRect();
+			mouseX = e.clientX - rect.left;
+			mouseY = e.clientY - rect.top;
+			draw();
+		});
+		canvas.closest(".hero-grid")?.addEventListener("mouseleave", () => {
+			mouseX = -1000; mouseY = -1000; draw();
+		});
 
 		function resize() {
 			canvas.width = section ? section.offsetWidth : window.innerWidth;
@@ -615,26 +380,37 @@ import {
 
 		function draw() {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			const rgb = fgToRgb(getGridColor());
-			ctx.lineWidth = 1;
 			const cols = Math.ceil(canvas.width / GRID) + 1;
 			const rows = Math.ceil(canvas.height / GRID) + 1;
+
 			for (let r = 0; r <= rows; r++) {
 				for (let c = 0; c <= cols; c++) {
 					const x = c * GRID;
 					const y = r * GRID;
-					// Fade based on distance from center
 					const dx = (x / canvas.width - 0.5) * 2;
 					const dy = (y / canvas.height - 0.5) * 2;
-					const dist = Math.sqrt(dx * dx + dy * dy);
-					const alpha = Math.max(0, 0.1 - dist * 0.06);
-					if (alpha <= 0) continue;
-					ctx.strokeStyle = `rgba(${rgb},${alpha})`;
+					const distCenter = Math.sqrt(dx * dx + dy * dy);
+					const baseFade = Math.max(0, 0.08 - distCenter * 0.05);
+					if (baseFade <= 0) continue;
+
+					const mdx = x - mouseX, mdy = y - mouseY;
+					const distMouse = Math.sqrt(mdx * mdx + mdy * mdy);
+					const mouseFactor = Math.max(0, 1 - distMouse / MOUSE_RADIUS);
+
+					// Draw intersection cross
+					const alpha = baseFade + mouseFactor * 0.35;
+					const size = 3 + mouseFactor * 4;
+					const isAccent = ((r * 127 + c * 311) % 100) < 4;
+
+					if (isAccent) {
+						ctx.strokeStyle = `rgba(34, 197, 94, ${Math.min(1, alpha * 2.5)})`;
+					} else {
+						ctx.strokeStyle = `rgba(228, 228, 231, ${Math.min(1, alpha)})`;
+					}
+					ctx.lineWidth = 0.5 + mouseFactor;
 					ctx.beginPath();
-					ctx.moveTo(x - CROSS, y);
-					ctx.lineTo(x + CROSS, y);
-					ctx.moveTo(x, y - CROSS);
-					ctx.lineTo(x, y + CROSS);
+					ctx.moveTo(x - size, y); ctx.lineTo(x + size, y);
+					ctx.moveTo(x, y - size); ctx.lineTo(x, y + size);
 					ctx.stroke();
 				}
 			}
@@ -642,12 +418,5 @@ import {
 
 		resize();
 		window.addEventListener("resize", resize);
-
-		// Re-draw when theme changes to pick up new --fg color
-		const themeObserver = new MutationObserver(() => draw());
-		themeObserver.observe(document.documentElement, {
-			attributes: true,
-			attributeFilter: ['data-theme']
-		});
 	})();
 </script>

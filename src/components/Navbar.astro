@@ -1,7 +1,6 @@
 ---
 import { SITE_NAME } from "../config";
 import Navlink from "./Navlink.astro";
-import ThemeToggle from "./ThemeToggle.astro";
 import { socialLinks } from "../data";
 
 const links = [
@@ -17,18 +16,23 @@ const links = [
 	style="opacity: 0; transform: translateY(-20px);"
 >
 	<div
-		class="px-6 md:px-8 lg:px-16 py-4 md:py-5 flex items-center justify-between"
+		class="px-5 md:px-8 lg:px-16 py-4 md:py-5 flex items-center justify-between"
 	>
+		<!-- Brand — process name -->
 		<a
 			href="/"
-			class="font-display font-bold text-sm tracking-tight uppercase"
+			class="font-mono font-medium text-sm tracking-tight flex items-center gap-1"
 			style="color: var(--fg);"
 		>
-			{SITE_NAME.split(".")[0]}<span style="color: var(--accent);">.</span
-			><span style="color: var(--fg-subtle);"
-				>{SITE_NAME.split(".")[1]}
-			</span>
+			<span style="color: var(--accent); opacity: 0.5;">$</span>
+			<span>{SITE_NAME.split(".")[0].toLowerCase()}</span><span style="color: var(--fg-subtle);">.</span><span
+				class="hidden sm:inline"
+				style="color: var(--fg-muted);"
+				>{SITE_NAME.split(".")[1]?.toLowerCase()}</span
+			>
+			<span class="animate-cursor-blink text-xs ml-0.5" style="color: var(--accent);">█</span>
 		</a>
+
 		<!-- Desktop nav -->
 		<div class="hidden md:flex items-center gap-6 md:gap-8">
 			<ul class="flex items-center gap-4 md:gap-8">
@@ -38,38 +42,33 @@ const links = [
 					))
 				}
 			</ul>
-			<span
-				class="text-micro uppercase hidden md:block font-light self-center mt-1"
-				id="local-time"
-				style="color: var(--fg-subtle);"></span>
-			<ThemeToggle />
+
+			<!-- Status indicator -->
+			<div class="flex items-center gap-2">
+				<span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background: var(--accent);"></span>
+				<span
+					class="font-mono text-micro uppercase hidden md:block font-light"
+					style="color: var(--fg-subtle); letter-spacing: 0.1em;"
+					>pid:1</span>
+			</div>
 		</div>
-		<!-- Mobile: theme toggle + hamburger -->
+
+		<!-- Mobile: hamburger -->
 		<div class="flex md:hidden items-center gap-3">
-			<ThemeToggle />
 			<button
 				id="menu-toggle"
 				type="button"
 				aria-label="Open menu"
 				aria-expanded="false"
 				class="relative w-10 h-10 flex items-center justify-center rounded-sm cursor-pointer"
-				style="border: 1px solid var(--border); background: var(--surface); transition: transform 160ms var(--ease-out), background-color 200ms var(--ease-out);"
+				style="border: 1px solid var(--border-strong); background: var(--surface); transition: transform 160ms var(--ease-out), background-color 200ms var(--ease-out);"
 			>
 				<div
-					class="hamburger-lines flex flex-col items-center justify-center gap-[5px] w-4"
+					class="hamburger-lines flex flex-col items-center justify-center gap-[5px]"
 				>
-					<span
-						class="hamburger-line block w-full h-px"
-						style="background: var(--fg-muted); transition: transform 250ms var(--ease-out), opacity 150ms var(--ease-out);"
-					></span>
-					<span
-						class="hamburger-line block w-full h-px"
-						style="background: var(--fg-muted); transition: transform 250ms var(--ease-out), opacity 150ms var(--ease-out);"
-					></span>
-					<span
-						class="hamburger-line block w-3 h-px ml-auto"
-						style="background: var(--fg-muted); transition: transform 250ms var(--ease-out), opacity 150ms var(--ease-out), width 200ms var(--ease-out);"
-					></span>
+					<span class="block w-4 h-px" style="background: var(--fg-muted); transition: transform 250ms var(--ease-out), opacity 150ms var(--ease-out);"></span>
+					<span class="block w-4 h-px" style="background: var(--fg-muted); transition: transform 250ms var(--ease-out), opacity 150ms var(--ease-out);"></span>
+					<span class="block w-2.5 h-px self-start ml-[7px]" style="background: var(--accent); opacity: 0.6; transition: transform 250ms var(--ease-out), opacity 150ms var(--ease-out);"></span>
 				</div>
 			</button>
 		</div>
@@ -89,17 +88,24 @@ const links = [
 <aside
 	id="mobile-drawer"
 	class="fixed top-0 right-0 z-[45] h-full flex flex-col"
-	style="width: min(85vw, 320px); background: var(--bg); border-left: 1px solid var(--border); transform: translateX(100%); transition: transform 300ms var(--ease-out); will-change: transform;"
+	style="width: min(85vw, 320px); background: var(--bg); border-left: 1px solid var(--border-strong); transform: translateX(100%); transition: transform 300ms var(--ease-out); will-change: transform;"
 	aria-hidden="true"
 >
+	<!-- Grid background for drawer -->
+	<div
+		class="absolute inset-0 pointer-events-none"
+		style="background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px); background-size: 32px 32px; opacity: 0.8;"
+	></div>
+
 	<!-- Drawer header -->
 	<div
-		class="flex items-center justify-between px-6 py-4"
-		style="border-bottom: 1px solid var(--border);"
+		class="relative flex items-center justify-between px-6 py-4"
+		style="border-bottom: 1px solid var(--border-strong);"
 	>
 		<span
-			class="text-micro uppercase tracking-[0.2em]"
-			style="color: var(--fg-subtle);">Menu</span
+			class="font-mono text-micro uppercase tracking-[0.15em]"
+			style="color: var(--accent); opacity: 0.7;"
+			>$ menu</span
 		>
 		<button
 			id="drawer-close"
@@ -127,7 +133,7 @@ const links = [
 	</div>
 
 	<!-- Drawer nav links -->
-	<nav class="flex-1 flex flex-col px-6 pt-8">
+	<nav class="relative flex-1 flex flex-col px-6 pt-8">
 		<ul class="flex flex-col gap-1">
 			{
 				links.map(({ href, label }, idx) => (
@@ -141,8 +147,13 @@ const links = [
 								80 + idx * 60
 							}ms, color 150ms var(--ease-out);`}
 						>
-							<span class="font-display font-bold text-xl uppercase tracking-tight">
-								{label}
+							<span class="flex items-center gap-3">
+								<span class="font-mono text-micro" style="color: var(--accent); opacity: 0.5;">
+									{String(idx + 1).padStart(2, "0")}
+								</span>
+								<span class="font-display font-bold text-xl uppercase tracking-tight">
+									{label}
+								</span>
 							</span>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -174,10 +185,15 @@ const links = [
 						80 + links.length * 60
 					}ms, color 150ms var(--ease-out);`}
 				>
-					<span
-						class="font-display font-bold text-xl uppercase tracking-tight"
-						>Contact</span
-					>
+					<span class="flex items-center gap-3">
+						<span class="font-mono text-micro" style="color: var(--accent); opacity: 0.5;">
+							{String(links.length + 1).padStart(2, "0")}
+						</span>
+						<span
+							class="font-display font-bold text-xl uppercase tracking-tight"
+							>Contact</span
+						>
+					</span>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="16"
@@ -201,10 +217,10 @@ const links = [
 		<!-- Social links -->
 		<div class="mt-auto pb-8">
 			<p
-				class="text-micro uppercase tracking-[0.2em] mb-4"
-				style="color: var(--fg-subtle);"
+				class="font-mono text-micro uppercase tracking-[0.15em] mb-4"
+				style="color: var(--accent); opacity: 0.5;"
 			>
-				Connect
+				$ connect
 			</p>
 			<div class="flex flex-wrap gap-3">
 				{
@@ -213,7 +229,7 @@ const links = [
 							href={social.link}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="text-micro uppercase tracking-wider py-2 px-3 rounded-sm"
+							class="font-mono text-micro uppercase tracking-wider py-2 px-3 rounded-sm"
 							style="color: var(--fg-muted); border: 1px solid var(--border); background: var(--surface); transition: border-color 200ms var(--ease-out), color 150ms var(--ease-out);"
 						>
 							{social.title}
@@ -235,7 +251,7 @@ const links = [
 		#menu-toggle:hover,
 		#drawer-close:hover {
 			background: var(--surface-hover) !important;
-			border-color: var(--fg-faint) !important;
+			border-color: var(--border-strong) !important;
 		}
 	}
 
@@ -248,30 +264,18 @@ const links = [
 	.drawer-link:active {
 		transform: scale(0.98);
 	}
-
-	/* Hamburger → X animation */
-	:global(.menu-open) #menu-toggle .hamburger-line:nth-child(1) {
-		transform: translateY(6px) rotate(45deg);
-	}
-	:global(.menu-open) #menu-toggle .hamburger-line:nth-child(2) {
-		opacity: 0;
-	}
-	:global(.menu-open) #menu-toggle .hamburger-line:nth-child(3) {
-		width: 100% !important;
-		transform: translateY(-6px) rotate(-45deg);
-	}
 </style>
 
 <script>
-	// Dynamic navbar: transparent at top, solid with blur on scroll
+	// Dynamic navbar: transparent at top, frosted glass on scroll
 	let navReady = false;
 	function updateNav() {
 		const nav = document.getElementById("main-nav");
 		if (!nav) return;
 		if (window.scrollY > 60) {
 			nav.style.background = "var(--nav-bg)";
-			nav.style.backdropFilter = "blur(12px)";
-			nav.style.webkitBackdropFilter = "blur(12px)";
+			nav.style.backdropFilter = "blur(12px) saturate(1.2)";
+			nav.style.webkitBackdropFilter = "blur(12px) saturate(1.2)";
 			nav.style.borderBottom = "1px solid var(--border)";
 		} else {
 			nav.style.background = "transparent";
@@ -291,22 +295,6 @@ const links = [
 		if (navReady) updateNav();
 	}, { passive: true });
 
-	// Live clock - always shows IST
-	function updateTime() {
-		const el = document.getElementById("local-time");
-		if (el) {
-			const now = new Date();
-			el.textContent =
-				now.toLocaleTimeString("en-US", {
-					hour: "2-digit",
-					minute: "2-digit",
-					timeZone: "Asia/Kolkata",
-				}) + " IST";
-		}
-	}
-	updateTime();
-	setInterval(updateTime, 60000);
-
 	// Mobile drawer logic
 	const menuToggle = document.getElementById("menu-toggle");
 	const drawerClose = document.getElementById("drawer-close");
@@ -321,7 +309,7 @@ const links = [
 			drawer.setAttribute("aria-hidden", "false");
 		}
 		if (overlay) {
-			overlay.style.background = "rgba(0,0,0,0.5)";
+			overlay.style.background = "rgba(0,0,0,0.6)";
 			overlay.style.pointerEvents = "auto";
 		}
 		if (menuToggle) menuToggle.setAttribute("aria-expanded", "true");

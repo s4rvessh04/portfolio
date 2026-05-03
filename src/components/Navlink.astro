@@ -10,13 +10,13 @@ const { label, href }: Props = Astro.props;
 <li>
 	<a
 		href={href}
-		class="nav-link group relative text-micro uppercase py-2"
-		style="color: var(--fg-muted); transition: color 150ms var(--ease-out);"
+		class="nav-link group relative font-mono text-micro uppercase py-2 tracking-wider"
+		style="color: var(--fg-subtle); transition: color 150ms var(--ease-out);"
 	>
 		{label}
 		<span
 			class="nav-underline absolute bottom-0 left-0 w-full h-px origin-left"
-			style="background-color: var(--accent); transform: scaleX(0); transition: transform 200ms var(--anime-ease-inOutQuad);"
+			style="background-color: var(--accent); transform: scaleX(0); transition: transform 200ms var(--ease-out);"
 		></span>
 	</a>
 </li>

@@ -4,180 +4,98 @@ import { socialLinks } from "../data";
 ---
 
 <footer class="relative z-[3] mt-32" aria-label="Footer">
-	<!-- Top CTA Section -->
+	<!-- CTA Section -->
 	<div class="px-5 md:px-8 lg:px-16 mb-20">
 		<div
 			class="relative overflow-hidden rounded-sm p-6 md:p-16 text-center reveal"
-			style="border: 1px solid var(--border);"
+			style="border: 1px solid var(--border-strong);"
 		>
 			<!-- Grid inside CTA -->
 			<div
 				class="absolute inset-0 pointer-events-none"
-				style="background-image: linear-gradient(to right, var(--fg-faint) 1px, transparent 1px), linear-gradient(to bottom, var(--fg-faint) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 70%);"
-			>
-			</div>
-			<!-- Glow -->
+				style="background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px); background-size: 32px 32px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 70%);"
+			></div>
 			<div
 				class="absolute inset-0 pointer-events-none"
-				style="background: radial-gradient(ellipse 50% 50% at 50% 50%, var(--fg-faint) 0%, transparent 70%);"
-			>
-			</div>
+				style="background: radial-gradient(ellipse 50% 50% at 50% 50%, var(--accent-glow) 0%, transparent 70%);"
+			></div>
 
 			<div class="relative z-10">
 				<p
-					class="text-micro uppercase tracking-[0.3em] mb-4"
-					style="color: var(--accent); opacity: 0.9;"
+					class="font-mono text-micro uppercase tracking-[0.2em] mb-4"
+					style="color: var(--accent); opacity: 0.7;"
 				>
-					Get in touch
+					$ open --connection
 				</p>
-				<h3
-					class="font-display font-extrabold text-display-md uppercase mb-6"
-				>
+				<h3 class="font-display font-extrabold text-display-md uppercase mb-6 break-words">
 					Let's Work<br />Together
 				</h3>
 				<p
 					class="text-body-lg max-w-md mx-auto mb-10 leading-relaxed"
 					style="color: var(--fg-muted);"
 				>
-					I'm always open to discussing new opportunities, interesting
-					projects, and creative collaborations.
+					Open to discussing new opportunities, interesting projects, and creative collaborations.
 				</p>
 				<a
 					href="mailto:sarveshrane2000@gmail.com"
 					class="cta-btn inline-flex items-center gap-3 px-8 py-3 rounded-sm"
-					style="border: 1px solid var(--border); background: var(--surface); transition: transform 150ms var(--anime-ease-inOutQuad), background-color 200ms var(--anime-ease-inOutQuad), border-color 200ms var(--anime-ease-inOutQuad);"
+					style="border: 1px solid var(--border-strong); background: var(--surface); transition: transform 150ms var(--ease-out), background-color 200ms var(--ease-out), border-color 200ms var(--ease-out);"
 				>
 					<span
-						class="text-micro uppercase tracking-wider"
-						style="color: var(--fg-muted); transition: color 150ms var(--anime-ease-inOutQuad);"
+						class="font-mono text-micro uppercase tracking-wider"
+						style="color: var(--fg-muted); transition: color 150ms var(--ease-out);"
 						>Say Hello</span
 					>
-					<svg
-						aria-hidden="true"
-						xmlns="http://www.w3.org/2000/svg"
-						width="14"
-						height="14"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="1.5"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						style="color: var(--fg-subtle); transition: color 150ms var(--anime-ease-inOutQuad), transform 150ms var(--anime-ease-inOutQuad);"
-					>
-						<line x1="5" y1="12" x2="19" y2="12"></line>
-						<polyline points="12 5 19 12 12 19"></polyline>
-					</svg>
+					<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--fg-subtle); transition: color 150ms var(--ease-out), transform 150ms var(--ease-out);"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
 				</a>
 			</div>
 		</div>
 	</div>
 
 	<!-- Footer columns -->
-	<div style="border-top: 1px solid var(--border);">
+	<div style="border-top: 1px solid var(--border-strong);">
 		<div class="px-5 md:px-8 lg:px-16 py-10 md:py-16">
 			<div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 mb-16 reveal">
-				<!-- Brand -->
 				<div class="md:col-span-1">
-					<p class="font-display font-bold text-lg mb-3">
-						{SITE_NAME}
-					</p>
-					<p
-						class="text-body leading-relaxed max-w-xs"
-						style="color: var(--fg-subtle);"
-					>
+					<p class="font-display font-bold text-lg mb-3">{SITE_NAME}</p>
+					<p class="text-body leading-relaxed max-w-xs" style="color: var(--fg-subtle);">
 						Building scalable software & pushing code since 2019.
 					</p>
 				</div>
-				<!-- Navigation -->
 				<div>
-					<p
-						class="text-micro uppercase mb-4 tracking-wider"
-						style="color: var(--fg-subtle);"
-					>
-						Navigation
-					</p>
+					<p class="font-mono text-micro uppercase mb-4 tracking-wider" style="color: var(--fg-subtle);">Navigation</p>
 					<div class="flex flex-col gap-2">
-					<a
-						href="#"
-						class="footer-link text-base w-fit"
-						style="color: var(--fg-muted);">Home</a
-					>
-						<a
-							href="#work-section"
-							class="footer-link text-base w-fit"
-							style="color: var(--fg-muted);">Work</a
-						>
-						<a
-							href="#about-section"
-							class="footer-link text-base w-fit"
-							style="color: var(--fg-muted);">About</a
-						>
+						<a href="#" class="footer-link text-base w-fit" style="color: var(--fg-muted);">Home</a>
+						<a href="#work-section" class="footer-link text-base w-fit" style="color: var(--fg-muted);">Work</a>
+						<a href="#about-section" class="footer-link text-base w-fit" style="color: var(--fg-muted);">About</a>
 					</div>
 				</div>
-				<!-- Socials -->
 				<div>
-					<p
-						class="text-micro uppercase mb-4 tracking-wider"
-						style="color: var(--fg-subtle);"
-					>
-						Connect
-					</p>
+					<p class="font-mono text-micro uppercase mb-4 tracking-wider" style="color: var(--fg-subtle);">Connect</p>
 					<div class="flex flex-col gap-2">
-						{
-							socialLinks.map((social) => (
-								<a
-									href={social.link}
-									target="_blank"
-									rel="noopener noreferrer"
-									class="footer-link text-base w-fit"
-									style="color: var(--fg-muted);"
-								>
-									{social.title}
-								</a>
-							))
-						}
+						{socialLinks.map((social) => (
+							<a href={social.link} target="_blank" rel="noopener noreferrer" class="footer-link text-base w-fit" style="color: var(--fg-muted);">{social.title}</a>
+						))}
 					</div>
 				</div>
-				<!-- Info -->
 				<div class="md:text-right">
-					<p
-						class="text-micro uppercase mb-4 tracking-wider"
-						style="color: var(--fg-subtle);"
-					>
-						Info
-					</p>
-					<p class="text-base" style="color: var(--fg-muted);">
-						India
-					</p>
-					<p class="text-base mt-1" style="color: var(--fg-subtle);">
-						Available for opportunities
-					</p>
+					<p class="font-mono text-micro uppercase mb-4 tracking-wider" style="color: var(--fg-subtle);">Status</p>
+					<p class="text-base" style="color: var(--fg-muted);">India</p>
+					<p class="text-base mt-1" style="color: var(--fg-subtle);">Available for opportunities</p>
 					<div class="flex md:justify-end items-center gap-2 mt-3">
-						<span
-							class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
-						></span>
-						<span class="text-micro text-emerald-500/70 uppercase"
-							>Open to work</span
-						>
+						<span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--accent);"></span>
+						<span class="font-mono text-micro uppercase" style="color: var(--accent); opacity: 0.7;">open_to_work</span>
 					</div>
 				</div>
 			</div>
 
-			<!-- Bottom bar -->
-			<div class="h-px mb-6" style="background-color: var(--fg-faint);">
-			</div>
-			<div
-				class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
-			>
-				<p
-					class="text-micro uppercase"
-					style="color: var(--fg-subtle);"
-				>
+			<div class="h-px mb-6" style="background-color: var(--fg-faint);"></div>
+			<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+				<p class="font-mono text-micro uppercase" style="color: var(--fg-subtle);">
 					&copy; {new Date().getFullYear()} Sarvesh Rane
 				</p>
-				<p class="text-micro uppercase" style="color: var(--fg-faint);">
-					Crafted with precision
+				<p class="font-mono text-micro uppercase" style="color: var(--fg-faint);">
+					exit 0
 				</p>
 			</div>
 		</div>
@@ -185,7 +103,6 @@ import { socialLinks } from "../data";
 </footer>
 
 <style>
-	/* Footer link hover */
 	.footer-link {
 		transition: color 200ms var(--ease-out);
 	}
@@ -197,12 +114,10 @@ import { socialLinks } from "../data";
 	.footer-link:active {
 		transform: scale(0.98);
 	}
-
-	/* CTA button hover */
 	@media (hover: hover) and (pointer: fine) {
 		.cta-btn:hover {
 			background-color: var(--surface-hover) !important;
-			border-color: var(--fg-faint) !important;
+			border-color: var(--accent) !important;
 		}
 		.cta-btn:hover span {
 			color: var(--fg) !important;

@@ -1,24 +1,38 @@
 @import "tailwindcss";
 
 /* ============================================
-   THEME SYSTEM — CSS Custom Properties
+   OPERATOR'S CONSOLE — Infrastructure Theme
+   "A backend engineer built this."
    ============================================ */
-:root,
-[data-theme="dark"] {
-	--bg: #000000;
-	--fg: #ffffff;
-	--fg-muted: rgba(255, 255, 255, 0.5);
-	--fg-subtle: rgba(255, 255, 255, 0.25);
-	--fg-faint: rgba(255, 255, 255, 0.08);
-	--border: rgba(255, 255, 255, 0.06);
-	--accent: #ff6b1a;
-	--accent-hover: #ff8a4c;
+:root {
+	/* Core palette — monochrome zinc */
+	--bg: #09090b;
+	--bg-elevated: #131316;
+	--fg: #e4e4e7;
+	--fg-muted: #a1a1aa;
+	--fg-subtle: #52525b;
+	--fg-faint: #27272a;
+
+	/* Infrastructure grid */
+	--grid-line: rgba(228, 228, 231, 0.035);
+	--grid-size: 64px;
+
+	/* Accent — signal green ("build pass") */
+	--accent: #22c55e;
+	--accent-hover: #4ade80;
+	--accent-glow: rgba(34, 197, 94, 0.08);
+	--accent-dim: rgba(34, 197, 94, 0.04);
+
+	/* Surfaces & borders */
+	--border: rgba(228, 228, 231, 0.06);
+	--border-strong: rgba(228, 228, 231, 0.12);
 	--surface: rgba(255, 255, 255, 0.02);
-	--surface-hover: rgba(255, 255, 255, 0.06);
-	--nav-bg: rgba(0, 0, 0, 0.8);
-	--loader-bg: #000000;
-	--marquee-bg: #ffffff;
-	--marquee-fg: #000000;
+	--surface-hover: rgba(34, 197, 94, 0.04);
+	--nav-bg: rgba(9, 9, 11, 0.88);
+
+	/* Marquee */
+	--marquee-bg: #0c0c0f;
+	--marquee-fg: #52525b;
 
 	/* Z-Index Scale */
 	--z-bg: 1;
@@ -28,19 +42,14 @@
 	--z-drawer: 300;
 	--z-loader: 1000;
 
-	/* Animation Easings — Inspired by anime.js with Apple minimalism */
-	--ease-out: cubic-bezier(0.25, 0.8, 0.25, 1);
-	/* Precise, minimal overshoot */
+	/* Animation Easings */
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 	--ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
-	/* Balanced for rare cases */
-	--ease-drawer: cubic-bezier(0.25, 0.8, 0.25, 1);
-	/* Consistent for drawers */
-	--ease-spring: cubic-bezier(0.25, 0.8, 0.25, 1);
-	/* Clean, no bounce */
-	--ease-reveal: cubic-bezier(0.25, 0.8, 0.25, 1);
-	/* Consistent reveals */
+	--ease-drawer: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
 
-	/* Anime.js inspired easings for advanced effects */
+	/* Anime.js easing references */
 	--anime-ease-inQuad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
 	--anime-ease-outQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 	--anime-ease-inOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
@@ -64,102 +73,64 @@
 	--anime-ease-inOutCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-[data-theme="light"] {
-	--bg: #f7f7f7;
-	--fg: #0a0a0a;
-	--fg-muted: rgba(0, 0, 0, 0.55);
-	--fg-subtle: rgba(0, 0, 0, 0.25);
-	--fg-faint: rgba(0, 0, 0, 0.06);
-	--border: rgba(0, 0, 0, 0.08);
-	--accent: #ff5c00;
-	--accent-hover: #e05000;
-	--surface: rgba(0, 0, 0, 0.02);
-	--surface-hover: rgba(0, 0, 0, 0.05);
-	--nav-bg: rgba(247, 247, 247, 0.8);
-	--loader-bg: #f7f7f7;
-	--marquee-bg: #0a0a0a;
-	--marquee-fg: #f7f7f7;
-}
-
-/* System preference fallback (no data-theme set yet) */
-@media (prefers-color-scheme: light) {
-	:root:not([data-theme]) {
-		--bg: #f7f7f7;
-		--fg: #0a0a0a;
-		--fg-muted: rgba(0, 0, 0, 0.55);
-		--fg-subtle: rgba(0, 0, 0, 0.25);
-		--fg-faint: rgba(0, 0, 0, 0.06);
-		--border: rgba(0, 0, 0, 0.08);
-		--accent: #ff5c00;
-		--accent-hover: #e05000;
-		--surface: rgba(0, 0, 0, 0.02);
-		--surface-hover: rgba(0, 0, 0, 0.05);
-		--nav-bg: rgba(247, 247, 247, 0.8);
-		--loader-bg: #f7f7f7;
-		--marquee-bg: #0a0a0a;
-		--marquee-fg: #f7f7f7;
-	}
-}
-
 @theme {
 	/* Font families */
-	--font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif,
+	--font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif,
 		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
 		"Noto Color Emoji";
-	--font-display: "Syne", ui-sans-serif, system-ui, sans-serif,
-		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-		"Noto Color Emoji";
+	--font-display: "Big Shoulders Display", ui-sans-serif, system-ui,
+		sans-serif;
+	--font-mono: "IBM Plex Mono", "JetBrains Mono", "Fira Code", "SF Mono",
+		ui-monospace, monospace;
 
-	/* Display sizes — tinyfish-style tight tracking, dramatic scale */
-	--text-display-xl: clamp(2.25rem, 8vw + 0.5rem, 9rem);
-	--text-display-xl--line-height: 0.88;
-	--text-display-xl--letter-spacing: -0.04em;
+	/* Display sizes — dramatic condensed scale */
+	--text-display-xl: clamp(2.5rem, 10vw + 0.5rem, 11rem);
+	--text-display-xl--line-height: 0.9;
+	--text-display-xl--letter-spacing: -0.02em;
 
-	--text-display-lg: clamp(1.5rem, 4vw + 0.5rem, 5rem);
+	--text-display-lg: clamp(1.5rem, 5vw + 0.5rem, 5.5rem);
 	--text-display-lg--line-height: 0.95;
-	--text-display-lg--letter-spacing: -0.03em;
+	--text-display-lg--letter-spacing: -0.01em;
 
-	--text-display-md: clamp(1.125rem, 2.5vw + 0.5rem, 3rem);
+	--text-display-md: clamp(1.25rem, 2.5vw + 0.5rem, 3rem);
 	--text-display-md--line-height: 1.05;
-	--text-display-md--letter-spacing: -0.025em;
+	--text-display-md--letter-spacing: -0.01em;
 
-	/* Body text — responsive, professional */
-	--text-body-lg: clamp(1rem, 0.5vw + 0.875rem, 1.25rem);
-	--text-body-lg--line-height: 1.7;
+	/* Body text */
+	--text-body-lg: clamp(1rem, 0.5vw + 0.875rem, 1.2rem);
+	--text-body-lg--line-height: 1.75;
 
 	--text-body: clamp(0.875rem, 0.25vw + 0.8125rem, 1rem);
 	--text-body--line-height: 1.65;
 
-	/* Micro — labels & utility text (tinyfish-style ~11px) */
+	/* Micro — system labels */
 	--text-micro: 0.6875rem;
 	--text-micro--line-height: 1.4;
-	--text-micro--letter-spacing: 0.1em;
+	--text-micro--letter-spacing: 0.08em;
 
-	/* Custom animations */
+	/* Animations */
 	--animate-float: float 6s ease-in-out infinite;
 	--animate-blink: blink 1s step-end infinite;
 	--animate-reveal-up: reveal-up 0.6s var(--ease-reveal) both;
 	--animate-reveal-in: reveal-in 0.5s var(--ease-out) both;
+	--animate-cursor-blink: cursor-blink 1.2s step-end infinite;
+	--animate-pulse-slow: pulse-slow 3s ease-in-out infinite;
 
 	@keyframes float {
-
 		0%,
 		100% {
 			transform: translateY(0px);
 		}
-
 		50% {
 			transform: translateY(-6px);
 		}
 	}
 
 	@keyframes blink {
-
 		0%,
 		100% {
 			opacity: 1;
 		}
-
 		50% {
 			opacity: 0;
 		}
@@ -169,9 +140,7 @@
 		from {
 			opacity: 0;
 			transform: translateY(10px) scale(0.99);
-			/* Much subtler movement */
 		}
-
 		to {
 			opacity: 1;
 			transform: translateY(0) scale(1);
@@ -183,43 +152,97 @@
 			opacity: 0;
 			transform: scale(0.98);
 		}
-
 		to {
 			opacity: 1;
 			transform: scale(1);
 		}
 	}
+
+	@keyframes cursor-blink {
+		0%,
+		100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0;
+		}
+	}
+
+	@keyframes pulse-slow {
+		0%,
+		100% {
+			opacity: 0.6;
+		}
+		50% {
+			opacity: 1;
+		}
+	}
+
+	@keyframes scanline {
+		0% {
+			transform: translateY(-100%);
+		}
+		100% {
+			transform: translateY(100vh);
+		}
+	}
 }
 
 /* ============================================
-   SMOOTH SCROLLING — CSS fallback
+   SMOOTH SCROLLING
    ============================================ */
 html {
 	scroll-behavior: smooth;
 }
 
 /* ============================================
-   THEMED BODY — optimized font rendering
+   INFRASTRUCTURE GRID BACKGROUND
    ============================================ */
 body {
 	background-color: var(--bg);
 	color: var(--fg);
-	transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
+	font-family: var(--font-sans);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;
+	position: relative;
+}
+
+/* Grid lines — engineering paper */
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	background-image: linear-gradient(
+			var(--grid-line) 1px,
+			transparent 1px
+		),
+		linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+	background-size: var(--grid-size) var(--grid-size);
+	mask-image: radial-gradient(
+		ellipse 80% 70% at 50% 30%,
+		black 0%,
+		transparent 100%
+	);
+	-webkit-mask-image: radial-gradient(
+		ellipse 80% 70% at 50% 30%,
+		black 0%,
+		transparent 100%
+	);
 }
 
 /* ============================================
-   TEXT SELECTION — themed highlight
+   TEXT SELECTION
    ============================================ */
 ::selection {
-	background-color: var(--fg);
+	background-color: var(--accent);
 	color: var(--bg);
 }
 
 ::-moz-selection {
-	background-color: var(--fg);
+	background-color: var(--accent);
 	color: var(--bg);
 }
 
@@ -232,16 +255,52 @@ body {
 	border-radius: 2px;
 }
 
-/* Remove default focus for mouse users */
 *:focus:not(:focus-visible) {
 	outline: none;
+}
+
+/* ============================================
+   SYSTEM LABEL UTILITY
+   ============================================ */
+.font-hud {
+	font-family: var(--font-mono);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+/* ============================================
+   SECTION DIVIDER — with label
+   ============================================ */
+.section-label {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 3rem;
+}
+
+.section-label::after {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background: var(--border-strong);
+}
+
+/* ============================================
+   TERMINAL CURSOR
+   ============================================ */
+.terminal-cursor::after {
+	content: "█";
+	display: inline-block;
+	animation: cursor-blink 1.2s step-end infinite;
+	color: var(--accent);
+	margin-left: 2px;
+	font-weight: 400;
 }
 
 /* ============================================
    REDUCED MOTION — accessibility first
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
-
 	html {
 		scroll-behavior: auto;
 	}
@@ -255,7 +314,6 @@ body {
 		scroll-behavior: auto !important;
 	}
 
-	/* Keep essential opacity transitions for state changes */
 	.reveal,
 	.line-reveal {
 		opacity: 1 !important;
@@ -267,7 +325,6 @@ body {
    MOBILE TOUCH TARGETS — 44px minimum
    ============================================ */
 @media (pointer: coarse) {
-
 	a,
 	button,
 	[role="button"] {

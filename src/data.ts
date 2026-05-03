@@ -8,14 +8,15 @@ export const dataCurrently = [
 ];
 
 export const socialLinks = [
-  { title: "GitHub", link: `https://github.com/${githubUsername}` },
+  { title: "GitHub", link: `https://github.com/${githubUsername}`, icon: "github" },
   {
     title: "LinkedIn",
     link: "https://linkedin.com/in/sarvesh-rane-80452522a",
+    icon: "linkedin",
   },
-  { title: "Instagram", link: "https://www.instagram.com/sarve.ssh_/" },
-  { title: "Twitter/X", link: "https://twitter.com/sarvessh_/" },
-  { title: "Gmail", link: "mailto:sarveshrane2000.portfolio-site@gmail.com" },
+  { title: "Instagram", link: "https://www.instagram.com/sarve.ssh_/", icon: "instagram" },
+  { title: "Twitter/X", link: "https://twitter.com/sarvessh_/", icon: "x" },
+  { title: "Gmail", link: "mailto:sarveshrane2000.portfolio-site@gmail.com", icon: "gmail" },
 ];
 
 export const projects = [

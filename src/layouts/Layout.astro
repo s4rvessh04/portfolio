@@ -15,32 +15,19 @@ const { title } = Astro.props;
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<!-- Theme: detect system preference or saved choice before paint -->
-		<script is:inline>
-			(function () {
-				var saved = localStorage.getItem("theme");
-				var theme = saved
-					? saved
-					: window.matchMedia("(prefers-color-scheme: light)").matches
-					? "light"
-					: "dark";
-				document.documentElement.setAttribute("data-theme", theme);
-			})();
-		</script>
 		<GoogleAnalytics />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={SITE_DESCRIPTION} />
-		<meta name="color-scheme" content="dark light" />
-		<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
-		<meta name="theme-color" content="#f7f7f7" media="(prefers-color-scheme: light)" />
+		<meta name="color-scheme" content="dark" />
+		<meta name="theme-color" content="#09090b" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
 		<!-- Font loading: preconnect + stylesheet -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
 			rel="stylesheet"
 		/>
 
@@ -100,7 +87,7 @@ const { title } = Astro.props;
 			class="fixed top-0 left-0 z-[200] px-4 py-2 text-sm font-medium -translate-y-full focus:translate-y-0"
 			style="background: var(--accent); color: #fff; transition: transform 200ms var(--ease-out);"
 		>
-			Skip to content
+		Skip to content
 		</a>
 		<!-- Google Tag Manager (noscript) -->
 		<noscript
@@ -111,258 +98,71 @@ const { title } = Astro.props;
 				style="display:none;visibility:hidden"></iframe>
 		</noscript>
 
-		<!-- ===========================
-		     PAGE LOADER — HUD Reticle
-		     =========================== -->
-		<div
-			id="page-loader"
-			class="fixed inset-0 z-[100] flex flex-col items-center justify-center pointer-events-auto"
-			style="background-color: var(--loader-bg);"
-		>
-			<div class="loader-scanlines"></div>
-			<div class="relative flex flex-col items-center">
-				<svg
-					id="hud-reticle"
-					width="120"
-					height="120"
-					viewBox="0 0 120 120"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-					style="opacity: 0;"
-				>
-					<circle
-						id="hud-ring-outer"
-						cx="60"
-						cy="60"
-						r="56"
-						stroke="var(--fg-faint)"
-						stroke-width="0.5"
-						stroke-dasharray="352"
-						stroke-dashoffset="352"></circle>
-					<circle
-						id="hud-ring-inner"
-						cx="60"
-						cy="60"
-						r="40"
-						stroke="var(--fg-subtle)"
-						stroke-width="0.5"
-						stroke-dasharray="251"
-						stroke-dashoffset="251"></circle>
-					<line
-						id="hud-cross-h"
-						x1="20"
-						y1="60"
-						x2="100"
-						y2="60"
-						stroke="var(--fg-subtle)"
-						stroke-width="0.5"
-						stroke-dasharray="80"
-						stroke-dashoffset="80"></line>
-					<line
-						id="hud-cross-v"
-						x1="60"
-						y1="20"
-						x2="60"
-						y2="100"
-						stroke="var(--fg-subtle)"
-						stroke-width="0.5"
-						stroke-dasharray="80"
-						stroke-dashoffset="80"></line>
-					<path
-						id="hud-bracket-tl"
-						d="M25 40 L25 25 L40 25"
-						stroke="var(--fg)"
-						stroke-width="1"
-						fill="none"
-						opacity="0"></path>
-					<path
-						id="hud-bracket-tr"
-						d="M80 25 L95 25 L95 40"
-						stroke="var(--fg)"
-						stroke-width="1"
-						fill="none"
-						opacity="0"></path>
-					<path
-						id="hud-bracket-bl"
-						d="M25 80 L25 95 L40 95"
-						stroke="var(--fg)"
-						stroke-width="1"
-						fill="none"
-						opacity="0"></path>
-					<path
-						id="hud-bracket-br"
-						d="M80 95 L95 95 L95 80"
-						stroke="var(--fg)"
-						stroke-width="1"
-						fill="none"
-						opacity="0"></path>
-					<circle
-						id="hud-center-dot"
-						cx="60"
-						cy="60"
-						r="2"
-						fill="var(--fg)"
-						opacity="0"></circle>
-				</svg>
-				<div class="mt-8 flex flex-col items-center gap-3">
-					<p
-						id="hud-status"
-						class="text-micro uppercase tracking-[0.4em] font-light"
-						style="opacity: 0; color: var(--fg-muted);"
-					>
-						<!-- Set by JS randomly -->
-					</p>
-					<div
-						id="hud-progress-track"
-						class="w-32 h-px relative overflow-hidden"
-						style="opacity: 0; background-color: var(--fg-faint);"
-					>
-						<div
-							id="hud-progress-fill"
-							class="absolute inset-y-0 left-0"
-							style="width: 0%; background-color: var(--accent);"
-						>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Noise texture (global, subtle) -->
-		<div
-			class="fixed inset-0 pointer-events-none z-[2] opacity-[0.02]"
-			style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 512 512%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');"
-		>
-		</div>
-
 		<Navbar />
 		<main id="main-content" class="relative z-[3]" aria-label="Page content">
 			<slot />
 		</main>
 
+		<!-- Status bar — tmux-inspired bottom bar -->
+		<div
+			id="status-bar"
+			class="fixed bottom-0 left-0 right-0 z-[90] hidden md:flex items-center justify-between px-6 lg:px-8 font-mono"
+			style="height: 28px; background: var(--bg-elevated); border-top: 1px solid var(--border-strong); font-size: 0.625rem; letter-spacing: 0.05em; color: var(--fg-subtle); opacity: 0; transform: translateY(100%); transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out);"
+		>
+			<div class="flex items-center gap-4">
+				<span class="flex items-center gap-1.5">
+					<span class="w-1.5 h-1.5 rounded-full animate-pulse-slow" style="background: var(--accent);"></span>
+					<span class="uppercase" style="color: var(--accent);">online</span>
+				</span>
+				<span style="color: var(--fg-faint);">│</span>
+				<span id="status-section" class="uppercase">hero</span>
+			</div>
+			<div class="flex items-center gap-4">
+				<span id="status-scroll" class="tabular-nums">ln 0</span>
+				<span style="color: var(--fg-faint);">│</span>
+				<span id="status-time" class="tabular-nums uppercase"></span>
+			</div>
+		</div>
+
 		<style is:global>
 			/* ============================================
-			   HERO GRID — contained to hero section only
+			   SCROLL REVEAL SYSTEM — smooth fade + rise
 			   ============================================ */
-			.hero-grid {
-				position: absolute;
-				inset: 0;
-				pointer-events: none;
-				z-index: 0;
-			}
-			.hero-grid-lines {
-				position: absolute;
-				inset: 0;
-				background-image: linear-gradient(
-						to right,
-						var(--fg-faint) 1px,
-						transparent 1px
-					),
-					linear-gradient(
-						to bottom,
-						var(--fg-faint) 1px,
-						transparent 1px
-					);
-				background-size: 80px 80px;
-				mask-image: radial-gradient(
-					ellipse 70% 60% at 50% 40%,
-					black 30%,
-					transparent 70%
-				);
-				-webkit-mask-image: radial-gradient(
-					ellipse 70% 60% at 50% 40%,
-					black 30%,
-					transparent 70%
-				);
-			}
-			.hero-grid-glow {
-				position: absolute;
-				inset: 0;
-			}
-
-			/* ============================================
-			   LOADER — HUD scanlines
-			   ============================================ */
-			.loader-scanlines {
-				position: absolute;
-				inset: 0;
-				pointer-events: none;
-				background: repeating-linear-gradient(
-					0deg,
-					transparent,
-					transparent 2px,
-					var(--fg-faint) 2px,
-					var(--fg-faint) 4px
-				);
-				z-index: 1;
-			}
-
-			/* ============================================
-   SCROLL REVEAL SYSTEM — fade-only, clean
-   ============================================ */
 			.reveal {
 				opacity: 0;
-				transition: opacity 0.3s var(--ease-out);
+				transform: translateY(24px);
+				transition:
+					opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+					transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 			}
 
-			/* Anime.js inspired staggered reveals with grid options */
-			.reveal[data-stagger-grid],
-			.reveal[style*="--reveal-delay"] {
-				transition-delay: calc(var(--reveal-delay, 0s) + 0.05s);
-			}
-
-			/* Revealed state */
 			.reveal.revealed {
 				opacity: 1;
+				transform: translateY(0);
 			}
 
-			/* Line reveal with minimal delay */
+			/* Line reveal — clean horizontal wipe */
 			.line-reveal {
 				height: 1px;
-				background: var(--fg-faint);
+				background: var(--border-strong);
 				transform: scaleX(0);
 				transform-origin: left;
-				transition: transform 0.2s var(--ease-out);
+				transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 			}
 
 			.line-reveal.revealed {
 				transform: scaleX(1);
 			}
 
-			/* Anime.js inspired easing for specific cases - using their naming convention */
-			:root {
-				--anime-ease-inOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-				--anime-ease-inOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
-				--anime-ease-inOutCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
-			}
-
-			/* Stagger delays — minimal Apple-style (15-40ms between items) */
-			.stagger-1 {
-				transition-delay: 0.015s;
-			}
-			.stagger-2 {
-				transition-delay: 0.03s;
-			}
-			.stagger-3 {
-				transition-delay: 0.045s;
-			}
-			.stagger-4 {
-				transition-delay: 0.06s;
-			}
-			.stagger-5 {
-				transition-delay: 0.075s;
-			}
-			.stagger-6 {
-				transition-delay: 0.09s;
-			}
-			.stagger-7 {
-				transition-delay: 0.105s;
-			}
-			.stagger-8 {
-				transition-delay: 0.12s;
-			}
-
-			/* (line-reveal rules defined above — no duplicate needed) */
+			/* Stagger delays — perceptible but snappy (60ms between items) */
+			.stagger-1 { transition-delay: 0.06s; }
+			.stagger-2 { transition-delay: 0.12s; }
+			.stagger-3 { transition-delay: 0.18s; }
+			.stagger-4 { transition-delay: 0.24s; }
+			.stagger-5 { transition-delay: 0.30s; }
+			.stagger-6 { transition-delay: 0.36s; }
+			.stagger-7 { transition-delay: 0.42s; }
+			.stagger-8 { transition-delay: 0.48s; }
 
 			/* Scrollbar */
 			::-webkit-scrollbar {
@@ -388,420 +188,149 @@ const { title } = Astro.props;
 			@starting-style {
 				.reveal {
 					opacity: 0;
+					transform: translateY(24px);
 				}
 				.line-reveal {
 					transform: scaleX(0);
 				}
 			}
+
+			/* ============================================
+			   STATUS BAR — bottom padding for content
+			   ============================================ */
+			@media (min-width: 768px) {
+				body {
+					padding-bottom: 28px;
+				}
+			}
 		</style>
 
-		<!-- HUD Loader animation (anime.js) -->
+		<!-- Page entry animation — no loader, straight into content -->
 		<script>
-			import { createTimeline, stagger, steps } from "animejs";
-			import { eases } from "animejs/easings/eases";
+			import { createTimeline, stagger } from "animejs";
 
-			const loader = document.getElementById("page-loader");
-			const statusEl = document.getElementById("hud-status");
-
-			// ── Single random techy status message ──
-			const statusMessages = [
-				"Resolving CDN Edge Nodes",
-				"Negotiating TLS Handshake",
-				"Fetching Assets from Origin",
-				"Hydrating Components",
-				"Establishing Secure Tunnel",
-				"Compiling Shader Pipeline",
-			];
-			const randomMsg =
-				statusMessages[
-					Math.floor(Math.random() * statusMessages.length)
-				];
-			if (statusEl) statusEl.textContent = randomMsg;
-
-			// ── Page entry animation (runs after loader) ──
+			// ── Page entry animation — immediate, cascading ──
 			function animatePageEntry() {
 				const entryTl = createTimeline({
 					defaults: { ease: "outQuart" },
 				});
 
-				// Navbar slides down — faster, snappier
 				entryTl
 					.add("#main-nav", {
 						opacity: [0, 1],
-						translateY: [-20, 0],
-						duration: 400,
+						translateY: [-12, 0],
+						duration: 500,
 					})
-					// Hero name with bounce
-					.add(
-						".hero-animate:first-of-type",
-						{
-							opacity: [0, 1],
-							translateY: [30, 0],
-							duration: 600,
-							easing: eases.outBounce,
-						},
-						"-=250"
-					)
-					// Other hero elements slide in smoothly
-					.add(
-						".hero-animate:not(:first-of-type)",
-						{
-							opacity: [0, 1],
-							translateY: [20, 0],
-							duration: 400,
-							delay: stagger(50),
-						},
-						"-=400"
-					)
-					// Scroll indicator fades in last
-					.add(
-						".hero-scroll-indicator",
-						{
-							opacity: [0, 1],
-							translateY: [15, 0],
-							duration: 400,
-						},
-						"-=150"
-					);
+					.add(".hero-animate:first-of-type", {
+						opacity: [0, 1],
+						translateY: [24, 0],
+						duration: 700,
+					}, "-=350")
+					.add(".hero-animate:not(:first-of-type)", {
+						opacity: [0, 1],
+						translateY: [16, 0],
+						duration: 500,
+						delay: stagger(60),
+					}, "-=500")
+					.add(".hero-scroll-indicator", {
+						opacity: [0, 1],
+						translateY: [12, 0],
+						duration: 500,
+					}, "-=200");
+
+				// Animate status bar in after page loads
+				setTimeout(() => {
+					const bar = document.getElementById("status-bar");
+					if (bar) {
+						bar.style.opacity = "1";
+						bar.style.transform = "translateY(0)";
+					}
+				}, 800);
 			}
 
-			// ── Loader timeline (sped up ~40-50%) ──
-			// Failsafe: hide loader after 5s even if animation fails
-			let loaderDismissed = false;
-			function dismissLoader() {
-				if (loaderDismissed) return;
-				loaderDismissed = true;
-				if (loader) {
-					loader.style.display = "none";
-					loader.style.pointerEvents = "none";
-				}
-				animatePageEntry();
-			}
-			const loaderFailsafe = setTimeout(dismissLoader, 5000);
-
-			const loaderTl = createTimeline({
-				defaults: { ease: "outExpo" },
-				onComplete: () => {
-					clearTimeout(loaderFailsafe);
-					dismissLoader();
-				},
-			});
-
-			loaderTl
-				.add("#hud-reticle", {
-					opacity: [0, 1, 0.3, 1],
-					duration: 300,
-					ease: "inOutQuad",
-				})
-				.add(
-					"#hud-ring-outer",
-					{
-						strokeDashoffset: [352, 0],
-						duration: 450,
-						ease: "inOutQuart",
-					},
-					"-=120"
-				)
-				.add(
-					"#hud-ring-inner",
-					{
-						strokeDashoffset: [251, 0],
-						duration: 350,
-						ease: "outQuart",
-					},
-					"-=280"
-				)
-				.add(
-					["#hud-cross-h", "#hud-cross-v"],
-					{
-						strokeDashoffset: [80, 0],
-						duration: 250,
-						ease: "outBack",
-					},
-					"-=180"
-				)
-				.add(
-					[
-						"#hud-bracket-tl",
-						"#hud-bracket-tr",
-						"#hud-bracket-bl",
-						"#hud-bracket-br",
-					],
-					{
-						opacity: [0, 1, 0.2, 1],
-						duration: 250,
-						ease: steps(4),
-						delay: stagger(40),
-					},
-					"-=120"
-				)
-				.add(
-					"#hud-center-dot",
-					{
-						opacity: [0, 1],
-						r: [0, 2],
-						duration: 200,
-						ease: "outBounce",
-					},
-					"-=60"
-				)
-				.add(
-					"#hud-status",
-					{
-						opacity: [0, 0.6, 0, 0.4],
-						duration: 300,
-						ease: steps(4),
-					},
-					"-=120"
-				)
-				.add(
-					"#hud-progress-track",
-					{
-						opacity: [0, 1],
-						scaleX: [0, 1],
-						duration: 250,
-						ease: "outQuart",
-					},
-					"-=180"
-				)
-				.add("#hud-progress-fill", {
-					width: ["0%", "100%"],
-					duration: 500,
-					ease: "inOutQuart",
-				})
-				// ── EXIT: lock → glitch → disassemble → burst ──
-
-				// 1. Center-dot "lock-on" pulse
-				.add("#hud-center-dot", {
-					r: [2, 5, 2],
-					opacity: [1, 0.3, 1],
-					duration: 180,
-					ease: "inOutQuad",
-				})
-
-				// 2. Status + progress retract
-				.add(
-					["#hud-status", "#hud-progress-track"],
-					{
-						opacity: [1, 0],
-						scaleX: [1, 0],
-						duration: 150,
-						ease: "inQuart",
-					},
-					"-=60"
-				)
-
-				// 3. Crosshairs snap to zero length
-				.add(
-					["#hud-cross-h", "#hud-cross-v"],
-					{
-						strokeDashoffset: [0, 80],
-						duration: 180,
-						ease: "inBack",
-					},
-					"-=60"
-				)
-
-				// 4. Brackets fly outward to corners
-				.add(
-					"#hud-bracket-tl",
-					{
-						translateX: -30,
-						translateY: -30,
-						opacity: [1, 0],
-						duration: 250,
-						ease: "inQuart",
-					},
-					"-=100"
-				)
-				.add(
-					"#hud-bracket-tr",
-					{
-						translateX: 30,
-						translateY: -30,
-						opacity: [1, 0],
-						duration: 250,
-						ease: "inQuart",
-					},
-					"-=250"
-				)
-				.add(
-					"#hud-bracket-bl",
-					{
-						translateX: -30,
-						translateY: 30,
-						opacity: [1, 0],
-						duration: 250,
-						ease: "inQuart",
-					},
-					"-=250"
-				)
-				.add(
-					"#hud-bracket-br",
-					{
-						translateX: 30,
-						translateY: 30,
-						opacity: [1, 0],
-						duration: 250,
-						ease: "inQuart",
-					},
-					"-=250"
-				)
-
-				// 5. Inner ring implodes, outer ring explodes
-				.add(
-					"#hud-ring-inner",
-					{
-						r: [40, 0],
-						opacity: [1, 0],
-						strokeWidth: [0.5, 3],
-						duration: 200,
-						ease: "inQuint",
-					},
-					"-=140"
-				)
-				.add(
-					"#hud-ring-outer",
-					{
-						r: [56, 120],
-						opacity: [1, 0],
-						strokeWidth: [0.5, 0],
-						duration: 280,
-						ease: "outQuad",
-					},
-					"-=160"
-				)
-
-				// 6. Center dot detonates — scales up then vanishes
-				.add(
-					"#hud-center-dot",
-					{
-						r: [2, 40],
-						opacity: [1, 0],
-						duration: 250,
-						ease: "outQuad",
-					},
-					"-=200"
-				)
-
-				// 7. Brief white flash on the whole reticle
-				.add(
-					"#hud-reticle",
-					{
-						opacity: [1, 0],
-						scale: [1, 1.3],
-						filter: ["brightness(1)", "brightness(8)"],
-						duration: 180,
-						ease: "outExpo",
-					},
-					"-=100"
-				)
-
-				// 8. Loader overlay sweep-out
-				.add(
-					"#page-loader",
-					{
-						opacity: [1, 0],
-						duration: 300,
-						ease: "inQuad",
-					},
-					"-=60"
-				);
+			// Start immediately on load
+			animatePageEntry();
 		</script>
 
-		<!-- Scroll reveal observer with anime.js-inspired staggering -->
+		<!-- Status bar logic -->
 		<script>
-			// Anime.js-inspired stagger options for grid layouts
-			const staggerOptions = {
-				grid: [12, 1], // Default to single column for most sections
-				from: "center",
-				axis: "y", // Vertical staggering
-			};
+			// Update time
+			function updateStatusTime() {
+				const el = document.getElementById("status-time");
+				if (el) {
+					const now = new Date();
+					el.textContent =
+						now.toLocaleTimeString("en-US", {
+							hour: "2-digit",
+							minute: "2-digit",
+							second: "2-digit",
+							hour12: false,
+							timeZone: "Asia/Kolkata",
+						}) + " IST";
+				}
+			}
+			updateStatusTime();
+			setInterval(updateStatusTime, 1000);
 
-			// Enhanced stagger options for specific sections
-			const skillsStaggerOptions = {
-				grid: [2, 6], // 2 columns for skills
-				from: "center",
-				axis: "y",
-			};
+			// Update section and scroll position
+			const sections = [
+				{ id: "hero-section", label: "hero" },
+				{ id: "work-section", label: "deployments" },
+				{ id: "skills-section", label: "dependencies" },
+				{ id: "about-section", label: "readme" },
+			];
 
+			function updateStatusBar() {
+				const scrollEl = document.getElementById("status-scroll");
+				const sectionEl = document.getElementById("status-section");
+
+				if (scrollEl) {
+					const pct = Math.round(
+						(window.scrollY /
+							(document.documentElement.scrollHeight - window.innerHeight)) *
+							100
+					);
+					scrollEl.textContent = `ln ${pct}%`;
+				}
+
+				if (sectionEl) {
+					let current = sections[0].label;
+					for (const s of sections) {
+						const el = document.getElementById(s.id);
+						if (el && el.getBoundingClientRect().top <= window.innerHeight / 2) {
+							current = s.label;
+						}
+					}
+					sectionEl.textContent = current;
+				}
+			}
+
+			window.addEventListener("scroll", updateStatusBar, { passive: true });
+			updateStatusBar();
+		</script>
+
+		<!-- Scroll reveal observer -->
+		<script>
 			const observer = new IntersectionObserver(
 				(entries) => {
 					entries.forEach((entry) => {
 						if (entry.isIntersecting) {
-							const target = entry.target;
-
-							// Check if element has grid stagger data
-							if (target.classList.contains("reveal")) {
-								// Add stagger delay based on position and section type
-								const rect = target.getBoundingClientRect();
-								const section = target.closest("section");
-
-								let delay = 0;
-
-								if (
-									section &&
-									section.id === "skills-section"
-								) {
-									// Grid-based stagger for skills section
-									const row = Math.floor(
-										(target.offsetTop - section.offsetTop) /
-											target.offsetHeight
-									);
-									const col = Math.floor(
-										(target.offsetLeft -
-											section.offsetLeft) /
-											target.offsetWidth
-									);
-									delay =
-										(row * staggerOptions.grid[1] + col) *
-										0.03; // 30ms base delay
-								} else {
-									// Simple vertical stagger for other sections
-									const index = Array.from(
-										target.parentElement.children
-									).indexOf(target);
-									delay = index * 0.015; // 15ms base delay
-								}
-
-								// Apply CSS custom property for delay
-								target.style.setProperty(
-									"--reveal-delay",
-									`${delay}s`
-								);
-							}
-
-							target.classList.add("revealed");
-							observer.unobserve(target);
+							entry.target.classList.add("revealed");
+							observer.unobserve(entry.target);
 						}
 					});
 				},
-				{ threshold: 0.05, rootMargin: "0px 0px -80px 0px" }
+				{ threshold: 0.08, rootMargin: "0px 0px -60px 0px" }
 			);
 
-			const revealElements = document.querySelectorAll(".reveal, .line-reveal");
-			let revealedCount = 0;
-			const totalRevealable = revealElements.length;
-
-			// Patch unobserve to track completion and disconnect observer
-			const originalUnobserve = observer.unobserve.bind(observer);
-			observer.unobserve = (target) => {
-				originalUnobserve(target);
-				revealedCount++;
-				if (revealedCount >= totalRevealable) {
-					observer.disconnect();
-				}
-			};
-
-			revealElements.forEach((el) => observer.observe(el));
+			document.querySelectorAll(".reveal, .line-reveal").forEach((el) => observer.observe(el));
 		</script>
 
 		<!-- Cloudflare Web Analytics -->
 		<script
-			is:inline
 			defer
 			src="https://static.cloudflareinsights.com/beacon.min.js"
-			data-cf-beacon={`{"token":"3fcbb74087d84e6382b5294ec7fce2be"}`}
+			data-cf-beacon='{"token": "f1b03c7ad51b497aad9e6f45fc464a8f"}'
 		></script>
 	</body>
 </html>

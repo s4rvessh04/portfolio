@@ -3,100 +3,209 @@ import { SITE_NAME } from "../config";
 import { socialLinks } from "../data";
 ---
 
-<footer class="relative z-[3] mt-32" aria-label="Footer">
-	<!-- CTA Section -->
-	<div class="px-5 md:px-8 lg:px-16 mb-20">
-		<div
-			class="relative overflow-hidden rounded-sm p-6 md:p-16 text-center reveal"
-			style="border: 1px solid var(--border-strong);"
-		>
-			<!-- Grid inside CTA -->
+<footer
+	class="relative"
+	aria-label="Footer"
+	style="border-top: 1px solid var(--hairline); background: var(--canvas);"
+>
+	<!-- CTA Band — "Start Deploying" style black CTA band -->
+	<div
+		style="background: var(--canvas); padding: var(--space-4xl) var(--space-lg);"
+	>
+		<div style="max-width: 1200px; margin: 0 auto;">
 			<div
-				class="absolute inset-0 pointer-events-none"
-				style="background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px); background-size: 32px 32px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 70%);"
-			></div>
-			<div
-				class="absolute inset-0 pointer-events-none"
-				style="background: radial-gradient(ellipse 50% 50% at 50% 50%, var(--accent-glow) 0%, transparent 70%);"
-			></div>
+				class="reveal"
+				style="border: 1px solid var(--hairline); border-radius: var(--rounded-lg); padding: var(--space-3xl) var(--space-xl); text-align: center; position: relative; overflow: hidden; background: var(--canvas-elevated);"
+			>
+				<!-- Subtle mesh gradient behind CTA -->
+				<div
+					aria-hidden="true"
+					style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 70% 60% at 30% 50%, rgba(80,227,194,0.08) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 70% 50%, rgba(121,40,202,0.06) 0%, transparent 60%); z-index: 0;"
+				>
+				</div>
 
-			<div class="relative z-10">
-				<p
-					class="font-mono text-micro uppercase tracking-[0.2em] mb-4"
-					style="color: var(--accent); opacity: 0.7;"
-				>
-					$ open --connection
-				</p>
-				<h3 class="font-display font-extrabold text-display-md uppercase mb-6 break-words">
-					Let's Work<br />Together
-				</h3>
-				<p
-					class="text-body-lg max-w-md mx-auto mb-10 leading-relaxed"
-					style="color: var(--fg-muted);"
-				>
-					Open to discussing new opportunities, interesting projects, and creative collaborations.
-				</p>
-				<a
-					href="mailto:sarveshrane2000@gmail.com"
-					class="cta-btn inline-flex items-center gap-3 px-8 py-3 rounded-sm"
-					style="border: 1px solid var(--border-strong); background: var(--surface); transition: transform 150ms var(--ease-out), background-color 200ms var(--ease-out), border-color 200ms var(--ease-out);"
-				>
-					<span
-						class="font-mono text-micro uppercase tracking-wider"
-						style="color: var(--fg-muted); transition: color 150ms var(--ease-out);"
-						>Say Hello</span
+				<div style="position: relative; z-index: 1;">
+					<p
+						class="eyebrow"
+						style="color: var(--text-mute); margin-bottom: var(--space-md);"
 					>
-					<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--fg-subtle); transition: color 150ms var(--ease-out), transform 150ms var(--ease-out);"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-				</a>
+						Open to opportunities
+					</p>
+					<h3
+						style="font-family: var(--font-sans); font-size: clamp(1.75rem, 3vw + 1rem, 2.75rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.04em; color: var(--text-ink); margin: 0 0 var(--space-md) 0;"
+					>
+						Let's work together
+					</h3>
+					<p
+						style="font-size: 1rem; line-height: 1.6; color: var(--text-body); max-width: 420px; margin: 0 auto var(--space-2xl) auto;"
+					>
+						Open to discussing new opportunities, interesting
+						projects, and creative collaborations.
+					</p>
+					<div
+						style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center;"
+					>
+						<a
+							href="mailto:sarveshrane2000@gmail.com"
+							class="btn-primary cta-main-btn"
+							id="footer-cta-btn"
+						>
+							Say Hello
+						</a>
+						<a
+							href={socialLinks[0].link}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="btn-secondary cta-secondary-btn"
+							id="footer-github-btn"
+						>
+							View GitHub
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- Footer columns -->
-	<div style="border-top: 1px solid var(--border-strong);">
-		<div class="px-5 md:px-8 lg:px-16 py-10 md:py-16">
-			<div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 mb-16 reveal">
+	<div style="border-top: 1px solid var(--hairline);">
+		<div
+			style="max-width: 1200px; margin: 0 auto; padding: var(--space-3xl) var(--space-lg);"
+		>
+			<div
+				class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6 mb-12 reveal"
+			>
+				<!-- Brand column -->
 				<div class="md:col-span-1">
-					<p class="font-display font-bold text-lg mb-3">{SITE_NAME}</p>
-					<p class="text-body leading-relaxed max-w-xs" style="color: var(--fg-subtle);">
-						Building scalable software & pushing code since 2019.
+					<p
+						style="font-family: var(--font-mono); font-weight: 600; font-size: 0.9375rem; color: var(--text-ink); margin: 0 0 var(--space-sm) 0; letter-spacing: -0.03em;"
+					>
+						{SITE_NAME.split(".")[0].toLowerCase()}<span
+							style="color: var(--text-mute);">.</span
+						><span style="color: var(--text-faint);"
+							>{SITE_NAME.split(".")[1]?.toLowerCase()}</span
+						>
+					</p>
+					<p
+						style="font-size: 0.875rem; line-height: 1.6; color: var(--text-mute); max-width: 200px; margin: 0;"
+					>
+						Systems-focused engineer. Designs and builds scalable
+						applications, thinks in distributed systems.
 					</p>
 				</div>
+
+				<!-- Navigation -->
 				<div>
-					<p class="font-mono text-micro uppercase mb-4 tracking-wider" style="color: var(--fg-subtle);">Navigation</p>
-					<div class="flex flex-col gap-2">
-						<a href="#" class="footer-link text-base w-fit" style="color: var(--fg-muted);">Home</a>
-						<a href="#work-section" class="footer-link text-base w-fit" style="color: var(--fg-muted);">Work</a>
-						<a href="#about-section" class="footer-link text-base w-fit" style="color: var(--fg-muted);">About</a>
+					<p
+						class="eyebrow"
+						style="color: var(--text-mute); margin-bottom: var(--space-md);"
+					>
+						Navigation
+					</p>
+					<div
+						style="display: flex; flex-direction: column; gap: 10px;"
+					>
+						<a
+							href="#"
+							class="footer-link"
+							style="font-size: 0.875rem; color: var(--text-body); text-decoration: none;"
+							>Home</a
+						>
+						<a
+							href="#work-section"
+							class="footer-link"
+							style="font-size: 0.875rem; color: var(--text-body); text-decoration: none;"
+							>Work</a
+						>
+						<a
+							href="#about-section"
+							class="footer-link"
+							style="font-size: 0.875rem; color: var(--text-body); text-decoration: none;"
+							>About</a
+						>
 					</div>
 				</div>
+
+				<!-- Connect -->
 				<div>
-					<p class="font-mono text-micro uppercase mb-4 tracking-wider" style="color: var(--fg-subtle);">Connect</p>
-					<div class="flex flex-col gap-2">
-						{socialLinks.map((social) => (
-							<a href={social.link} target="_blank" rel="noopener noreferrer" class="footer-link text-base w-fit" style="color: var(--fg-muted);">{social.title}</a>
-						))}
+					<p
+						class="eyebrow"
+						style="color: var(--text-mute); margin-bottom: var(--space-md);"
+					>
+						Connect
+					</p>
+					<div
+						style="display: flex; flex-direction: column; gap: 10px;"
+					>
+						{
+							socialLinks.map((social) => (
+								<a
+									href={social.link}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="footer-link"
+									style="font-size: 0.875rem; color: var(--text-body); text-decoration: none;"
+								>
+									{social.title}
+								</a>
+							))
+						}
 					</div>
 				</div>
+
+				<!-- Status -->
 				<div class="md:text-right">
-					<p class="font-mono text-micro uppercase mb-4 tracking-wider" style="color: var(--fg-subtle);">Status</p>
-					<p class="text-base" style="color: var(--fg-muted);">India</p>
-					<p class="text-base mt-1" style="color: var(--fg-subtle);">Available for opportunities</p>
-					<div class="flex md:justify-end items-center gap-2 mt-3">
-						<span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--accent);"></span>
-						<span class="font-mono text-micro uppercase" style="color: var(--accent); opacity: 0.7;">open_to_work</span>
+					<p
+						class="eyebrow"
+						style="color: var(--text-mute); margin-bottom: var(--space-md);"
+					>
+						Status
+					</p>
+					<p
+						style="font-size: 0.875rem; color: var(--text-body); margin: 0 0 4px 0;"
+					>
+						India, IST
+					</p>
+					<p
+						style="font-size: 0.875rem; color: var(--text-mute); margin: 0 0 var(--space-sm) 0;"
+					>
+						Looking for the next hard problem
+					</p>
+					<div
+						style="display: flex; align-items: center; gap: 6px; justify-content: flex-end;"
+						class="md:justify-end justify-start"
+					>
+						<span
+							style="width: 6px; height: 6px; border-radius: 50%; background: #22c55e; display: inline-block;"
+							class="animate-pulse-slow"></span>
+						<span class="eyebrow" style="color: var(--text-mute);"
+							>Open to work</span
+						>
 					</div>
 				</div>
 			</div>
 
-			<div class="h-px mb-6" style="background-color: var(--fg-faint);"></div>
-			<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-				<p class="font-mono text-micro uppercase" style="color: var(--fg-subtle);">
-					&copy; {new Date().getFullYear()} Sarvesh Rane
-				</p>
-				<p class="font-mono text-micro uppercase" style="color: var(--fg-faint);">
-					exit 0
-				</p>
+			<!-- Bottom row -->
+			<div
+				style="height: 1px; background: var(--hairline); margin-bottom: var(--space-lg);"
+			>
+			</div>
+			<div style="display: flex; flex-direction: column; gap: 8px;">
+				<div
+					style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;"
+				>
+					<p class="eyebrow" style="color: var(--text-faint);">
+						&copy; {new Date().getFullYear()} Sarvesh Rane. All rights
+						reserved.
+					</p>
+					<p
+						class="eyebrow"
+						style="color: var(--text-faint);"
+						title="Deployed on Cloudflare Pages · CI via GitHub Actions"
+					>
+						Shipped to the edge · zero cold starts
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -104,30 +213,23 @@ import { socialLinks } from "../data";
 
 <style>
 	.footer-link {
-		transition: color 200ms var(--ease-out);
+		transition: color 150ms var(--ease-out);
 	}
 	@media (hover: hover) and (pointer: fine) {
 		.footer-link:hover {
-			color: var(--fg) !important;
+			color: var(--text-ink) !important;
 		}
 	}
 	.footer-link:active {
 		transform: scale(0.98);
 	}
-	@media (hover: hover) and (pointer: fine) {
-		.cta-btn:hover {
-			background-color: var(--surface-hover) !important;
-			border-color: var(--accent) !important;
-		}
-		.cta-btn:hover span {
-			color: var(--fg) !important;
-		}
-		.cta-btn:hover svg {
-			color: var(--accent) !important;
-			transform: translateX(3px);
-		}
-	}
-	.cta-btn:active {
-		transform: scale(0.97);
+
+	.cta-main-btn,
+	.cta-secondary-btn {
+		transition:
+			opacity 150ms var(--ease-out),
+			transform 150ms var(--ease-out),
+			background 150ms var(--ease-out),
+			border-color 150ms var(--ease-out);
 	}
 </style>

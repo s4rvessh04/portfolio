@@ -1,52 +1,89 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
-  <rect width="800" height="500" fill="#0a0a0a"/>
-  <!-- Grid pattern -->
+  <!-- White canvas background -->
+  <rect width="800" height="500" fill="#ffffff"/>
+
+  <!-- Hairline grid — very subtle -->
   <defs>
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ebebeb" stroke-width="0.5"/>
     </pattern>
-    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#10b981" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#6366f1" stop-opacity="0.4"/>
+    <!-- Soft green-to-cyan gradient for chart line -->
+    <linearGradient id="chartLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#007cf0" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#00dfd8" stop-opacity="0.6"/>
     </linearGradient>
-    <linearGradient id="g2" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#10b981" stop-opacity="0"/>
-      <stop offset="100%" stop-color="#10b981" stop-opacity="0.2"/>
+    <!-- Area fill gradient -->
+    <linearGradient id="areaBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#007cf0" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#007cf0" stop-opacity="0"/>
     </linearGradient>
   </defs>
   <rect width="800" height="500" fill="url(#grid)"/>
-  <!-- Dashboard cards -->
-  <rect x="50" y="40" width="220" height="120" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
-  <rect x="290" y="40" width="220" height="120" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
-  <rect x="530" y="40" width="220" height="120" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
-  <!-- Card labels -->
-  <rect x="70" y="60" width="60" height="6" rx="3" fill="rgba(255,255,255,0.1)"/>
-  <rect x="70" y="80" width="100" height="16" rx="4" fill="rgba(255,255,255,0.15)"/>
-  <rect x="70" y="110" width="80" height="6" rx="3" fill="#10b981" opacity="0.4"/>
-  <rect x="310" y="60" width="60" height="6" rx="3" fill="rgba(255,255,255,0.1)"/>
-  <rect x="310" y="80" width="100" height="16" rx="4" fill="rgba(255,255,255,0.15)"/>
-  <rect x="310" y="110" width="60" height="6" rx="3" fill="#ef4444" opacity="0.4"/>
-  <rect x="550" y="60" width="60" height="6" rx="3" fill="rgba(255,255,255,0.1)"/>
-  <rect x="550" y="80" width="100" height="16" rx="4" fill="rgba(255,255,255,0.15)"/>
-  <rect x="550" y="110" width="100" height="6" rx="3" fill="#6366f1" opacity="0.4"/>
-  <!-- Chart area -->
-  <rect x="50" y="190" width="460" height="270" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
-  <!-- Line chart -->
-  <polyline points="80,400 140,380 200,350 260,390 320,320 380,280 440,300 480,260" stroke="url(#g1)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M80,400 L140,380 L200,350 L260,390 L320,320 L380,280 L440,300 L480,260 L480,430 L80,430 Z" fill="url(#g2)"/>
-  <!-- Dots on chart -->
-  <circle cx="80" cy="400" r="3" fill="#10b981"/>
-  <circle cx="200" cy="350" r="3" fill="#10b981"/>
-  <circle cx="320" cy="320" r="3" fill="#10b981"/>
-  <circle cx="480" cy="260" r="3" fill="#10b981"/>
-  <!-- Donut chart -->
-  <rect x="540" y="190" width="210" height="270" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
-  <circle cx="645" cy="310" r="60" fill="none" stroke="#10b981" stroke-width="12" stroke-dasharray="120 260" opacity="0.7"/>
-  <circle cx="645" cy="310" r="60" fill="none" stroke="#6366f1" stroke-width="12" stroke-dasharray="80 300" stroke-dashoffset="-120" opacity="0.7"/>
-  <circle cx="645" cy="310" r="60" fill="none" stroke="#f59e0b" stroke-width="12" stroke-dasharray="60 320" stroke-dashoffset="-200" opacity="0.7"/>
-  <!-- Legend items -->
-  <rect x="600" y="400" width="8" height="8" rx="2" fill="#10b981" opacity="0.7"/>
-  <rect x="615" y="401" width="40" height="5" rx="2" fill="rgba(255,255,255,0.1)"/>
-  <rect x="670" y="400" width="8" height="8" rx="2" fill="#6366f1" opacity="0.7"/>
-  <rect x="685" y="401" width="40" height="5" rx="2" fill="rgba(255,255,255,0.1)"/>
+
+  <!-- === STAT CARDS ROW === -->
+  <!-- Card 1: Balance -->
+  <rect x="40" y="32" width="220" height="110" rx="10" fill="#ffffff" stroke="#ebebeb" stroke-width="1"/>
+  <rect x="60" y="54" width="50" height="5" rx="2.5" fill="#a1a1a1"/>
+  <rect x="60" y="70" width="110" height="18" rx="4" fill="#171717" opacity="0.85"/>
+  <rect x="60" y="104" width="80" height="5" rx="2.5" fill="#007cf0" opacity="0.5"/>
+
+  <!-- Card 2: Income -->
+  <rect x="282" y="32" width="220" height="110" rx="10" fill="#ffffff" stroke="#ebebeb" stroke-width="1"/>
+  <rect x="302" y="54" width="44" height="5" rx="2.5" fill="#a1a1a1"/>
+  <rect x="302" y="70" width="90" height="18" rx="4" fill="#171717" opacity="0.85"/>
+  <rect x="302" y="104" width="100" height="5" rx="2.5" fill="#00dfd8" opacity="0.5"/>
+
+  <!-- Card 3: Expenses -->
+  <rect x="524" y="32" width="236" height="110" rx="10" fill="#ffffff" stroke="#ebebeb" stroke-width="1"/>
+  <rect x="544" y="54" width="55" height="5" rx="2.5" fill="#a1a1a1"/>
+  <rect x="544" y="70" width="95" height="18" rx="4" fill="#171717" opacity="0.85"/>
+  <rect x="544" y="104" width="70" height="5" rx="2.5" fill="#ff4d4d" opacity="0.4"/>
+
+  <!-- === LINE CHART === -->
+  <rect x="40" y="168" width="465" height="298" rx="10" fill="#ffffff" stroke="#ebebeb" stroke-width="1"/>
+  <!-- Chart title -->
+  <rect x="64" y="192" width="80" height="6" rx="3" fill="#8f8f8f"/>
+  <!-- Subtle horizontal guide lines -->
+  <line x1="64" y1="240" x2="480" y2="240" stroke="#ebebeb" stroke-width="1"/>
+  <line x1="64" y1="290" x2="480" y2="290" stroke="#ebebeb" stroke-width="1"/>
+  <line x1="64" y1="340" x2="480" y2="340" stroke="#ebebeb" stroke-width="1"/>
+  <line x1="64" y1="390" x2="480" y2="390" stroke="#ebebeb" stroke-width="1"/>
+  <!-- Y-axis labels -->
+  <rect x="64" y="236" width="20" height="4" rx="2" fill="#d4d4d4"/>
+  <rect x="64" y="286" width="20" height="4" rx="2" fill="#d4d4d4"/>
+  <rect x="64" y="336" width="20" height="4" rx="2" fill="#d4d4d4"/>
+  <!-- Area fill -->
+  <path d="M96,380 L146,358 L196,330 L246,365 L296,310 L346,274 L396,292 L446,255 L446,430 L96,430 Z" fill="url(#areaBg)"/>
+  <!-- Chart line — ink-on-white with Vercel blue tint -->
+  <polyline points="96,380 146,358 196,330 246,365 296,310 346,274 396,292 446,255"
+    stroke="url(#chartLine)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Data dots -->
+  <circle cx="96" cy="380" r="3.5" fill="#ffffff" stroke="#007cf0" stroke-width="1.5"/>
+  <circle cx="196" cy="330" r="3.5" fill="#ffffff" stroke="#007cf0" stroke-width="1.5"/>
+  <circle cx="296" cy="310" r="3.5" fill="#ffffff" stroke="#007cf0" stroke-width="1.5"/>
+  <circle cx="446" cy="255" r="4" fill="#007cf0"/>
+  <!-- X-axis month labels -->
+  <rect x="88" y="434" width="20" height="4" rx="2" fill="#d4d4d4"/>
+  <rect x="148" y="434" width="20" height="4" rx="2" fill="#d4d4d4"/>
+  <rect x="208" y="434" width="20" height="4" rx="2" fill="#d4d4d4"/>
+  <rect x="268" y="434" width="20" height="4" rx="2" fill="#d4d4d4"/>
+  <rect x="328" y="434" width="20" height="4" rx="2" fill="#d4d4d4"/>
+  <rect x="388" y="434" width="20" height="4" rx="2" fill="#d4d4d4"/>
+  <rect x="430" y="434" width="20" height="4" rx="2" fill="#d4d4d4"/>
+
+  <!-- === DONUT CHART === -->
+  <rect x="526" y="168" width="234" height="298" rx="10" fill="#ffffff" stroke="#ebebeb" stroke-width="1"/>
+  <rect x="548" y="190" width="70" height="6" rx="3" fill="#8f8f8f"/>
+  <!-- Donut rings — ink palette -->
+  <circle cx="643" cy="316" r="62" fill="none" stroke="#ebebeb" stroke-width="2"/>
+  <circle cx="643" cy="316" r="52" fill="none" stroke="#007cf0" stroke-width="16" stroke-dasharray="115 212" stroke-dashoffset="0" opacity="0.75"/>
+  <circle cx="643" cy="316" r="52" fill="none" stroke="#ff4d4d" stroke-width="16" stroke-dasharray="80 247" stroke-dashoffset="-115" opacity="0.55"/>
+  <circle cx="643" cy="316" r="52" fill="none" stroke="#f9cb28" stroke-width="16" stroke-dasharray="55 272" stroke-dashoffset="-195" opacity="0.65"/>
+  <!-- Legend -->
+  <rect x="548" y="396" width="8" height="8" rx="2" fill="#007cf0" opacity="0.75"/>
+  <rect x="562" y="398" width="36" height="4" rx="2" fill="#d4d4d4"/>
+  <rect x="614" y="396" width="8" height="8" rx="2" fill="#ff4d4d" opacity="0.55"/>
+  <rect x="628" y="398" width="36" height="4" rx="2" fill="#d4d4d4"/>
+  <rect x="548" y="416" width="8" height="8" rx="2" fill="#f9cb28" opacity="0.65"/>
+  <rect x="562" y="418" width="36" height="4" rx="2" fill="#d4d4d4"/>
 </svg>

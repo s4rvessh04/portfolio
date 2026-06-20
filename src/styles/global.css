@@ -1,334 +1,408 @@
 @import "tailwindcss";
 
 /* ============================================
-   OPERATOR'S CONSOLE — Infrastructure Theme
-   "A backend engineer built this."
+   GEIST DESIGN SYSTEM — Vercel-inspired
+   Ink on canvas. Restraint is the brand.
    ============================================ */
 :root {
-	/* Core palette — monochrome zinc */
-	--bg: #09090b;
-	--bg-elevated: #131316;
-	--fg: #e4e4e7;
-	--fg-muted: #a1a1aa;
-	--fg-subtle: #52525b;
-	--fg-faint: #27272a;
+	/* === Brand & Ink === */
+	--ink: #171717;
+	--canvas: #fafafa;
+	--canvas-elevated: #ffffff;
+	--hairline-soft: #f2f2f2;
 
-	/* Infrastructure grid */
-	--grid-line: rgba(228, 228, 231, 0.035);
-	--grid-size: 64px;
+	/* === Text Ladder === */
+	--text-ink: #171717;
+	--text-body: #4d4d4d;
+	--text-mute: #8f8f8f;
+	--text-faint: #a1a1a1;
 
-	/* Accent — signal green ("build pass") */
-	--accent: #22c55e;
-	--accent-hover: #4ade80;
-	--accent-glow: rgba(34, 197, 94, 0.08);
-	--accent-dim: rgba(34, 197, 94, 0.04);
+	/* === Borders === */
+	--hairline: #ebebeb;
 
-	/* Surfaces & borders */
-	--border: rgba(228, 228, 231, 0.06);
-	--border-strong: rgba(228, 228, 231, 0.12);
-	--surface: rgba(255, 255, 255, 0.02);
-	--surface-hover: rgba(34, 197, 94, 0.04);
-	--nav-bg: rgba(9, 9, 11, 0.88);
+	/* === Accent (link / focus) === */
+	--link: #0070f3;
+	--link-deep: #0761d1;
+	--link-soft: #d3e5ff;
 
-	/* Marquee */
-	--marquee-bg: #0c0c0f;
-	--marquee-fg: #52525b;
+	/* === Semantic === */
+	--error: #ee0000;
+	--error-deep: #c50000;
+	--warning: #f5a623;
+	--success: #0070f3;
 
-	/* Z-Index Scale */
+	/* === Chromatic accents (gradient stops only) === */
+	--cyan: #50e3c2;
+	--violet: #7928ca;
+	--pink: #ff0080;
+	--magenta: #eb367f;
+	--blue: #007cf0;
+	--amber: #f9cb28;
+	--red: #ff4d4d;
+
+	/* === Brand Gradient Stops === */
+	--gradient-develop-start: #007cf0;
+	--gradient-develop-end: #00dfd8;
+	--gradient-preview-start: #7928ca;
+	--gradient-preview-end: #ff0080;
+	--gradient-ship-start: #ff4d4d;
+	--gradient-ship-end: #f9cb28;
+
+	/* === Elevation shadows === */
+	--shadow-whisper: 0px 1px 1px rgba(0, 0, 0, 0.04);
+	--shadow-float: 0px 2px 2px rgba(0, 0, 0, 0.04),
+		0px 8px 16px -4px rgba(0, 0, 0, 0.06);
+
+	/* === Nav === */
+	--nav-bg: rgba(250, 250, 250, 0.88);
+
+	/* === Spacing Scale (4px base) === */
+	--space-xxs: 4px;
+	--space-xs: 8px;
+	--space-sm: 12px;
+	--space-md: 16px;
+	--space-lg: 24px;
+	--space-xl: 32px;
+	--space-2xl: 40px;
+	--space-3xl: 64px;
+	--space-4xl: 96px;
+	--space-section: 128px;
+
+	/* === Border Radius === */
+	--rounded-none: 0px;
+	--rounded-sm: 6px;
+	--rounded-md: 12px;
+	--rounded-lg: 16px;
+	--rounded-pill-cat: 64px;
+	--rounded-pill: 100px;
+	--rounded-full: 9999px;
+
+	/* === Z-Index === */
 	--z-bg: 1;
 	--z-content: 10;
 	--z-nav: 100;
 	--z-overlay: 200;
 	--z-drawer: 300;
-	--z-loader: 1000;
 
-	/* Animation Easings */
+	/* === Animation Easings === */
 	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 	--ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
-	--ease-drawer: cubic-bezier(0.16, 1, 0.3, 1);
 	--ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
-	--ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
-
-	/* Anime.js easing references */
-	--anime-ease-inQuad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
-	--anime-ease-outQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-	--anime-ease-inOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-	--anime-ease-inCubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-	--anime-ease-outCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
-	--anime-ease-inOutCubic: cubic-bezier(0.645, 0.045, 0.355, 1);
-	--anime-ease-inQuart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
-	--anime-ease-outQuart: cubic-bezier(0.165, 0.84, 0.44, 1);
-	--anime-ease-inOutQuart: cubic-bezier(0.77, 0, 0.175, 1);
-	--anime-ease-inQuint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-	--anime-ease-outQuint: cubic-bezier(0.23, 1, 0.32, 1);
-	--anime-ease-inOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
-	--anime-ease-inSine: cubic-bezier(0.47, 0, 0.745, 0.715);
-	--anime-ease-outSine: cubic-bezier(0.39, 0.575, 0.565, 1);
-	--anime-ease-inOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
-	--anime-ease-inExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
-	--anime-ease-outExpo: cubic-bezier(0.19, 1, 0.22, 1);
-	--anime-ease-inOutExpo: cubic-bezier(1, 0, 0, 1);
-	--anime-ease-inCirc: cubic-bezier(0.6, 0.04, 0.98, 0.335);
-	--anime-ease-outCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
-	--anime-ease-inOutCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 @theme {
-	/* Font families */
-	--font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif,
-		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-		"Noto Color Emoji";
-	--font-display: "Big Shoulders Display", ui-sans-serif, system-ui,
-		sans-serif;
-	--font-mono: "IBM Plex Mono", "JetBrains Mono", "Fira Code", "SF Mono",
-		ui-monospace, monospace;
+	/* Geist Sans → Inter fallback, Geist Mono → JetBrains Mono fallback */
+	--font-sans: "Geist", "Inter", ui-sans-serif, system-ui, Arial, sans-serif;
+	--font-mono: "Geist Mono", "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+	--font-display: "Geist", "Inter", ui-sans-serif, Arial, sans-serif;
 
-	/* Display sizes — dramatic condensed scale */
-	--text-display-xl: clamp(2.5rem, 10vw + 0.5rem, 11rem);
-	--text-display-xl--line-height: 0.9;
-	--text-display-xl--letter-spacing: -0.02em;
+	/* === Geist Typography Scale === */
+	/* display-xl: Hero headline — 48px / 600 / -2.4px */
+	--text-display-xl: clamp(2rem, 5vw + 1rem, 3rem);
+	--text-display-xl--line-height: 1;
+	--text-display-xl--letter-spacing: -0.05em;
 
-	--text-display-lg: clamp(1.5rem, 5vw + 0.5rem, 5.5rem);
-	--text-display-lg--line-height: 0.95;
-	--text-display-lg--letter-spacing: -0.01em;
+	/* heading-lg: Major section — 32px / 600 / -1.28px */
+	--text-heading-lg: clamp(1.5rem, 3vw + 0.5rem, 2rem);
+	--text-heading-lg--line-height: 1.25;
+	--text-heading-lg--letter-spacing: -0.04em;
 
-	--text-display-md: clamp(1.25rem, 2.5vw + 0.5rem, 3rem);
-	--text-display-md--line-height: 1.05;
-	--text-display-md--letter-spacing: -0.01em;
+	/* heading-md: Sub-section — 20px / 600 / -0.4px */
+	--text-heading-md: 1.25rem;
+	--text-heading-md--line-height: 1.4;
+	--text-heading-md--letter-spacing: -0.02em;
 
-	/* Body text */
-	--text-body-lg: clamp(1rem, 0.5vw + 0.875rem, 1.2rem);
-	--text-body-lg--line-height: 1.75;
+	/* label-sm: Strong labels — 14px / 500 / -0.28px */
+	--text-label-sm: 0.875rem;
+	--text-label-sm--line-height: 1.43;
+	--text-label-sm--letter-spacing: -0.02em;
 
-	--text-body: clamp(0.875rem, 0.25vw + 0.8125rem, 1rem);
-	--text-body--line-height: 1.65;
+	/* mono-eyebrow: Uppercase Geist Mono section labels — 12px / 500 */
+	--text-mono-eyebrow: 0.75rem;
+	--text-mono-eyebrow--line-height: 1.33;
+	--text-mono-eyebrow--letter-spacing: 0;
 
-	/* Micro — system labels */
-	--text-micro: 0.6875rem;
-	--text-micro--line-height: 1.4;
-	--text-micro--letter-spacing: 0.08em;
+	/* body-lg: Lead paragraphs — 16px / 400 */
+	--text-body-lg: 1rem;
+	--text-body-lg--line-height: 1.5;
 
-	/* Animations */
+	/* body-md: Default body — 14px / 400 */
+	--text-body-md: 0.875rem;
+	--text-body-md--line-height: 1.43;
+
+	/* body-sm: Captions — 12px / 400 */
+	--text-body-sm: 0.75rem;
+	--text-body-sm--line-height: 1.33;
+
+	/* button-lg: Marketing pill labels — 16px / 500 */
+	--text-button-lg: 1rem;
+	--text-button-lg--line-height: 1.25;
+
+	/* button-md: Nav button labels — 14px / 500 */
+	--text-button-md: 0.875rem;
+	--text-button-md--line-height: 1.43;
+
+	/* code: Mono code — 14px / 400 */
+	--text-code: 0.875rem;
+	--text-code--line-height: 1.43;
+
+	/* === Animations === */
 	--animate-float: float 6s ease-in-out infinite;
 	--animate-blink: blink 1s step-end infinite;
-	--animate-reveal-up: reveal-up 0.6s var(--ease-reveal) both;
+	--animate-reveal-up: reveal-up 0.6s var(--ease-out) both;
 	--animate-reveal-in: reveal-in 0.5s var(--ease-out) both;
 	--animate-cursor-blink: cursor-blink 1.2s step-end infinite;
 	--animate-pulse-slow: pulse-slow 3s ease-in-out infinite;
 
 	@keyframes float {
-		0%,
-		100% {
-			transform: translateY(0px);
-		}
-		50% {
-			transform: translateY(-6px);
-		}
+		0%, 100% { transform: translateY(0px); }
+		50% { transform: translateY(-6px); }
 	}
 
 	@keyframes blink {
-		0%,
-		100% {
-			opacity: 1;
-		}
-		50% {
-			opacity: 0;
-		}
+		0%, 100% { opacity: 1; }
+		50% { opacity: 0; }
 	}
 
 	@keyframes reveal-up {
-		from {
-			opacity: 0;
-			transform: translateY(10px) scale(0.99);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0) scale(1);
-		}
+		from { opacity: 0; transform: translateY(10px) scale(0.99); }
+		to { opacity: 1; transform: translateY(0) scale(1); }
 	}
 
 	@keyframes reveal-in {
-		from {
-			opacity: 0;
-			transform: scale(0.98);
-		}
-		to {
-			opacity: 1;
-			transform: scale(1);
-		}
+		from { opacity: 0; transform: scale(0.98); }
+		to { opacity: 1; transform: scale(1); }
 	}
 
 	@keyframes cursor-blink {
-		0%,
-		100% {
-			opacity: 1;
-		}
-		50% {
-			opacity: 0;
-		}
+		0%, 100% { opacity: 1; }
+		50% { opacity: 0; }
 	}
 
 	@keyframes pulse-slow {
-		0%,
-		100% {
-			opacity: 0.6;
-		}
-		50% {
-			opacity: 1;
-		}
+		0%, 100% { opacity: 0.5; }
+		50% { opacity: 1; }
 	}
 
-	@keyframes scanline {
-		0% {
-			transform: translateY(-100%);
-		}
-		100% {
-			transform: translateY(100vh);
-		}
+	@keyframes marquee {
+		0% { transform: translateX(0); }
+		100% { transform: translateX(-100%); }
+	}
+
+	@keyframes mesh-drift {
+		0% { background-position: 0% 50%; }
+		50% { background-position: 100% 50%; }
+		100% { background-position: 0% 50%; }
 	}
 }
 
 /* ============================================
-   SMOOTH SCROLLING
+   BASE
    ============================================ */
 html {
 	scroll-behavior: smooth;
+	color-scheme: light;
 }
 
-/* ============================================
-   INFRASTRUCTURE GRID BACKGROUND
-   ============================================ */
 body {
-	background-color: var(--bg);
-	color: var(--fg);
+	background-color: var(--canvas);
+	color: var(--text-ink);
 	font-family: var(--font-sans);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;
-	position: relative;
-}
-
-/* Grid lines — engineering paper */
-body::before {
-	content: "";
-	position: fixed;
-	inset: 0;
-	z-index: 0;
-	pointer-events: none;
-	background-image: linear-gradient(
-			var(--grid-line) 1px,
-			transparent 1px
-		),
-		linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-	background-size: var(--grid-size) var(--grid-size);
-	mask-image: radial-gradient(
-		ellipse 80% 70% at 50% 30%,
-		black 0%,
-		transparent 100%
-	);
-	-webkit-mask-image: radial-gradient(
-		ellipse 80% 70% at 50% 30%,
-		black 0%,
-		transparent 100%
-	);
 }
 
 /* ============================================
    TEXT SELECTION
    ============================================ */
 ::selection {
-	background-color: var(--accent);
-	color: var(--bg);
+	background-color: var(--ink);
+	color: var(--canvas-elevated);
 }
-
 ::-moz-selection {
-	background-color: var(--accent);
-	color: var(--bg);
+	background-color: var(--ink);
+	color: var(--canvas-elevated);
 }
 
 /* ============================================
    FOCUS-VISIBLE — keyboard accessibility
    ============================================ */
 *:focus-visible {
-	outline: 2px solid var(--accent);
+	outline: 2px solid var(--link);
 	outline-offset: 2px;
 	border-radius: 2px;
 }
-
 *:focus:not(:focus-visible) {
 	outline: none;
 }
 
 /* ============================================
-   SYSTEM LABEL UTILITY
+   HERO MESH GRADIENT
+   The entire decorative system of the site.
    ============================================ */
-.font-hud {
-	font-family: var(--font-mono);
-	letter-spacing: 0.06em;
-	text-transform: uppercase;
+.hero-mesh {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	/* Multi-stop mesh: cyan → blue → violet → magenta → amber */
+	background:
+		radial-gradient(ellipse 70% 60% at 20% 30%, rgba(80, 227, 194, 0.22) 0%, transparent 60%),
+		radial-gradient(ellipse 50% 50% at 60% 20%, rgba(0, 124, 240, 0.18) 0%, transparent 55%),
+		radial-gradient(ellipse 60% 50% at 80% 60%, rgba(121, 40, 202, 0.12) 0%, transparent 60%),
+		radial-gradient(ellipse 40% 60% at 40% 80%, rgba(235, 54, 127, 0.10) 0%, transparent 55%),
+		radial-gradient(ellipse 55% 40% at 90% 10%, rgba(249, 203, 40, 0.12) 0%, transparent 50%);
+	z-index: 0;
+	will-change: transform;
 }
 
 /* ============================================
-   SECTION DIVIDER — with label
+   MONO EYEBROW — uppercase Geist Mono section labels
    ============================================ */
-.section-label {
+.eyebrow {
+	font-family: var(--font-mono);
+	font-size: var(--text-mono-eyebrow);
+	font-weight: 500;
+	line-height: var(--text-mono-eyebrow--line-height);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--text-mute);
+}
+
+/* ============================================
+   FEATURE CARD — Hairline card (flat, Level 0)
+   ============================================ */
+.feature-card {
+	background: var(--canvas-elevated);
+	border: 1px solid var(--hairline);
+	border-radius: var(--rounded-md);
+	padding: var(--space-lg);
+	color: var(--text-ink);
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+
+/* Marketing pill — black fill, fully rounded */
+.btn-primary {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	background: var(--ink);
+	color: #ffffff;
+	font-size: var(--text-button-lg);
+	font-weight: 500;
+	line-height: 1.25;
+	border-radius: var(--rounded-pill);
+	padding: 0 20px;
+	height: 44px;
+	border: none;
+	cursor: pointer;
+	transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out);
+	text-decoration: none;
+	white-space: nowrap;
+}
+.btn-primary:hover { opacity: 0.84; }
+.btn-primary:active { transform: scale(0.97); opacity: 0.9; }
+
+/* Secondary pill — white fill, hairline border */
+.btn-secondary {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	background: var(--canvas-elevated);
+	color: var(--text-ink);
+	font-size: var(--text-button-lg);
+	font-weight: 500;
+	line-height: 1.25;
+	border-radius: var(--rounded-pill);
+	padding: 0 20px;
+	height: 44px;
+	border: 1px solid var(--hairline);
+	cursor: pointer;
+	transition: border-color 150ms var(--ease-out), transform 150ms var(--ease-out), background 150ms var(--ease-out);
+	text-decoration: none;
+	white-space: nowrap;
+}
+.btn-secondary:hover { border-color: #d4d4d4; background: var(--hairline-soft); }
+.btn-secondary:active { transform: scale(0.97); }
+
+/* Nav/app button — 6px square, compact */
+.btn-nav {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	background: var(--canvas-elevated);
+	color: var(--text-ink);
+	font-size: var(--text-button-md);
+	font-weight: 500;
+	line-height: 1.43;
+	border-radius: var(--rounded-sm);
+	padding: 0 10px;
+	height: 32px;
+	border: 1px solid var(--hairline);
+	cursor: pointer;
+	transition: border-color 150ms var(--ease-out), background 150ms var(--ease-out);
+	text-decoration: none;
+	white-space: nowrap;
+}
+.btn-nav:hover { border-color: #d4d4d4; background: var(--hairline-soft); }
+.btn-nav:active { transform: scale(0.97); }
+
+/* Nav primary — black square */
+.btn-nav-primary {
+	background: var(--ink);
+	color: #ffffff;
+	border-color: var(--ink);
+}
+.btn-nav-primary:hover { opacity: 0.84; border-color: var(--ink); background: var(--ink); }
+
+/* ============================================
+   SECTION DIVIDERS
+   ============================================ */
+.hairline {
+	height: 1px;
+	background: var(--hairline);
+	border: none;
+}
+
+/* ============================================
+   MARQUEE
+   ============================================ */
+.marquee-wrapper { width: 100%; position: relative; overflow: hidden; }
+.marquee-container { display: flex; width: max-content; will-change: transform; }
+.marquee-content {
 	display: flex;
 	align-items: center;
-	gap: 1rem;
-	margin-bottom: 3rem;
-}
-
-.section-label::after {
-	content: "";
-	flex: 1;
-	height: 1px;
-	background: var(--border-strong);
+	flex-shrink: 0;
+	white-space: nowrap;
+	animation: marquee 30s linear infinite;
 }
 
 /* ============================================
-   TERMINAL CURSOR
-   ============================================ */
-.terminal-cursor::after {
-	content: "█";
-	display: inline-block;
-	animation: cursor-blink 1.2s step-end infinite;
-	color: var(--accent);
-	margin-left: 2px;
-	font-weight: 400;
-}
-
-/* ============================================
-   REDUCED MOTION — accessibility first
+   REDUCED MOTION
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
-	html {
-		scroll-behavior: auto;
-	}
-
-	*,
-	*::before,
-	*::after {
+	html { scroll-behavior: auto; }
+	*, *::before, *::after {
 		animation-duration: 0.01ms !important;
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
 	}
-
-	.reveal,
-	.line-reveal {
+	.reveal, .line-reveal {
 		opacity: 1 !important;
 		transform: none !important;
 	}
 }
 
 /* ============================================
-   MOBILE TOUCH TARGETS — 44px minimum
+   MOBILE TOUCH TARGETS
    ============================================ */
 @media (pointer: coarse) {
-	a,
-	button,
-	[role="button"] {
-		min-height: 44px;
-		min-width: 44px;
-	}
+	.btn-nav { height: 44px; }
 }

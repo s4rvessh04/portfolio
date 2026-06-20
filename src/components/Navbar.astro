@@ -13,29 +13,25 @@ const links = [
 	class="fixed top-0 left-0 right-0 z-50"
 	id="main-nav"
 	aria-label="Primary navigation"
-	style="opacity: 0; transform: translateY(-20px);"
+	style="opacity: 0; transform: translateY(-12px);"
 >
 	<div
-		class="px-5 md:px-8 lg:px-16 py-4 md:py-5 flex items-center justify-between"
+		class="px-4 md:px-6 lg:px-8 flex items-center justify-between"
+		style="height: 60px;"
 	>
-		<!-- Brand — process name -->
+		<!-- Brand — wordmark only -->
 		<a
 			href="/"
-			class="font-mono font-medium text-sm tracking-tight flex items-center gap-1"
-			style="color: var(--fg);"
+			class="flex items-center font-semibold text-sm"
+			style="color: var(--text-ink); text-decoration: none; letter-spacing: -0.03em; font-family: var(--font-mono);"
+			aria-label="Home"
 		>
-			<span style="color: var(--accent); opacity: 0.5;">$</span>
-			<span>{SITE_NAME.split(".")[0].toLowerCase()}</span><span style="color: var(--fg-subtle);">.</span><span
-				class="hidden sm:inline"
-				style="color: var(--fg-muted);"
-				>{SITE_NAME.split(".")[1]?.toLowerCase()}</span
-			>
-			<span class="animate-cursor-blink text-xs ml-0.5" style="color: var(--accent);">█</span>
+			{SITE_NAME.split(".")[0].toLowerCase()}<span style="color: var(--text-mute);">.</span><span style="color: var(--text-faint);">{SITE_NAME.split(".")[1]?.toLowerCase()}</span>
 		</a>
 
 		<!-- Desktop nav -->
-		<div class="hidden md:flex items-center gap-6 md:gap-8">
-			<ul class="flex items-center gap-4 md:gap-8">
+		<div class="hidden md:flex items-center gap-1">
+			<ul class="flex items-center gap-1 mr-3" role="list">
 				{
 					links.map(({ href, label }) => (
 						<Navlink href={href} label={label} />
@@ -43,32 +39,41 @@ const links = [
 				}
 			</ul>
 
-			<!-- Status indicator -->
+			<!-- Nav CTA buttons -->
 			<div class="flex items-center gap-2">
-				<span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background: var(--accent);"></span>
-				<span
-					class="font-mono text-micro uppercase hidden md:block font-light"
-					style="color: var(--fg-subtle); letter-spacing: 0.1em;"
-					>pid:1</span>
+				<a
+					href="mailto:sarveshrane2000@gmail.com"
+					class="btn-nav"
+					id="nav-contact-btn"
+				>
+					Contact
+				</a>
+				<a
+					href={socialLinks[0].link}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="btn-nav btn-nav-primary"
+					id="nav-github-btn"
+				>
+					GitHub
+				</a>
 			</div>
 		</div>
 
 		<!-- Mobile: hamburger -->
-		<div class="flex md:hidden items-center gap-3">
+		<div class="flex md:hidden items-center gap-2">
 			<button
 				id="menu-toggle"
 				type="button"
 				aria-label="Open menu"
 				aria-expanded="false"
-				class="relative w-10 h-10 flex items-center justify-center rounded-sm cursor-pointer"
-				style="border: 1px solid var(--border-strong); background: var(--surface); transition: transform 160ms var(--ease-out), background-color 200ms var(--ease-out);"
+				class="relative w-9 h-9 flex items-center justify-center cursor-pointer"
+				style="border: 1px solid var(--hairline); background: var(--canvas-elevated); border-radius: var(--rounded-sm); transition: background 200ms var(--ease-out), border-color 200ms var(--ease-out);"
 			>
-				<div
-					class="hamburger-lines flex flex-col items-center justify-center gap-[5px]"
-				>
-					<span class="block w-4 h-px" style="background: var(--fg-muted); transition: transform 250ms var(--ease-out), opacity 150ms var(--ease-out);"></span>
-					<span class="block w-4 h-px" style="background: var(--fg-muted); transition: transform 250ms var(--ease-out), opacity 150ms var(--ease-out);"></span>
-					<span class="block w-2.5 h-px self-start ml-[7px]" style="background: var(--accent); opacity: 0.6; transition: transform 250ms var(--ease-out), opacity 150ms var(--ease-out);"></span>
+				<div class="hamburger-lines flex flex-col items-center justify-center gap-[5px]">
+					<span class="block w-[14px] h-px" style="background: var(--text-ink); transition: transform 250ms var(--ease-out), opacity 150ms var(--ease-out);"></span>
+					<span class="block w-[14px] h-px" style="background: var(--text-ink); transition: transform 250ms var(--ease-out), opacity 150ms var(--ease-out);"></span>
+					<span class="block w-[10px] h-px self-start ml-[2px]" style="background: var(--text-mute); transition: transform 250ms var(--ease-out), opacity 150ms var(--ease-out);"></span>
 				</div>
 			</button>
 		</div>
@@ -88,43 +93,36 @@ const links = [
 <aside
 	id="mobile-drawer"
 	class="fixed top-0 right-0 z-[45] h-full flex flex-col"
-	style="width: min(85vw, 320px); background: var(--bg); border-left: 1px solid var(--border-strong); transform: translateX(100%); transition: transform 300ms var(--ease-out); will-change: transform;"
+	style="width: min(85vw, 320px); background: var(--canvas-elevated); border-left: 1px solid var(--hairline); transform: translateX(100%); transition: transform 300ms var(--ease-out); will-change: transform;"
 	aria-hidden="true"
 >
-	<!-- Grid background for drawer -->
-	<div
-		class="absolute inset-0 pointer-events-none"
-		style="background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px); background-size: 32px 32px; opacity: 0.8;"
-	></div>
-
 	<!-- Drawer header -->
 	<div
-		class="relative flex items-center justify-between px-6 py-4"
-		style="border-bottom: 1px solid var(--border-strong);"
+		class="flex items-center justify-between px-6 py-4"
+		style="border-bottom: 1px solid var(--hairline); height: 60px;"
 	>
 		<span
-			class="font-mono text-micro uppercase tracking-[0.15em]"
-			style="color: var(--accent); opacity: 0.7;"
-			>$ menu</span
-		>
+			class="font-semibold text-sm"
+			style="color: var(--text-ink); letter-spacing: -0.02em;"
+		>Menu</span>
 		<button
 			id="drawer-close"
 			type="button"
 			aria-label="Close menu"
-			class="w-10 h-10 flex items-center justify-center rounded-sm cursor-pointer"
-			style="border: 1px solid var(--border); background: var(--surface); transition: transform 160ms var(--ease-out);"
+			class="w-9 h-9 flex items-center justify-center cursor-pointer"
+			style="border: 1px solid var(--hairline); background: var(--canvas-elevated); border-radius: var(--rounded-sm); transition: background 200ms var(--ease-out);"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
+				width="14"
+				height="14"
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
-				stroke-width="1.5"
+				stroke-width="2"
 				stroke-linecap="round"
 				stroke-linejoin="round"
-				style="color: var(--fg-muted);"
+				style="color: var(--text-ink);"
 			>
 				<line x1="18" y1="6" x2="6" y2="18"></line>
 				<line x1="6" y1="6" x2="18" y2="18"></line>
@@ -133,40 +131,32 @@ const links = [
 	</div>
 
 	<!-- Drawer nav links -->
-	<nav class="relative flex-1 flex flex-col px-6 pt-8">
-		<ul class="flex flex-col gap-1">
+	<nav class="flex-1 flex flex-col px-4 pt-6 pb-6 overflow-y-auto">
+		<ul class="flex flex-col gap-1 mb-8" role="list">
 			{
 				links.map(({ href, label }, idx) => (
-					<li>
+					<li role="listitem">
 						<a
 							href={href}
-							class="drawer-link group flex items-center justify-between py-4"
-							style={`color: var(--fg); border-bottom: 1px solid var(--border); transition: color 150ms var(--ease-out); opacity: 0; transform: translateX(20px); transition: opacity 250ms var(--ease-out) ${
-								80 + idx * 60
+							class="drawer-link flex items-center justify-between px-3 py-3 rounded-md"
+							style={`color: var(--text-ink); text-decoration: none; font-size: 0.9375rem; font-weight: 500; letter-spacing: -0.01em; opacity: 0; transform: translateX(16px); transition: opacity 250ms var(--ease-out) ${
+								60 + idx * 50
 							}ms, transform 250ms var(--ease-out) ${
-								80 + idx * 60
-							}ms, color 150ms var(--ease-out);`}
+								60 + idx * 50
+							}ms, background 150ms var(--ease-out);`}
 						>
-							<span class="flex items-center gap-3">
-								<span class="font-mono text-micro" style="color: var(--accent); opacity: 0.5;">
-									{String(idx + 1).padStart(2, "0")}
-								</span>
-								<span class="font-display font-bold text-xl uppercase tracking-tight">
-									{label}
-								</span>
-							</span>
+							<span>{label}</span>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								width="16"
-								height="16"
+								width="14"
+								height="14"
 								viewBox="0 0 24 24"
 								fill="none"
 								stroke="currentColor"
-								stroke-width="1.5"
+								stroke-width="2"
 								stroke-linecap="round"
 								stroke-linejoin="round"
-								style="color: var(--fg-subtle); transition: transform 200ms var(--ease-out);"
-								class="group-hover:translate-x-1"
+								style="color: var(--text-mute);"
 							>
 								<line x1="5" y1="12" x2="19" y2="12" />
 								<polyline points="12 5 19 12 12 19" />
@@ -175,37 +165,28 @@ const links = [
 					</li>
 				))
 			}
-			<li>
+			<li role="listitem">
 				<a
 					href="mailto:sarveshrane2000@gmail.com"
-					class="drawer-link group flex items-center justify-between py-4"
-					style={`color: var(--accent); border-bottom: 1px solid var(--border); transition: color 150ms var(--ease-out); opacity: 0; transform: translateX(20px); transition: opacity 250ms var(--ease-out) ${
-						80 + links.length * 60
+					class="drawer-link flex items-center justify-between px-3 py-3 rounded-md"
+					style={`color: var(--text-ink); text-decoration: none; font-size: 0.9375rem; font-weight: 500; letter-spacing: -0.01em; opacity: 0; transform: translateX(16px); transition: opacity 250ms var(--ease-out) ${
+						60 + links.length * 50
 					}ms, transform 250ms var(--ease-out) ${
-						80 + links.length * 60
-					}ms, color 150ms var(--ease-out);`}
+						60 + links.length * 50
+					}ms, background 150ms var(--ease-out);`}
 				>
-					<span class="flex items-center gap-3">
-						<span class="font-mono text-micro" style="color: var(--accent); opacity: 0.5;">
-							{String(links.length + 1).padStart(2, "0")}
-						</span>
-						<span
-							class="font-display font-bold text-xl uppercase tracking-tight"
-							>Contact</span
-						>
-					</span>
+					<span>Contact</span>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
-						width="16"
-						height="16"
+						width="14"
+						height="14"
 						viewBox="0 0 24 24"
 						fill="none"
 						stroke="currentColor"
-						stroke-width="1.5"
+						stroke-width="2"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-						style="color: var(--accent); opacity: 0.6; transition: transform 200ms var(--ease-out);"
-						class="group-hover:translate-x-1"
+						style="color: var(--text-mute);"
 					>
 						<line x1="5" y1="12" x2="19" y2="12"></line>
 						<polyline points="12 5 19 12 12 19"></polyline>
@@ -214,55 +195,43 @@ const links = [
 			</li>
 		</ul>
 
-		<!-- Social links -->
-		<div class="mt-auto pb-8">
-			<p
-				class="font-mono text-micro uppercase tracking-[0.15em] mb-4"
-				style="color: var(--accent); opacity: 0.5;"
+		<!-- GitHub CTA -->
+		<div class="px-1 mt-auto">
+			<a
+				href={socialLinks[0].link}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="btn-primary w-full justify-center"
+				style="display: flex;"
 			>
-				$ connect
-			</p>
-			<div class="flex flex-wrap gap-3">
-				{
-					socialLinks.map((social) => (
-						<a
-							href={social.link}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="font-mono text-micro uppercase tracking-wider py-2 px-3 rounded-sm"
-							style="color: var(--fg-muted); border: 1px solid var(--border); background: var(--surface); transition: border-color 200ms var(--ease-out), color 150ms var(--ease-out);"
-						>
-							{social.title}
-						</a>
-					))
-				}
-			</div>
+				View GitHub
+			</a>
 		</div>
 	</nav>
 </aside>
 
 <style>
-	/* Hamburger active state */
-	#menu-toggle:active,
-	#drawer-close:active {
-		transform: scale(0.95);
-	}
+	/* Hamburger hover */
 	@media (hover: hover) and (pointer: fine) {
 		#menu-toggle:hover,
 		#drawer-close:hover {
-			background: var(--surface-hover) !important;
-			border-color: var(--border-strong) !important;
+			background: var(--hairline-soft) !important;
+			border-color: #d4d4d4 !important;
 		}
+	}
+	#menu-toggle:active,
+	#drawer-close:active {
+		transform: scale(0.95);
 	}
 
 	/* Drawer link hover */
 	@media (hover: hover) and (pointer: fine) {
 		.drawer-link:hover {
-			color: var(--accent) !important;
+			background: var(--hairline-soft) !important;
 		}
 	}
 	.drawer-link:active {
-		transform: scale(0.98);
+		background: var(--hairline-soft) !important;
 	}
 </style>
 
@@ -274,9 +243,9 @@ const links = [
 		if (!nav) return;
 		if (window.scrollY > 60) {
 			nav.style.background = "var(--nav-bg)";
-			nav.style.backdropFilter = "blur(12px) saturate(1.2)";
-			nav.style.webkitBackdropFilter = "blur(12px) saturate(1.2)";
-			nav.style.borderBottom = "1px solid var(--border)";
+			nav.style.backdropFilter = "blur(12px) saturate(1.4)";
+			nav.style.webkitBackdropFilter = "blur(12px) saturate(1.4)";
+			nav.style.borderBottom = "1px solid var(--hairline)";
 		} else {
 			nav.style.background = "transparent";
 			nav.style.backdropFilter = "none";
@@ -284,7 +253,6 @@ const links = [
 			nav.style.borderBottom = "1px solid transparent";
 		}
 	}
-	// Enable transitions after entry animation completes, then run initial update
 	setTimeout(() => {
 		const nav = document.getElementById("main-nav");
 		if (nav) nav.classList.add("nav-ready");
@@ -309,11 +277,10 @@ const links = [
 			drawer.setAttribute("aria-hidden", "false");
 		}
 		if (overlay) {
-			overlay.style.background = "rgba(0,0,0,0.6)";
+			overlay.style.background = "rgba(0,0,0,0.32)";
 			overlay.style.pointerEvents = "auto";
 		}
 		if (menuToggle) menuToggle.setAttribute("aria-expanded", "true");
-		// Animate drawer links in
 		document.querySelectorAll(".drawer-link").forEach((link) => {
 			(link as HTMLElement).style.opacity = "1";
 			(link as HTMLElement).style.transform = "translateX(0)";
@@ -332,11 +299,10 @@ const links = [
 			overlay.style.pointerEvents = "none";
 		}
 		if (menuToggle) menuToggle.setAttribute("aria-expanded", "false");
-		// Reset drawer links for next open
 		setTimeout(() => {
 			document.querySelectorAll(".drawer-link").forEach((link) => {
 				(link as HTMLElement).style.opacity = "0";
-				(link as HTMLElement).style.transform = "translateX(20px)";
+				(link as HTMLElement).style.transform = "translateX(16px)";
 			});
 		}, 300);
 	}
@@ -349,17 +315,12 @@ const links = [
 	drawerClose?.addEventListener("click", closeDrawer);
 	overlay?.addEventListener("click", closeDrawer);
 
-	// Close on Escape
 	document.addEventListener("keydown", (e) => {
-		if (
-			e.key === "Escape" &&
-			document.body.classList.contains("menu-open")
-		) {
+		if (e.key === "Escape" && document.body.classList.contains("menu-open")) {
 			closeDrawer();
 		}
 	});
 
-	// Close on nav link click
 	document.querySelectorAll("#mobile-drawer a[href^='#']").forEach((link) => {
 		link.addEventListener("click", () => {
 			closeDrawer();

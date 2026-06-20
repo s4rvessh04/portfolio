@@ -19,15 +19,15 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={SITE_DESCRIPTION} />
-		<meta name="color-scheme" content="dark" />
-		<meta name="theme-color" content="#09090b" />
+		<meta name="color-scheme" content="light" />
+		<meta name="theme-color" content="#fafafa" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-		<!-- Font loading: preconnect + stylesheet -->
+		<!-- Font loading: Geist Sans + Geist Mono via Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@300;400;500;600&display=swap"
 			rel="stylesheet"
 		/>
 
@@ -80,12 +80,13 @@ const { title } = Astro.props;
 	</head>
 	<body
 		class="min-h-screen antialiased overflow-x-hidden"
+		style="background-color: var(--canvas); color: var(--text-ink);"
 	>
 		<!-- Skip to content — keyboard accessibility -->
 		<a
 			href="#main-content"
 			class="fixed top-0 left-0 z-[200] px-4 py-2 text-sm font-medium -translate-y-full focus:translate-y-0"
-			style="background: var(--accent); color: #fff; transition: transform 200ms var(--ease-out);"
+			style="background: var(--ink); color: #fff; transition: transform 200ms var(--ease-out); border-radius: 0 0 var(--rounded-sm) 0;"
 		>
 		Skip to content
 		</a>
@@ -103,39 +104,38 @@ const { title } = Astro.props;
 			<slot />
 		</main>
 
-		<!-- Status bar — tmux-inspired bottom bar -->
+		<!-- Status bar — Geist-inspired bottom bar -->
 		<div
 			id="status-bar"
-			class="fixed bottom-0 left-0 right-0 z-[90] hidden md:flex items-center justify-between px-6 lg:px-8 font-mono"
-			style="height: 28px; background: var(--bg-elevated); border-top: 1px solid var(--border-strong); font-size: 0.625rem; letter-spacing: 0.05em; color: var(--fg-subtle); opacity: 0; transform: translateY(100%); transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out);"
+			class="fixed bottom-0 left-0 right-0 z-[90] hidden md:flex items-center justify-between px-6 lg:px-8"
+			style="height: 28px; background: var(--canvas-elevated); border-top: 1px solid var(--hairline); font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.05em; color: var(--text-mute); opacity: 0; transform: translateY(100%); transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out);"
 		>
 			<div class="flex items-center gap-4">
 				<span class="flex items-center gap-1.5">
-					<span class="w-1.5 h-1.5 rounded-full animate-pulse-slow" style="background: var(--accent);"></span>
-					<span class="uppercase" style="color: var(--accent);">online</span>
+					<span class="w-1.5 h-1.5 rounded-full animate-pulse-slow" style="background: #22c55e;"></span>
+					<span class="uppercase" style="color: var(--text-body);">online</span>
 				</span>
-				<span style="color: var(--fg-faint);">│</span>
-				<span id="status-section" class="uppercase">hero</span>
+				<span style="color: var(--hairline);">│</span>
+				<span id="status-section" class="uppercase" style="color: var(--text-body);">hero</span>
 			</div>
 			<div class="flex items-center gap-4">
 				<span id="status-scroll" class="tabular-nums">ln 0</span>
-				<span style="color: var(--fg-faint);">│</span>
+				<span style="color: var(--hairline);">│</span>
 				<span id="status-time" class="tabular-nums uppercase"></span>
 			</div>
 		</div>
 
 		<style is:global>
 			/* ============================================
-			   SCROLL REVEAL SYSTEM — smooth fade + rise
+			   SCROLL REVEAL SYSTEM
 			   ============================================ */
 			.reveal {
 				opacity: 0;
-				transform: translateY(24px);
+				transform: translateY(20px);
 				transition:
-					opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-					transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+					opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+					transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 			}
-
 			.reveal.revealed {
 				opacity: 1;
 				transform: translateY(0);
@@ -144,17 +144,16 @@ const { title } = Astro.props;
 			/* Line reveal — clean horizontal wipe */
 			.line-reveal {
 				height: 1px;
-				background: var(--border-strong);
+				background: var(--hairline);
 				transform: scaleX(0);
 				transform-origin: left;
-				transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+				transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 			}
-
 			.line-reveal.revealed {
 				transform: scaleX(1);
 			}
 
-			/* Stagger delays — perceptible but snappy (60ms between items) */
+			/* Stagger delays */
 			.stagger-1 { transition-delay: 0.06s; }
 			.stagger-2 { transition-delay: 0.12s; }
 			.stagger-3 { transition-delay: 0.18s; }
@@ -165,43 +164,27 @@ const { title } = Astro.props;
 			.stagger-8 { transition-delay: 0.48s; }
 
 			/* Scrollbar */
-			::-webkit-scrollbar {
-				width: 0px;
-			}
-			html {
-				scrollbar-width: none;
-			}
+			::-webkit-scrollbar { width: 0px; }
+			html { scrollbar-width: none; }
 
-			/* ============================================
-			   NAV — transitions only after entry animation
-			   ============================================ */
+			/* NAV — transitions only after entry animation */
 			#main-nav.nav-ready {
-				transition: background-color 200ms var(--ease-out),
+				transition:
+					background-color 200ms var(--ease-out),
 					backdrop-filter 200ms var(--ease-out),
 					-webkit-backdrop-filter 200ms var(--ease-out),
 					border-color 200ms var(--ease-out);
 			}
 
-			/* ============================================
-			   @starting-style — modern entry animations
-			   ============================================ */
+			/* @starting-style — modern entry animations */
 			@starting-style {
-				.reveal {
-					opacity: 0;
-					transform: translateY(24px);
-				}
-				.line-reveal {
-					transform: scaleX(0);
-				}
+				.reveal { opacity: 0; transform: translateY(20px); }
+				.line-reveal { transform: scaleX(0); }
 			}
 
-			/* ============================================
-			   STATUS BAR — bottom padding for content
-			   ============================================ */
+			/* Status bar bottom padding */
 			@media (min-width: 768px) {
-				body {
-					padding-bottom: 28px;
-				}
+				body { padding-bottom: 28px; }
 			}
 		</style>
 

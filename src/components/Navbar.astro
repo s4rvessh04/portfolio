@@ -5,6 +5,7 @@ import { socialLinks } from "../data";
 
 const links = [
 	{ href: "#work-section", label: "Work" },
+	{ href: "#experience-section", label: "Experience" },
 	{ href: "#about-section", label: "About" },
 ];
 ---
@@ -41,13 +42,29 @@ const links = [
 
 			<!-- Nav CTA buttons -->
 			<div class="flex items-center gap-2">
-				<a
-					href="mailto:sarveshrane2000@gmail.com"
+				<!-- Dark mode toggle -->
+				<button
+					id="theme-toggle"
+					type="button"
+					aria-label="Toggle dark mode"
 					class="btn-nav"
-					id="nav-contact-btn"
+					style="width: 32px; padding: 0; justify-content: center;"
 				>
-					Contact
-				</a>
+					<svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+					</svg>
+					<svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+						<circle cx="12" cy="12" r="5"></circle>
+						<line x1="12" y1="1" x2="12" y2="3"></line>
+						<line x1="12" y1="21" x2="12" y2="23"></line>
+						<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+						<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+						<line x1="1" y1="12" x2="3" y2="12"></line>
+						<line x1="21" y1="12" x2="23" y2="12"></line>
+						<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+						<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+					</svg>
+				</button>
 				<a
 					href={socialLinks[0].link}
 					target="_blank"
@@ -195,7 +212,7 @@ const links = [
 			</li>
 		</ul>
 
-		<!-- GitHub CTA -->
+		<!-- Bottom CTA -->
 		<div class="px-1 mt-auto">
 			<a
 				href={socialLinks[0].link}
@@ -234,6 +251,36 @@ const links = [
 		background: var(--hairline-soft) !important;
 	}
 </style>
+
+<script>
+	// Dark mode toggle
+	const html = document.documentElement;
+	const toggle = document.getElementById('theme-toggle');
+	const iconMoon = document.getElementById('icon-moon');
+	const iconSun = document.getElementById('icon-sun');
+
+	function getSystemTheme() {
+		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+	}
+
+	function applyTheme(theme: string) {
+		html.setAttribute('data-theme', theme);
+		localStorage.setItem('theme', theme);
+		if (iconMoon && iconSun) {
+			iconMoon.style.display = theme === 'dark' ? 'none' : 'block';
+			iconSun.style.display = theme === 'dark' ? 'block' : 'none';
+		}
+	}
+
+	// Init: respect stored preference, then OS preference
+	const stored = localStorage.getItem('theme');
+	applyTheme(stored ?? getSystemTheme());
+
+	toggle?.addEventListener('click', () => {
+		const current = html.getAttribute('data-theme') ?? getSystemTheme();
+		applyTheme(current === 'dark' ? 'light' : 'dark');
+	});
+</script>
 
 <script>
 	// Dynamic navbar: transparent at top, frosted glass on scroll

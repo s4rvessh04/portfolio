@@ -2,9 +2,10 @@ export const githubUsername = "s4rvessh04";
 export { CAREER_START_DATE as careerStartDate } from "./config";
 
 export const dataCurrently = [
+  { title: "Node.js Engineer" },
+  { title: "Go Developer" },
   { title: "Backend Engineer" },
-  { title: "Systems Engineer" },
-  { title: "Infrastructure" },
+  { title: "Systems Builder" },
 ];
 
 export const socialLinks = [
@@ -16,23 +17,23 @@ export const socialLinks = [
   },
   { title: "Instagram", link: "https://www.instagram.com/sarve.ssh_/", icon: "instagram" },
   { title: "Twitter/X", link: "https://twitter.com/sarvessh_/", icon: "x" },
-  { title: "Gmail", link: "mailto:sarveshrane2000.portfolio-site@gmail.com", icon: "gmail" },
+  { title: "Gmail", link: "mailto:sarveshrane2000.dev@gmail.com", icon: "gmail" },
 ];
 
 export const projects = [
   {
-    title: "Budgeter",
-    github: `https://github.com/${githubUsername}/Budgeter_v2`,
-    live: "https://budgeter-v2-1.onrender.com",
+    title: "RelayBox",
+    github: `https://github.com/${githubUsername}/RelayBox`,
     description:
-      "A financial tracking API and dashboard powered by React and Django.",
-    image: "/projects/budgeter.svg",
-    stack: ["React", "Django", "PostgreSQL", "Docker"],
+      "Transactional Outbox Pattern in Go — guaranteed at-least-once Kafka delivery with built-in idempotency. Benchmarked at 200 req/s relay and consumer throughput with 15μs average processing latency and zero failed events under continuous load.",
+    image: "/projects/relaybox.svg",
+    stack: ["Go", "Apache Kafka", "PostgreSQL", "Redis", "Docker", "Prometheus"],
   },
   {
     title: "Loadbalancer (L4)",
     github: `https://github.com/${githubUsername}/loadbalancer-l4`,
-    description: "A high-performance Layer 4 load balancer built from scratch with the Go standard library.",
+    description:
+      "Zero-dependency Layer 4 TCP/UDP load balancer in pure Go stdlib. Benchmarked at 1,185 RPS under 1,000 concurrent connections over 10 minutes — 825,350 total requests with zero errors.",
     image: "/projects/loadbalancer.svg",
     stack: ["Go (Standard Library)", "TCP", "UDP"],
   },
@@ -40,82 +41,105 @@ export const projects = [
     title: "Vartalap",
     github: `https://github.com/${githubUsername}/vartalap-nextjs`,
     live: "https://vartalap-nextjs.vercel.app/",
-    description: "A low-latency real-time chat application backed by Redis Pub/Sub.",
+    description:
+      "Real-time chat with sub-10ms fan-out — Redis Pub/Sub broadcasts messages to all room members without polling, built on Next.js App Router with TypeScript throughout.",
     image: "/projects/vartalap.svg",
     stack: ["Next.js", "Redis (Pub/Sub)", "TypeScript"],
   },
   {
-    title: "Bookmarks Lite",
-    github: `https://github.com/${githubUsername}/bookmarks-lite`,
-    live: "https://bookmarks-lite.vercel.app",
-    description: "A serverless bookmark management system backed by PostgreSQL and Google OAuth.",
-    image: "/projects/bookmarks-lite.svg",
-    stack: ["Next.js", "PostgreSQL", "Google OAuth", "TypeScript"],
+    title: "Budgeter",
+    github: `https://github.com/${githubUsername}/Budgeter_v2`,
+    live: "https://budgeter-v2-1.onrender.com",
+    description:
+      "Full-stack expense tracker — Django REST API with a PostgreSQL-backed accounting model, React dashboard with live P&L breakdowns, fully Dockerized for one-command deployment.",
+    image: "/projects/budgeter.svg",
+    stack: ["React", "Django", "PostgreSQL", "Docker"],
   },
   {
     title: "Pastebin Lite",
     github: `https://github.com/${githubUsername}/pastebin-lite`,
     live: "https://pastebin-lite-six-virid.vercel.app",
-    description: "A fast, serverless pastebin clone optimized for low-latency text retrieval.",
+    description:
+      "Serverless pastebin optimized for read latency — PostgreSQL-backed text storage served via Vercel Edge Network with syntax highlighting and configurable expiry.",
     image: "/projects/pastebin-lite.svg",
     stack: ["Next.js", "PostgreSQL", "TypeScript"],
   },
   {
-    title: "Blog Site",
-    github: `https://github.com/${githubUsername}/astro-blog-site`,
-    live: "https://blog-sarvessh.vercel.app/",
-    description: "A highly-optimized, statically-generated technical blog.",
-    image: "/projects/blog.svg",
-    stack: ["Astro", "Markdown", "Tailwind CSS"],
+    title: "Bookmarks Lite",
+    github: `https://github.com/${githubUsername}/bookmarks-lite`,
+    live: "https://bookmarks-lite.vercel.app",
+    description:
+      "Zero-trust bookmark manager — Supabase Row Level Security + Google OAuth enforce per-user data isolation, with real-time tab sync via Supabase Realtime.",
+    image: "/projects/bookmarks-lite.svg",
+    stack: ["Next.js", "PostgreSQL", "Google OAuth", "TypeScript"],
+  },
+];
+
+export const experience = [
+  {
+    company: "Jio Platforms Ltd.",
+    role: "Software Engineer I — Backend",
+    period: "Dec 2023 — Present",
+    location: "Navi Mumbai, Maharashtra · Full-time",
+    highlights: [
+      "Cut approval turnaround from 2 days to 2 hours — architected a pan-India approvals service on Node.js / Sequelize, migrating 5,000+ MAU off manual email workflows.",
+      "Enforced zero security violations in production — designed granular RBAC/ABAC policies across regional hierarchies, with zero violations recorded in rollout.",
+      "Built a Redis-backed execution engine sustaining sub-second latency at 10,000+ daily transactions across services supporting 5,000+ users.",
+      "Architected a pan-India facility assessment platform supporting 10,000+ MAU for structured property evaluations across all Jio properties.",
+      "Reduced query latency from seconds to milliseconds via targeted indexes on high-traffic PostgreSQL and MySQL columns on critical data paths.",
+      "Awarded Star Performer for outstanding contributions to enterprise application delivery.",
+    ],
+    stack: ["Node.js", "Express", "TypeScript", "PostgreSQL", "MySQL", "Redis", "Apache Kafka", "Docker", "Kubernetes", "Azure DevOps"],
   },
 ];
 
 export const skills = [
   {
-    title: "Programming Languages",
+    title: "Core Stack",
     data: [
-      { title: "JavaScript", level: "Advanced" },
-      { title: "Python", level: "Advanced" },
-      { title: "Go", level: "Medium" },
-      { title: "Java", level: "Medium" },
+      { title: "Node.js (Express)" },
+      { title: "JavaScript (ES6+)" },
+      { title: "TypeScript" },
+      { title: "PostgreSQL" },
+      { title: "MySQL" },
+      { title: "Redis" },
+      { title: "MongoDB" },
     ],
   },
   {
-    title: "Frameworks",
+    title: "Infrastructure",
     data: [
-      { title: "ExpressJS", level: "Advanced" },
-      { title: "HonoJS", level: "Advanced" },
-      { title: "React", level: "Advanced" },
-      { title: "Django", level: "Advanced" },
-      { title: "FastAPI", level: "Intermediate" },
-      { title: "NextJS", level: "Beginner" },
+      { title: "Docker" },
+      { title: "Kubernetes" },
+      { title: "Azure DevOps" },
+      { title: "Apache Kafka" },
+      { title: "Nginx" },
+      { title: "CI/CD" },
     ],
   },
   {
-    title: "Databases",
+    title: "Observability & Security",
     data: [
-      { title: "MySQL", level: "Intermediate" },
-      { title: "PostgreSQL", level: "Intermediate" },
-      { title: "SQLite", level: "Intermediate" },
-      { title: "MongoDB", level: "Beginner" },
+      { title: "ELK Stack" },
+      { title: "Grafana" },
+      { title: "Prometheus" },
+      { title: "OpenTelemetry" },
+      { title: "JWT" },
+      { title: "RBAC / ABAC" },
     ],
   },
   {
-    title: "Technologies",
+    title: "Other Languages",
     data: [
-      { title: "Git", level: "Intermediate" },
-      { title: "Docker", level: "Advanced" },
-      { title: "ELK stack", level: "Advanced" },
-      { title: "K8s", level: "Advanced" },
-      { title: "Redis", level: "Advanced" },
-      { title: "Apache Kafka", level: "Beginner" },
-      { title: "Linux", level: "Intermediate" },
+      { title: "Go" },
+      { title: "Python" },
+      { title: "SQL" },
     ],
   },
 ];
 
 export const professionalSummary = `
-I am a systems-focused software engineer who builds robust backend services and scalable infrastructure. With over two years of experience, my focus has been on distributed systems, microservice architectures, and performance optimization,consistently delivering measurable gains in system throughput and reliability.
+Backend Engineer with 2+ years of experience delivering high-throughput, zero-downtime enterprise systems at Jio Platforms. I specialize in Node.js microservices, distributed data stores, and complex RBAC/ABAC security models — with a proven track record of eliminating manual workflows, enforcing zero security violations in production, and building execution engines that sustain sub-second latency at 10,000+ daily transactions across services supporting 5,000+ users.
 
-I write pragmatic, production-ready code and leverage modern tooling to ship faster without compromising on quality. I thrive when tackling complex architectural bottlenecks and scaling systems to meet demand. When I'm away from the terminal, you'll likely find me traveling or at an EDM festival.
-`
+On the side, I build in Go to sharpen my systems instincts: a zero-dependency L4 load balancer benchmarked at 1,185 RPS, and RelayBox — a Kafka Transactional Outbox implementation sustaining 200 req/s with 15μs average processing latency. When I'm away from the terminal, you'll likely find me traveling or at an EDM festival.
+`;

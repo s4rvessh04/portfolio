@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sarveshrane.pages.dev/sitemap-index.xml

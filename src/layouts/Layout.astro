@@ -3,7 +3,7 @@ import "../styles/global.css";
 import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 import Navbar from "../components/Navbar.astro";
 
-import { SITE_TITLE, SITE_DESCRIPTION, SITE_NAME, RESUME_URL } from "../config";
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_NAME } from "../config";
 
 export interface Props {
 	title?: string;
@@ -15,6 +15,17 @@ const { title } = Astro.props;
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<!-- FOUC prevention: apply dark mode before any paint -->
+		<script is:inline>
+			(function(){
+				var t = localStorage.getItem('theme');
+				if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+					document.documentElement.setAttribute('data-theme', 'dark');
+				} else {
+					document.documentElement.setAttribute('data-theme', 'light');
+				}
+			})();
+		</script>
 		<GoogleAnalytics />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,7 +41,7 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
 		<!-- Preload critical assets -->
-		<link rel="preload" as="image" href="/profile.webp" fetchpriority="high" />
+		<link rel="preload" as="image" href="/profile.png" fetchpriority="high" />
 
 		<!-- Font loading: Geist Sans + Geist Mono via Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -111,7 +122,7 @@ const { title } = Astro.props;
 		<a
 			href="#main-content"
 			class="fixed top-0 left-0 z-[200] px-4 py-2 text-sm font-medium -translate-y-full focus:translate-y-0"
-			style="background: var(--ink); color: #fff; transition: transform 200ms var(--ease-out); border-radius: 0 0 var(--rounded-sm) 0;"
+			style="background: var(--btn-primary-bg); color: var(--btn-primary-fg); transition: transform 200ms var(--ease-out); border-radius: 0 0 var(--rounded-sm) 0;"
 		>
 		Skip to content
 		</a>
@@ -137,7 +148,7 @@ const { title } = Astro.props;
 		>
 			<div class="flex items-center gap-4">
 				<span class="flex items-center gap-1.5">
-					<span class="w-1.5 h-1.5 rounded-full animate-pulse-slow" style="background: #22c55e;"></span>
+					<span class="w-1.5 h-1.5 rounded-full animate-pulse-slow" style="background: var(--status-green);"></span>
 					<span class="uppercase" style="color: var(--text-body);">online</span>
 				</span>
 				<span style="color: var(--hairline);">│</span>

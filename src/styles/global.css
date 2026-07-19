@@ -31,6 +31,12 @@
 	--warning: #f5a623;
 	--success: #0070f3;
 
+	/* === Status dot — stays green in both modes === */
+	--status-green: #22c55e;
+
+	/* === Hover border — theme-aware === */
+	--hover-border: #d4d4d4;
+
 	/* === Chromatic accents (gradient stops only) === */
 	--cyan: #50e3c2;
 	--violet: #7928ca;
@@ -88,11 +94,17 @@
 	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 	--ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
 	--ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+	/* === Button contrast pair (light mode) === */
+	--btn-primary-bg: #171717;
+	--btn-primary-fg: #ffffff;
 }
 
 /* ============================================
    DARK MODE — OS preference + data-theme toggle
    ============================================ */
+
+/* Shared dark overrides — mixin via both selectors */
 @media (prefers-color-scheme: dark) {
 	:root:not([data-theme="light"]) {
 		--ink: #ededed;
@@ -107,6 +119,12 @@
 		--nav-bg: rgba(10, 10, 10, 0.88);
 		--shadow-whisper: 0px 1px 1px rgba(0, 0, 0, 0.3);
 		--shadow-float: 0px 2px 2px rgba(0, 0, 0, 0.3), 0px 8px 16px -4px rgba(0, 0, 0, 0.5);
+		--link: #3b9eff;
+		--link-deep: #2a8dee;
+		--link-soft: #1a2a40;
+		--hover-border: #484848;
+		--btn-primary-bg: #f0f0f0;
+		--btn-primary-fg: #0a0a0a;
 	}
 }
 
@@ -123,64 +141,12 @@
 	--nav-bg: rgba(10, 10, 10, 0.88);
 	--shadow-whisper: 0px 1px 1px rgba(0, 0, 0, 0.3);
 	--shadow-float: 0px 2px 2px rgba(0, 0, 0, 0.3), 0px 8px 16px -4px rgba(0, 0, 0, 0.5);
-}
-
-/* ============================================
-   DARK MODE BUTTON OVERRIDES
-   btn-primary/nav-primary use var(--ink) which
-   flips to #ededed in dark — invert to white bg
-   + black text for correct contrast.
-   NOTE: .btn-nav.btn-nav-primary:hover must come
-   AFTER .btn-nav:hover (same specificity, cascade
-   order matters) AND uses double-class for safety.
-   ============================================ */
-@media (prefers-color-scheme: dark) {
-	:root:not([data-theme="light"]) .btn-primary {
-		background: #f0f0f0;
-		color: #0a0a0a;
-	}
-	:root:not([data-theme="light"]) .btn-nav-primary {
-		background: #f0f0f0;
-		color: #0a0a0a;
-		border-color: #f0f0f0;
-	}
-	:root:not([data-theme="light"]) .btn-secondary:hover {
-		border-color: #484848;
-		background: #1a1a1a;
-	}
-	:root:not([data-theme="light"]) .btn-nav:hover {
-		border-color: #484848;
-		background: #1a1a1a;
-	}
-	/* Must come after btn-nav:hover — double class wins cascade tie */
-	:root:not([data-theme="light"]) .btn-nav.btn-nav-primary:hover {
-		background: #e0e0e0;
-		border-color: #e0e0e0;
-		opacity: 1;
-	}
-}
-[data-theme="dark"] .btn-primary {
-	background: #f0f0f0;
-	color: #0a0a0a;
-}
-[data-theme="dark"] .btn-nav-primary {
-	background: #f0f0f0;
-	color: #0a0a0a;
-	border-color: #f0f0f0;
-}
-[data-theme="dark"] .btn-secondary:hover {
-	border-color: #484848;
-	background: #1a1a1a;
-}
-[data-theme="dark"] .btn-nav:hover {
-	border-color: #484848;
-	background: #1a1a1a;
-}
-/* Must come after btn-nav:hover — double class wins cascade tie */
-[data-theme="dark"] .btn-nav.btn-nav-primary:hover {
-	background: #e0e0e0;
-	border-color: #e0e0e0;
-	opacity: 1;
+	--link: #3b9eff;
+	--link-deep: #2a8dee;
+	--link-soft: #1a2a40;
+	--hover-border: #484848;
+	--btn-primary-bg: #f0f0f0;
+	--btn-primary-fg: #0a0a0a;
 }
 
 @theme {
@@ -294,7 +260,7 @@
    ============================================ */
 html {
 	scroll-behavior: smooth;
-	color-scheme: light;
+	color-scheme: light dark;
 }
 
 body {
@@ -349,6 +315,26 @@ body {
 	will-change: transform;
 }
 
+/* Dark mode: reduce mesh vibrancy to avoid glowing blobs on dark canvas */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .hero-mesh {
+		background:
+			radial-gradient(ellipse 70% 60% at 20% 30%, rgba(80, 227, 194, 0.10) 0%, transparent 60%),
+			radial-gradient(ellipse 50% 50% at 60% 20%, rgba(0, 124, 240, 0.08) 0%, transparent 55%),
+			radial-gradient(ellipse 60% 50% at 80% 60%, rgba(121, 40, 202, 0.06) 0%, transparent 60%),
+			radial-gradient(ellipse 40% 60% at 40% 80%, rgba(235, 54, 127, 0.05) 0%, transparent 55%),
+			radial-gradient(ellipse 55% 40% at 90% 10%, rgba(249, 203, 40, 0.06) 0%, transparent 50%);
+	}
+}
+[data-theme="dark"] .hero-mesh {
+	background:
+		radial-gradient(ellipse 70% 60% at 20% 30%, rgba(80, 227, 194, 0.10) 0%, transparent 60%),
+		radial-gradient(ellipse 50% 50% at 60% 20%, rgba(0, 124, 240, 0.08) 0%, transparent 55%),
+		radial-gradient(ellipse 60% 50% at 80% 60%, rgba(121, 40, 202, 0.06) 0%, transparent 60%),
+		radial-gradient(ellipse 40% 60% at 40% 80%, rgba(235, 54, 127, 0.05) 0%, transparent 55%),
+		radial-gradient(ellipse 55% 40% at 90% 10%, rgba(249, 203, 40, 0.06) 0%, transparent 50%);
+}
+
 /* ============================================
    MONO EYEBROW — uppercase Geist Mono section labels
    ============================================ */
@@ -375,16 +361,18 @@ body {
 
 /* ============================================
    BUTTON STYLES
+   All buttons use CSS variables for colors so
+   they adapt to light/dark mode automatically.
    ============================================ */
 
-/* Marketing pill — black fill, fully rounded */
+/* Marketing pill — primary fill, fully rounded */
 .btn-primary {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	gap: 6px;
-	background: var(--ink);
-	color: #ffffff;
+	background: var(--btn-primary-bg);
+	color: var(--btn-primary-fg);
 	font-size: var(--text-button-lg);
 	font-weight: 500;
 	line-height: 1.25;
@@ -400,7 +388,7 @@ body {
 .btn-primary:hover { opacity: 0.84; }
 .btn-primary:active { transform: scale(0.97); opacity: 0.9; }
 
-/* Secondary pill — white fill, hairline border */
+/* Secondary pill — elevated fill, hairline border */
 .btn-secondary {
 	display: inline-flex;
 	align-items: center;
@@ -420,7 +408,7 @@ body {
 	text-decoration: none;
 	white-space: nowrap;
 }
-.btn-secondary:hover { border-color: #d4d4d4; background: var(--hairline-soft); }
+.btn-secondary:hover { border-color: var(--hover-border); background: var(--hairline-soft); }
 .btn-secondary:active { transform: scale(0.97); }
 
 /* Nav/app button — 6px square, compact */
@@ -443,16 +431,16 @@ body {
 	text-decoration: none;
 	white-space: nowrap;
 }
-.btn-nav:hover { border-color: #d4d4d4; background: var(--hairline-soft); }
+.btn-nav:hover { border-color: var(--hover-border); background: var(--hairline-soft); }
 .btn-nav:active { transform: scale(0.97); }
 
-/* Nav primary — black square */
+/* Nav primary — primary fill, square */
 .btn-nav-primary {
-	background: var(--ink);
-	color: #ffffff;
-	border-color: var(--ink);
+	background: var(--btn-primary-bg);
+	color: var(--btn-primary-fg);
+	border-color: var(--btn-primary-bg);
 }
-.btn-nav-primary:hover { opacity: 0.84; border-color: var(--ink); background: var(--ink); }
+.btn-nav-primary:hover { opacity: 0.84; border-color: var(--btn-primary-bg); background: var(--btn-primary-bg); }
 
 /* ============================================
    SECTION DIVIDERS
@@ -474,6 +462,15 @@ body {
 	flex-shrink: 0;
 	white-space: nowrap;
 	animation: marquee 30s linear infinite;
+}
+
+/* ============================================
+   PROJECT IMAGE — dark mode invert for SVGs
+   SVGs have transparent backgrounds now, so we
+   give the container a themed background.
+   ============================================ */
+.project-image-container {
+	background: var(--canvas-elevated);
 }
 
 /* ============================================

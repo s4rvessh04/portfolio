@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
-  <rect width="800" height="500" fill="#ffffff"/>
+  <rect width="800" height="500" fill="none"/>
   <defs>
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ebebeb" stroke-width="0.5"/>
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(150,150,150,0.3)" stroke-width="0.5"/>
     </pattern>
     <!-- Relay accent: blue→cyan -->
     <linearGradient id="relayGrad" x1="0" y1="0" x2="1" y2="1">
@@ -18,20 +18,20 @@
   <rect width="800" height="500" fill="url(#grid)"/>
 
   <!-- ── ROW LABEL: "Transactional Outbox Pattern" ── -->
-  <rect x="270" y="22" width="260" height="16" rx="8" fill="#f2f2f2" stroke="#ebebeb" stroke-width="1"/>
-  <rect x="292" y="28" width="216" height="4" rx="2" fill="#8f8f8f"/>
+  <rect x="270" y="22" width="260" height="16" rx="8" fill="rgba(150,150,150,0.12)" stroke="rgba(150,150,150,0.4)" stroke-width="1"/>
+  <rect x="292" y="28" width="216" height="4" rx="2" fill="rgba(150,150,150,0.4)"/>
 
   <!-- ══════════════════════════════════════════ -->
   <!-- APP BOX                                    -->
   <!-- ══════════════════════════════════════════ -->
-  <rect x="28" y="190" width="116" height="120" rx="10" fill="#ffffff" stroke="#ebebeb" stroke-width="1"/>
+  <rect x="28" y="190" width="116" height="120" rx="10" fill="rgba(150,150,150,0.08)" stroke="rgba(150,150,150,0.4)" stroke-width="1"/>
   <!-- label bar -->
-  <rect x="44" y="210" width="52" height="6" rx="3" fill="#4d4d4d"/>
-  <rect x="44" y="222" width="36" height="4" rx="2" fill="#a1a1a1"/>
+  <rect x="44" y="210" width="52" height="6" rx="3" fill="rgba(150,150,150,0.7)"/>
+  <rect x="44" y="222" width="36" height="4" rx="2" fill="rgba(150,150,150,0.4)"/>
   <!-- code lines -->
-  <rect x="44" y="240" width="84" height="4" rx="2" fill="#ebebeb"/>
-  <rect x="44" y="250" width="60" height="4" rx="2" fill="#ebebeb"/>
-  <rect x="44" y="260" width="72" height="4" rx="2" fill="#ebebeb"/>
+  <rect x="44" y="240" width="84" height="4" rx="2" fill="rgba(150,150,150,0.3)"/>
+  <rect x="44" y="250" width="60" height="4" rx="2" fill="rgba(150,150,150,0.3)"/>
+  <rect x="44" y="260" width="72" height="4" rx="2" fill="rgba(150,150,150,0.3)"/>
   <!-- status dot -->
   <circle cx="124" cy="208" r="5" fill="#00dfd8" opacity="0.7"/>
   <!-- step badge -->
@@ -42,33 +42,33 @@
   <line x1="144" y1="250" x2="178" y2="250" stroke="#d4d4d4" stroke-width="1.5" stroke-dasharray="5 3"/>
   <polygon points="178,246 186,250 178,254" fill="#d4d4d4"/>
   <!-- label -->
-  <rect x="148" y="238" width="28" height="9" rx="4" fill="#f9f9f9"/>
-  <rect x="152" y="241" width="20" height="3" rx="1.5" fill="#8f8f8f"/>
+  <rect x="148" y="238" width="28" height="9" rx="4" fill="rgba(150,150,150,0.08)"/>
+  <rect x="152" y="241" width="20" height="3" rx="1.5" fill="rgba(150,150,150,0.4)"/>
 
   <!-- ══════════════════════════════════════════ -->
   <!-- POSTGRESQL / OUTBOX                        -->
   <!-- ══════════════════════════════════════════ -->
-  <rect x="186" y="160" width="160" height="180" rx="10" fill="#ffffff" stroke="#ebebeb" stroke-width="1"/>
+  <rect x="186" y="160" width="160" height="180" rx="10" fill="rgba(150,150,150,0.08)" stroke="rgba(150,150,150,0.4)" stroke-width="1"/>
   <!-- header -->
-  <rect x="186" y="160" width="160" height="36" rx="10" fill="#f7f7f7" stroke="#ebebeb" stroke-width="1"/>
-  <rect x="186" y="192" width="160" height="4" fill="#f7f7f7"/>
-  <rect x="202" y="170" width="56" height="6" rx="3" fill="#4d4d4d"/>
-  <rect x="202" y="182" width="36" height="4" rx="2" fill="#a1a1a1"/>
+  <rect x="186" y="160" width="160" height="36" rx="10" fill="rgba(150,150,150,0.12)" stroke="rgba(150,150,150,0.4)" stroke-width="1"/>
+  <rect x="186" y="192" width="160" height="4" fill="rgba(150,150,150,0.12)"/>
+  <rect x="202" y="170" width="56" height="6" rx="3" fill="rgba(150,150,150,0.7)"/>
+  <rect x="202" y="182" width="36" height="4" rx="2" fill="rgba(150,150,150,0.4)"/>
   <!-- outbox table rows -->
-  <rect x="202" y="210" width="128" height="20" rx="4" fill="#f2f2f2"/>
+  <rect x="202" y="210" width="128" height="20" rx="4" fill="rgba(150,150,150,0.12)"/>
   <rect x="208" y="215" width="40" height="4" rx="2" fill="#007cf0" opacity="0.4"/>
   <rect x="256" y="215" width="32" height="4" rx="2" fill="#00dfd8" opacity="0.5"/>
-  <rect x="296" y="215" width="26" height="4" rx="2" fill="#a1a1a1"/>
+  <rect x="296" y="215" width="26" height="4" rx="2" fill="rgba(150,150,150,0.4)"/>
 
-  <rect x="202" y="236" width="128" height="20" rx="4" fill="#fafafa" stroke="#ebebeb" stroke-width="0.5"/>
+  <rect x="202" y="236" width="128" height="20" rx="4" fill="rgba(150,150,150,0.08)" stroke="rgba(150,150,150,0.3)" stroke-width="0.5"/>
   <rect x="208" y="241" width="40" height="4" rx="2" fill="#007cf0" opacity="0.3"/>
   <rect x="256" y="241" width="32" height="4" rx="2" fill="#f9cb28" opacity="0.5"/>
-  <rect x="296" y="241" width="26" height="4" rx="2" fill="#a1a1a1"/>
+  <rect x="296" y="241" width="26" height="4" rx="2" fill="rgba(150,150,150,0.4)"/>
 
-  <rect x="202" y="262" width="128" height="20" rx="4" fill="#fafafa" stroke="#ebebeb" stroke-width="0.5"/>
+  <rect x="202" y="262" width="128" height="20" rx="4" fill="rgba(150,150,150,0.08)" stroke="rgba(150,150,150,0.3)" stroke-width="0.5"/>
   <rect x="208" y="267" width="40" height="4" rx="2" fill="#007cf0" opacity="0.25"/>
   <rect x="256" y="267" width="32" height="4" rx="2" fill="#ff4d4d" opacity="0.3"/>
-  <rect x="296" y="267" width="26" height="4" rx="2" fill="#a1a1a1"/>
+  <rect x="296" y="267" width="26" height="4" rx="2" fill="rgba(150,150,150,0.4)"/>
 
   <!-- outbox label pill -->
   <rect x="202" y="298" width="64" height="16" rx="8" fill="#007cf0" opacity="0.08" stroke="#007cf0" stroke-width="0.6" stroke-opacity="0.3"/>
@@ -77,15 +77,15 @@
   <!-- arrow DB → Relay (poll) -->
   <line x1="346" y1="250" x2="382" y2="250" stroke="#d4d4d4" stroke-width="1.5" stroke-dasharray="5 3"/>
   <polygon points="382,246 390,250 382,254" fill="#d4d4d4"/>
-  <rect x="350" y="238" width="28" height="9" rx="4" fill="#f9f9f9"/>
-  <rect x="354" y="241" width="20" height="3" rx="1.5" fill="#8f8f8f"/>
+  <rect x="350" y="238" width="28" height="9" rx="4" fill="rgba(150,150,150,0.08)"/>
+  <rect x="354" y="241" width="20" height="3" rx="1.5" fill="rgba(150,150,150,0.4)"/>
 
   <!-- ══════════════════════════════════════════ -->
   <!-- RELAY SERVICE (center accent)              -->
   <!-- ══════════════════════════════════════════ -->
   <rect x="390" y="175" width="148" height="150" rx="12" fill="url(#relayGrad)" stroke="#007cf0" stroke-width="1" stroke-opacity="0.3"/>
   <!-- icon -->
-  <circle cx="464" cy="230" r="26" fill="#ffffff" opacity="0.65"/>
+  <circle cx="464" cy="230" r="26" fill="rgba(150,150,150,0.15)" opacity="0.65"/>
   <!-- relay arrows inside circle -->
   <line x1="452" y1="224" x2="476" y2="224" stroke="#007cf0" stroke-width="2" opacity="0.7"/>
   <polygon points="476,220 482,224 476,228" fill="#007cf0" opacity="0.7"/>
@@ -107,18 +107,18 @@
   <!-- ══════════════════════════════════════════ -->
   <!-- KAFKA                                      -->
   <!-- ══════════════════════════════════════════ -->
-  <rect x="580" y="180" width="130" height="140" rx="10" fill="#ffffff" stroke="#ebebeb" stroke-width="1"/>
-  <rect x="580" y="180" width="130" height="34" rx="10" fill="#fdf9f0" stroke="#ebebeb" stroke-width="1"/>
-  <rect x="580" y="208" width="130" height="6" fill="#fdf9f0"/>
-  <rect x="596" y="190" width="44" height="6" rx="3" fill="#8f8f8f"/>
+  <rect x="580" y="180" width="130" height="140" rx="10" fill="rgba(150,150,150,0.08)" stroke="rgba(150,150,150,0.4)" stroke-width="1"/>
+  <rect x="580" y="180" width="130" height="34" rx="10" fill="rgba(150,150,150,0.12)" stroke="rgba(150,150,150,0.4)" stroke-width="1"/>
+  <rect x="580" y="208" width="130" height="6" fill="rgba(150,150,150,0.12)"/>
+  <rect x="596" y="190" width="44" height="6" rx="3" fill="rgba(150,150,150,0.7)"/>
   <!-- partition bars -->
   <rect x="596" y="228" width="98" height="10" rx="4" fill="url(#kafkaGrad)"/>
   <rect x="596" y="244" width="76" height="10" rx="4" fill="#f9cb28" opacity="0.3"/>
   <rect x="596" y="260" width="88" height="10" rx="4" fill="#f9cb28" opacity="0.2"/>
-  <rect x="596" y="276" width="60" height="10" rx="4" fill="#ebebeb"/>
+  <rect x="596" y="276" width="60" height="10" rx="4" fill="rgba(150,150,150,0.3)"/>
   <!-- offset badge -->
   <rect x="596" y="298" width="48" height="12" rx="6" fill="#f9cb28" opacity="0.2" stroke="#f9cb28" stroke-width="0.6" stroke-opacity="0.4"/>
-  <rect x="604" y="302" width="32" height="3" rx="1.5" fill="#8f8f8f"/>
+  <rect x="604" y="302" width="32" height="3" rx="1.5" fill="rgba(150,150,150,0.4)"/>
 
   <!-- arrow Kafka → Consumer (goes down) -->
   <line x1="645" y1="320" x2="645" y2="360" stroke="#d4d4d4" stroke-width="1.5" stroke-dasharray="5 3"/>
@@ -127,13 +127,13 @@
   <!-- ══════════════════════════════════════════ -->
   <!-- CONSUMER                                   -->
   <!-- ══════════════════════════════════════════ -->
-  <rect x="576" y="368" width="138" height="100" rx="10" fill="#ffffff" stroke="#ebebeb" stroke-width="1"/>
-  <rect x="594" y="382" width="52" height="6" rx="3" fill="#4d4d4d"/>
-  <rect x="594" y="394" width="36" height="4" rx="2" fill="#a1a1a1"/>
+  <rect x="576" y="368" width="138" height="100" rx="10" fill="rgba(150,150,150,0.08)" stroke="rgba(150,150,150,0.4)" stroke-width="1"/>
+  <rect x="594" y="382" width="52" height="6" rx="3" fill="rgba(150,150,150,0.7)"/>
+  <rect x="594" y="394" width="36" height="4" rx="2" fill="rgba(150,150,150,0.4)"/>
   <!-- check/process indicator -->
-  <rect x="594" y="412" width="104" height="6" rx="3" fill="#f2f2f2"/>
+  <rect x="594" y="412" width="104" height="6" rx="3" fill="rgba(150,150,150,0.12)"/>
   <rect x="594" y="412" width="68" height="6" rx="3" fill="#00dfd8" opacity="0.4"/>
-  <rect x="594" y="424" width="80" height="4" rx="2" fill="#ebebeb"/>
+  <rect x="594" y="424" width="80" height="4" rx="2" fill="rgba(150,150,150,0.3)"/>
   <circle cx="688" cy="382" r="5" fill="#00dfd8" opacity="0.7"/>
 
   <!-- arrow Consumer → Redis (goes left) -->
@@ -143,16 +143,16 @@
   <!-- ══════════════════════════════════════════ -->
   <!-- REDIS (idempotency guard)                  -->
   <!-- ══════════════════════════════════════════ -->
-  <rect x="364" y="368" width="138" height="100" rx="10" fill="#ffffff" stroke="#ebebeb" stroke-width="1"/>
-  <rect x="382" y="382" width="44" height="6" rx="3" fill="#4d4d4d"/>
-  <rect x="382" y="394" width="60" height="4" rx="2" fill="#a1a1a1"/>
+  <rect x="364" y="368" width="138" height="100" rx="10" fill="rgba(150,150,150,0.08)" stroke="rgba(150,150,150,0.4)" stroke-width="1"/>
+  <rect x="382" y="382" width="44" height="6" rx="3" fill="rgba(150,150,150,0.7)"/>
+  <rect x="382" y="394" width="60" height="4" rx="2" fill="rgba(150,150,150,0.4)"/>
   <!-- key/value rows -->
-  <rect x="382" y="410" width="104" height="8" rx="4" fill="#fafafa" stroke="#ebebeb" stroke-width="0.5"/>
+  <rect x="382" y="410" width="104" height="8" rx="4" fill="rgba(150,150,150,0.08)" stroke="rgba(150,150,150,0.3)" stroke-width="0.5"/>
   <rect x="388" y="413" width="22" height="2.5" rx="1" fill="#ff4d4d" opacity="0.5"/>
-  <rect x="414" y="413" width="38" height="2.5" rx="1" fill="#a1a1a1"/>
-  <rect x="382" y="423" width="104" height="8" rx="4" fill="#fafafa" stroke="#ebebeb" stroke-width="0.5"/>
+  <rect x="414" y="413" width="38" height="2.5" rx="1" fill="rgba(150,150,150,0.4)"/>
+  <rect x="382" y="423" width="104" height="8" rx="4" fill="rgba(150,150,150,0.08)" stroke="rgba(150,150,150,0.3)" stroke-width="0.5"/>
   <rect x="388" y="426" width="22" height="2.5" rx="1" fill="#00dfd8" opacity="0.5"/>
-  <rect x="414" y="426" width="28" height="2.5" rx="1" fill="#a1a1a1"/>
+  <rect x="414" y="426" width="28" height="2.5" rx="1" fill="rgba(150,150,150,0.4)"/>
   <!-- badge -->
   <rect x="382" y="442" width="70" height="12" rx="6" fill="#ff4d4d" opacity="0.08" stroke="#ff4d4d" stroke-width="0.5" stroke-opacity="0.3"/>
   <rect x="390" y="446" width="54" height="3" rx="1.5" fill="#ff4d4d" opacity="0.4"/>
@@ -164,29 +164,29 @@
   <!-- ══════════════════════════════════════════ -->
   <!-- BUSINESS LOGIC                             -->
   <!-- ══════════════════════════════════════════ -->
-  <rect x="152" y="368" width="140" height="100" rx="10" fill="#ffffff" stroke="#ebebeb" stroke-width="1"/>
-  <rect x="168" y="382" width="60" height="6" rx="3" fill="#4d4d4d"/>
-  <rect x="168" y="394" width="44" height="4" rx="2" fill="#a1a1a1"/>
+  <rect x="152" y="368" width="140" height="100" rx="10" fill="rgba(150,150,150,0.08)" stroke="rgba(150,150,150,0.4)" stroke-width="1"/>
+  <rect x="168" y="382" width="60" height="6" rx="3" fill="rgba(150,150,150,0.7)"/>
+  <rect x="168" y="394" width="44" height="4" rx="2" fill="rgba(150,150,150,0.4)"/>
   <!-- success bar -->
-  <rect x="168" y="412" width="108" height="6" rx="3" fill="#f2f2f2"/>
+  <rect x="168" y="412" width="108" height="6" rx="3" fill="rgba(150,150,150,0.12)"/>
   <rect x="168" y="412" width="88" height="6" rx="3" fill="#00dfd8" opacity="0.35"/>
-  <rect x="168" y="424" width="80" height="4" rx="2" fill="#ebebeb"/>
-  <rect x="168" y="434" width="52" height="4" rx="2" fill="#ebebeb"/>
+  <rect x="168" y="424" width="80" height="4" rx="2" fill="rgba(150,150,150,0.3)"/>
+  <rect x="168" y="434" width="52" height="4" rx="2" fill="rgba(150,150,150,0.3)"/>
   <circle cx="275" cy="382" r="5" fill="#00dfd8" opacity="0.7"/>
 
   <!-- ══════════════════════════════════════════ -->
   <!-- PROMETHEUS / ADMIN mini panel (top-right)  -->
   <!-- ══════════════════════════════════════════ -->
-  <rect x="630" y="50" width="142" height="96" rx="8" fill="#ffffff" stroke="#ebebeb" stroke-width="1"/>
-  <rect x="646" y="64" width="60" height="5" rx="2.5" fill="#4d4d4d"/>
-  <rect x="646" y="74" width="40" height="4" rx="2" fill="#a1a1a1"/>
+  <rect x="630" y="50" width="142" height="96" rx="8" fill="rgba(150,150,150,0.08)" stroke="rgba(150,150,150,0.4)" stroke-width="1"/>
+  <rect x="646" y="64" width="60" height="5" rx="2.5" fill="rgba(150,150,150,0.7)"/>
+  <rect x="646" y="74" width="40" height="4" rx="2" fill="rgba(150,150,150,0.4)"/>
   <!-- sparkline -->
   <polyline points="646,120 658,108 670,114 682,100 694,106 706,96 718,102 730,90 742,94 754,88" stroke="#007cf0" stroke-width="1.5" stroke-opacity="0.6" fill="none"/>
-  <rect x="646" y="122" width="108" height="2" rx="1" fill="#ebebeb"/>
+  <rect x="646" y="122" width="108" height="2" rx="1" fill="rgba(150,150,150,0.3)"/>
   <!-- metric dots -->
   <circle cx="646" cy="90" r="3" fill="#007cf0" opacity="0.5"/>
   <circle cx="658" cy="84" r="3" fill="#00dfd8" opacity="0.5"/>
 
   <!-- connector: Relay → Prometheus admin (dashed line up-right) -->
-  <line x1="464" y1="175" x2="630" y2="98" stroke="#ebebeb" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="464" y1="175" x2="630" y2="98" stroke="rgba(150,150,150,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
 </svg>

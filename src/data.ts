@@ -25,7 +25,7 @@ export const projects = [
     title: "RelayBox",
     github: `https://github.com/${githubUsername}/RelayBox`,
     description:
-      "Transactional Outbox Pattern in Go — guaranteed at-least-once Kafka delivery with built-in idempotency. Benchmarked at 200 req/s relay and consumer throughput with 15μs average processing latency and zero failed events under continuous load.",
+      "I wanted to really understand the Transactional Outbox pattern, so I built one from scratch in Go. It guarantees at-least-once Kafka delivery with idempotency baked in — handles 200 req/s with ~15μs processing latency and hasn't dropped an event yet.",
     image: "/projects/relaybox.svg",
     stack: ["Go", "Apache Kafka", "PostgreSQL", "Redis", "Docker", "Prometheus"],
   },
@@ -33,7 +33,7 @@ export const projects = [
     title: "Loadbalancer (L4)",
     github: `https://github.com/${githubUsername}/loadbalancer-l4`,
     description:
-      "Zero-dependency Layer 4 TCP/UDP load balancer in pure Go stdlib. Benchmarked at 1,185 RPS under 1,000 concurrent connections over 10 minutes — 825,350 total requests with zero errors.",
+      "A Layer 4 load balancer written in pure Go — no external dependencies, just the standard library. I threw 1,000 concurrent connections at it for 10 minutes straight and it handled 1,185 RPS without a single error.",
     image: "/projects/loadbalancer.svg",
     stack: ["Go (Standard Library)", "TCP", "UDP"],
   },
@@ -42,7 +42,7 @@ export const projects = [
     github: `https://github.com/${githubUsername}/vartalap-nextjs`,
     live: "https://vartalap-nextjs.vercel.app/",
     description:
-      "Real-time chat with sub-10ms fan-out — Redis Pub/Sub broadcasts messages to all room members without polling, built on Next.js App Router with TypeScript throughout.",
+      "Real-time chat app where messages hit everyone in the room in under 10ms. Uses Redis Pub/Sub instead of polling, so it actually feels instant. Built with Next.js and TypeScript.",
     image: "/projects/vartalap.svg",
     stack: ["Next.js", "Redis (Pub/Sub)", "TypeScript"],
   },
@@ -51,7 +51,7 @@ export const projects = [
     github: `https://github.com/${githubUsername}/Budgeter_v2`,
     live: "https://budgeter-v2-1.onrender.com",
     description:
-      "Full-stack expense tracker — Django REST API with a PostgreSQL-backed accounting model, React dashboard with live P&L breakdowns, fully Dockerized for one-command deployment.",
+      "An expense tracker I built because I wanted something simple that actually shows where my money goes. Django API on the backend, React dashboard up front, one Docker command to run the whole thing.",
     image: "/projects/budgeter.svg",
     stack: ["React", "Django", "PostgreSQL", "Docker"],
   },
@@ -60,7 +60,7 @@ export const projects = [
     github: `https://github.com/${githubUsername}/pastebin-lite`,
     live: "https://pastebin-lite-six-virid.vercel.app",
     description:
-      "Serverless pastebin optimized for read latency — PostgreSQL-backed text storage served via Vercel Edge Network with syntax highlighting and configurable expiry.",
+      "A minimal pastebin that loads fast. Stores text in PostgreSQL, serves it through Vercel's edge network, and has syntax highlighting with configurable expiry. Nothing fancy, just works.",
     image: "/projects/pastebin-lite.svg",
     stack: ["Next.js", "PostgreSQL", "TypeScript"],
   },
@@ -69,7 +69,7 @@ export const projects = [
     github: `https://github.com/${githubUsername}/bookmarks-lite`,
     live: "https://bookmarks-lite.vercel.app",
     description:
-      "Zero-trust bookmark manager — Supabase Row Level Security + Google OAuth enforce per-user data isolation, with real-time tab sync via Supabase Realtime.",
+      "A bookmark manager where each user's data is completely isolated using Supabase Row Level Security and Google OAuth. Tabs sync in real-time across devices — no refresh needed.",
     image: "/projects/bookmarks-lite.svg",
     stack: ["Next.js", "PostgreSQL", "Google OAuth", "TypeScript"],
   },
@@ -82,12 +82,12 @@ export const experience = [
     period: "Dec 2023 — Present",
     location: "Navi Mumbai, Maharashtra · Full-time",
     highlights: [
-      "Cut approval turnaround from 2 days to 2 hours — architected a pan-India approvals service on Node.js / Sequelize, migrating 5,000+ MAU off manual email workflows.",
-      "Enforced zero security violations in production — designed granular RBAC/ABAC policies across regional hierarchies, with zero violations recorded in rollout.",
-      "Built a Redis-backed execution engine sustaining sub-second latency at 10,000+ daily transactions across services supporting 5,000+ users.",
-      "Architected a pan-India facility assessment platform supporting 10,000+ MAU for structured property evaluations across all Jio properties.",
-      "Reduced query latency from seconds to milliseconds via targeted indexes on high-traffic PostgreSQL and MySQL columns on critical data paths.",
-      "Awarded Star Performer for outstanding contributions to enterprise application delivery.",
+      "Took an approval process that used to take 2 days over email and turned it into a 2-hour flow — built the whole service on Node.js, now used by 5,000+ people across India.",
+      "Designed the RBAC/ABAC security model from scratch for regional hierarchies. Zero violations since launch, which I'm pretty proud of.",
+      "Built a Redis-backed engine that processes 10,000+ transactions daily at sub-second latency. It just... doesn't go down.",
+      "Led the backend for a facility assessment platform used by 10,000+ people across all Jio properties. Lots of fun data modeling challenges.",
+      "Found and fixed slow database queries by adding targeted indexes — took some critical paths from seconds to milliseconds.",
+      "Got the Star Performer award, which was a nice surprise.",
     ],
     stack: ["Node.js", "Express", "TypeScript", "PostgreSQL", "MySQL", "Redis", "Apache Kafka", "Docker", "Kubernetes", "Azure DevOps"],
   },
@@ -139,7 +139,7 @@ export const skills = [
 ];
 
 export const professionalSummary = `
-Backend Engineer with 2+ years of experience delivering high-throughput, zero-downtime enterprise systems at Jio Platforms. I specialize in Node.js microservices, distributed data stores, and complex RBAC/ABAC security models — with a proven track record of eliminating manual workflows, enforcing zero security violations in production, and building execution engines that sustain sub-second latency at 10,000+ daily transactions across services supporting 5,000+ users.
+I've spent the last 2+ years building the kind of backend systems that thousands of people rely on every day — approval workflows, security models, execution engines. The stuff that needs to work at 3 AM on a Saturday and can't afford to be flaky.
 
-On the side, I build in Go to sharpen my systems instincts: a zero-dependency L4 load balancer benchmarked at 1,185 RPS, and RelayBox — a Kafka Transactional Outbox implementation sustaining 200 req/s with 15μs average processing latency. When I'm away from the terminal, you'll likely find me traveling or at an EDM festival.
+Outside of work, I write Go to scratch the systems itch. I've built a load balancer from scratch and a Kafka outbox service, mostly to understand how these things actually work under the hood. When I'm not at the terminal, I'm probably traveling somewhere or losing myself at an EDM festival.
 `;

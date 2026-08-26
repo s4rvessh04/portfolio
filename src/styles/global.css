@@ -496,3 +496,14 @@ body {
 @media (pointer: coarse) {
 	.btn-nav { height: 44px; }
 }
+
+/* ============================================
+   MOBILE SPACING — tighten vertical rhythm
+   ============================================ */
+@media (max-width: 767px) {
+	:root {
+		--space-3xl: 48px;
+		--space-4xl: 64px;
+		--space-section: 72px;
+	}
+}

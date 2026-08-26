@@ -77,8 +77,30 @@ const links = [
 			</div>
 		</div>
 
-		<!-- Mobile: hamburger -->
+		<!-- Mobile: theme toggle + hamburger -->
 		<div class="flex md:hidden items-center gap-2">
+			<button
+				id="theme-toggle-mobile"
+				type="button"
+				aria-label="Toggle dark mode"
+				class="w-9 h-9 flex items-center justify-center cursor-pointer"
+				style="border: 1px solid var(--hairline); background: var(--canvas-elevated); border-radius: var(--rounded-sm); transition: background 200ms var(--ease-out), border-color 200ms var(--ease-out);"
+			>
+				<svg class="icon-moon-mobile" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+				</svg>
+				<svg class="icon-sun-mobile" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+					<circle cx="12" cy="12" r="5"></circle>
+					<line x1="12" y1="1" x2="12" y2="3"></line>
+					<line x1="12" y1="21" x2="12" y2="23"></line>
+					<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+					<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+					<line x1="1" y1="12" x2="3" y2="12"></line>
+					<line x1="21" y1="12" x2="23" y2="12"></line>
+					<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+					<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+				</svg>
+			</button>
 			<button
 				id="menu-toggle"
 				type="button"
@@ -100,7 +122,7 @@ const links = [
 <!-- Mobile drawer overlay -->
 <div
 	id="mobile-drawer-overlay"
-	class="fixed inset-0 z-40 pointer-events-none"
+	class="fixed inset-0 z-[51] pointer-events-none"
 	style="background: rgba(0,0,0,0); transition: background 300ms var(--ease-out);"
 	aria-hidden="true"
 >
@@ -109,7 +131,7 @@ const links = [
 <!-- Mobile drawer -->
 <aside
 	id="mobile-drawer"
-	class="fixed top-0 right-0 z-[45] h-full flex flex-col"
+	class="fixed top-0 right-0 z-[52] h-full flex flex-col"
 	style="width: min(85vw, 320px); background: var(--canvas-elevated); border-left: 1px solid var(--hairline); transform: translateX(100%); transition: transform 300ms var(--ease-out); will-change: transform;"
 	aria-hidden="true"
 >
@@ -228,16 +250,18 @@ const links = [
 </aside>
 
 <style>
-	/* Hamburger hover */
+	/* Hamburger / toggle hover */
 	@media (hover: hover) and (pointer: fine) {
 		#menu-toggle:hover,
-		#drawer-close:hover {
+		#drawer-close:hover,
+		#theme-toggle-mobile:hover {
 			background: var(--hairline-soft) !important;
 			border-color: var(--hover-border) !important;
 		}
 	}
 	#menu-toggle:active,
-	#drawer-close:active {
+	#drawer-close:active,
+	#theme-toggle-mobile:active {
 		transform: scale(0.95);
 	}
 
@@ -253,11 +277,14 @@ const links = [
 </style>
 
 <script>
-	// Dark mode toggle
+	// Dark mode toggle — desktop + mobile
 	const html = document.documentElement;
 	const toggle = document.getElementById('theme-toggle');
+	const toggleMobile = document.getElementById('theme-toggle-mobile');
 	const iconMoon = document.getElementById('icon-moon');
 	const iconSun = document.getElementById('icon-sun');
+	const iconMoonMobile = document.querySelector('.icon-moon-mobile') as HTMLElement | null;
+	const iconSunMobile = document.querySelector('.icon-sun-mobile') as HTMLElement | null;
 
 	function getSystemTheme() {
 		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -266,9 +293,15 @@ const links = [
 	function applyTheme(theme: string) {
 		html.setAttribute('data-theme', theme);
 		localStorage.setItem('theme', theme);
+		// Update desktop icons
 		if (iconMoon && iconSun) {
 			iconMoon.style.display = theme === 'dark' ? 'none' : 'block';
 			iconSun.style.display = theme === 'dark' ? 'block' : 'none';
+		}
+		// Update mobile icons
+		if (iconMoonMobile && iconSunMobile) {
+			iconMoonMobile.style.display = theme === 'dark' ? 'none' : 'block';
+			iconSunMobile.style.display = theme === 'dark' ? 'block' : 'none';
 		}
 	}
 
@@ -276,10 +309,13 @@ const links = [
 	const stored = localStorage.getItem('theme');
 	applyTheme(stored ?? getSystemTheme());
 
-	toggle?.addEventListener('click', () => {
+	function handleToggle() {
 		const current = html.getAttribute('data-theme') ?? getSystemTheme();
 		applyTheme(current === 'dark' ? 'light' : 'dark');
-	});
+	}
+
+	toggle?.addEventListener('click', handleToggle);
+	toggleMobile?.addEventListener('click', handleToggle);
 </script>
 
 <script>

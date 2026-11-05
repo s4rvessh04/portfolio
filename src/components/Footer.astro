@@ -1,218 +1,179 @@
 ---
-import { SITE_NAME } from "../config";
 import { socialLinks } from "../data";
 ---
 
 <footer
 	class="relative"
 	aria-label="Footer"
-	style="border-top: 1px solid var(--hairline); background: var(--canvas);"
+	style="border-top: 1px solid var(--hairline); background: var(--canvas); overflow: hidden;"
 >
-	<!-- CTA Band — "Start Deploying" style black CTA band -->
-	<div
-		style="background: var(--canvas); padding: var(--space-4xl) var(--space-lg);"
-	>
-		<div style="max-width: 1200px; margin: 0 auto;">
-			<div
-				class="cta-band reveal"
-			>
-				<div style="position: relative; z-index: 1;">
-					<p
-						class="eyebrow"
-						style="margin-bottom: var(--space-md);"
-					>
-						Hey, I'm looking for work
-					</p>
-					<h3
-						style="font-family: var(--font-sans); font-size: clamp(1.75rem, 3vw + 1rem, 2.75rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.04em; color: var(--text-ink); margin: 0 0 var(--space-md) 0;"
-					>
-						Got a hard problem? Let's talk.
-					</h3>
-					<p
-						style="font-size: 1rem; line-height: 1.6; color: var(--text-body); max-width: 460px; margin: 0 auto var(--space-2xl) auto;"
-					>
-						I'm at my best when I'm untangling complex backend challenges — the kind where you need someone who actually cares about data consistency and uptime.
-					</p>
-					<div
-						style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center;"
-					>
-						<a
-							href="mailto:sarveshrane2000@gmail.com"
-							class="btn-primary cta-main-btn"
-							id="footer-cta-btn"
-						>
-							Say Hello
-						</a>
-						<a
-							href={socialLinks[0].link}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="btn-secondary cta-secondary-btn"
-							id="footer-github-btn"
-						>
-							View GitHub
-						</a>
-					</div>
-				</div>
+	<!-- Bottom ticker — exit telemetry -->
+	<div class="ticker-wrapper" aria-hidden="true" style="border-top: none;">
+		<div class="ticker" style="animation-duration: 40s;">
+			<div class="ticker-group">
+				<span class="eyebrow">open to work</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">navi mumbai · ist (utc+5:30)</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">backend engineering</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">uptime matters</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">say hello ↗</span>
+				<span class="ticker-sep">▸</span>
+			</div>
+			<div class="ticker-group" aria-hidden="true">
+				<span class="eyebrow">open to work</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">navi mumbai · ist (utc+5:30)</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">backend engineering</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">uptime matters</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">say hello ↗</span>
+				<span class="ticker-sep">▸</span>
 			</div>
 		</div>
 	</div>
 
-	<!-- Footer columns -->
-	<div style="border-top: 1px solid var(--hairline);">
-		<div
-			style="max-width: 1200px; margin: 0 auto; padding: var(--space-3xl) var(--space-lg);"
-		>
-			<div
-				class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6 mb-12 reveal"
+	<!-- Exit statement -->
+	<div class="cta-band" style="padding: var(--space-4xl) var(--space-lg); border: none; border-radius: 0; background: var(--canvas); text-align: left;">
+		<div style="max-width: 1200px; margin: 0 auto;">
+			<p class="eyebrow reveal" style="margin: 0 0 var(--space-lg) 0;">// 05 — exit</p>
+
+			<a
+				href="mailto:sarveshrane2000.dev@gmail.com"
+				class="exit-wordmark reveal stagger-1"
+				aria-label="Email Sarvesh Rane"
 			>
-				<!-- Brand column -->
-				<div class="md:col-span-1">
-					<p
-						style="font-family: var(--font-mono); font-weight: 600; font-size: 0.9375rem; color: var(--text-ink); margin: 0 0 var(--space-sm) 0; letter-spacing: -0.03em;"
-					>
-						{SITE_NAME.split(".")[0].toLowerCase()}<span
-							style="color: var(--text-mute);">.</span
-						><span style="color: var(--text-faint);"
-							>{SITE_NAME.split(".")[1]?.toLowerCase()}</span
-						>
-					</p>
-					<p
-						style="font-size: 0.875rem; line-height: 1.6; color: var(--text-mute); max-width: 200px; margin: 0;"
-					>
-						Systems-focused engineer who likes
-						building things that don't break under
-						pressure.
-					</p>
-				</div>
+				sarvesh<span class="exit-dot">.</span>dev<span class="exit-arrow" aria-hidden="true">↗</span>
+			</a>
 
-				<!-- Navigation -->
-				<div>
-					<p
-						class="eyebrow"
-						style="margin-bottom: var(--space-md);"
-					>
-						Navigation
-					</p>
-					<div
-						style="display: flex; flex-direction: column; gap: 10px;"
-					>
-						<a
-							href="#"
-							class="footer-link"
-							>Home</a
-						>
-						<a
-							href="#work-section"
-							class="footer-link"
-							>Work</a
-						>
-						<a
-							href="#about-section"
-							class="footer-link"
-							>About</a
-						>
-					</div>
-				</div>
+			<div class="exit-meta reveal stagger-2" style="margin-top: var(--space-md);">
+				<span class="exit-status-dot" aria-hidden="true"></span>
+				<span>open to work</span>
+				<span class="exit-meta-sep" aria-hidden="true">/</span>
+				<span>navi mumbai, ist</span>
+			</div>
 
-				<!-- Connect -->
-				<div>
-					<p
-						class="eyebrow"
-						style="margin-bottom: var(--space-md);"
-					>
-						Connect
-					</p>
-					<div
-						style="display: flex; flex-direction: column; gap: 10px;"
-					>
-						{
-							socialLinks.map((social) => (
-								<a
-									href={social.link}
-									target="_blank"
-									rel="noopener noreferrer"
-									class="footer-link"
-								>
-									{social.title}
-								</a>
-							))
-						}
-					</div>
-				</div>
-
-				<!-- Status -->
-				<div class="md:text-right">
-					<p
-						class="eyebrow"
-						style="margin-bottom: var(--space-md);"
-					>
-						Status
-					</p>
-					<p
-						style="font-size: 0.875rem; color: var(--text-body); margin: 0 0 4px 0;"
-					>
-						Navi Mumbai, IST
-					</p>
-					<p
-						style="font-size: 0.875rem; color: var(--text-mute); margin: 0 0 var(--space-sm) 0;"
-					>
-						Ready for something new
-					</p>
-					<div
-						style="display: flex; align-items: center; gap: 6px; justify-content: flex-end; line-height: 1;"
-						class="md:justify-end justify-start"
-					>
-						<span
-							style="width: 6px; height: 6px; border-radius: 50%; background: var(--status-green); display: inline-block;"
-							class="animate-pulse-slow"></span>
-						<span class="eyebrow" style="line-height: 1;"
-							>Open to work</span
+			<!-- Links row -->
+			<div class="reveal stagger-3" style="margin-top: var(--space-xl); padding-top: var(--space-lg); border-top: 1px solid var(--hairline); display: flex; flex-wrap: wrap; gap: var(--space-sm) var(--space-md); align-items: center;">
+				<nav aria-label="Footer navigation" style="display: flex; flex-wrap: wrap; gap: var(--space-sm) var(--space-md);">
+					<a href="#" class="footer-link exit-nav-link">top</a>
+					<a href="#work-section" class="footer-link exit-nav-link">work</a>
+					<a href="#about-section" class="footer-link exit-nav-link">about</a>
+				</nav>
+				<span class="exit-meta-sep" aria-hidden="true">/</span>
+				<div style="display: flex; flex-wrap: wrap; gap: var(--space-xs);">
+					{socialLinks.map((social) => (
+						<a
+							href={social.link}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="social-chip"
 						>
-					</div>
+							<span class="social-chip-label">{social.title}</span>
+							<span class="social-chip-arrow" aria-hidden="true">↗</span>
+						</a>
+					))}
 				</div>
 			</div>
 
 			<!-- Bottom row -->
-			<div
-				style="height: 1px; background: var(--hairline); margin-bottom: var(--space-lg);"
-			>
-			</div>
-			<div style="display: flex; flex-direction: column; gap: 8px;">
-				<div
-					class="flex flex-col md:flex-row md:items-center md:justify-between gap-2"
-				>
-					<p class="eyebrow" style="color: var(--text-faint);">
-						&copy; {new Date().getFullYear()} Sarvesh Rane. All rights
-						reserved.
-					</p>
-					<p
-						class="eyebrow"
-						style="color: var(--text-faint);"
-						title="Deployed with Cloudflare Pages Git integration"
-					>
-						Built on Cloudflare Pages · edge-deployed
-					</p>
-				</div>
+			<div style="margin-top: var(--space-xl); display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-md); justify-content: space-between;">
+				<p class="eyebrow" style="margin: 0; color: var(--text-faint);">
+					&copy; {new Date().getFullYear()} Sarvesh Rane
+				</p>
+				<p class="eyebrow" style="margin: 0; color: var(--text-faint);" title="Deployed with Cloudflare Pages Git integration">
+					built on cloudflare pages · edge-deployed
+				</p>
 			</div>
 		</div>
 	</div>
 </footer>
 
 <style>
-	.footer-link {
-		transition: color 150ms var(--ease-out);
+	.exit-wordmark {
+		display: block;
+		font-family: var(--font-mono);
+		font-weight: 600;
+		font-size: clamp(3rem, 11vw + 1rem, 10rem);
+		line-height: 0.95;
+		letter-spacing: -0.05em;
+		color: var(--text-ink);
+		text-decoration: none;
+		white-space: nowrap;
+		transition: color 200ms var(--ease-out);
 	}
-	.footer-link:active {
-		transform: scale(0.98);
+	.exit-wordmark:hover {
+		color: var(--accent);
 	}
-
-	.cta-main-btn,
-	.cta-secondary-btn {
-		transition:
-			opacity 150ms var(--ease-out),
-			transform 150ms var(--ease-out),
-			background 150ms var(--ease-out),
-			border-color 150ms var(--ease-out);
+	.exit-dot {
+		color: var(--accent);
+		transition: color 200ms var(--ease-out);
+	}
+	.exit-wordmark:hover .exit-dot {
+		color: var(--text-ink);
+	}
+	.exit-arrow {
+		font-size: 0.35em;
+		vertical-align: 0.9em;
+		margin-left: 0.08em;
+		color: var(--accent);
+		transition: transform 200ms var(--ease-out);
+	}
+	.exit-wordmark:hover .exit-arrow {
+		transform: translate(0.12em, -0.12em);
+	}
+	.exit-meta {
+		font-family: var(--font-mono);
+		font-size: 0.8125rem;
+		letter-spacing: 0.02em;
+		color: var(--text-body);
+		display: flex;
+		align-items: center;
+		gap: var(--space-sm);
+	}
+	.exit-meta-sep {
+		color: var(--text-faint);
+	}
+	.exit-status-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--status-green);
+		display: inline-block;
+		animation: pulse-dot 2s ease-in-out infinite;
+	}
+	.exit-nav-link {
+		font-family: var(--font-mono);
+		font-size: 0.8125rem;
+		letter-spacing: 0.02em;
+		position: relative;
+		padding-left: 14px;
+	}
+	.exit-nav-link::before {
+		content: "▸";
+		position: absolute;
+		left: 0;
+		color: var(--accent);
+		opacity: 0;
+		transition: opacity 150ms var(--ease-out);
+	}
+	.exit-nav-link:hover {
+		color: var(--accent);
+	}
+	.exit-nav-link:hover::before {
+		opacity: 1;
+	}
+	@keyframes pulse-dot {
+		0%, 100% { opacity: 1; }
+		50% { opacity: 0.4; }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.exit-status-dot {
+			animation: none;
+		}
 	}
 </style>

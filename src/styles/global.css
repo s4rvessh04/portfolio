@@ -826,6 +826,76 @@ body {
 }
 
 /* ============================================
+   NEOFETCH — about section
+   ============================================ */
+.neofetch-body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-lg);
+	padding: var(--space-lg);
+}
+@media (min-width: 768px) {
+	.neofetch-body {
+		flex-direction: row;
+		align-items: flex-start;
+		gap: var(--space-2xl);
+	}
+}
+.neofetch-logo {
+	flex: 0 0 auto;
+	width: 100%;
+	max-width: 260px;
+}
+@media (min-width: 768px) {
+	.neofetch-logo {
+		width: 220px;
+	}
+}
+.neofetch-logo .about-photo {
+	aspect-ratio: 1 / 1;
+}
+.neofetch-info {
+	flex: 1 1 auto;
+	min-width: 0;
+	font-family: var(--font-mono);
+	font-size: 0.8125rem;
+	line-height: 1.6;
+}
+.neofetch-title {
+	font-family: var(--font-mono);
+	font-size: 0.9375rem;
+	font-weight: 600;
+	color: var(--text-ink);
+	margin: 0 0 2px 0;
+}
+.neofetch-sep {
+	color: var(--text-faint);
+	margin: 0 0 10px 0;
+	font-size: 0.8125rem;
+}
+.neofetch-row {
+	display: flex;
+	gap: 12px;
+	margin: 0 0 4px 0;
+	flex-wrap: wrap;
+}
+.neofetch-key {
+	color: var(--accent);
+	font-weight: 500;
+	min-width: 96px;
+	flex: 0 0 96px;
+}
+.neofetch-val {
+	color: var(--text-body);
+	flex: 1 1 auto;
+	min-width: 0;
+	white-space: pre-line;
+}
+.neofetch-bio {
+	color: var(--text-body);
+}
+
+/* ============================================
    ABOUT + FOOTER
    ============================================ */
 .about-photo {

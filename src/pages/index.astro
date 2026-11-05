@@ -301,84 +301,60 @@ import {
 				<span class="eyebrow">// 04 — about</span>
 			</div>
 
-			<div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
-				<!-- Photo column -->
-				<div class="md:col-span-4 reveal">
-					<div class="about-photo">
-						<div class="signal-grid" aria-hidden="true"></div>
-						<img
-							src="/profile.webp"
-							alt="Sarvesh Rane"
-							width="1159"
-							height="1160"
-							loading="lazy"
-							decoding="async"
-							class="profile-img"
-						/>
-					</div>
-
+			<div class="terminal reveal neofetch">
+				<div class="terminal-header">
+					<span class="terminal-dot" style="background: #ff5f57;"></span>
+					<span class="terminal-dot" style="background: #febc2e;"></span>
+					<span class="terminal-dot" style="background: #28c840;"></span>
+					<span style="margin-left: 8px;">neofetch — zsh</span>
 				</div>
-
-				<!-- Bio column -->
-				<div class="md:col-span-8 flex flex-col justify-center">
-					<div class="terminal reveal">
-						<div class="terminal-header">
-							<span class="terminal-dot" style="background: #ff5f57;"></span>
-							<span class="terminal-dot" style="background: #febc2e;"></span>
-							<span class="terminal-dot" style="background: #28c840;"></span>
-							<span style="margin-left: 8px;">about.sh — zsh</span>
+				<div class="neofetch-body">
+					<div class="neofetch-logo">
+						<div class="about-photo">
+							<div class="signal-grid" aria-hidden="true"></div>
+							<img
+								src="/profile.webp"
+								alt="Sarvesh Rane"
+								width="1159"
+								height="1160"
+								loading="lazy"
+								decoding="async"
+								class="profile-img"
+							/>
 						</div>
-						<div class="terminal-body">
-							<div class="terminal-row">
-								<p class="terminal-prompt">name</p>
-								<p class="terminal-value">Sarvesh Rane</p>
+					</div>
+					<div class="neofetch-info">
+						<p class="neofetch-title">sarvesh@portfolio</p>
+						<p class="neofetch-sep">--------------------</p>
+						<div class="neofetch-row"><span class="neofetch-key">name</span><span class="neofetch-val">Sarvesh Rane</span></div>
+						<div class="neofetch-row"><span class="neofetch-key">role</span><span class="neofetch-val">Backend Engineer · Node.js &amp; Go</span></div>
+						<div class="neofetch-row"><span class="neofetch-key">location</span><span class="neofetch-val">Navi Mumbai, IST · open to work</span></div>
+						<div class="neofetch-row"><span class="neofetch-key">experience</span><span class="neofetch-val">
+							{(() => {
+								const start = new Date(careerStartDate);
+								const now = new Date();
+								const diff = now.getTime() - start.getTime();
+								const diffDate = new Date(diff);
+								const years = Math.abs(diffDate.getUTCFullYear() - 1970);
+								const months = diffDate.getUTCMonth();
+								return `${years}y ${months}m`;
+							})()} · CGPA 8.69 / 10</span></div>
+						<div class="neofetch-row"><span class="neofetch-key">education</span><span class="neofetch-val">Smt. Kashibai Navale College of Engineering · B.E. E&amp;TC (Hons. Data Science) · 2019–2023</span></div>
+						<div class="neofetch-row"><span class="neofetch-key">bio</span><span class="neofetch-val neofetch-bio">{professionalSummary}</span></div>
+						<div class="neofetch-row"><span class="neofetch-key">connect</span><span class="neofetch-val">
+							<div class="terminal-chips" style="margin-top: 4px;">
+								{socialLinks.map((social) => (
+									<a
+										href={social.link}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="stack-tag terminal-chip"
+									>
+										{social.title}
+									</a>
+								))}
 							</div>
-							<div class="terminal-row">
-								<p class="terminal-prompt">role</p>
-								<p class="terminal-value">Backend Engineer · Node.js &amp; Go</p>
-							</div>
-							<div class="terminal-row">
-								<p class="terminal-prompt">location</p>
-								<p class="terminal-value">Navi Mumbai, IST · open to work</p>
-							</div>
-							<div class="terminal-row">
-								<p class="terminal-prompt">experience</p>
-								<p class="terminal-value">
-									{(() => {
-										const start = new Date(careerStartDate);
-										const now = new Date();
-										const diff = now.getTime() - start.getTime();
-										const diffDate = new Date(diff);
-										const years = Math.abs(diffDate.getUTCFullYear() - 1970);
-										const months = diffDate.getUTCMonth();
-										return `${years}y ${months}m`;
-									})()} · CGPA 8.69 / 10
-								</p>
-							</div>
-							<div class="terminal-row">
-								<p class="terminal-prompt">bio</p>
-								<p class="terminal-value terminal-bio">{professionalSummary}</p>
-							</div>
-							<div class="terminal-row">
-								<p class="terminal-prompt">education</p>
-								<p class="terminal-value">Smt. Kashibai Navale College of Engineering · B.E. E&amp;TC (Hons. Data Science) · 2019–2023</p>
-							</div>
-							<div class="terminal-row">
-								<p class="terminal-prompt">connect</p>
-								<div class="terminal-chips">
-									{socialLinks.map((social) => (
-										<a
-											href={social.link}
-											target="_blank"
-											rel="noopener noreferrer"
-											class="stack-tag terminal-chip"
-										>
-											{social.title}
-										</a>
-									))}
-								</div>
-							</div>
-						</div>
+						</span></div>
 					</div>
 				</div>
 			</div>

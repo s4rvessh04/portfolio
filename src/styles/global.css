@@ -898,12 +898,14 @@ body {
 	border-left: none;
 	border-top: none;
 }
-.project-row:hover .reticle-tl {
+.project-row:hover .reticle-tl,
+.exp-row:hover .reticle-tl {
 	opacity: 1;
 	transform: scale(1);
 	animation: reticle-lock 0.45s ease-out 0ms 1;
 }
-.project-row:hover .reticle-br {
+.project-row:hover .reticle-br,
+.exp-row:hover .reticle-br {
 	opacity: 1;
 	transform: scale(1);
 	animation: reticle-lock 0.45s ease-out 110ms 1;
@@ -933,7 +935,8 @@ body {
 		transition: none !important;
 		animation: none !important;
 	}
-	.project-row:hover .reticle-corner {
+	.project-row:hover .reticle-corner,
+	.exp-row:hover .reticle-corner {
 		opacity: 1;
 		transform: none;
 	}

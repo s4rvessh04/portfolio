@@ -352,9 +352,11 @@ import {
 						href={social.link}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="btn-nav social-link"
+						class="social-chip"
 					>
-						{social.title}
+						<span class="social-chip-index" aria-hidden="true">{String(socialLinks.indexOf(social) + 1).padStart(2, "0")}</span>
+						<span class="social-chip-label">{social.title}</span>
+						<span class="social-chip-arrow" aria-hidden="true">↗</span>
 					</a>
 				))}
 			</div>

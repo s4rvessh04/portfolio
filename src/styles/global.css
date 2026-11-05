@@ -826,6 +826,65 @@ body {
 }
 
 /* ============================================
+   SOCIAL CHIPS — about section links
+   ============================================ */
+.social-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-xs);
+	font-family: var(--font-mono);
+	font-size: 0.8125rem;
+	letter-spacing: 0.02em;
+	color: var(--text-body);
+	background: var(--canvas-elevated);
+	border: 1px solid var(--hairline);
+	border-radius: var(--rounded-sm);
+	padding: var(--space-xxs) var(--space-sm);
+	position: relative;
+	text-decoration: none;
+	overflow: hidden;
+	transition: color 150ms var(--ease-out), border-color 150ms var(--ease-out), background 150ms var(--ease-out), transform 200ms var(--ease-out);
+}
+.social-chip::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 2px;
+	background: var(--accent);
+	transform: scaleY(0);
+	transform-origin: center;
+	transition: transform 200ms var(--ease-out);
+}
+.social-chip:hover {
+	color: var(--accent);
+	border-color: var(--accent);
+	background: var(--accent-soft);
+	transform: translateY(-1px);
+}
+.social-chip:hover::before {
+	transform: scaleY(1);
+}
+.social-chip-index {
+	font-size: 0.6875rem;
+	color: var(--text-faint);
+	transition: color 150ms var(--ease-out);
+}
+.social-chip:hover .social-chip-index {
+	color: var(--accent);
+}
+.social-chip-arrow {
+	font-size: 0.75rem;
+	color: var(--text-faint);
+	transition: transform 200ms var(--ease-out), color 150ms var(--ease-out);
+}
+.social-chip:hover .social-chip-arrow {
+	transform: translate(2px, -2px);
+	color: var(--accent);
+}
+
+/* ============================================
    NEOFETCH — about section
    ============================================ */
 .neofetch-body {

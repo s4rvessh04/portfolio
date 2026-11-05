@@ -344,22 +344,22 @@ import {
 					</div>
 				</div>
 			</div>
+
+			<!-- SOCIAL LINKS -->
+			<div class="reveal" style="margin-top: var(--space-lg); display: flex; flex-wrap: wrap; gap: var(--space-xs);">
+				{socialLinks.map((social) => (
+					<a
+						href={social.link}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="btn-nav social-link"
+					>
+						{social.title}
+					</a>
+				))}
+			</div>
 		</div>
 	</section>
-
-	<!-- SOCIAL LINKS -->
-	<div class="reveal" style="max-width: 1200px; margin: var(--space-lg) auto 0; display: flex; flex-wrap: wrap; gap: var(--space-xs);">
-		{socialLinks.map((social) => (
-			<a
-				href={social.link}
-				target="_blank"
-				rel="noopener noreferrer"
-				class="btn-nav social-link"
-			>
-				{social.title}
-			</a>
-		))}
-	</div>
 
 	<Footer />
 </Layout>

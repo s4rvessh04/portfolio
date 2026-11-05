@@ -866,18 +866,17 @@ body {
 	font-size: 0.9375rem;
 	font-weight: 600;
 	color: var(--text-ink);
-	margin: 0 0 2px 0;
+	margin: 0 0 var(--space-xxs) 0;
 }
 .neofetch-sep {
 	color: var(--text-faint);
-	margin: 0 0 10px 0;
+	margin: 0 0 var(--space-xs) 0;
 	font-size: 0.8125rem;
 }
 .neofetch-row {
 	display: flex;
-	gap: 12px;
+	gap: var(--space-sm);
 	margin: 0 0 var(--space-xxs) 0;
-	flex-wrap: wrap;
 }
 .neofetch-key {
 	color: var(--accent);
@@ -889,7 +888,6 @@ body {
 	color: var(--text-body);
 	flex: 1 1 auto;
 	min-width: 0;
-	white-space: pre-line;
 }
 .neofetch-bio {
 	color: var(--text-body);

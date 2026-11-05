@@ -850,10 +850,21 @@ body {
 	transform: scale(1.06);
 	filter: contrast(1.08) brightness(1.05);
 }
+
+/* Dark mode: blend light-themed project art into the canvas */
+[data-theme="dark"] .project-image {
+	mix-blend-mode: multiply;
+	filter: contrast(1.1) brightness(1.15);
+}
+[data-theme="dark"] .project-row:hover .project-image {
+	mix-blend-mode: multiply;
+	filter: contrast(1.15) brightness(1.2);
+}
 .project-image-frame {
 	position: relative;
 	overflow: hidden;
 	background: var(--canvas-elevated);
+	isolation: isolate;
 }
 
 /* Cyberpunk HUD reticle — top-left + bottom-right brackets with lock-on flicker */

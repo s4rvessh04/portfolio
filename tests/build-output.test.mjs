@@ -17,7 +17,7 @@ test("analytics: Partytown is not a dependency", () => {
 });
 
 test("assets: portrait is the WebP, never the PNG", () => {
-	assert.match(html, /\/profile\.webp/);
+	assert.match(html, /\/profile-ascii\.svg/);
 	assert.doesNotMatch(html, /\/profile\.png/);
 });
 

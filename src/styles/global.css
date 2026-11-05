@@ -896,27 +896,21 @@ body {
 @keyframes reticle-lock {
 	0% {
 		opacity: 0;
-		transform: scale(0.3);
 	}
 	18% {
 		opacity: 1;
-		transform: scale(1.2);
 	}
 	32% {
-		opacity: 0.35;
-		transform: scale(0.9);
+		opacity: 0.3;
 	}
 	48% {
 		opacity: 1;
-		transform: scale(1.08);
 	}
 	62% {
-		opacity: 0.6;
-		transform: scale(0.96);
+		opacity: 0.55;
 	}
 	100% {
 		opacity: 1;
-		transform: scale(1);
 	}
 }
 @media (prefers-reduced-motion: reduce) {

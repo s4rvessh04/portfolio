@@ -554,6 +554,84 @@ body {
 }
 
 /* ============================================
+   HERO
+   ============================================ */
+.hero {
+	position: relative;
+	min-height: 100svh;
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	padding: 0 var(--space-lg);
+}
+.hero-inner {
+	position: relative;
+	z-index: 2;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 96px 0 64px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.hero-title {
+	font-size: clamp(2.1rem, 8vw, 4.6rem);
+	line-height: 0.95;
+	letter-spacing: -0.055em;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: var(--text-ink);
+	white-space: nowrap;
+	margin: 16px 0 0;
+}
+.hero-cursor {
+	color: var(--accent);
+	animation: blink 1s step-end infinite;
+}
+.hero-tagline {
+	max-width: 480px;
+	margin-top: 24px;
+	font-size: 1rem;
+	line-height: 1.7;
+	color: var(--text-body);
+}
+.hero-status {
+	margin-top: 20px;
+	font-family: var(--font-mono);
+	font-size: 10px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--text-mute);
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.hero-actions {
+	margin-top: 28px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+.hero-telemetry {
+	margin-top: 56px;
+	gap: 12px 28px;
+}
+
+/* Entry motion — CSS only, no runtime */
+.js #main-nav {
+	animation: nav-enter 500ms var(--ease-out) both;
+}
+.js .hero-animate {
+	animation: hero-enter 600ms var(--ease-out) both;
+}
+.js .hero-content .hero-animate:nth-child(1) { animation-delay: 120ms; }
+.js .hero-content .hero-animate:nth-child(2) { animation-delay: 200ms; }
+.js .hero-content .hero-animate:nth-child(3) { animation-delay: 300ms; }
+.js .hero-content .hero-animate:nth-child(4) { animation-delay: 380ms; }
+.js .hero-content .hero-animate:nth-child(5) { animation-delay: 460ms; }
+
+/* ============================================
    TICKER — continuous skill strip
    ============================================ */
 .ticker-wrapper {
@@ -563,10 +641,19 @@ body {
 }
 .ticker {
 	display: flex;
-	gap: 40px;
-	white-space: nowrap;
 	width: max-content;
 	animation: signal-ticker 34s linear infinite;
+}
+.ticker-group {
+	display: flex;
+	align-items: center;
+	gap: 32px;
+	padding-right: 32px;
+	white-space: nowrap;
+}
+.ticker-sep {
+	color: var(--accent);
+	font-size: 10px;
 }
 
 /* ============================================
@@ -665,6 +752,13 @@ body {
 	.reveal, .js .reveal, .line-reveal, .js .line-reveal, .hero-animate {
 		opacity: 1 !important;
 		transform: none !important;
+	}
+	.js #main-nav,
+	.js .hero-animate,
+	.signal-sweep,
+	.ticker,
+	.hero-cursor {
+		animation: none !important;
 	}
 }
 

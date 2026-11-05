@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir, stat } from "node:fs/promises";
 
 const html = await readFile("dist/index.html", "utf8");
 const pkg = JSON.parse(await readFile("package.json", "utf8"));
@@ -66,4 +66,26 @@ test("layout: Cloudflare beacon is production-only and single", () => {
 	const beacons =
 		html.match(/static\.cloudflareinsights\.com\/beacon\.min\.js/g) ?? [];
 	assert.equal(beacons.length, 1);
+});
+
+test("hero: decode target and benchmarks are present", () => {
+	assert.match(html, /data-decode="SARVESH RANE"/);
+	assert.ok(html.includes("1,185"));
+	assert.ok(html.includes("~15"));
+	assert.ok(html.includes("10k+"));
+	assert.match(html, /hero-telemetry/);
+});
+
+test("hero: the old typing loop is gone", () => {
+	assert.doesNotMatch(html, /typing-text/);
+});
+
+test("motion: anime.js is gone and client JS stays small", async () => {
+	assert.equal("animejs" in (pkg.dependencies ?? {}), false);
+	const files = await readdir("dist/_astro");
+	let bytes = 0;
+	for (const file of files.filter((f) => f.endsWith(".js"))) {
+		bytes += (await stat(`dist/_astro/${file}`)).size;
+	}
+	assert.ok(bytes < 20_000, `client JS is ${bytes} bytes`);
 });

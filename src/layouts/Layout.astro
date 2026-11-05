@@ -159,53 +159,6 @@ const { title } = Astro.props;
 			}
 		</style>
 
-		<!-- Page entry animation — no loader, straight into content -->
-		<script>
-			import { createTimeline, stagger } from "animejs";
-
-			// ── Page entry animation — immediate, cascading ──
-			function animatePageEntry() {
-				const entryTl = createTimeline({
-					defaults: { ease: "outQuart" },
-				});
-
-				entryTl
-					.add("#main-nav", {
-						opacity: [0, 1],
-						translateY: [-12, 0],
-						duration: 500,
-					})
-					.add(".hero-animate:first-of-type", {
-						opacity: [0, 1],
-						translateY: [24, 0],
-						duration: 700,
-					}, "-=350")
-					.add(".hero-animate:not(:first-of-type)", {
-						opacity: [0, 1],
-						translateY: [16, 0],
-						duration: 500,
-						delay: stagger(60),
-					}, "-=500")
-					.add(".hero-scroll-indicator", {
-						opacity: [0, 1],
-						translateY: [12, 0],
-						duration: 500,
-					}, "-=200");
-
-				// Animate status bar in after page loads
-				setTimeout(() => {
-					const bar = document.getElementById("status-bar");
-					if (bar) {
-						bar.style.opacity = "1";
-						bar.style.transform = "translateY(0)";
-					}
-				}, 800);
-			}
-
-			// Start immediately on load
-			animatePageEntry();
-		</script>
-
 		<!-- Status bar logic -->
 		<script>
 			// Update time

@@ -1,11 +1,10 @@
 export const githubUsername = "s4rvessh04";
 export { CAREER_START_DATE as careerStartDate } from "./config";
 
-export const dataCurrently = [
-  { title: "Node.js Engineer" },
-  { title: "Go Developer" },
-  { title: "Backend Engineer" },
-  { title: "Systems Builder" },
+export const benchmarks = [
+  { value: "1,185", unit: "RPS", label: "L4 load balancer" },
+  { value: "~15", unit: "µs", label: "Kafka outbox" },
+  { value: "10k+", unit: "/ day", label: "Jio transactions" },
 ];
 
 export const socialLinks = [

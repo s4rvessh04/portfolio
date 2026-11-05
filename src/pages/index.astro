@@ -279,13 +279,14 @@ import {
 	<section id="about-section" style="padding: var(--space-section) var(--space-lg); scroll-margin-top: 64px;">
 		<div style="max-width: 1200px; margin: 0 auto;">
 			<div class="reveal" style="margin-bottom: var(--space-md);">
-				<span class="eyebrow">About</span>
+				<span class="eyebrow">// 04 — about</span>
 			</div>
 
 			<div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
 				<!-- Photo column -->
 				<div class="md:col-span-4 reveal">
-					<div class="overflow-hidden" style="border: 1px solid var(--hairline); border-radius: var(--rounded-md); aspect-ratio: 3/4; background: var(--hairline-soft);">
+					<div class="about-photo">
+						<div class="signal-grid" aria-hidden="true"></div>
 						<img
 							src="/profile.webp"
 							alt="Sarvesh Rane"
@@ -300,8 +301,8 @@ import {
 					<!-- Stat pills -->
 					<div class="grid grid-cols-2 gap-3 mt-4 reveal stagger-2">
 						<div class="feature-card" style="padding: var(--space-md);">
-							<p class="eyebrow" style="color: var(--text-mute); margin-bottom: 4px;">Experience</p>
-							<p style="font-size: 1rem; font-weight: 600; color: var(--text-ink); letter-spacing: -0.02em; margin: 0;">
+							<p class="eyebrow" style="margin-bottom: 4px;">Experience</p>
+							<p class="stat-value">
 								{(() => {
 									const start = new Date(careerStartDate);
 									const now = new Date();
@@ -314,8 +315,8 @@ import {
 							</p>
 						</div>
 						<div class="feature-card" style="padding: var(--space-md);">
-							<p class="eyebrow" style="color: var(--text-mute); margin-bottom: 4px;">CGPA</p>
-							<p style="font-size: 0.875rem; font-weight: 600; color: var(--text-ink); letter-spacing: -0.01em; margin: 0;">8.69 / 10</p>
+							<p class="eyebrow" style="margin-bottom: 4px;">CGPA</p>
+							<p class="stat-value">8.69 / 10</p>
 						</div>
 					</div>
 				</div>
@@ -335,7 +336,7 @@ import {
 					</div>
 
 					<div class="feature-card reveal stagger-4" style="max-width: 440px;">
-						<p class="eyebrow" style="color: var(--text-mute); margin-bottom: var(--space-xs);">Education</p>
+						<p class="eyebrow" style="margin-bottom: var(--space-xs);">Education</p>
 						<p style="font-size: 0.9375rem; font-weight: 500; color: var(--text-ink); letter-spacing: -0.01em; margin: 0 0 2px 0;">Smt. Kashibai Navale College of Engineering</p>
 						<p style="font-size: 0.875rem; color: var(--text-body); margin: 0 0 2px 0;">B.E. Electronics &amp; Telecommunications (Hons. Data Science) · 2019–2023</p>
 						<p style="font-size: 0.875rem; color: var(--text-mute); margin: 0;">CGPA 8.69 / 10 · Pune, Maharashtra</p>

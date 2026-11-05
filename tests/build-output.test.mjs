@@ -101,3 +101,9 @@ test("sections: project and skill hooks are present", () => {
 	assert.match(html, /project-index/);
 	assert.match(html, /skill-card/);
 });
+
+test("about and footer: Signal hooks are present", () => {
+	assert.ok(html.includes("// 04 — about"));
+	assert.match(html, /class="cta-band/);
+	assert.match(html, /class="footer-link/);
+});

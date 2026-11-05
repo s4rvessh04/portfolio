@@ -732,6 +732,62 @@ body {
 .stagger-8 { transition-delay: 0.48s; }
 
 /* ============================================
+   ABOUT + FOOTER
+   ============================================ */
+.about-photo {
+	position: relative;
+	border: 1px solid var(--hairline);
+	border-radius: var(--rounded-md);
+	overflow: hidden;
+	aspect-ratio: 3 / 4;
+	background: var(--hairline-soft);
+}
+.about-photo img {
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	filter: grayscale(1) contrast(1.05);
+}
+.stat-value {
+	font-family: var(--font-mono);
+	font-size: 0.875rem;
+	font-weight: 500;
+	letter-spacing: -0.01em;
+	color: var(--text-ink);
+	margin: 0;
+}
+
+.cta-band {
+	position: relative;
+	overflow: hidden;
+	border: 1px solid var(--hairline);
+	border-radius: var(--rounded-lg);
+	padding: var(--space-3xl) var(--space-xl);
+	text-align: center;
+	background: var(--canvas-elevated);
+}
+.cta-band::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--accent), transparent);
+	opacity: 0.5;
+}
+.footer-link {
+	font-size: 0.875rem;
+	color: var(--text-body);
+	text-decoration: none;
+}
+.footer-link:hover {
+	color: var(--accent);
+}
+
+/* ============================================
    SECTION CONTENT — work / experience / stack
    ============================================ */
 .project-row {

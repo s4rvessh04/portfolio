@@ -14,20 +14,12 @@ import { socialLinks } from "../data";
 	>
 		<div style="max-width: 1200px; margin: 0 auto;">
 			<div
-				class="reveal"
-				style="border: 1px solid var(--hairline); border-radius: var(--rounded-lg); padding: var(--space-3xl) var(--space-xl); text-align: center; position: relative; overflow: hidden; background: var(--canvas-elevated);"
+				class="cta-band reveal"
 			>
-				<!-- Subtle mesh gradient behind CTA -->
-				<div
-					aria-hidden="true"
-					style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 70% 60% at 30% 50%, rgba(80,227,194,0.08) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 70% 50%, rgba(121,40,202,0.06) 0%, transparent 60%); z-index: 0;"
-				>
-				</div>
-
 				<div style="position: relative; z-index: 1;">
 					<p
 						class="eyebrow"
-						style="color: var(--text-mute); margin-bottom: var(--space-md);"
+						style="margin-bottom: var(--space-md);"
 					>
 						Hey, I'm looking for work
 					</p>
@@ -98,7 +90,7 @@ import { socialLinks } from "../data";
 				<div>
 					<p
 						class="eyebrow"
-						style="color: var(--text-mute); margin-bottom: var(--space-md);"
+						style="margin-bottom: var(--space-md);"
 					>
 						Navigation
 					</p>
@@ -108,19 +100,16 @@ import { socialLinks } from "../data";
 						<a
 							href="#"
 							class="footer-link"
-							style="font-size: 0.875rem; color: var(--text-body); text-decoration: none;"
 							>Home</a
 						>
 						<a
 							href="#work-section"
 							class="footer-link"
-							style="font-size: 0.875rem; color: var(--text-body); text-decoration: none;"
 							>Work</a
 						>
 						<a
 							href="#about-section"
 							class="footer-link"
-							style="font-size: 0.875rem; color: var(--text-body); text-decoration: none;"
 							>About</a
 						>
 					</div>
@@ -130,7 +119,7 @@ import { socialLinks } from "../data";
 				<div>
 					<p
 						class="eyebrow"
-						style="color: var(--text-mute); margin-bottom: var(--space-md);"
+						style="margin-bottom: var(--space-md);"
 					>
 						Connect
 					</p>
@@ -144,7 +133,6 @@ import { socialLinks } from "../data";
 									target="_blank"
 									rel="noopener noreferrer"
 									class="footer-link"
-									style="font-size: 0.875rem; color: var(--text-body); text-decoration: none;"
 								>
 									{social.title}
 								</a>
@@ -157,7 +145,7 @@ import { socialLinks } from "../data";
 				<div class="md:text-right">
 					<p
 						class="eyebrow"
-						style="color: var(--text-mute); margin-bottom: var(--space-md);"
+						style="margin-bottom: var(--space-md);"
 					>
 						Status
 					</p>
@@ -176,9 +164,9 @@ import { socialLinks } from "../data";
 						class="md:justify-end justify-start"
 					>
 						<span
-							style="width: 6px; height: 6px; border-radius: 50%; background: #22c55e; display: inline-block;"
+							style="width: 6px; height: 6px; border-radius: 50%; background: var(--status-green); display: inline-block;"
 							class="animate-pulse-slow"></span>
-						<span class="eyebrow" style="color: var(--text-mute); line-height: 1;"
+						<span class="eyebrow" style="line-height: 1;"
 							>Open to work</span
 						>
 					</div>
@@ -201,9 +189,9 @@ import { socialLinks } from "../data";
 					<p
 						class="eyebrow"
 						style="color: var(--text-faint);"
-						title="Deployed on Cloudflare Pages · CI via GitHub Actions"
+						title="Deployed with Cloudflare Pages Git integration"
 					>
-						Shipped to the edge · zero cold starts
+						Built on Cloudflare Pages · edge-deployed
 					</p>
 				</div>
 			</div>
@@ -214,11 +202,6 @@ import { socialLinks } from "../data";
 <style>
 	.footer-link {
 		transition: color 150ms var(--ease-out);
-	}
-	@media (hover: hover) and (pointer: fine) {
-		.footer-link:hover {
-			color: var(--text-ink) !important;
-		}
 	}
 	.footer-link:active {
 		transform: scale(0.98);

@@ -854,7 +854,7 @@ body {
 	:root:not([data-theme="light"]) .project-image-dark { display: block; }
 }
 .project-image {
-	transition: transform 900ms var(--ease-in-out), filter 900ms var(--ease-in-out), brightness 900ms var(--ease-in-out);
+	transition: transform 300ms var(--ease-in-out), filter 300ms var(--ease-in-out), brightness 300ms var(--ease-in-out);
 	filter: contrast(1.05);
 }
 

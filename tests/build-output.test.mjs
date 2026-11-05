@@ -33,3 +33,21 @@ test("assets: favicon uses the Signal palette", async () => {
 	assert.match(favicon, /#070908/i);
 	assert.match(favicon, /#b8ff3d/i);
 });
+
+test("tokens: Signal palette is defined", async () => {
+	const css = await readFile("src/styles/global.css", "utf8");
+	assert.match(css, /--canvas:\s*#070908/i);
+	assert.match(css, /--accent:\s*#b8ff3d/i);
+	assert.match(css, /--accent:\s*#3d6b00/i);
+});
+
+test("tokens: the old rainbow identity is gone", async () => {
+	const css = await readFile("src/styles/global.css", "utf8");
+	assert.doesNotMatch(css, /#7928ca|#ff0080|--gradient-preview-start/);
+});
+
+test("motion: reduced motion and no-js are handled", async () => {
+	const css = await readFile("src/styles/global.css", "utf8");
+	assert.match(css, /prefers-reduced-motion:\s*reduce/);
+	assert.match(css, /\.js \.reveal/);
+});

@@ -51,3 +51,19 @@ test("motion: reduced motion and no-js are handled", async () => {
 	assert.match(css, /prefers-reduced-motion:\s*reduce/);
 	assert.match(css, /\.js \.reveal/);
 });
+
+test("layout: no-js fallback is present", () => {
+	assert.match(html, /<html[^>]+class="no-js"/);
+	assert.match(html, /classList\.replace\(\s*["']no-js["']\s*,\s*["']js["']\s*\)/);
+});
+
+test("layout: theme-color matches Signal", () => {
+	assert.match(html, /name="theme-color" content="#070908"/);
+	assert.match(html, /name="theme-color" content="#f4f3ec"/);
+});
+
+test("layout: Cloudflare beacon is production-only and single", () => {
+	const beacons =
+		html.match(/static\.cloudflareinsights\.com\/beacon\.min\.js/g) ?? [];
+	assert.equal(beacons.length, 1);
+});

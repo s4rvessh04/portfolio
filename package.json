@@ -12,10 +12,10 @@
 		"start": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
+		"test": "pnpm build && node --test tests/*.test.mjs",
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/partytown": "^2.1.4",
 		"@astrojs/sitemap": "^3.7.0",
 		"@tailwindcss/vite": "^4.0.0",
 		"animejs": "^4.3.6",

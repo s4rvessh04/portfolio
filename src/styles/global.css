@@ -55,11 +55,11 @@
 
 	/* === Border Radius === */
 	--rounded-none: 0px;
-	--rounded-sm: 6px;
-	--rounded-md: 12px;
-	--rounded-lg: 16px;
-	--rounded-pill-cat: 64px;
-	--rounded-pill: 100px;
+	--rounded-sm: 3px;
+	--rounded-md: 4px;
+	--rounded-lg: 6px;
+	--rounded-pill-cat: 4px;
+	--rounded-pill: 4px;
 	--rounded-full: 9999px;
 
 	/* === Z-Index === */
@@ -489,7 +489,7 @@ body {
 	text-transform: uppercase;
 	letter-spacing: 0.08em;
 	padding: 3px 8px;
-	border-radius: 3px;
+	border-radius: 2px;
 	border: 1px solid var(--hairline);
 	color: var(--text-body);
 	background: transparent;
@@ -909,7 +909,7 @@ body {
 	background: var(--canvas);
 	border: 1px solid var(--hairline);
 	padding: 4px 8px;
-	border-radius: 3px;
+	border-radius: 2px;
 	opacity: 0;
 	transform: translateY(-4px);
 	transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out),

@@ -11,23 +11,19 @@ const links = [
 ---
 
 <nav
-	class="fixed top-0 left-0 right-0 z-50"
+	class="nav"
 	id="main-nav"
 	aria-label="Primary navigation"
 	style="opacity: 0; transform: translateY(-12px);"
 >
-	<div
-		class="px-4 md:px-6 lg:px-8 flex items-center justify-between"
-		style="height: 60px;"
-	>
+	<div class="nav-inner">
 		<!-- Brand — wordmark only -->
 		<a
 			href="/"
-			class="flex items-center font-semibold text-sm"
-			style="color: var(--text-ink); text-decoration: none; letter-spacing: -0.03em; font-family: var(--font-mono);"
+			class="wordmark"
 			aria-label="Home"
 		>
-			{SITE_NAME.split(".")[0].toLowerCase()}<span style="color: var(--text-mute);">.</span><span style="color: var(--text-faint);">{SITE_NAME.split(".")[1]?.toLowerCase()}</span>
+			{SITE_NAME.split(".")[0].toLowerCase()}<span class="wordmark-dot">.</span><span class="wordmark-tld">{SITE_NAME.split(".")[1]?.toLowerCase()}</span>
 		</a>
 
 		<!-- Desktop nav -->
@@ -47,8 +43,7 @@ const links = [
 					id="theme-toggle"
 					type="button"
 					aria-label="Toggle dark mode"
-					class="btn-nav"
-					style="width: 32px; padding: 0; justify-content: center;"
+					class="btn-nav btn-nav-square"
 				>
 					<svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 						<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -83,8 +78,7 @@ const links = [
 				id="theme-toggle-mobile"
 				type="button"
 				aria-label="Toggle dark mode"
-				class="w-9 h-9 flex items-center justify-center cursor-pointer"
-				style="border: 1px solid var(--hairline); background: var(--canvas-elevated); border-radius: var(--rounded-sm); transition: background 200ms var(--ease-out), border-color 200ms var(--ease-out);"
+				class="btn-nav btn-nav-square"
 			>
 				<svg class="icon-moon-mobile" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 					<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -106,8 +100,7 @@ const links = [
 				type="button"
 				aria-label="Open menu"
 				aria-expanded="false"
-				class="relative w-9 h-9 flex items-center justify-center cursor-pointer"
-				style="border: 1px solid var(--hairline); background: var(--canvas-elevated); border-radius: var(--rounded-sm); transition: background 200ms var(--ease-out), border-color 200ms var(--ease-out);"
+				class="btn-nav btn-nav-square relative"
 			>
 				<div class="hamburger-lines flex flex-col items-center justify-center gap-[5px]">
 					<span class="block w-[14px] h-px" style="background: var(--text-ink); transition: transform 250ms var(--ease-out), opacity 150ms var(--ease-out);"></span>
@@ -122,8 +115,7 @@ const links = [
 <!-- Mobile drawer overlay -->
 <div
 	id="mobile-drawer-overlay"
-	class="fixed inset-0 z-[51] pointer-events-none"
-	style="background: rgba(0,0,0,0); transition: background 300ms var(--ease-out);"
+	class="drawer-overlay"
 	aria-hidden="true"
 >
 </div>
@@ -131,25 +123,17 @@ const links = [
 <!-- Mobile drawer -->
 <aside
 	id="mobile-drawer"
-	class="fixed top-0 right-0 z-[52] h-full flex flex-col"
-	style="width: min(85vw, 320px); background: var(--canvas-elevated); border-left: 1px solid var(--hairline); transform: translateX(100%); transition: transform 300ms var(--ease-out); will-change: transform;"
+	class="drawer"
 	aria-hidden="true"
 >
 	<!-- Drawer header -->
-	<div
-		class="flex items-center justify-between px-6 py-4"
-		style="border-bottom: 1px solid var(--hairline); height: 60px;"
-	>
-		<span
-			class="font-semibold text-sm"
-			style="color: var(--text-ink); letter-spacing: -0.02em;"
-		>Menu</span>
+	<div class="drawer-header">
+		<span class="eyebrow">menu</span>
 		<button
 			id="drawer-close"
 			type="button"
 			aria-label="Close menu"
-			class="w-9 h-9 flex items-center justify-center cursor-pointer"
-			style="border: 1px solid var(--hairline); background: var(--canvas-elevated); border-radius: var(--rounded-sm); transition: background 200ms var(--ease-out);"
+			class="btn-nav btn-nav-square"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -178,11 +162,11 @@ const links = [
 						<a
 							href={href}
 							class="drawer-link flex items-center justify-between px-3 py-3 rounded-md"
-							style={`color: var(--text-ink); text-decoration: none; font-size: 0.9375rem; font-weight: 500; letter-spacing: -0.01em; opacity: 0; transform: translateX(16px); transition: opacity 250ms var(--ease-out) ${
+							style={`opacity: 0; transform: translateX(16px); transition: opacity 250ms var(--ease-out) ${
 								60 + idx * 50
 							}ms, transform 250ms var(--ease-out) ${
 								60 + idx * 50
-							}ms, background 150ms var(--ease-out);`}
+							}ms;`}
 						>
 							<span>{label}</span>
 							<svg
@@ -208,11 +192,11 @@ const links = [
 				<a
 					href="mailto:sarveshrane2000@gmail.com"
 					class="drawer-link flex items-center justify-between px-3 py-3 rounded-md"
-					style={`color: var(--text-ink); text-decoration: none; font-size: 0.9375rem; font-weight: 500; letter-spacing: -0.01em; opacity: 0; transform: translateX(16px); transition: opacity 250ms var(--ease-out) ${
+					style={`opacity: 0; transform: translateX(16px); transition: opacity 250ms var(--ease-out) ${
 						60 + links.length * 50
 					}ms, transform 250ms var(--ease-out) ${
 						60 + links.length * 50
-					}ms, background 150ms var(--ease-out);`}
+					}ms;`}
 				>
 					<span>Contact</span>
 					<svg
@@ -268,11 +252,12 @@ const links = [
 	/* Drawer link hover */
 	@media (hover: hover) and (pointer: fine) {
 		.drawer-link:hover {
-			background: var(--hairline-soft) !important;
+			background: var(--accent-soft) !important;
+			color: var(--accent);
 		}
 	}
 	.drawer-link:active {
-		background: var(--hairline-soft) !important;
+		background: var(--accent-soft) !important;
 	}
 </style>
 

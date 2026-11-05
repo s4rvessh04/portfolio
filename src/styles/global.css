@@ -805,6 +805,17 @@ body {
 	flex-wrap: wrap;
 	gap: 6px;
 }
+.terminal-value {
+	font-family: var(--font-sans);
+	font-size: 0.9375rem;
+	line-height: 1.6;
+	color: var(--text-body);
+	margin: 0;
+}
+.terminal-bio {
+	color: var(--text-body);
+	white-space: pre-line;
+}
 .terminal-chip {
 	transition: color 150ms var(--ease-out), border-color 150ms var(--ease-out), background 150ms var(--ease-out);
 }

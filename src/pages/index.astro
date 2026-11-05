@@ -317,62 +317,68 @@ import {
 						/>
 					</div>
 
-					<!-- Stat pills -->
-					<div class="grid grid-cols-2 gap-3 mt-4 reveal stagger-2">
-						<div class="feature-card" style="padding: var(--space-md);">
-							<p class="eyebrow" style="margin-bottom: 4px;">Experience</p>
-							<p class="stat-value">
-								{(() => {
-									const start = new Date(careerStartDate);
-									const now = new Date();
-									const diff = now.getTime() - start.getTime();
-									const diffDate = new Date(diff);
-									const years = Math.abs(diffDate.getUTCFullYear() - 1970);
-									const months = diffDate.getUTCMonth();
-									return `${years}y ${months}m`;
-								})()}
-							</p>
-						</div>
-						<div class="feature-card" style="padding: var(--space-md);">
-							<p class="eyebrow" style="margin-bottom: 4px;">CGPA</p>
-							<p class="stat-value">8.69 / 10</p>
-						</div>
-					</div>
 				</div>
 
 				<!-- Bio column -->
 				<div class="md:col-span-8 flex flex-col justify-center">
-					<h2 class="reveal" style="font-family: var(--font-sans); font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.04em; color: var(--text-ink); margin: 0 0 var(--space-xl) 0;">
-						Backend Engineer.<br class="inline" /> Building production systems<br class="hidden sm:inline" /> since 2023.
-					</h2>
-
-					<div class="line-reveal stagger-2" style="margin-bottom: var(--space-xl);"></div>
-
-					<div class="reveal stagger-3">
-						<p style="font-size: 1rem; line-height: 1.75; color: var(--text-body); max-width: 540px; margin: 0 0 var(--space-xl) 0;">
-							{professionalSummary}
-						</p>
-					</div>
-
-					<div class="feature-card reveal stagger-4" style="max-width: 440px;">
-						<p class="eyebrow" style="margin-bottom: var(--space-xs);">Education</p>
-						<p style="font-size: 0.9375rem; font-weight: 500; color: var(--text-ink); letter-spacing: -0.01em; margin: 0 0 2px 0;">Smt. Kashibai Navale College of Engineering</p>
-						<p style="font-size: 0.875rem; color: var(--text-body); margin: 0 0 2px 0;">B.E. Electronics &amp; Telecommunications (Hons. Data Science) · 2019–2023</p>
-						<p style="font-size: 0.875rem; color: var(--text-mute); margin: 0;">CGPA 8.69 / 10 · Pune, Maharashtra</p>
-					</div>
-
-					<!-- Social links -->
-					<div class="flex flex-wrap gap-2 mt-8 reveal stagger-5">
-						{socialLinks.map((social) => (
-							<a
-								href={social.link}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="btn-nav social-link"
-							>
-								{social.title}
-							</a>
-						))}
+					<div class="terminal reveal">
+						<div class="terminal-header">
+							<span class="terminal-dot" style="background: #ff5f57;"></span>
+							<span class="terminal-dot" style="background: #febc2e;"></span>
+							<span class="terminal-dot" style="background: #28c840;"></span>
+							<span style="margin-left: 8px;">about.sh — zsh</span>
+						</div>
+						<div class="terminal-body">
+							<div class="terminal-row">
+								<p class="terminal-prompt">name</p>
+								<p class="terminal-value">Sarvesh Rane</p>
+							</div>
+							<div class="terminal-row">
+								<p class="terminal-prompt">role</p>
+								<p class="terminal-value">Backend Engineer · Node.js &amp; Go</p>
+							</div>
+							<div class="terminal-row">
+								<p class="terminal-prompt">location</p>
+								<p class="terminal-value">Navi Mumbai, IST · open to work</p>
+							</div>
+							<div class="terminal-row">
+								<p class="terminal-prompt">experience</p>
+								<p class="terminal-value">
+									{(() => {
+										const start = new Date(careerStartDate);
+										const now = new Date();
+										const diff = now.getTime() - start.getTime();
+										const diffDate = new Date(diff);
+										const years = Math.abs(diffDate.getUTCFullYear() - 1970);
+										const months = diffDate.getUTCMonth();
+										return `${years}y ${months}m`;
+									})()} · CGPA 8.69 / 10
+								</p>
+							</div>
+							<div class="terminal-row">
+								<p class="terminal-prompt">bio</p>
+								<p class="terminal-value terminal-bio">{professionalSummary}</p>
+							</div>
+							<div class="terminal-row">
+								<p class="terminal-prompt">education</p>
+								<p class="terminal-value">Smt. Kashibai Navale College of Engineering · B.E. E&amp;TC (Hons. Data Science) · 2019–2023</p>
+							</div>
+							<div class="terminal-row">
+								<p class="terminal-prompt">connect</p>
+								<div class="terminal-chips">
+									{socialLinks.map((social) => (
+										<a
+											href={social.link}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="stack-tag terminal-chip"
+										>
+											{social.title}
+										</a>
+									))}
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

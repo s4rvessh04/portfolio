@@ -855,7 +855,7 @@ body {
 	overflow: hidden;
 }
 
-/* Cyberpunk HUD reticle — staggered corner brackets + scan sweep */
+/* Cyberpunk HUD reticle — top-left + bottom-right brackets with Signal jitter */
 .reticle {
 	position: absolute;
 	inset: 0;
@@ -877,18 +877,6 @@ body {
 	border-right: none;
 	border-bottom: none;
 }
-.reticle-tr {
-	top: 6px;
-	right: 6px;
-	border-left: none;
-	border-bottom: none;
-}
-.reticle-bl {
-	bottom: 6px;
-	left: 6px;
-	border-right: none;
-	border-top: none;
-}
 .reticle-br {
 	bottom: 6px;
 	right: 6px;
@@ -898,68 +886,46 @@ body {
 .project-row:hover .reticle-tl {
 	opacity: 1;
 	transform: scale(1);
-	transition-delay: 0ms;
-}
-.project-row:hover .reticle-tr {
-	opacity: 1;
-	transform: scale(1);
-	transition-delay: 70ms;
-}
-.project-row:hover .reticle-bl {
-	opacity: 1;
-	transform: scale(1);
-	transition-delay: 140ms;
+	animation: signal-jitter 0.55s steps(4, end) 0ms 1;
 }
 .project-row:hover .reticle-br {
 	opacity: 1;
 	transform: scale(1);
-	transition-delay: 210ms;
+	animation: signal-jitter 0.55s steps(4, end) 120ms 1;
 }
-.reticle-scan {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	height: 2px;
-	background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
-	box-shadow: 0 0 10px var(--accent-glow);
-	opacity: 0;
-}
-.project-row:hover .reticle-scan {
-	opacity: 1;
-	animation: reticle-scan 1.5s linear 260ms 1;
-}
-@keyframes reticle-scan {
+@keyframes signal-jitter {
 	0% {
-		top: 0%;
-		opacity: 0;
-	}
-	8% {
 		opacity: 1;
+		transform: scale(1) translate(0, 0);
 	}
-	92% {
-		opacity: 1;
+	20% {
+		transform: scale(1) translate(-2px, 1px);
+	}
+	40% {
+		transform: scale(1) translate(2px, -1px);
+	}
+	60% {
+		transform: scale(1) translate(-1px, -2px);
+	}
+	80% {
+		transform: scale(1) translate(1px, 2px);
 	}
 	100% {
-		top: 100%;
-		opacity: 0;
+		opacity: 1;
+		transform: scale(1) translate(0, 0);
 	}
 }
 @media (prefers-reduced-motion: reduce) {
-	.reticle-corner,
-	.reticle-scan {
+	.reticle-corner {
 		transition: none !important;
 		animation: none !important;
 	}
 	.project-row:hover .reticle-corner {
 		opacity: 1;
 		transform: none;
-		transition-delay: 0ms;
-	}
-	.project-row:hover .reticle-scan {
-		opacity: 0;
 	}
 }
+
 .project-scan {
 	position: absolute;
 	inset: 0;

@@ -341,25 +341,25 @@ import {
 							})()} · CGPA 8.69 / 10</span></div>
 						<div class="neofetch-row"><span class="neofetch-key">education</span><span class="neofetch-val">Smt. Kashibai Navale College of Engineering · B.E. E&amp;TC (Hons. Data Science) · 2019–2023</span></div>
 						<div class="neofetch-row"><span class="neofetch-key">bio</span><span class="neofetch-val neofetch-bio">{professionalSummary}</span></div>
-						<div class="neofetch-row"><span class="neofetch-key">connect</span><span class="neofetch-val">
-							<div class="terminal-chips" style="margin-top: 4px;">
-								{socialLinks.map((social) => (
-									<a
-										href={social.link}
-										target="_blank"
-										rel="noopener noreferrer"
-										class="stack-tag terminal-chip"
-									>
-										{social.title}
-									</a>
-								))}
-							</div>
-						</span></div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+
+	<!-- SOCIAL LINKS -->
+	<div class="reveal" style="max-width: 1200px; margin: var(--space-lg) auto 0; display: flex; flex-wrap: wrap; gap: var(--space-xs);">
+		{socialLinks.map((social) => (
+			<a
+				href={social.link}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="btn-nav social-link"
+			>
+				{social.title}
+			</a>
+		))}
+	</div>
 
 	<Footer />
 </Layout>

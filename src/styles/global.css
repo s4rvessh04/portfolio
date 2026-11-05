@@ -843,14 +843,110 @@ body {
 	transform: translate(2px, -2px);
 }
 .project-image {
-	transition: transform 600ms var(--ease-out);
+	transition: transform 600ms var(--ease-out), filter 600ms var(--ease-out);
+	filter: grayscale(0.55) contrast(1.08);
 }
 .project-row:hover .project-image {
-	transform: scale(1.04);
+	transform: scale(1.06);
+	filter: grayscale(0) contrast(1.05);
 }
 .project-image-frame {
 	position: relative;
 	overflow: hidden;
+}
+.project-image-frame::before,
+.project-image-frame::after {
+	content: "";
+	position: absolute;
+	width: 14px;
+	height: 14px;
+	border: 1.5px solid var(--accent);
+	z-index: 3;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 220ms var(--ease-out);
+}
+.project-image-frame::before {
+	top: 6px;
+	left: 6px;
+	border-right: none;
+	border-bottom: none;
+}
+.project-image-frame::after {
+	bottom: 6px;
+	right: 6px;
+	border-left: none;
+	border-top: none;
+}
+.project-row:hover .project-image-frame::before,
+.project-row:hover .project-image-frame::after {
+	opacity: 1;
+}
+.project-scan {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background: repeating-linear-gradient(
+		to bottom,
+		transparent 0px,
+		transparent 3px,
+		rgba(0, 0, 0, 0.16) 3px,
+		rgba(0, 0, 0, 0.16) 4px
+	);
+	opacity: 0.5;
+	z-index: 1;
+}
+.project-view {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 2;
+	font-family: var(--font-mono);
+	font-size: 9px;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--text-ink);
+	background: var(--canvas);
+	border: 1px solid var(--hairline);
+	padding: 4px 8px;
+	border-radius: 3px;
+	opacity: 0;
+	transform: translateY(-4px);
+	transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out),
+		background 200ms var(--ease-out), color 200ms var(--ease-out),
+		border-color 200ms var(--ease-out);
+}
+.project-row:hover .project-view {
+	opacity: 1;
+	transform: none;
+	background: var(--accent);
+	color: var(--btn-primary-fg);
+	border-color: var(--accent);
+}
+.project-image-overlay {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background: linear-gradient(180deg, transparent 55%, var(--accent-soft) 100%);
+	opacity: 0;
+	transition: opacity 300ms var(--ease-out);
+	z-index: 1;
+}
+.project-row:hover .project-image-overlay {
+	opacity: 1;
+}
+
+@media (max-width: 767px) {
+	.project-image-frame {
+		order: -1;
+		margin-bottom: 4px;
+	}
+	.project-row {
+		padding-left: 12px;
+	}
+	.project-scan {
+		opacity: 0.3;
+	}
 }
 .project-image-overlay {
 	position: absolute;

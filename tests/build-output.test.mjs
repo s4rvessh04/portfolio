@@ -89,3 +89,15 @@ test("motion: anime.js is gone and client JS stays small", async () => {
 	}
 	assert.ok(bytes < 20_000, `client JS is ${bytes} bytes`);
 });
+
+test("sections: numbered Signal labels are present", () => {
+	assert.ok(html.includes("// 01 — selected work"));
+	assert.ok(html.includes("// 02 — experience"));
+	assert.ok(html.includes("// 03 — stack"));
+});
+
+test("sections: project and skill hooks are present", () => {
+	assert.match(html, /project-row/);
+	assert.match(html, /project-index/);
+	assert.match(html, /skill-card/);
+});

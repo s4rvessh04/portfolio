@@ -84,7 +84,7 @@ import {
 			<!-- Section header -->
 			<div style="margin-bottom: var(--space-3xl);">
 				<div class="reveal" style="margin-bottom: var(--space-md);">
-					<span class="eyebrow">Featured Projects</span>
+					<span class="eyebrow">// 01 — selected work</span>
 				</div>
 				<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
 					<h2 class="reveal stagger-1" style="font-family: var(--font-sans); font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.04em; color: var(--text-ink); margin: 0;">
@@ -104,12 +104,11 @@ import {
 						<div
 							class:list={["project-row group reveal", `stagger-${idx + 1}`]}
 							role="listitem"
-							style="padding: var(--space-xl) 0;"
 						>
 							<div class="flex flex-col gap-3">
 								<!-- Index + title row -->
 								<div class="flex items-baseline gap-4">
-									<span class="eyebrow" style="color: var(--text-faint); min-width: 20px;">
+									<span class="project-index eyebrow">
 										{String(idx + 1).padStart(2, "0")}
 									</span>
 									<h3 style="font-family: var(--font-sans); font-size: 1.25rem; font-weight: 600; letter-spacing: -0.025em; color: var(--text-ink); margin: 0;">
@@ -126,7 +125,7 @@ import {
 								{project.stack && project.stack.length > 0 && (
 									<div class="pl-0 md:pl-9" style="display: flex; flex-wrap: wrap; gap: 6px;">
 										{project.stack.map((tech) => (
-											<span class="stack-tag eyebrow" style="color: var(--text-mute); background: var(--hairline-soft); border: 1px solid var(--hairline); padding: 3px 8px; border-radius: var(--rounded-sm);">
+											<span class="stack-tag">
 												{tech}
 											</span>
 										))}
@@ -187,7 +186,7 @@ import {
 		<div style="max-width: 1200px; margin: 0 auto;">
 			<div style="margin-bottom: var(--space-3xl);">
 				<div class="reveal" style="margin-bottom: var(--space-md);">
-					<span class="eyebrow">Experience</span>
+					<span class="eyebrow">// 02 — experience</span>
 				</div>
 				<h2 class="reveal stagger-1" style="font-family: var(--font-sans); font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.04em; color: var(--text-ink); margin: 0;">
 					Work History
@@ -206,7 +205,7 @@ import {
 						>
 							<!-- Left: period + location -->
 							<div style="min-width: 160px; flex-shrink: 0;">
-								<p class="eyebrow" style="color: var(--text-faint); margin: 0 0 4px 0;">{job.period}</p>
+								<p class="eyebrow exp-period" style="margin: 0 0 4px 0;">{job.period}</p>
 								<p style="font-size: 0.8125rem; color: var(--text-mute); margin: 0;">{job.location}</p>
 							</div>
 							<!-- Right: role details -->
@@ -226,7 +225,7 @@ import {
 								<!-- Stack tags -->
 								<div style="display: flex; flex-wrap: wrap; gap: 6px;">
 									{job.stack.map((tech) => (
-										<span class="stack-tag eyebrow" style="color: var(--text-mute); background: var(--hairline-soft); border: 1px solid var(--hairline); padding: 3px 8px; border-radius: var(--rounded-sm);">
+										<span class="stack-tag">
 											{tech}
 										</span>
 									))}
@@ -244,7 +243,7 @@ import {
 	<section id="skills-section" style="padding: var(--space-section) var(--space-lg); background: var(--hairline-soft);">
 		<div style="max-width: 1200px; margin: 0 auto;">
 			<div class="reveal" style="margin-bottom: var(--space-md);">
-				<span class="eyebrow">Skills & Technologies</span>
+				<span class="eyebrow">// 03 — stack</span>
 			</div>
 			<h2 class="reveal stagger-1" style="font-family: var(--font-sans); font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.04em; color: var(--text-ink); margin: 0 0 var(--space-3xl) 0;">
 				Stack
@@ -254,17 +253,16 @@ import {
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-4" role="list">
 				{skills.map((skillGroup, groupIdx) => (
 					<div
-						class:list={["feature-card reveal", `stagger-${groupIdx + 1}`]}
+						class:list={["feature-card skill-card reveal", `stagger-${groupIdx + 1}`]}
 						role="listitem"
 					>
-						<p class="eyebrow" style="color: var(--text-mute); margin-bottom: var(--space-md);">
+						<p class="eyebrow" style="margin-bottom: var(--space-md);">
 							{skillGroup.title}
 						</p>
 						<div style="display: flex; flex-wrap: wrap; gap: 6px;" role="list">
 							{skillGroup.data.map((skill) => (
 								<span
-									class="skill-item eyebrow"
-									style="color: var(--text-body); background: var(--canvas-elevated); border: 1px solid var(--hairline); padding: 5px 10px; border-radius: var(--rounded-sm);"
+									class="stack-tag"
 									role="listitem"
 								>
 									{skill.title}
@@ -365,16 +363,6 @@ import {
 </Layout>
 
 <style>
-	/* Project image hover */
-	.project-image {
-		transition: transform 500ms var(--ease-out);
-	}
-	@media (hover: hover) and (pointer: fine) {
-		.project-row:hover .project-image {
-			transform: scale(1.02);
-		}
-	}
-
 	/* Social / project link hover */
 	.social-link, .project-link {
 		transition: border-color 150ms var(--ease-out), background 150ms var(--ease-out), color 150ms var(--ease-out);
@@ -385,22 +373,6 @@ import {
 			border-color: var(--hover-border) !important;
 			background: var(--hairline-soft) !important;
 		}
-	}
-
-	/* Skill item hover */
-	.skill-item {
-		transition: border-color 150ms var(--ease-out), background 150ms var(--ease-out);
-		cursor: default;
-	}
-	@media (hover: hover) and (pointer: fine) {
-		.skill-item:hover {
-			border-color: var(--hover-border) !important;
-		}
-	}
-
-	/* Profile image — source file is pre-rotated */
-	.profile-img {
-		/* No rotation needed — image was fixed with ImageMagick */
 	}
 </style>
 

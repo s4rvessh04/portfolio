@@ -217,23 +217,26 @@ import {
 						<div
 							class:list={["exp-row reveal", `stagger-${idx + 1}`]}
 							role="listitem"
-							style="padding: var(--space-xl) 0; display: flex; gap: var(--space-2xl); flex-wrap: wrap;"
+							style="padding: var(--space-xl) 0 var(--space-xl) 20px; display: flex; gap: var(--space-2xl); flex-wrap: wrap; position: relative;"
 						>
 							<!-- Left: period + location -->
 							<div style="min-width: 160px; flex-shrink: 0;">
-								<p class="eyebrow exp-period" style="margin: 0 0 4px 0;">{job.period}</p>
+								<p class="eyebrow exp-period" style="margin: 0 0 4px 0; display: flex; align-items: center; gap: 6px;">
+									{job.period.includes("Present") && <span class="status-dot" aria-hidden="true"></span>}
+									{job.period}
+								</p>
 								<p style="font-size: 0.8125rem; color: var(--text-mute); margin: 0;">{job.location}</p>
 							</div>
 							<!-- Right: role details -->
 							<div style="flex: 1; min-width: 260px;">
-								<h3 style="font-family: var(--font-sans); font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text-ink); margin: 0 0 2px 0;">
+								<h3 style="font-family: var(--font-sans); font-size: 1.375rem; font-weight: 600; letter-spacing: -0.025em; color: var(--text-ink); margin: 0 0 2px 0;">
 									{job.role}
 								</h3>
-								<p style="font-size: 0.9375rem; color: var(--text-mute); margin: 0 0 var(--space-md) 0;">{job.company}</p>
+								<p style="font-size: 0.9375rem; color: var(--accent); margin: 0 0 var(--space-md) 0;">{job.company}</p>
 								<ul style="margin: 0 0 var(--space-md) 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px;">
 									{job.highlights.map((h) => (
 										<li style="font-size: 0.9375rem; color: var(--text-body); line-height: 1.6; display: flex; gap: 8px;">
-											<span style="color: var(--text-faint); flex-shrink: 0; margin-top: 2px;">–</span>
+											<span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">▸</span>
 											{h}
 										</li>
 									))}

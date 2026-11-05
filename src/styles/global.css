@@ -1016,7 +1016,30 @@ body {
 .project-row:hover .project-image-overlay {
 	opacity: 1;
 }
-.exp-period {
+.exp-row {
+	position: relative;
+	transition: background 200ms var(--ease-out);
+	border-bottom: 1px solid var(--hairline);
+}
+.exp-row::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 24px;
+	bottom: 24px;
+	width: 2px;
+	background: var(--accent);
+	transform: scaleY(0);
+	transform-origin: center;
+	transition: transform 300ms var(--ease-out);
+}
+.exp-row:hover {
+	background: var(--canvas-elevated);
+}
+.exp-row:hover::before {
+	transform: scaleY(1);
+}
+.exp-row:hover .exp-period {
 	color: var(--accent);
 }
 .skill-card {

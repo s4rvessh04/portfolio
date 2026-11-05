@@ -851,14 +851,12 @@ body {
 	filter: contrast(1.08) brightness(1.05);
 }
 
-/* Dark mode: blend light-themed project art into the canvas */
+/* Manual theme toggle fallback: gently dim light-themed art in dark mode */
 [data-theme="dark"] .project-image {
-	mix-blend-mode: multiply;
-	filter: contrast(1.1) brightness(1.15);
+	filter: contrast(1.05) brightness(0.92);
 }
 [data-theme="dark"] .project-row:hover .project-image {
-	mix-blend-mode: multiply;
-	filter: contrast(1.15) brightness(1.2);
+	filter: contrast(1.08) brightness(0.95);
 }
 .project-image-frame {
 	position: relative;

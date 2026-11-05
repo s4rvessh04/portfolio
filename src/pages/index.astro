@@ -111,8 +111,9 @@ import {
 									<span class="project-index eyebrow">
 										{String(idx + 1).padStart(2, "0")}
 									</span>
-									<h3 style="font-family: var(--font-sans); font-size: 1.25rem; font-weight: 600; letter-spacing: -0.025em; color: var(--text-ink); margin: 0;">
+									<h3 style="font-family: var(--font-sans); font-size: 1.5rem; font-weight: 600; letter-spacing: -0.03em; color: var(--text-ink); margin: 0; display: inline-flex; align-items: center; gap: 8px;">
 										{project.title}
+										<span class="project-arrow" aria-hidden="true">↗</span>
 									</h3>
 								</div>
 
@@ -160,7 +161,7 @@ import {
 							</div>
 
 							<!-- Project image — subtle, hairline-bordered -->
-							<div class="mt-5 overflow-hidden project-image-container" style="border: 1px solid var(--hairline); border-radius: var(--rounded-md);">
+							<div class="mt-5 overflow-hidden project-image-frame" style="border: 1px solid var(--hairline); border-radius: var(--rounded-md);">
 								<div class="relative overflow-hidden" style="aspect-ratio: 16/9;">
 									<img
 										src={project.image}
@@ -171,12 +172,12 @@ import {
 										loading="lazy"
 										decoding="async"
 									/>
+									<div class="project-image-overlay" aria-hidden="true"></div>
 								</div>
 							</div>
 						</div>
 					</div>
 				))}
-				<div class="line-reveal stagger-6"></div>
 			</div>
 		</div>
 	</section>

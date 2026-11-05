@@ -268,28 +268,28 @@ import {
 				Stack
 			</h2>
 
-			<!-- 2-up hairline card grid -->
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-4" role="list">
-				{skills.map((skillGroup, groupIdx) => (
-					<div
-						class:list={["feature-card skill-card reveal", `stagger-${groupIdx + 1}`]}
-						role="listitem"
-					>
-						<p class="eyebrow" style="margin-bottom: var(--space-md);">
-							{skillGroup.title}
-						</p>
-						<div style="display: flex; flex-wrap: wrap; gap: 6px;" role="list">
-							{skillGroup.data.map((skill) => (
-								<span
-									class="stack-tag"
-									role="listitem"
-								>
-									{skill.title}
-								</span>
-							))}
+			<!-- Terminal-style stack -->
+			<div class="terminal skill-card reveal">
+				<div class="terminal-header">
+					<span class="terminal-dot" style="background: #ff5f57;"></span>
+					<span class="terminal-dot" style="background: #febc2e;"></span>
+					<span class="terminal-dot" style="background: #28c840;"></span>
+					<span style="margin-left: 8px;">stack.sh — zsh</span>
+				</div>
+				<div class="terminal-body">
+					{skills.map((skillGroup, groupIdx) => (
+						<div class:list={["terminal-row reveal", `stagger-${groupIdx + 1}`]}>
+							<p class="terminal-prompt">{skillGroup.title.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-")}</p>
+							<div class="terminal-chips">
+								{skillGroup.data.map((skill) => (
+									<span class="stack-tag terminal-chip">
+										{skill.title}
+									</span>
+								))}
+							</div>
 						</div>
-					</div>
-				))}
+					))}
+				</div>
 			</div>
 		</div>
 	</section>

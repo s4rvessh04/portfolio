@@ -732,6 +732,89 @@ body {
 .stagger-8 { transition-delay: 0.48s; }
 
 /* ============================================
+   TERMINAL — stack section
+   ============================================ */
+.terminal {
+	border: 1px solid var(--hairline);
+	border-radius: var(--rounded-md);
+	background: var(--canvas-elevated);
+	overflow: hidden;
+}
+.terminal-header {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 10px 16px;
+	border-bottom: 1px solid var(--hairline);
+	font-family: var(--font-mono);
+	font-size: 10px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--text-mute);
+}
+.terminal-dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	display: inline-block;
+}
+.terminal-body {
+	padding: 8px 16px;
+}
+.terminal-row {
+	padding: 14px 0;
+	border-bottom: 1px solid var(--hairline);
+	position: relative;
+	transition: background 200ms var(--ease-out);
+}
+.terminal-row:last-child {
+	border-bottom: none;
+}
+.terminal-row::before {
+	content: "";
+	position: absolute;
+	left: -16px;
+	top: 18px;
+	bottom: 18px;
+	width: 2px;
+	background: var(--accent);
+	transform: scaleY(0);
+	transform-origin: center;
+	transition: transform 300ms var(--ease-out);
+}
+.terminal-row:hover {
+	background: var(--hairline-soft);
+}
+.terminal-row:hover::before {
+	transform: scaleY(1);
+}
+.terminal-prompt {
+	font-family: var(--font-mono);
+	font-size: 12px;
+	font-weight: 500;
+	color: var(--accent);
+	margin: 0 0 8px 0;
+	letter-spacing: 0.02em;
+}
+.terminal-prompt::before {
+	content: "$ ";
+	color: var(--text-faint);
+}
+.terminal-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+.terminal-chip {
+	transition: color 150ms var(--ease-out), border-color 150ms var(--ease-out), background 150ms var(--ease-out);
+}
+.terminal-chip:hover {
+	color: var(--accent);
+	border-color: var(--accent);
+	background: var(--accent-soft);
+}
+
+/* ============================================
    ABOUT + FOOTER
    ============================================ */
 .about-photo {

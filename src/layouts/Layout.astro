@@ -1,9 +1,8 @@
 ---
 import "../styles/global.css";
-import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 import Navbar from "../components/Navbar.astro";
 
-import { SITE_TITLE, SITE_DESCRIPTION, SITE_NAME } from "../config";
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_NAME, CLOUDFLARE_ANALYTICS_TOKEN } from "../config";
 
 export interface Props {
 	title?: string;
@@ -13,10 +12,11 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 	<head>
-		<!-- FOUC prevention: apply dark mode before any paint -->
+		<!-- Progressive enhancement: mark JS available, then apply theme before paint -->
 		<script is:inline>
+			document.documentElement.classList.replace("no-js", "js");
 			(function(){
 				var t = localStorage.getItem('theme');
 				if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -26,22 +26,18 @@ const { title } = Astro.props;
 				}
 			})();
 		</script>
-		<GoogleAnalytics />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={SITE_DESCRIPTION} />
 		<meta name="author" content="Sarvesh Rane" />
 		<meta name="keywords" content="backend engineer, Node.js, Go, Golang, distributed systems, REST API, microservices, Kafka, Redis, PostgreSQL, MySQL, Docker, Kubernetes, RBAC, ABAC, OpenTelemetry, Prometheus, Nginx, Azure DevOps, ELK Stack, JWT, software engineer, Jio Platforms, India, Navi Mumbai, Pune, open to work" />
 		<meta name="color-scheme" content="light dark" />
-		<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#f4f3ec" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#070908" media="(prefers-color-scheme: dark)" />
 		<!-- Geo / local SEO -->
 		<meta name="geo.region" content="IN-MH" />
 		<meta name="geo.placename" content="Navi Mumbai, Maharashtra, India" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-		<!-- Preload critical assets -->
-		<link rel="preload" as="image" href="/profile.png" fetchpriority="high" />
 
 		<!-- Font loading: Geist Sans + Geist Mono via Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -52,7 +48,6 @@ const { title } = Astro.props;
 		/>
 
 		<!-- DNS prefetch for third-party domains -->
-		<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 		<link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
 
 		<meta name="generator" content={Astro.generator} />
@@ -126,79 +121,30 @@ const { title } = Astro.props;
 		>
 		Skip to content
 		</a>
-		<!-- Google Tag Manager (noscript) -->
-		<noscript
-			><iframe
-				src="https://www.googletagmanager.com/ns.html?id=GTM-WW9MXB4S"
-				height="0"
-				width="0"
-				style="display:none;visibility:hidden"></iframe>
-		</noscript>
 
 		<Navbar />
 		<main id="main-content" class="relative z-[3]" aria-label="Page content">
 			<slot />
 		</main>
 
-		<!-- Status bar — Geist-inspired bottom bar -->
-		<div
-			id="status-bar"
-			class="fixed bottom-0 left-0 right-0 z-[90] hidden md:flex items-center justify-between px-6 lg:px-8"
-			style="height: 28px; background: var(--canvas-elevated); border-top: 1px solid var(--hairline); font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.05em; color: var(--text-mute); opacity: 0; transform: translateY(100%); transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out);"
-		>
+		<!-- Status bar — Signal telemetry footer -->
+		<div id="status-bar" class="status-bar">
 			<div class="flex items-center gap-4">
-				<span class="flex items-center gap-1.5" style="line-height: 1;">
-					<span class="w-1.5 h-1.5 rounded-full animate-pulse-slow" style="background: var(--status-green);"></span>
-					<span class="uppercase" style="color: var(--text-body); line-height: 1;">online</span>
+				<span class="flex items-center gap-1.5">
+					<span class="status-dot"></span>
+					<span>online</span>
 				</span>
-				<span style="color: var(--hairline);">│</span>
-				<span id="status-section" class="uppercase" style="color: var(--text-body);">hero</span>
+				<span class="status-sep">│</span>
+				<span id="status-section">hero</span>
 			</div>
 			<div class="flex items-center gap-4">
 				<span id="status-scroll" class="tabular-nums">ln 0</span>
-				<span style="color: var(--hairline);">│</span>
-				<span id="status-time" class="tabular-nums uppercase"></span>
+				<span class="status-sep">│</span>
+				<span id="status-time" class="tabular-nums"></span>
 			</div>
 		</div>
 
 		<style is:global>
-			/* ============================================
-			   SCROLL REVEAL SYSTEM
-			   ============================================ */
-			.reveal {
-				opacity: 0;
-				transform: translateY(20px);
-				transition:
-					opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-					transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-			}
-			.reveal.revealed {
-				opacity: 1;
-				transform: translateY(0);
-			}
-
-			/* Line reveal — clean horizontal wipe */
-			.line-reveal {
-				height: 1px;
-				background: var(--hairline);
-				transform: scaleX(0);
-				transform-origin: left;
-				transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-			}
-			.line-reveal.revealed {
-				transform: scaleX(1);
-			}
-
-			/* Stagger delays */
-			.stagger-1 { transition-delay: 0.06s; }
-			.stagger-2 { transition-delay: 0.12s; }
-			.stagger-3 { transition-delay: 0.18s; }
-			.stagger-4 { transition-delay: 0.24s; }
-			.stagger-5 { transition-delay: 0.30s; }
-			.stagger-6 { transition-delay: 0.36s; }
-			.stagger-7 { transition-delay: 0.42s; }
-			.stagger-8 { transition-delay: 0.48s; }
-
 			/* Scrollbar */
 			::-webkit-scrollbar { width: 0px; }
 			html { scrollbar-width: none; }
@@ -211,65 +157,7 @@ const { title } = Astro.props;
 					-webkit-backdrop-filter 200ms var(--ease-out),
 					border-color 200ms var(--ease-out);
 			}
-
-			/* @starting-style — modern entry animations */
-			@starting-style {
-				.reveal { opacity: 0; transform: translateY(20px); }
-				.line-reveal { transform: scaleX(0); }
-			}
-
-			/* Status bar bottom padding */
-			@media (min-width: 768px) {
-				body { padding-bottom: 28px; }
-			}
 		</style>
-
-		<!-- Page entry animation — no loader, straight into content -->
-		<script>
-			import { createTimeline, stagger } from "animejs";
-
-			// ── Page entry animation — immediate, cascading ──
-			function animatePageEntry() {
-				const entryTl = createTimeline({
-					defaults: { ease: "outQuart" },
-				});
-
-				entryTl
-					.add("#main-nav", {
-						opacity: [0, 1],
-						translateY: [-12, 0],
-						duration: 500,
-					})
-					.add(".hero-animate:first-of-type", {
-						opacity: [0, 1],
-						translateY: [24, 0],
-						duration: 700,
-					}, "-=350")
-					.add(".hero-animate:not(:first-of-type)", {
-						opacity: [0, 1],
-						translateY: [16, 0],
-						duration: 500,
-						delay: stagger(60),
-					}, "-=500")
-					.add(".hero-scroll-indicator", {
-						opacity: [0, 1],
-						translateY: [12, 0],
-						duration: 500,
-					}, "-=200");
-
-				// Animate status bar in after page loads
-				setTimeout(() => {
-					const bar = document.getElementById("status-bar");
-					if (bar) {
-						bar.style.opacity = "1";
-						bar.style.transform = "translateY(0)";
-					}
-				}, 800);
-			}
-
-			// Start immediately on load
-			animatePageEntry();
-		</script>
 
 		<!-- Status bar logic -->
 		<script>
@@ -294,9 +182,10 @@ const { title } = Astro.props;
 			// Update section and scroll position
 			const sections = [
 				{ id: "hero-section", label: "hero" },
-				{ id: "work-section", label: "deployments" },
-				{ id: "skills-section", label: "dependencies" },
-				{ id: "about-section", label: "readme" },
+				{ id: "work-section", label: "work" },
+				{ id: "experience-section", label: "experience" },
+				{ id: "skills-section", label: "stack" },
+				{ id: "about-section", label: "about" },
 			];
 
 			function updateStatusBar() {
@@ -330,26 +219,35 @@ const { title } = Astro.props;
 
 		<!-- Scroll reveal observer -->
 		<script>
-			const observer = new IntersectionObserver(
-				(entries) => {
-					entries.forEach((entry) => {
-						if (entry.isIntersecting) {
-							entry.target.classList.add("revealed");
-							observer.unobserve(entry.target);
-						}
-					});
-				},
-				{ threshold: 0.08, rootMargin: "0px 0px -60px 0px" }
-			);
+			const revealTargets = document.querySelectorAll(".reveal, .line-reveal");
 
-			document.querySelectorAll(".reveal, .line-reveal").forEach((el) => observer.observe(el));
+			if (!("IntersectionObserver" in window)) {
+				revealTargets.forEach((el) => el.classList.add("revealed"));
+			} else {
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting) {
+								entry.target.classList.add("revealed");
+								observer.unobserve(entry.target);
+							}
+						});
+					},
+					{ threshold: 0.08, rootMargin: "0px 0px -60px 0px" }
+				);
+
+				revealTargets.forEach((el) => observer.observe(el));
+			}
 		</script>
 
-		<!-- Cloudflare Web Analytics -->
-		<script
-			defer
-			src="https://static.cloudflareinsights.com/beacon.min.js"
-			data-cf-beacon='{"token": "f1b03c7ad51b497aad9e6f45fc464a8f"}'
-		></script>
+		<!-- Cloudflare Web Analytics — production only, single beacon -->
+		{import.meta.env.PROD && (
+			<script
+				is:inline
+				defer
+				src="https://static.cloudflareinsights.com/beacon.min.js"
+				data-cf-beacon={`{"token":"${CLOUDFLARE_ANALYTICS_TOKEN}"}`}
+			/>
+		)}
 	</body>
 </html>

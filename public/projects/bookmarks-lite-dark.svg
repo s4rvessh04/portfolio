@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+
+  <rect width="800" height="500" fill="#1a1a1a"/>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2a2a2a" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#grid)"/>
+
+  <!-- HEADER BAR -->
+  <rect x="40" y="30" width="720" height="54" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <!-- Logo wordmark placeholder -->
+  <rect x="62" y="48" width="72" height="8" rx="4" fill="#e8e8e8" opacity="0.7"/>
+  <!-- Search bar -->
+  <rect x="282" y="40" width="236" height="32" rx="16" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="302" y="52" width="56" height="4" rx="2" fill="#b0b0b0"/>
+  <!-- Avatar circle -->
+  <circle cx="708" cy="57" r="14" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="700" y="53" width="16" height="10" rx="3" fill="#2a2a2a"/>
+
+  <!-- ADD BAR -->
+  <rect x="40" y="102" width="720" height="40" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <!-- + icon -->
+  <rect x="60" y="117" width="10" height="10" rx="2" fill="#2a2a2a"/>
+  <rect x="86" y="121" width="120" height="5" rx="2.5" fill="#2a2a2a"/>
+  <!-- Right side tag -->
+  <rect x="690" y="115" width="50" height="12" rx="6" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="702" y="119" width="26" height="4" rx="2" fill="#2a2a2a"/>
+
+  <!-- BOOKMARK GRID — 2 cols x 3 rows -->
+  <!-- Card 1 -->
+  <rect x="40" y="162" width="355" height="96" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="60" y="182" width="28" height="28" rx="7" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="67" y="191" width="14" height="10" rx="2" fill="#2a2a2a"/>
+  <rect x="100" y="184" width="150" height="7" rx="3.5" fill="#e8e8e8" opacity="0.5"/>
+  <rect x="100" y="198" width="210" height="5" rx="2.5" fill="#2a2a2a"/>
+  <!-- Tag -->
+  <rect x="60" y="226" width="54" height="16" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="70" y="231" width="34" height="4" rx="2" fill="#007cf0" opacity="0.4"/>
+
+  <!-- Card 2 -->
+  <rect x="408" y="162" width="352" height="96" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="428" y="182" width="28" height="28" rx="7" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="435" y="191" width="14" height="10" rx="2" fill="#2a2a2a"/>
+  <rect x="468" y="184" width="170" height="7" rx="3.5" fill="#e8e8e8" opacity="0.5"/>
+  <rect x="468" y="198" width="230" height="5" rx="2.5" fill="#2a2a2a"/>
+  <rect x="428" y="226" width="62" height="16" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="438" y="231" width="42" height="4" rx="2" fill="#7928ca" opacity="0.35"/>
+
+  <!-- Card 3 -->
+  <rect x="40" y="274" width="355" height="96" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="60" y="294" width="28" height="28" rx="7" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="67" y="303" width="14" height="10" rx="2" fill="#2a2a2a"/>
+  <rect x="100" y="296" width="195" height="7" rx="3.5" fill="#e8e8e8" opacity="0.5"/>
+  <rect x="100" y="310" width="180" height="5" rx="2.5" fill="#2a2a2a"/>
+  <rect x="60" y="338" width="48" height="16" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="70" y="343" width="28" height="4" rx="2" fill="#00dfd8" opacity="0.5"/>
+
+  <!-- Card 4 -->
+  <rect x="408" y="274" width="352" height="96" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="428" y="294" width="28" height="28" rx="7" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="435" y="303" width="14" height="10" rx="2" fill="#2a2a2a"/>
+  <rect x="468" y="296" width="146" height="7" rx="3.5" fill="#e8e8e8" opacity="0.5"/>
+  <rect x="468" y="310" width="200" height="5" rx="2.5" fill="#2a2a2a"/>
+  <rect x="428" y="338" width="58" height="16" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="438" y="343" width="38" height="4" rx="2" fill="#ff4d4d" opacity="0.35"/>
+
+  <!-- Card 5 (partial) -->
+  <rect x="40" y="386" width="355" height="86" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="60" y="406" width="28" height="28" rx="7" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="67" y="415" width="14" height="10" rx="2" fill="#2a2a2a"/>
+  <rect x="100" y="408" width="166" height="7" rx="3.5" fill="#e8e8e8" opacity="0.5"/>
+  <rect x="100" y="422" width="210" height="5" rx="2.5" fill="#2a2a2a"/>
+
+  <!-- Card 6 (partial) -->
+  <rect x="408" y="386" width="352" height="86" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="428" y="406" width="28" height="28" rx="7" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="435" y="415" width="14" height="10" rx="2" fill="#2a2a2a"/>
+  <rect x="468" y="408" width="190" height="7" rx="3.5" fill="#e8e8e8" opacity="0.5"/>
+  <rect x="468" y="422" width="160" height="5" rx="2.5" fill="#2a2a2a"/>
+</svg>

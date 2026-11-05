@@ -8,24 +8,11 @@ const { label, href }: Props = Astro.props;
 ---
 
 <li role="listitem">
-	<a
-		href={href}
-		class="nav-link"
-		style="color: var(--text-body); text-decoration: none; font-size: 0.875rem; font-weight: 400; padding: 6px 10px; border-radius: var(--rounded-full); display: inline-block; transition: color 150ms var(--ease-out), background 150ms var(--ease-out);"
-	>
-		{label}
-	</a>
+	<a href={href} class="nav-link">{label}</a>
 </li>
 
 <style>
-	@media (hover: hover) and (pointer: fine) {
-		.nav-link:hover {
-			color: var(--text-ink) !important;
-			background: var(--hairline-soft) !important;
-		}
-	}
 	.nav-link:active {
 		transform: scale(0.97);
-		background: var(--hairline-soft) !important;
 	}
 </style>

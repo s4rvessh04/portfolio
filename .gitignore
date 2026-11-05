@@ -2,6 +2,9 @@
 dist/
 .output/
 
+# brainstorming mockups
+.superpowers/
+
 # dependencies
 node_modules/
 

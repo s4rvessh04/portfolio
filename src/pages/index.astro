@@ -2,7 +2,7 @@
 import Footer from "../components/Footer.astro";
 import Layout from "../layouts/Layout.astro";
 import {
-	dataCurrently,
+	benchmarks,
 	projects,
 	socialLinks,
 	skills,
@@ -13,115 +13,67 @@ import {
 ---
 
 <Layout>
-	<!-- HERO — mesh gradient bloom, tight Geist tracking -->
-	<section id="hero-section" class="relative min-h-[100svh] flex flex-col justify-center overflow-hidden" style="padding: 0 var(--space-lg);">
-		<!-- Centered container -->
-		<div style="max-width: 1200px; margin: 0 auto; width: 100%; padding: 0 var(--space-md);">
-
-			<!-- Mesh gradient: entire decorative system -->
-			<div class="hero-mesh" aria-hidden="true"></div>
-
-			<!-- Content -->
-			<div class="relative" style="z-index: 2; padding-top: 80px;">
-				<!-- Eyebrow -->
-				<div class="hero-animate" style="opacity: 0; margin-bottom: var(--space-lg);">
-					<span class="eyebrow" style="color: var(--text-mute);">Backend Engineer</span>
-				</div>
-
-				<!-- Hero headline — display-xl, tightly tracked -->
-				<div class="hero-animate" style="opacity: 0; margin-bottom: var(--space-lg);">
-					<h1 style="font-family: var(--font-sans); font-size: clamp(2.5rem, 6vw + 1rem, 4rem); font-weight: 600; line-height: 1; letter-spacing: -0.045em; color: var(--text-ink); margin: 0;">
-						Sarvesh Rane
-					</h1>
-				</div>
-
-				<!-- Tagline -->
-				<div class="hero-animate" style="opacity: 0; margin-bottom: var(--space-2xl);">
-					<p style="font-size: 1.125rem; font-weight: 400; line-height: 1.6; color: var(--text-body); max-width: 480px; margin: 0;">
-						Building backend systems that handle real traffic — and shipping them to production.
-					</p>
-				</div>
-
-				<!-- Status + location row -->
-				<div class="hero-animate" style="opacity: 0; display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs); margin-bottom: var(--space-2xl);">
-					<span class="eyebrow" style="display: flex; align-items: center; gap: 6px; color: var(--text-mute); white-space: nowrap; line-height: 1;">
-						<span style="width: 6px; height: 6px; border-radius: 50%; background: var(--status-green); display: inline-block; flex-shrink: 0;" class="animate-pulse-slow"></span>
-						Open to work
-					</span>
-					<span class="hidden sm:inline-block" style="width: 1px; height: 12px; background: var(--hairline); flex-shrink: 0;"></span>
-					<span class="eyebrow" style="color: var(--text-mute); white-space: nowrap;">Navi Mumbai, India</span>
-					<span class="hidden sm:inline-block" style="width: 1px; height: 12px; background: var(--hairline); flex-shrink: 0;"></span>
-					<span class="eyebrow" style="color: var(--text-mute); display: flex; align-items: center; min-width: 0;">
-						<span id="typing-text" style="overflow: hidden; white-space: nowrap;"></span><span class="animate-blink" style="font-family: var(--font-mono); flex-shrink: 0;">|</span>
-					</span>
-				</div>
-
-				<!-- CTA row — marketing pills -->
-				<div class="hero-animate" style="opacity: 0; display: flex; flex-wrap: wrap; gap: var(--space-xs);">
-					<a
-						href="mailto:sarveshrane2000@gmail.com"
-						class="btn-primary"
-						id="hero-contact-btn"
-					>
-						Get in Touch
-					</a>
-					<a
-						href="#work-section"
-						class="btn-secondary"
-						id="hero-work-btn"
-					>
-						View Work
-					</a>
+	<!-- HERO — Signal: dot grid, one scan sweep, decoded name -->
+	<section id="hero-section" class="hero">
+		<div class="signal-grid" aria-hidden="true"></div>
+		<div class="signal-sweep" aria-hidden="true"></div>
+		<div class="hero-inner">
+			<div class="hero-content">
+				<p class="eyebrow hero-animate">// backend engineer — navi mumbai</p>
+				<h1 class="hero-title hero-animate">
+					<span data-decode="SARVESH RANE">SARVESH RANE</span><span class="hero-cursor" aria-hidden="true">_</span>
+				</h1>
+				<p class="hero-tagline hero-animate">Building backend systems that handle real traffic — and shipping them to production.</p>
+				<p class="hero-status hero-animate">
+					<span class="status-dot" aria-hidden="true"></span> open to work <span class="status-sep">·</span> navi mumbai, IST
+				</p>
+				<div class="hero-actions hero-animate">
+					<a href="mailto:sarveshrane2000@gmail.com" class="btn-primary">Get in touch ↗</a>
+					<a href="#work-section" class="btn-secondary">View work</a>
 				</div>
 			</div>
-		</div>
-
-		<!-- Scroll indicator -->
-		<div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float hero-scroll-indicator hidden sm:flex" style="opacity: 0; flex-direction: column; align-items: center; gap: 6px;">
-			<span class="eyebrow" style="color: var(--text-faint);">scroll</span>
-			<div style="width: 1px; height: 28px; background: linear-gradient(to bottom, var(--text-faint), transparent);"></div>
+			<div class="hero-telemetry telemetry" aria-label="Selected benchmarks">
+				{benchmarks.map((b) => (
+					<span><b>{b.value}</b> {b.unit} <span class="telemetry-label">{b.label}</span></span>
+				))}
+			</div>
 		</div>
 	</section>
 
-	<!-- HAIRLINE DIVIDER -->
-	<div style="padding: 0 var(--space-lg);">
-		<div class="hairline reveal"></div>
-	</div>
-
-	<!-- MARQUEE — skills strip -->
-	<div class="marquee-wrapper py-3 reveal" style="border-bottom: 1px solid var(--hairline);" aria-hidden="true" role="presentation">
-		<div class="marquee-container">
-			<div class="marquee-content">
-				<span class="eyebrow mx-6" style="color: var(--text-faint);">systems engineering</span>
-				<span class="mx-2" style="color: var(--text-faint);">·</span>
-				<span class="eyebrow mx-6" style="color: var(--text-faint);">backend development</span>
-				<span class="mx-2" style="color: var(--text-faint);">·</span>
-				<span class="eyebrow mx-6" style="color: var(--text-faint);">infrastructure</span>
-				<span class="mx-2" style="color: var(--text-faint);">·</span>
-				<span class="eyebrow mx-6" style="color: var(--text-faint);">devops</span>
-				<span class="mx-2" style="color: var(--text-faint);">·</span>
-				<span class="eyebrow mx-6" style="color: var(--text-faint);">open source</span>
-				<span class="mx-2" style="color: var(--text-faint);">·</span>
-				<span class="eyebrow mx-6" style="color: var(--text-faint);">go · python · javascript</span>
-				<span class="mx-2" style="color: var(--text-faint);">·</span>
-				<span class="eyebrow mx-6" style="color: var(--text-faint);">docker · kubernetes · kafka</span>
-				<span class="mx-2" style="color: var(--text-faint);">·</span>
+	<!-- TICKER — skills strip -->
+	<div class="ticker-wrapper" aria-hidden="true" role="presentation">
+		<div class="ticker">
+			<div class="ticker-group">
+				<span class="eyebrow">systems engineering</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">backend development</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">infrastructure</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">devops</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">open source</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">go · python · javascript</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">docker · kubernetes · kafka</span>
+				<span class="ticker-sep">▸</span>
 			</div>
-			<div class="marquee-content" aria-hidden="true">
-				<span class="eyebrow mx-6" style="color: var(--text-faint);">systems engineering</span>
-				<span class="mx-2" style="color: var(--text-faint);">·</span>
-				<span class="eyebrow mx-6" style="color: var(--text-faint);">backend development</span>
-				<span class="mx-2" style="color: var(--text-faint);">·</span>
-				<span class="eyebrow mx-6" style="color: var(--text-faint);">infrastructure</span>
-				<span class="mx-2" style="color: var(--text-faint);">·</span>
-				<span class="eyebrow mx-6" style="color: var(--text-faint);">devops</span>
-				<span class="mx-2" style="color: var(--text-faint);">·</span>
-				<span class="eyebrow mx-6" style="color: var(--text-faint);">open source</span>
-				<span class="mx-2" style="color: var(--text-faint);">·</span>
-				<span class="eyebrow mx-6" style="color: var(--text-faint);">go · python · javascript</span>
-				<span class="mx-2" style="color: var(--text-faint);">·</span>
-				<span class="eyebrow mx-6" style="color: var(--text-faint);">docker · kubernetes · kafka</span>
-				<span class="mx-2" style="color: var(--text-faint);">·</span>
+			<div class="ticker-group" aria-hidden="true">
+				<span class="eyebrow">systems engineering</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">backend development</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">infrastructure</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">devops</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">open source</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">go · python · javascript</span>
+				<span class="ticker-sep">▸</span>
+				<span class="eyebrow">docker · kubernetes · kafka</span>
+				<span class="ticker-sep">▸</span>
 			</div>
 		</div>
 	</div>
@@ -132,7 +84,7 @@ import {
 			<!-- Section header -->
 			<div style="margin-bottom: var(--space-3xl);">
 				<div class="reveal" style="margin-bottom: var(--space-md);">
-					<span class="eyebrow">Featured Projects</span>
+					<span class="eyebrow">// 01 — selected work</span>
 				</div>
 				<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
 					<h2 class="reveal stagger-1" style="font-family: var(--font-sans); font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.04em; color: var(--text-ink); margin: 0;">
@@ -152,16 +104,16 @@ import {
 						<div
 							class:list={["project-row group reveal", `stagger-${idx + 1}`]}
 							role="listitem"
-							style="padding: var(--space-xl) 0;"
 						>
 							<div class="flex flex-col gap-3">
 								<!-- Index + title row -->
 								<div class="flex items-baseline gap-4">
-									<span class="eyebrow" style="color: var(--text-faint); min-width: 20px;">
+									<span class="project-index eyebrow">
 										{String(idx + 1).padStart(2, "0")}
 									</span>
-									<h3 style="font-family: var(--font-sans); font-size: 1.25rem; font-weight: 600; letter-spacing: -0.025em; color: var(--text-ink); margin: 0;">
+									<h3 style="font-family: var(--font-sans); font-size: 1.5rem; font-weight: 600; letter-spacing: -0.03em; color: var(--text-ink); margin: 0; display: inline-flex; align-items: center; gap: 8px;">
 										{project.title}
+										<span class="project-arrow" aria-hidden="true">↗</span>
 									</h3>
 								</div>
 
@@ -174,7 +126,7 @@ import {
 								{project.stack && project.stack.length > 0 && (
 									<div class="pl-0 md:pl-9" style="display: flex; flex-wrap: wrap; gap: 6px;">
 										{project.stack.map((tech) => (
-											<span class="stack-tag eyebrow" style="color: var(--text-mute); background: var(--hairline-soft); border: 1px solid var(--hairline); padding: 3px 8px; border-radius: var(--rounded-sm);">
+											<span class="stack-tag">
 												{tech}
 											</span>
 										))}
@@ -209,23 +161,38 @@ import {
 							</div>
 
 							<!-- Project image — subtle, hairline-bordered -->
-							<div class="mt-5 overflow-hidden project-image-container" style="border: 1px solid var(--hairline); border-radius: var(--rounded-md);">
+							<div class="mt-5 overflow-hidden project-image-frame" style="border: 1px solid var(--hairline); border-radius: var(--rounded-md);">
 								<div class="relative overflow-hidden" style="aspect-ratio: 16/9;">
 									<img
 										src={project.image}
 										alt={`${project.title} preview`}
 										width="800"
 										height="450"
-										class="project-image w-full h-full object-cover"
-										loading="lazy"
+										class="project-image project-image-light w-full h-full object-cover"
+										loading="eager"
 										decoding="async"
 									/>
+									<img
+										src={project.imageDark}
+										alt={`${project.title} preview`}
+										width="800"
+										height="450"
+										class="project-image project-image-dark w-full h-full object-cover"
+										loading="eager"
+										decoding="async"
+									/>
+									<div class="project-scan" aria-hidden="true"></div>
+									<div class="project-image-overlay" aria-hidden="true"></div>
+									<span class="project-view" aria-hidden="true">view ↗</span>
+									<div class="reticle" aria-hidden="true">
+										<span class="reticle-corner reticle-tl"></span>
+										<span class="reticle-corner reticle-br"></span>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				))}
-				<div class="line-reveal stagger-6"></div>
 			</div>
 		</div>
 	</section>
@@ -235,7 +202,7 @@ import {
 		<div style="max-width: 1200px; margin: 0 auto;">
 			<div style="margin-bottom: var(--space-3xl);">
 				<div class="reveal" style="margin-bottom: var(--space-md);">
-					<span class="eyebrow">Experience</span>
+					<span class="eyebrow">// 02 — experience</span>
 				</div>
 				<h2 class="reveal stagger-1" style="font-family: var(--font-sans); font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.04em; color: var(--text-ink); margin: 0;">
 					Work History
@@ -250,23 +217,26 @@ import {
 						<div
 							class:list={["exp-row reveal", `stagger-${idx + 1}`]}
 							role="listitem"
-							style="padding: var(--space-xl) 0; display: flex; gap: var(--space-2xl); flex-wrap: wrap;"
+							style="padding: var(--space-xl) 0 var(--space-xl) 20px; display: flex; column-gap: var(--space-2xl); row-gap: var(--space-md); flex-wrap: wrap; position: relative;"
 						>
 							<!-- Left: period + location -->
 							<div style="min-width: 160px; flex-shrink: 0;">
-								<p class="eyebrow" style="color: var(--text-faint); margin: 0 0 4px 0;">{job.period}</p>
+								<p class="eyebrow exp-period" style="margin: 0 0 4px 0; display: flex; align-items: center; gap: 6px;">
+									{job.period.includes("Present") && <span class="status-dot" aria-hidden="true"></span>}
+									{job.period}
+								</p>
 								<p style="font-size: 0.8125rem; color: var(--text-mute); margin: 0;">{job.location}</p>
 							</div>
 							<!-- Right: role details -->
 							<div style="flex: 1; min-width: 260px;">
-								<h3 style="font-family: var(--font-sans); font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text-ink); margin: 0 0 2px 0;">
+								<h3 style="font-family: var(--font-sans); font-size: 1.375rem; font-weight: 600; letter-spacing: -0.025em; color: var(--text-ink); margin: 0 0 2px 0;">
 									{job.role}
 								</h3>
-								<p style="font-size: 0.9375rem; color: var(--text-mute); margin: 0 0 var(--space-md) 0;">{job.company}</p>
+								<p style="font-size: 0.9375rem; color: var(--accent); margin: 0 0 var(--space-md) 0;">{job.company}</p>
 								<ul style="margin: 0 0 var(--space-md) 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px;">
 									{job.highlights.map((h) => (
 										<li style="font-size: 0.9375rem; color: var(--text-body); line-height: 1.6; display: flex; gap: 8px;">
-											<span style="color: var(--text-faint); flex-shrink: 0; margin-top: 2px;">–</span>
+											<span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">▸</span>
 											{h}
 										</li>
 									))}
@@ -274,7 +244,7 @@ import {
 								<!-- Stack tags -->
 								<div style="display: flex; flex-wrap: wrap; gap: 6px;">
 									{job.stack.map((tech) => (
-										<span class="stack-tag eyebrow" style="color: var(--text-mute); background: var(--hairline-soft); border: 1px solid var(--hairline); padding: 3px 8px; border-radius: var(--rounded-sm);">
+										<span class="stack-tag">
 											{tech}
 										</span>
 									))}
@@ -292,35 +262,34 @@ import {
 	<section id="skills-section" style="padding: var(--space-section) var(--space-lg); background: var(--hairline-soft);">
 		<div style="max-width: 1200px; margin: 0 auto;">
 			<div class="reveal" style="margin-bottom: var(--space-md);">
-				<span class="eyebrow">Skills & Technologies</span>
+				<span class="eyebrow">// 03 — stack</span>
 			</div>
 			<h2 class="reveal stagger-1" style="font-family: var(--font-sans); font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.04em; color: var(--text-ink); margin: 0 0 var(--space-3xl) 0;">
 				Stack
 			</h2>
 
-			<!-- 2-up hairline card grid -->
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-4" role="list">
-				{skills.map((skillGroup, groupIdx) => (
-					<div
-						class:list={["feature-card reveal", `stagger-${groupIdx + 1}`]}
-						role="listitem"
-					>
-						<p class="eyebrow" style="color: var(--text-mute); margin-bottom: var(--space-md);">
-							{skillGroup.title}
-						</p>
-						<div style="display: flex; flex-wrap: wrap; gap: 6px;" role="list">
-							{skillGroup.data.map((skill) => (
-								<span
-									class="skill-item eyebrow"
-									style="color: var(--text-body); background: var(--canvas-elevated); border: 1px solid var(--hairline); padding: 5px 10px; border-radius: var(--rounded-sm);"
-									role="listitem"
-								>
-									{skill.title}
-								</span>
-							))}
+			<!-- Terminal-style stack -->
+			<div class="terminal skill-card reveal">
+				<div class="terminal-header">
+					<span class="terminal-dot" style="background: #ff5f57;"></span>
+					<span class="terminal-dot" style="background: #febc2e;"></span>
+					<span class="terminal-dot" style="background: #28c840;"></span>
+					<span style="margin-left: 8px;">stack.sh — zsh</span>
+				</div>
+				<div class="terminal-body">
+					{skills.map((skillGroup, groupIdx) => (
+						<div class:list={["terminal-row reveal", `stagger-${groupIdx + 1}`]}>
+							<p class="terminal-prompt">{skillGroup.title.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-")}</p>
+							<div class="terminal-chips">
+								{skillGroup.data.map((skill) => (
+									<span class="stack-tag terminal-chip">
+										{skill.title}
+									</span>
+								))}
+							</div>
 						</div>
-					</div>
-				))}
+					))}
+				</div>
 			</div>
 		</div>
 	</section>
@@ -329,82 +298,67 @@ import {
 	<section id="about-section" style="padding: var(--space-section) var(--space-lg); scroll-margin-top: 64px;">
 		<div style="max-width: 1200px; margin: 0 auto;">
 			<div class="reveal" style="margin-bottom: var(--space-md);">
-				<span class="eyebrow">About</span>
+				<span class="eyebrow">// 04 — about</span>
 			</div>
 
-			<div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
-				<!-- Photo column -->
-				<div class="md:col-span-4 reveal">
-					<div class="overflow-hidden" style="border: 1px solid var(--hairline); border-radius: var(--rounded-md); aspect-ratio: 3/4; background: var(--hairline-soft);">
-						<img
-							src="/profile.png"
-							alt="Sarvesh Rane"
-							width="800"
-							height="1067"
-							fetchpriority="high"
-							class="profile-img w-full h-full object-cover"
-							style="filter: grayscale(0.2) contrast(1.05);"
-						/>
-					</div>
-
-					<!-- Stat pills -->
-					<div class="grid grid-cols-2 gap-3 mt-4 reveal stagger-2">
-						<div class="feature-card" style="padding: var(--space-md);">
-							<p class="eyebrow" style="color: var(--text-mute); margin-bottom: 4px;">Experience</p>
-							<p style="font-size: 1rem; font-weight: 600; color: var(--text-ink); letter-spacing: -0.02em; margin: 0;">
-								{(() => {
-									const start = new Date(careerStartDate);
-									const now = new Date();
-									const diff = now.getTime() - start.getTime();
-									const diffDate = new Date(diff);
-									const years = Math.abs(diffDate.getUTCFullYear() - 1970);
-									const months = diffDate.getUTCMonth();
-									return `${years}y ${months}m`;
-								})()}
-							</p>
-						</div>
-						<div class="feature-card" style="padding: var(--space-md);">
-							<p class="eyebrow" style="color: var(--text-mute); margin-bottom: 4px;">CGPA</p>
-							<p style="font-size: 0.875rem; font-weight: 600; color: var(--text-ink); letter-spacing: -0.01em; margin: 0;">8.69 / 10</p>
+			<div class="terminal reveal neofetch">
+				<div class="terminal-header">
+					<span class="terminal-dot" style="background: #ff5f57;"></span>
+					<span class="terminal-dot" style="background: #febc2e;"></span>
+					<span class="terminal-dot" style="background: #28c840;"></span>
+					<span style="margin-left: 8px;">neofetch — zsh</span>
+				</div>
+				<div class="neofetch-body">
+					<div class="neofetch-logo">
+						<div class="about-photo">
+							<div class="signal-grid" aria-hidden="true"></div>
+							<img
+								src="/profile.webp"
+								alt="Sarvesh Rane"
+								width="1159"
+								height="1160"
+								loading="lazy"
+								decoding="async"
+								class="profile-img"
+							/>
 						</div>
 					</div>
-				</div>
-
-				<!-- Bio column -->
-				<div class="md:col-span-8 flex flex-col justify-center">
-					<h2 class="reveal" style="font-family: var(--font-sans); font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.04em; color: var(--text-ink); margin: 0 0 var(--space-xl) 0;">
-						Backend Engineer.<br class="inline" /> Building production systems<br class="hidden sm:inline" /> since 2023.
-					</h2>
-
-					<div class="line-reveal stagger-2" style="margin-bottom: var(--space-xl);"></div>
-
-					<div class="reveal stagger-3">
-						<p style="font-size: 1rem; line-height: 1.75; color: var(--text-body); max-width: 540px; margin: 0 0 var(--space-xl) 0;">
-							{professionalSummary}
-						</p>
-					</div>
-
-					<div class="feature-card reveal stagger-4" style="max-width: 440px;">
-						<p class="eyebrow" style="color: var(--text-mute); margin-bottom: var(--space-xs);">Education</p>
-						<p style="font-size: 0.9375rem; font-weight: 500; color: var(--text-ink); letter-spacing: -0.01em; margin: 0 0 2px 0;">Smt. Kashibai Navale College of Engineering</p>
-						<p style="font-size: 0.875rem; color: var(--text-body); margin: 0 0 2px 0;">B.E. Electronics &amp; Telecommunications (Hons. Data Science) · 2019–2023</p>
-						<p style="font-size: 0.875rem; color: var(--text-mute); margin: 0;">CGPA 8.69 / 10 · Pune, Maharashtra</p>
-					</div>
-
-					<!-- Social links -->
-					<div class="flex flex-wrap gap-2 mt-8 reveal stagger-5">
-						{socialLinks.map((social) => (
-							<a
-								href={social.link}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="btn-nav social-link"
-							>
-								{social.title}
-							</a>
-						))}
+					<div class="neofetch-info">
+						<p class="neofetch-title">sarvesh@portfolio</p>
+						<p class="neofetch-sep">--------------------</p>
+						<div class="neofetch-row"><span class="neofetch-key">name</span><span class="neofetch-val">Sarvesh Rane</span></div>
+						<div class="neofetch-row"><span class="neofetch-key">role</span><span class="neofetch-val">Backend Engineer · Node.js &amp; Go</span></div>
+						<div class="neofetch-row"><span class="neofetch-key">location</span><span class="neofetch-val">Navi Mumbai, IST · open to work</span></div>
+						<div class="neofetch-row"><span class="neofetch-key">experience</span><span class="neofetch-val">
+							{(() => {
+								const start = new Date(careerStartDate);
+								const now = new Date();
+								const diff = now.getTime() - start.getTime();
+								const diffDate = new Date(diff);
+								const years = Math.abs(diffDate.getUTCFullYear() - 1970);
+								const months = diffDate.getUTCMonth();
+								return `${years}y ${months}m`;
+							})()} · CGPA 8.69 / 10</span></div>
+						<div class="neofetch-row"><span class="neofetch-key">education</span><span class="neofetch-val">Smt. Kashibai Navale College of Engineering · B.E. E&amp;TC (Hons. Data Science) · 2019–2023</span></div>
+						<div class="neofetch-row"><span class="neofetch-key">bio</span><span class="neofetch-val neofetch-bio">{professionalSummary}</span></div>
 					</div>
 				</div>
+			</div>
+
+			<!-- SOCIAL LINKS -->
+			<div class="reveal" style="margin-top: var(--space-lg); display: flex; flex-wrap: wrap; gap: var(--space-xs);">
+				{socialLinks.map((social) => (
+					<a
+						href={social.link}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="social-chip"
+					>
+						<span class="social-chip-index" aria-hidden="true">{String(socialLinks.indexOf(social) + 1).padStart(2, "0")}</span>
+						<span class="social-chip-label">{social.title}</span>
+						<span class="social-chip-arrow" aria-hidden="true">↗</span>
+					</a>
+				))}
 			</div>
 		</div>
 	</section>
@@ -413,16 +367,6 @@ import {
 </Layout>
 
 <style>
-	/* Project image hover */
-	.project-image {
-		transition: transform 500ms var(--ease-out);
-	}
-	@media (hover: hover) and (pointer: fine) {
-		.project-row:hover .project-image {
-			transform: scale(1.02);
-		}
-	}
-
 	/* Social / project link hover */
 	.social-link, .project-link {
 		transition: border-color 150ms var(--ease-out), background 150ms var(--ease-out), color 150ms var(--ease-out);
@@ -434,40 +378,32 @@ import {
 			background: var(--hairline-soft) !important;
 		}
 	}
-
-	/* Skill item hover */
-	.skill-item {
-		transition: border-color 150ms var(--ease-out), background 150ms var(--ease-out);
-		cursor: default;
-	}
-	@media (hover: hover) and (pointer: fine) {
-		.skill-item:hover {
-			border-color: var(--hover-border) !important;
-		}
-	}
-
-	/* Profile image — source file now properly rotated */
-	.profile-img {
-		/* No rotation needed — image was fixed with ImageMagick */
-	}
-
-	/* Hero section — ensure mesh sits behind content */
-	#hero-section {
-		position: relative;
-	}
 </style>
 
-<script define:vars={{ roles: dataCurrently.map((r) => r.title) }}>
-	const typingEl = document.getElementById("typing-text");
-	let roleIndex = 0, charIndex = 0, isDeleting = false;
-	function type() {
-		const currentRole = roles[roleIndex];
-		if (isDeleting) { typingEl.textContent = currentRole.substring(0, charIndex - 1); charIndex--; }
-		else { typingEl.textContent = currentRole.substring(0, charIndex + 1); charIndex++; }
-		let timeout = isDeleting ? 35 : 70;
-		if (!isDeleting && charIndex === currentRole.length) { timeout = 2500; isDeleting = true; }
-		else if (isDeleting && charIndex === 0) { isDeleting = false; roleIndex = (roleIndex + 1) % roles.length; timeout = 500; }
-		setTimeout(type, timeout);
+<script>
+	const target = document.querySelector<HTMLElement>("[data-decode]");
+	const final = target?.dataset.decode ?? "";
+
+	if (
+		target &&
+		final &&
+		!window.matchMedia("(prefers-reduced-motion: reduce)").matches
+	) {
+		const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/#%&";
+		let frame = 0;
+		const total = 26;
+		const timer = window.setInterval(() => {
+			const progress = frame / total;
+			target.textContent = Array.from(final, (ch, i) =>
+				ch === " " || i < progress * final.length
+					? ch
+					: chars[Math.floor(Math.random() * chars.length)]
+			).join("");
+			frame += 1;
+			if (frame > total) {
+				window.clearInterval(timer);
+				target.textContent = final;
+			}
+		}, 38);
 	}
-	setTimeout(type, 1200);
 </script>

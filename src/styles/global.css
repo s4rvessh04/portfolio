@@ -853,6 +853,11 @@ body {
 	:root:not([data-theme="light"]) .project-image-light { display: none; }
 	:root:not([data-theme="light"]) .project-image-dark { display: block; }
 }
+.project-image {
+	transition: transform 900ms var(--ease-in-out), filter 900ms var(--ease-in-out), brightness 900ms var(--ease-in-out);
+	filter: contrast(1.05);
+}
+
 .project-row:hover .project-image {
 	transform: scale(1.06);
 	filter: contrast(1.08) brightness(1.05);

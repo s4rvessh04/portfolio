@@ -168,8 +168,17 @@ import {
 										alt={`${project.title} preview`}
 										width="800"
 										height="450"
-										class="project-image w-full h-full object-cover"
-										loading="lazy"
+										class="project-image project-image-light w-full h-full object-cover"
+										loading="eager"
+										decoding="async"
+									/>
+									<img
+										src={project.imageDark}
+										alt={`${project.title} preview`}
+										width="800"
+										height="450"
+										class="project-image project-image-dark w-full h-full object-cover"
+										loading="eager"
 										decoding="async"
 									/>
 									<div class="project-scan" aria-hidden="true"></div>

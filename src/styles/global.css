@@ -842,22 +842,22 @@ body {
 	color: var(--accent);
 	transform: translate(2px, -2px);
 }
-.project-image {
-	transition: transform 600ms var(--ease-out), filter 600ms var(--ease-out), brightness 600ms var(--ease-out);
-	filter: contrast(1.05);
+/* Project image light/dark variants — swap based on theme */
+.project-image-light { display: block; }
+.project-image-dark { display: none; }
+
+[data-theme="dark"] .project-image-light { display: none; }
+[data-theme="dark"] .project-image-dark { display: block; }
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .project-image-light { display: none; }
+	:root:not([data-theme="light"]) .project-image-dark { display: block; }
 }
 .project-row:hover .project-image {
 	transform: scale(1.06);
 	filter: contrast(1.08) brightness(1.05);
 }
 
-/* Manual theme toggle fallback: gently dim light-themed art in dark mode */
-[data-theme="dark"] .project-image {
-	filter: contrast(1.05) brightness(0.92);
-}
-[data-theme="dark"] .project-row:hover .project-image {
-	filter: contrast(1.08) brightness(0.95);
-}
 .project-image-frame {
 	position: relative;
 	overflow: hidden;

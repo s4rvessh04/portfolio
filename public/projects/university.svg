@@ -1,36 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
-<style>
-@media (prefers-color-scheme: light) {
-  [fill="#0a0a0a"] { fill: #f4f3ec; }
-  [fill="rgba(255,255,255,0.02)"] { fill: rgba(0,0,0,0.02); }
-  [stroke="rgba(255,255,255,0.02)"] { stroke: rgba(0,0,0,0.02); }
-  [fill="rgba(255,255,255,0.03)"] { fill: rgba(0,0,0,0.03); }
-  [stroke="rgba(255,255,255,0.03)"] { stroke: rgba(0,0,0,0.03); }
-  [fill="rgba(255,255,255,0.04)"] { fill: rgba(0,0,0,0.04); }
-  [stroke="rgba(255,255,255,0.04)"] { stroke: rgba(0,0,0,0.04); }
-  [fill="rgba(255,255,255,0.05)"] { fill: rgba(0,0,0,0.05); }
-  [stroke="rgba(255,255,255,0.05)"] { stroke: rgba(0,0,0,0.05); }
-  [fill="rgba(255,255,255,0.06)"] { fill: rgba(0,0,0,0.06); }
-  [stroke="rgba(255,255,255,0.06)"] { stroke: rgba(0,0,0,0.06); }
-  [fill="rgba(255,255,255,0.08)"] { fill: rgba(0,0,0,0.08); }
-  [stroke="rgba(255,255,255,0.08)"] { stroke: rgba(0,0,0,0.08); }
-  [fill="rgba(255,255,255,0.1)"] { fill: rgba(0,0,0,0.1); }
-  [stroke="rgba(255,255,255,0.1)"] { stroke: rgba(0,0,0,0.1); }
-  [fill="rgba(255,255,255,0.12)"] { fill: rgba(0,0,0,0.12); }
-  [stroke="rgba(255,255,255,0.12)"] { stroke: rgba(0,0,0,0.12); }
-}
-</style>
 
-<style>
-@media (prefers-color-scheme: dark) {
-  [fill="#fafafa"], [fill="#ffffff"], [fill="#f2f2f2"], [fill="#fffef8"] { fill: #1a1a1a; }
-  [fill="#ebebeb"], [fill="#d4d4d4"], [fill="#f4f3ec"] { fill: #2a2a2a; }
-  [fill="#171717"], [fill="#0a0a0a"], [fill="#4d4d4d"] { fill: #e8e8e8; }
-  [fill="#8f8f8f"], [fill="#a1a1a1"] { fill: #b0b0b0; }
-  [stroke="#ebebeb"], [stroke="#d4d4d4"] { stroke: #2a2a2a; }
-  [stroke="rgba(150,150,150,0.3)"], [stroke="rgba(150,150,150,0.4)"] { stroke: rgba(150,150,150,0.15); }
-}
-</style>
 
   <rect width="800" height="500" fill="#0a0a0a"/>
   <defs>

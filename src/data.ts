@@ -26,6 +26,7 @@ export const projects = [
     description:
       "I wanted to really understand the Transactional Outbox pattern, so I built one from scratch in Go. It guarantees at-least-once Kafka delivery with idempotency baked in — handles 200 req/s with ~15μs processing latency and hasn't dropped an event yet.",
     image: "/projects/relaybox.svg",
+    imageDark: "/projects/relaybox-dark.svg",
     stack: ["Go", "Apache Kafka", "PostgreSQL", "Redis", "Docker", "Prometheus"],
   },
   {
@@ -34,6 +35,7 @@ export const projects = [
     description:
       "A Layer 4 load balancer written in pure Go — no external dependencies, just the standard library. I threw 1,000 concurrent connections at it for 10 minutes straight and it handled 1,185 RPS without a single error.",
     image: "/projects/loadbalancer.svg",
+    imageDark: "/projects/loadbalancer-dark.svg",
     stack: ["Go (Standard Library)", "TCP", "UDP"],
   },
   {
@@ -43,6 +45,7 @@ export const projects = [
     description:
       "Real-time chat app where messages hit everyone in the room in under 10ms. Uses Redis Pub/Sub instead of polling, so it actually feels instant. Built with Next.js and TypeScript.",
     image: "/projects/vartalap.svg",
+    imageDark: "/projects/vartalap-dark.svg",
     stack: ["Next.js", "Redis (Pub/Sub)", "TypeScript"],
   },
   {
@@ -52,6 +55,7 @@ export const projects = [
     description:
       "An expense tracker I built because I wanted something simple that actually shows where my money goes. Django API on the backend, React dashboard up front, one Docker command to run the whole thing.",
     image: "/projects/budgeter.svg",
+    imageDark: "/projects/budgeter-dark.svg",
     stack: ["React", "Django", "PostgreSQL", "Docker"],
   },
   {
@@ -61,6 +65,7 @@ export const projects = [
     description:
       "A minimal pastebin that loads fast. Stores text in PostgreSQL, serves it through Vercel's edge network, and has syntax highlighting with configurable expiry. Nothing fancy, just works.",
     image: "/projects/pastebin-lite.svg",
+    imageDark: "/projects/pastebin-lite-dark.svg",
     stack: ["Next.js", "PostgreSQL", "TypeScript"],
   },
   {
@@ -70,6 +75,7 @@ export const projects = [
     description:
       "A bookmark manager where each user's data is completely isolated using Supabase Row Level Security and Google OAuth. Tabs sync in real-time across devices — no refresh needed.",
     image: "/projects/bookmarks-lite.svg",
+    imageDark: "/projects/bookmarks-lite-dark.svg",
     stack: ["Next.js", "PostgreSQL", "Google OAuth", "TypeScript"],
   },
 ];

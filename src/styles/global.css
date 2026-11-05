@@ -843,16 +843,17 @@ body {
 	transform: translate(2px, -2px);
 }
 .project-image {
-	transition: transform 600ms var(--ease-out), filter 600ms var(--ease-out);
-	filter: grayscale(0.55) contrast(1.08);
+	transition: transform 600ms var(--ease-out), filter 600ms var(--ease-out), brightness 600ms var(--ease-out);
+	filter: contrast(1.05);
 }
 .project-row:hover .project-image {
 	transform: scale(1.06);
-	filter: grayscale(0) contrast(1.05);
+	filter: contrast(1.08) brightness(1.05);
 }
 .project-image-frame {
 	position: relative;
 	overflow: hidden;
+	background: var(--canvas-elevated);
 }
 
 /* Cyberpunk HUD reticle — top-left + bottom-right brackets with lock-on flicker */

@@ -60,8 +60,10 @@ import { socialLinks } from "../data";
 			<!-- Links row -->
 			<div class="reveal stagger-3" style="margin-top: var(--space-xl); padding-top: var(--space-lg); border-top: 1px solid var(--hairline); display: flex; flex-wrap: wrap; gap: var(--space-sm) var(--space-md); align-items: center;">
 				<nav aria-label="Footer navigation" style="display: flex; flex-wrap: wrap; gap: var(--space-sm) var(--space-md);">
-					<a href="#" class="footer-link exit-nav-link">top</a>
+					<a href="#" class="footer-link exit-nav-link" aria-label="Back to top">top</a>
 					<a href="#work-section" class="footer-link exit-nav-link">work</a>
+					<a href="#experience-section" class="footer-link exit-nav-link">experience</a>
+					<a href="#skills-section" class="footer-link exit-nav-link">stack</a>
 					<a href="#about-section" class="footer-link exit-nav-link">about</a>
 				</nav>
 				<span class="exit-meta-sep" aria-hidden="true">/</span>
@@ -70,7 +72,7 @@ import { socialLinks } from "../data";
 						<a
 							href={social.link}
 							target="_blank"
-							rel="noopener noreferrer"
+							rel="noopener noreferrer me"
 							class="social-chip"
 						>
 							<span class="social-chip-label">{social.title}</span>

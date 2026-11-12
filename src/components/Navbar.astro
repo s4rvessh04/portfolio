@@ -6,6 +6,7 @@ import { socialLinks } from "../data";
 const links = [
 	{ href: "#work-section", label: "Work" },
 	{ href: "#experience-section", label: "Experience" },
+	{ href: "#skills-section", label: "Stack" },
 	{ href: "#about-section", label: "About" },
 ];
 ---
@@ -62,7 +63,7 @@ const links = [
 				<a
 					href={socialLinks[0].link}
 					target="_blank"
-					rel="noopener noreferrer"
+					rel="noopener noreferrer me"
 					class="btn-nav btn-nav-primary"
 					id="nav-github-btn"
 				>
@@ -189,7 +190,7 @@ const links = [
 			}
 			<li role="listitem">
 				<a
-					href="mailto:sarveshrane2000@gmail.com"
+					href="mailto:sarveshrane2000.dev@gmail.com"
 					class="drawer-link flex items-center justify-between px-3 py-3 rounded-md"
 					style={`opacity: 0; transform: translateX(16px); transition: opacity 250ms var(--ease-out) ${
 						60 + links.length * 50
@@ -222,7 +223,7 @@ const links = [
 			<a
 				href={socialLinks[0].link}
 				target="_blank"
-				rel="noopener noreferrer"
+				rel="noopener noreferrer me"
 				class="btn-primary w-full justify-center"
 				style="display: flex;"
 			>

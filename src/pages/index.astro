@@ -28,7 +28,7 @@ import {
 					<span class="status-dot" aria-hidden="true"></span> open to work <span class="status-sep">·</span> navi mumbai, IST
 				</p>
 				<div class="hero-actions hero-animate">
-					<a href="mailto:sarveshrane2000@gmail.com" class="btn-primary">Get in touch ↗</a>
+					<a href="mailto:sarveshrane2000.dev@gmail.com" class="btn-primary">Get in touch ↗</a>
 					<a href="#work-section" class="btn-secondary">View work</a>
 				</div>
 			</div>
@@ -169,7 +169,7 @@ import {
 										width="800"
 										height="450"
 										class="project-image project-image-light w-full h-full object-cover"
-										loading="eager"
+										loading={idx === 0 ? "eager" : "lazy"}
 										decoding="async"
 									/>
 									<img
@@ -178,7 +178,7 @@ import {
 										width="800"
 										height="450"
 										class="project-image project-image-dark w-full h-full object-cover"
-										loading="eager"
+										loading={idx === 0 ? "eager" : "lazy"}
 										decoding="async"
 									/>
 									<div class="project-scan" aria-hidden="true"></div>
@@ -351,7 +351,7 @@ import {
 					<a
 						href={social.link}
 						target="_blank"
-						rel="noopener noreferrer"
+						rel="noopener noreferrer me"
 						class="social-chip"
 					>
 						<span class="social-chip-index" aria-hidden="true">{String(socialLinks.indexOf(social) + 1).padStart(2, "0")}</span>
